@@ -209,13 +209,13 @@
       left: 0;
       right: 0;
       bottom: 0;
+      z-index: 999;
       flex-direction: column;
       align-items: stretch;
       justify-content: center;
       gap: var(--space-sm);
       padding: var(--space-xl);
-      background: rgba(13, 11, 26, 0.98);
-      backdrop-filter: blur(20px);
+      background: #0d0b1a;
       opacity: 0;
       visibility: hidden;
       transition: all var(--transition-normal);
