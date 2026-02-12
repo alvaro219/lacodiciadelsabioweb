@@ -203,26 +203,29 @@
 
 @media (max-width: 768px) {
   .navbar {
+    &.menu-open {
+      height: 100vh;
+      height: 100dvh;
+      background: #0d0b1a;
+    }
+
     &__links {
-      position: fixed;
-      top: 0;
+      display: none;
+      position: absolute;
+      top: var(--navbar-height);
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 999;
       flex-direction: column;
       align-items: stretch;
-      justify-content: center;
+      justify-content: flex-start;
       gap: var(--space-sm);
       padding: var(--space-xl);
       background: #0d0b1a;
-      opacity: 0;
-      visibility: hidden;
-      transition: all var(--transition-normal);
+      overflow-y: auto;
 
       &.open {
-        opacity: 1;
-        visibility: visible;
+        display: flex;
       }
 
       > a {

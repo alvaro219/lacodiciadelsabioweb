@@ -1,4 +1,4 @@
-<nav class="navbar" [class.scrolled]="isScrolled()">
+<nav class="navbar" [class.scrolled]="isScrolled()" [class.menu-open]="isMenuOpen()">
   <div class="navbar__inner container">
     <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
       <span class="navbar__logo-icon">📜</span>
