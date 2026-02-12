@@ -1,0 +1,62 @@
+<nav class="navbar" [class.scrolled]="isScrolled()">
+  <div class="navbar__inner container">
+    <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
+      <span class="navbar__logo-icon">📜</span>
+      <span class="navbar__logo-text">La Codicia del Sabio</span>
+    </a>
+
+    <div class="navbar__links" [class.open]="isMenuOpen()">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Inicio</a>
+
+      <div class="navbar__dropdown">
+        <button class="navbar__dropdown-trigger" (click)="toggleClasses()">
+          Clases <span class="arrow" [class.open]="isClassesOpen()">▾</span>
+        </button>
+        <div class="navbar__dropdown-menu" [class.open]="isClassesOpen()">
+          <span class="navbar__dropdown-label">⚡ Marciales</span>
+          <a routerLink="/clases/escaramuzador" (click)="closeMenu()">🏹 Escaramuzador</a>
+          <a routerLink="/clases/luchador" (click)="closeMenu()">⚔️ Luchador</a>
+          <a routerLink="/clases/protector" (click)="closeMenu()">🛡️ Protector</a>
+          <a routerLink="/clases/artillero" (click)="closeMenu()">🔧 Artillero</a>
+          <span class="navbar__dropdown-label">💧 Mágicas</span>
+          <a routerLink="/clases/controlador" (click)="closeMenu()">🔥 Controlador</a>
+          <a routerLink="/clases/invocador" (click)="closeMenu()">🐉 Invocador</a>
+          <a routerLink="/clases/velador" (click)="closeMenu()">💚 Velador</a>
+          <a routerLink="/clases/exaltador" (click)="closeMenu()">🎵 Exaltador</a>
+          <a routerLink="/clases/mistico" (click)="closeMenu()">🌑 Místico</a>
+        </div>
+      </div>
+
+      <div class="navbar__dropdown">
+        <button class="navbar__dropdown-trigger" (click)="toggleRaces()">
+          Razas <span class="arrow" [class.open]="isRacesOpen()">▾</span>
+        </button>
+        <div class="navbar__dropdown-menu" [class.open]="isRacesOpen()">
+          <a routerLink="/razas/humano" (click)="closeMenu()">⚔️ Humano</a>
+          <a routerLink="/razas/elfo" (click)="closeMenu()">🌿 Elfo</a>
+          <a routerLink="/razas/enano" (click)="closeMenu()">⛏️ Enano</a>
+          <a routerLink="/razas/aasimar" (click)="closeMenu()">✨ Aasimar</a>
+          <a routerLink="/razas/orco" (click)="closeMenu()">💪 Orco</a>
+          <a routerLink="/razas/mediano" (click)="closeMenu()">🔮 Mediano</a>
+          <a routerLink="/razas/lagarliz" (click)="closeMenu()">🦎 Lagarliz</a>
+          <a routerLink="/razas/bestani" (click)="closeMenu()">🐾 Bestani</a>
+          <a routerLink="/razas/omnimek" (click)="closeMenu()">⚙️ Omnimek</a>
+          <a routerLink="/razas/lazuri" (click)="closeMenu()">🌊 Lazuri</a>
+        </div>
+      </div>
+
+      <a routerLink="/mecanicas" routerLinkActive="active" (click)="closeMenu()">Mecánicas</a>
+      <a routerLink="/comunidad" routerLinkActive="active" (click)="closeMenu()">Comunidad</a>
+    </div>
+
+    <div class="navbar__actions">
+      <a routerLink="/comunidad" class="btn btn--primary btn--sm">Únete</a>
+    </div>
+
+    <button class="navbar__hamburger" [class.open]="isMenuOpen()" (click)="toggleMenu()" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>

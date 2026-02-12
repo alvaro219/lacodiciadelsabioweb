@@ -1,0 +1,173 @@
+<!-- HERO -->
+<section class="comm-hero">
+  <div class="comm-hero__bg"></div>
+  <div class="comm-hero__content container">
+    <a routerLink="/" class="comm-hero__back">← Volver al inicio</a>
+    <h1 class="comm-hero__title">Comunidad y <span class="gradient-text">Eventos</span></h1>
+    <p class="comm-hero__subtitle">Únete a la comunidad de La Codicia del Sabio. Participa en eventos, prueba la beta de la app y conecta con otros jugadores.</p>
+    <div class="comm-hero__actions">
+      <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--primary btn--lg">💬 Únete al Discord</a>
+      <a href="#signup" class="btn btn--secondary btn--lg">Inscríbete a un Evento</a>
+    </div>
+  </div>
+</section>
+
+<!-- DISCORD -->
+<section class="discord-section section">
+  <div class="container">
+    <div class="discord-card card">
+      <div class="discord-card__content">
+        <span class="discord-card__icon">💬</span>
+        <div>
+          <h2>Servidor de Discord</h2>
+          <p>Nuestro servidor de Discord es el centro de la comunidad. Aquí encontrarás:</p>
+          <ul>
+            <li>Canales para buscar grupo y organizar partidas</li>
+            <li>Discusión sobre mecánicas y estrategias</li>
+            <li>Soporte directo del equipo de desarrollo</li>
+            <li>Anuncios de actualizaciones y eventos</li>
+            <li>Feedback y sugerencias para la app</li>
+          </ul>
+          <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--primary">Unirse al Discord</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events-section section alt-bg">
+  <div class="container">
+    <h2 class="text-center">Próximos Eventos</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">📅</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="events-grid">
+      @for (event of getActiveEvents(); track event.id) {
+        <div class="event-card card">
+          <div class="event-card__header">
+            <span class="event-card__icon">{{ event.icon }}</span>
+            <span class="event-card__type" [attr.data-type]="event.type">{{ getTypeLabel(event.type) }}</span>
+          </div>
+          <h3 class="event-card__title">{{ event.title }}</h3>
+          <p class="event-card__desc">{{ event.description }}</p>
+          <div class="event-card__footer">
+            <span class="event-card__date">📅 {{ event.date }}</span>
+            @if (event.spotsTotal > 0) {
+              <span class="event-card__spots">
+                👥 {{ event.spots }}/{{ event.spotsTotal }} plazas
+              </span>
+            } @else {
+              <span class="event-card__spots open">👥 Abierto</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section class="signup-section section" id="signup">
+  <div class="container">
+    <h2 class="text-center">Inscríbete</h2>
+    <p class="text-center signup-subtitle">Apúntate a un evento, beta testing o sesión de juego.</p>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">✍️</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="signup-form-wrapper">
+      <form class="signup-form card" (ngSubmit)="onSignup()">
+        @if (signupSuccess()) {
+          <div class="signup-form__success">
+            <span class="signup-form__success-icon">✅</span>
+            <h3>¡Inscripción enviada!</h3>
+            <p>Te hemos registrado correctamente. Recibirás un email con los detalles.</p>
+          </div>
+        } @else {
+          <div class="signup-form__field">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Tu nombre o nick"
+              [ngModel]="signupName()"
+              (ngModelChange)="signupName.set($event)"
+              name="name"
+            />
+          </div>
+
+          <div class="signup-form__field">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="tu@email.com"
+              [ngModel]="signupEmail()"
+              (ngModelChange)="signupEmail.set($event)"
+              name="email"
+            />
+          </div>
+
+          <div class="signup-form__field">
+            <label for="event">Evento</label>
+            <select
+              id="event"
+              [ngModel]="signupEvent()"
+              (ngModelChange)="signupEvent.set($event)"
+              name="event"
+            >
+              <option value="">Selecciona un evento...</option>
+              @for (event of getActiveEvents(); track event.id) {
+                <option [value]="event.id">{{ event.icon }} {{ event.title }}</option>
+              }
+            </select>
+          </div>
+
+          @if (signupError()) {
+            <div class="signup-form__error">
+              ⚠️ {{ signupError() }}
+            </div>
+          }
+
+          <button type="submit" class="btn btn--primary btn--lg signup-form__submit">
+            Enviar Inscripción
+          </button>
+        }
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRIBUTE -->
+<section class="contribute-section section alt-bg">
+  <div class="container">
+    <div class="contribute-grid">
+      <div class="contribute-card card">
+        <span class="contribute-card__icon">🧪</span>
+        <h3>Beta Testing</h3>
+        <p>Prueba las nuevas funcionalidades de la app antes que nadie y ayúdanos a mejorarla con tu feedback.</p>
+      </div>
+      <div class="contribute-card card">
+        <span class="contribute-card__icon">📝</span>
+        <h3>Feedback</h3>
+        <p>Tu opinión es fundamental. Comparte tus ideas y sugerencias para mejorar el sistema de juego.</p>
+      </div>
+      <div class="contribute-card card">
+        <span class="contribute-card__icon">🎨</span>
+        <h3>Contenido</h3>
+        <p>Contribuye con arte, lore, ideas para enemigos o mecánicas. Las mejores propuestas se incorporan al juego.</p>
+      </div>
+      <div class="contribute-card card">
+        <span class="contribute-card__icon">🐛</span>
+        <h3>Bug Reports</h3>
+        <p>Encontraste un bug en la app? Repórtalo y ayúdanos a hacer La Codicia del Sabio más estable.</p>
+      </div>
+    </div>
+  </div>
+</section>

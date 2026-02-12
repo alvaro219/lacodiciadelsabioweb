@@ -1,0 +1,166 @@
+@if (gameClass(); as cls) {
+  <!-- HERO -->
+  <section class="class-hero" [style.--class-color]="cls.color">
+    <div class="class-hero__bg"></div>
+    <div class="class-hero__content container">
+      <a routerLink="/" class="class-hero__back">← Volver al inicio</a>
+      <div class="class-hero__header">
+        <span class="class-hero__icon">{{ cls.icon }}</span>
+        <div>
+          <span class="class-hero__type" [class.martial]="cls.type === 'martial'" [class.magic]="cls.type === 'magic'">
+            {{ cls.resourceIcon }} {{ cls.type === 'martial' ? 'Clase Marcial' : 'Clase Mágica' }}
+          </span>
+          <h1 class="class-hero__title">{{ cls.name }}</h1>
+          <p class="class-hero__role">{{ cls.role }}</p>
+        </div>
+      </div>
+      <p class="class-hero__desc">{{ cls.description }}</p>
+      <div class="class-hero__stats">
+        <div class="stat-badge">
+          <span class="stat-badge__label">Escudo Base</span>
+          <span class="stat-badge__value">🛡️ {{ cls.shieldBase }}</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-badge__label">Recurso</span>
+          <span class="stat-badge__value">{{ cls.resourceIcon }} {{ cls.resource }}</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-badge__label">Subclases</span>
+          <span class="stat-badge__value">{{ cls.subclasses.length }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LORE -->
+  <section class="class-lore section">
+    <div class="container">
+      <div class="class-lore__card card">
+        <h2>Historia y Trasfondo</h2>
+        <div class="ornament">
+          <span class="ornament__line"></span>
+          <span class="ornament__symbol">📖</span>
+          <span class="ornament__line"></span>
+        </div>
+        <p class="class-lore__text">{{ cls.lore }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLASS ABILITIES -->
+  <section class="class-abilities section">
+    <div class="container">
+      <h2>Habilidades de Clase</h2>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">⚜️</span>
+        <span class="ornament__line"></span>
+      </div>
+
+      <div class="abilities-grid">
+        <div class="ability-card card">
+          <span class="ability-card__tag">Pasiva</span>
+          <h3>{{ cls.passiveName }}</h3>
+          <p>{{ cls.passive }}</p>
+        </div>
+        <div class="ability-card card">
+          <span class="ability-card__tag mastery">Maestría (Nv. 12)</span>
+          <h3>{{ cls.masteryPassiveName }}</h3>
+          <p>{{ cls.masteryPassive }}</p>
+        </div>
+        <div class="ability-card card">
+          <span class="ability-card__tag exploration">Exploración</span>
+          <h3>HB1</h3>
+          <p>{{ cls.hb1 }}</p>
+        </div>
+        <div class="ability-card card">
+          <span class="ability-card__tag exploration">Exploración</span>
+          <h3>HB2</h3>
+          <p>{{ cls.hb2 }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBCLASSES -->
+  <section class="subclasses section">
+    <div class="container">
+      <h2>Subclases</h2>
+      <p class="subclasses__intro">Cada subclase ofrece un estilo de juego diferente con habilidades únicas.</p>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">⚔️</span>
+        <span class="ornament__line"></span>
+      </div>
+
+      <!-- Subclass Tabs -->
+      <div class="subclasses__tabs">
+        @for (sub of cls.subclasses; track sub.id; let i = $index) {
+          <button
+            class="subclasses__tab"
+            [class.active]="activeSubclass() === i"
+            (click)="setActiveSubclass(i)"
+            [style.--class-color]="cls.color"
+          >
+            <span class="subclasses__tab-icon">{{ sub.icon }}</span>
+            <span class="subclasses__tab-name">{{ sub.name }}</span>
+          </button>
+        }
+      </div>
+
+      <!-- Active Subclass Content -->
+      @if (cls.subclasses[activeSubclass()]; as sub) {
+        <div class="subclass-detail animate-fade-in">
+          <div class="subclass-detail__header">
+            <span class="subclass-detail__icon">{{ sub.icon }}</span>
+            <div>
+              <h3>{{ sub.name }}</h3>
+              <span class="subclass-detail__weapons">🗡️ {{ sub.weapons }}</span>
+            </div>
+          </div>
+          <p class="subclass-detail__desc">{{ sub.description }}</p>
+
+          <h4 class="subclass-detail__abilities-title">Habilidades</h4>
+          <div class="subclass-detail__abilities">
+            @for (ability of getAbilityEntries(sub.abilities); track ability.key) {
+              <div class="ability-row" [class.ultimate]="ability.key === 'had'" [class.reaction]="ability.key === 'hap4' || ability.key === 'has2'">
+                <span class="ability-row__label">{{ ability.label }}</span>
+                <p class="ability-row__desc">{{ ability.value }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- OTHER CLASSES -->
+  <section class="other-classes section">
+    <div class="container">
+      <h2>Otras Clases</h2>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">📜</span>
+        <span class="ornament__line"></span>
+      </div>
+      <div class="other-classes__grid">
+        @for (otherCls of allClasses; track otherCls.id) {
+          @if (otherCls.id !== cls.id) {
+            <a [routerLink]="'/clases/' + otherCls.id" class="other-class-card card">
+              <span class="other-class-card__icon">{{ otherCls.icon }}</span>
+              <span class="other-class-card__name">{{ otherCls.name }}</span>
+            </a>
+          }
+        }
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="not-found section">
+    <div class="container" style="text-align: center; padding-top: calc(var(--navbar-height) + 4rem);">
+      <h1>Clase no encontrada</h1>
+      <p>La clase que buscas no existe.</p>
+      <a routerLink="/" class="btn btn--primary">Volver al inicio</a>
+    </div>
+  </section>
+}

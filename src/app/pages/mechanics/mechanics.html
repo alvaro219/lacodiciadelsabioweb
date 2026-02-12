@@ -1,0 +1,373 @@
+<!-- HERO -->
+<section class="mech-hero">
+  <div class="mech-hero__bg"></div>
+  <div class="mech-hero__content container">
+    <a routerLink="/" class="mech-hero__back">← Volver al inicio</a>
+    <h1 class="mech-hero__title">Mecánicas <span class="gradient-text">del Sistema</span></h1>
+    <p class="mech-hero__subtitle">Todo lo que necesitas saber para jugar a La Codicia del Sabio</p>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="mech-section section">
+  <div class="container">
+    <h2>Recursos del Sistema</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">⚜️</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="resource-grid">
+      <div class="resource-card card">
+        <span class="resource-card__icon">🟢</span>
+        <h3>Acciones por Turno</h3>
+        <p>Cada personaje tiene <strong>3 🟢</strong> por turno. Modificable por condiciones: Acelerado = 4, Ralentizado = 2.</p>
+      </div>
+      <div class="resource-card card">
+        <span class="resource-card__icon">⚡</span>
+        <h3>Energía Marcial</h3>
+        <p>Recurso de clases físicas (Escaramuzador, Luchador, Protector, Artillero). <strong>Inicial: 5</strong>. Crece +1 cada 2 niveles.</p>
+      </div>
+      <div class="resource-card card">
+        <span class="resource-card__icon">💧</span>
+        <h3>Energía Mágica</h3>
+        <p>Recurso de clases mágicas (Controlador, Invocador, Velador, Exaltador, Místico). <strong>Inicial: 5</strong>. Crece +1 cada 2 niveles.</p>
+      </div>
+      <div class="resource-card card">
+        <span class="resource-card__icon">❤️</span>
+        <h3>Vida (PV)</h3>
+        <p>Puntos de vida. <strong>Base = 2 + modificador de Constitución</strong>.</p>
+      </div>
+      <div class="resource-card card">
+        <span class="resource-card__icon">🛡️</span>
+        <h3>Escudo</h3>
+        <p>Absorbe daño antes que la vida. Varía por clase (<strong>1-3 base</strong>).</p>
+      </div>
+      <div class="resource-card card">
+        <span class="resource-card__icon">🔶</span>
+        <h3>Reacción</h3>
+        <p>Recurso especial para habilidades reactivas. <strong>1 por turno</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATTRIBUTES -->
+<section class="mech-section section alt-bg">
+  <div class="container">
+    <h2>Los 6 Atributos</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">📊</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="attr-grid">
+      <div class="attr-card card">
+        <h4>FUE</h4>
+        <span class="attr-card__name">Fuerza</span>
+        <p>Poder físico bruto. Afecta al daño cuerpo a cuerpo.</p>
+      </div>
+      <div class="attr-card card">
+        <h4>DES</h4>
+        <span class="attr-card__name">Destreza</span>
+        <p>Agilidad y reflejos. Afecta a la DA y la iniciativa.</p>
+      </div>
+      <div class="attr-card card">
+        <h4>INT</h4>
+        <span class="attr-card__name">Inteligencia</span>
+        <p>Capacidad mental. Afecta al poder mágico.</p>
+      </div>
+      <div class="attr-card card">
+        <h4>PER</h4>
+        <span class="attr-card__name">Percepción</span>
+        <p>Sentidos agudos. Afecta a la precisión a distancia.</p>
+      </div>
+      <div class="attr-card card">
+        <h4>CON</h4>
+        <span class="attr-card__name">Constitución</span>
+        <p>Resistencia física. Afecta a los puntos de vida.</p>
+      </div>
+      <div class="attr-card card">
+        <h4>CAR</h4>
+        <span class="attr-card__name">Carisma</span>
+        <p>Presencia e influencia. Afecta a habilidades sociales.</p>
+      </div>
+    </div>
+
+    <div class="mech-info card">
+      <h4>Cálculos Clave</h4>
+      <ul>
+        <li><strong>Base de atributo:</strong> 10</li>
+        <li><strong>Modificador:</strong> Valor - 10</li>
+        <li><strong>DA (Dificultad de Acierto):</strong> 10 + Mod. Destreza</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SAVING THROWS -->
+<section class="mech-section section">
+  <div class="container">
+    <h2>Tiradas de Salvación</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">🎲</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="save-grid">
+      <div class="save-card card">
+        <h4>Fortaleza</h4>
+        <span class="save-card__attr">CON</span>
+        <p>Resistir efectos físicos, venenos y enfermedades.</p>
+      </div>
+      <div class="save-card card">
+        <h4>Agilidad</h4>
+        <span class="save-card__attr">DES</span>
+        <p>Esquivar efectos de área y trampas.</p>
+      </div>
+      <div class="save-card card">
+        <h4>Voluntad</h4>
+        <span class="save-card__attr">CAR / INT</span>
+        <p>Resistir efectos mentales y mágicos.</p>
+      </div>
+      <div class="save-card card">
+        <h4>Liderazgo</h4>
+        <span class="save-card__attr">CAR</span>
+        <p>Inspirar y resistir efectos de miedo.</p>
+      </div>
+    </div>
+
+    <div class="mech-info card">
+      <p>Se tira <strong>d20</strong> contra una CD (generalmente <strong>CD 10 + modificador del atacante</strong>).</p>
+    </div>
+  </div>
+</section>
+
+<!-- DAMAGE SYSTEM -->
+<section class="mech-section section alt-bg">
+  <div class="container">
+    <h2>Sistema de Daño</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">⚔️</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="damage-info">
+      <div class="card">
+        <h4>Armas</h4>
+        <p>Cada arma tiene: <strong>dado de daño</strong> (d4, d6, d8, d10, d12), <strong>número de ataques</strong> y <strong>modificador</strong> (qué atributo se suma).</p>
+      </div>
+      <div class="card">
+        <h4>Margen de Daño</h4>
+        <p>El margen base para infligir daño es <strong>4</strong>. Modificable por condiciones: Frágil = 5, Debilidad = 3.</p>
+      </div>
+      <div class="card">
+        <h4>Críticos</h4>
+        <p>Se obtienen con un <strong>d20 natural 20</strong>. Los críticos duplican el daño del ataque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESSION -->
+<section class="mech-section section">
+  <div class="container">
+    <h2>Sistema de Progresión (Niveles 1-12)</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">📈</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="progression-grid">
+      <div class="progression-card card">
+        <h3>🎯 Especialización</h3>
+        <p class="progression-card__desc">Domina una sola clase hasta el máximo.</p>
+        <ul>
+          <li>Mejora habilidades en niveles pares (HAP1→HAP2→HAP3→Reacción→Definitiva)</li>
+          <li>+1 estadística principal en niveles 1, 5, 9</li>
+          <li>+2 estadística secundaria en niveles 3, 7, 11</li>
+          <li>+1 recurso (⚡/💧) cada 2 niveles</li>
+          <li><strong>Nivel 12: Pasiva de Maestría única</strong></li>
+        </ul>
+      </div>
+      <div class="progression-card card">
+        <h3>🔀 Multiclaseo</h3>
+        <p class="progression-card__desc">Combina varias clases para mayor versatilidad.</p>
+        <ul>
+          <li>Obtienes habilidades base de la nueva clase, sin mejoras</li>
+          <li>Estadísticas por nivel igual que especialización</li>
+          <li>Si mezclas ⚡ y 💧: ambos recursos se dividen a la mitad (solo 1 vez)</li>
+          <li><strong>No hay Pasiva de Maestría</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section class="mech-section section alt-bg">
+  <div class="container">
+    <h2>Sistema de Condiciones</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">💫</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="conditions-grid">
+      <div class="condition-group card">
+        <h3 class="condition-group__title restriction">🔒 Restricción</h3>
+        <div class="condition-group__list">
+          <span class="condition-tag">Derribado</span>
+          <span class="condition-tag">Desplazado</span>
+          <span class="condition-tag">Levantado</span>
+          <span class="condition-tag">Inmóvil</span>
+          <span class="condition-tag">Incapacitar</span>
+          <span class="condition-tag">Miedo</span>
+          <span class="condition-tag">Mudez</span>
+          <span class="condition-tag">Confusión</span>
+          <span class="condition-tag">Provocar</span>
+          <span class="condition-tag">Estructura</span>
+        </div>
+      </div>
+
+      <div class="condition-group card">
+        <h3 class="condition-group__title debuff">⬇️ Debilitación</h3>
+        <div class="condition-group__list">
+          <span class="condition-tag debuff">Desprevenido</span>
+          <span class="condition-tag debuff">Parálisis</span>
+          <span class="condition-tag debuff">Entumecido</span>
+          <span class="condition-tag debuff">Aturdido</span>
+          <span class="condition-tag debuff">Cegar</span>
+          <span class="condition-tag debuff">Frágil</span>
+          <span class="condition-tag debuff">Ralentizado</span>
+          <span class="condition-tag debuff">Debilidad</span>
+        </div>
+      </div>
+
+      <div class="condition-group card">
+        <h3 class="condition-group__title buff">⬆️ Potenciación</h3>
+        <div class="condition-group__list">
+          <span class="condition-tag buff">Montar</span>
+          <span class="condition-tag buff">Anular</span>
+          <span class="condition-tag buff">Invisibilidad</span>
+          <span class="condition-tag buff">Impulso</span>
+          <span class="condition-tag buff">Égida</span>
+          <span class="condition-tag buff">Invulnerable</span>
+          <span class="condition-tag buff">Vigorizado</span>
+          <span class="condition-tag buff">Acelerado</span>
+          <span class="condition-tag buff">Coraje</span>
+        </div>
+      </div>
+
+      <div class="condition-group card">
+        <h3 class="condition-group__title damage">🔥 Dañino</h3>
+        <div class="condition-group__list">
+          <span class="condition-tag damage">Envenenamiento (1d4)</span>
+          <span class="condition-tag damage">Quemadura (1d6)</span>
+          <span class="condition-tag damage">Explosivo</span>
+        </div>
+      </div>
+
+      <div class="condition-group card">
+        <h3 class="condition-group__title unique">⭐ Únicos</h3>
+        <div class="condition-group__list">
+          <span class="condition-tag unique">Armonía</span>
+          <span class="condition-tag unique">Kiai</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mech-info card">
+      <h4>Rareza de Condiciones</h4>
+      <p>Las condiciones se clasifican en tres niveles de rareza: <strong>Común</strong>, <strong>Especial</strong> y <strong>Único</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENEMIES -->
+<section class="mech-section section">
+  <div class="container">
+    <h2>Sistema de Enemigos</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">👹</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="enemy-tiers">
+      <div class="tier-card card">
+        <span class="tier-card__badge minion">Minion</span>
+        <div class="tier-card__stats">
+          <span>Mod: -5</span>
+          <span>Coste: 5 pts</span>
+        </div>
+        <div class="tier-card__examples">Goblin, Murciélago Vampírico, Iniciado, Alborotador, Rata Gigante</div>
+      </div>
+      <div class="tier-card card">
+        <span class="tier-card__badge normal">Normal</span>
+        <div class="tier-card__stats">
+          <span>Mod: 0</span>
+          <span>Coste: 10 pts</span>
+        </div>
+        <div class="tier-card__examples">Esqueleto, Lobo, Bandido, Cazador, Soldado Renegado, Zombi, Kobold, Chamán</div>
+      </div>
+      <div class="tier-card card">
+        <span class="tier-card__badge miniboss">Mini Boss</span>
+        <div class="tier-card__stats">
+          <span>Mod: +5</span>
+          <span>Coste: 15 pts</span>
+        </div>
+        <div class="tier-card__examples">Orco, Araña Gigante, Bandido Veterano, Nigromante, Caballero Caído, Sicario</div>
+      </div>
+      <div class="tier-card card">
+        <span class="tier-card__badge boss">Boss</span>
+        <div class="tier-card__stats">
+          <span>Mod: +10</span>
+          <span>Coste: 20 pts</span>
+        </div>
+        <div class="tier-card__examples">Dragón, Ogro, Gárgola</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMBAT -->
+<section class="mech-section section alt-bg">
+  <div class="container">
+    <h2>Sistema de Combate</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">⚔️</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="combat-steps">
+      <div class="combat-step card">
+        <span class="combat-step__number">1</span>
+        <h4>Iniciativa</h4>
+        <p>d20 + modificador de Destreza. Orden de mayor a menor.</p>
+      </div>
+      <div class="combat-step card">
+        <span class="combat-step__number">2</span>
+        <h4>Participantes</h4>
+        <p>Personajes y enemigos con vida, escudo, DA y dado de ataque.</p>
+      </div>
+      <div class="combat-step card">
+        <span class="combat-step__number">3</span>
+        <h4>Turnos</h4>
+        <p>3 🟢 por turno para gastar en habilidades, movimiento o ataques.</p>
+      </div>
+      <div class="combat-step card">
+        <span class="combat-step__number">4</span>
+        <h4>Campañas</h4>
+        <p>Guardan participantes, estado de combate y orden de iniciativa.</p>
+      </div>
+    </div>
+  </div>
+</section>

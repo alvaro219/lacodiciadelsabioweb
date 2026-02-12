@@ -1,0 +1,240 @@
+.text-center { text-align: center; }
+
+// ===== RACE HERO =====
+.race-hero {
+  position: relative;
+  padding: calc(var(--navbar-height) + var(--space-2xl)) 0 var(--space-2xl);
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, color-mix(in srgb, var(--race-color) 12%, transparent) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__back {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+    transition: color var(--transition-fast);
+
+    &:hover { color: var(--color-gold); }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  &__icon {
+    font-size: 4rem;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: var(--space-xs);
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 600px;
+  }
+
+  &__stats {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+}
+
+.stat-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-bg-card);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: var(--radius-md);
+  min-width: 100px;
+
+  &.positive {
+    border-color: rgba(74, 222, 128, 0.3);
+    .stat-badge__value { color: var(--color-green); }
+  }
+
+  &.negative {
+    border-color: rgba(248, 113, 113, 0.3);
+    .stat-badge__value { color: var(--color-red); }
+  }
+
+  &__label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+  }
+
+  &__value {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+}
+
+// ===== LORE =====
+.race-lore {
+  &__card {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
+    h2 { margin-bottom: 0; }
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+}
+
+// ===== PASSIVE =====
+.race-passive {
+  background: var(--color-bg-medium);
+
+  h2 { margin-bottom: 0; }
+
+  &__card {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    border-left: 3px solid var(--race-color, var(--color-purple));
+
+    h3 {
+      color: var(--color-gold);
+      margin-bottom: var(--space-sm);
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-text-secondary);
+    }
+  }
+
+  &__icon {
+    display: block;
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+  }
+}
+
+// ===== TRAITS =====
+.race-traits {
+  h2 { margin-bottom: 0; }
+
+  &__grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+}
+
+.trait-card {
+  text-align: center;
+  min-width: 160px;
+  padding: var(--space-xl);
+
+  &.positive {
+    border-color: rgba(74, 222, 128, 0.3);
+  }
+
+  &.negative {
+    border-color: rgba(248, 113, 113, 0.3);
+  }
+
+  &__attr {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-sm);
+  }
+
+  &__mod {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: var(--space-sm);
+
+    .positive & { color: var(--color-green); }
+    .negative & { color: var(--color-red); }
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+}
+
+// ===== OTHER RACES =====
+.other-races {
+  background: var(--color-bg-medium);
+
+  h2 { margin-bottom: 0; }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+
+    @media (max-width: 700px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 400px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.other-race-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+
+  &__icon { font-size: 2rem; }
+
+  &__name {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+
+  &:hover &__name { color: var(--color-gold); }
+}

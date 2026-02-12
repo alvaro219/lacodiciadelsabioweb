@@ -1,0 +1,127 @@
+@if (race(); as r) {
+  <!-- HERO -->
+  <section class="race-hero" [style.--race-color]="r.color">
+    <div class="race-hero__bg"></div>
+    <div class="race-hero__content container">
+      <a routerLink="/" class="race-hero__back">← Volver al inicio</a>
+      <div class="race-hero__header">
+        <span class="race-hero__icon">{{ r.icon }}</span>
+        <div>
+          <h1 class="race-hero__title">{{ r.name }}</h1>
+          <p class="race-hero__subtitle">{{ r.description }}</p>
+        </div>
+      </div>
+
+      <div class="race-hero__stats">
+        <div class="stat-badge">
+          <span class="stat-badge__label">Tamaño</span>
+          <span class="stat-badge__value">📏 {{ r.size }}</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-badge__label">Velocidad</span>
+          <span class="stat-badge__value">👣 {{ r.speed }} pies</span>
+        </div>
+        @for (trait of r.traits; track trait.attribute) {
+          <div class="stat-badge" [class.positive]="trait.modifier > 0" [class.negative]="trait.modifier < 0">
+            <span class="stat-badge__label">{{ trait.attribute }}</span>
+            <span class="stat-badge__value">{{ getModifierText(trait.modifier) }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- LORE -->
+  <section class="race-lore section">
+    <div class="container">
+      <div class="race-lore__card card">
+        <h2>Historia y Trasfondo</h2>
+        <div class="ornament">
+          <span class="ornament__line"></span>
+          <span class="ornament__symbol">📖</span>
+          <span class="ornament__line"></span>
+        </div>
+        <p class="race-lore__text">{{ r.lore }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASSIVE -->
+  <section class="race-passive section">
+    <div class="container">
+      <h2 class="text-center">Habilidad Racial Pasiva</h2>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">✨</span>
+        <span class="ornament__line"></span>
+      </div>
+      <div class="race-passive__card card" [style.--race-color]="r.color">
+        <span class="race-passive__icon">{{ r.icon }}</span>
+        <h3>{{ r.passiveName }}</h3>
+        <p>{{ r.passive }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAITS DETAIL -->
+  @if (r.traits.length > 0) {
+    <section class="race-traits section">
+      <div class="container">
+        <h2 class="text-center">Modificadores de Atributo</h2>
+        <div class="ornament">
+          <span class="ornament__line"></span>
+          <span class="ornament__symbol">📊</span>
+          <span class="ornament__line"></span>
+        </div>
+        <div class="race-traits__grid">
+          @for (trait of r.traits; track trait.attribute) {
+            <div class="trait-card card" [class.positive]="trait.modifier > 0" [class.negative]="trait.modifier < 0">
+              <span class="trait-card__attr">{{ trait.attribute }}</span>
+              <span class="trait-card__mod">{{ getModifierText(trait.modifier) }}</span>
+              <span class="trait-card__desc">
+                @switch (trait.attribute) {
+                  @case ('FUE') { Fuerza }
+                  @case ('DES') { Destreza }
+                  @case ('INT') { Inteligencia }
+                  @case ('PER') { Percepción }
+                  @case ('CON') { Constitución }
+                  @case ('CAR') { Carisma }
+                }
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
+  <!-- OTHER RACES -->
+  <section class="other-races section">
+    <div class="container">
+      <h2 class="text-center">Otras Razas</h2>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">🌍</span>
+        <span class="ornament__line"></span>
+      </div>
+      <div class="other-races__grid">
+        @for (otherRace of allRaces; track otherRace.id) {
+          @if (otherRace.id !== r.id) {
+            <a [routerLink]="'/razas/' + otherRace.id" class="other-race-card card">
+              <span class="other-race-card__icon">{{ otherRace.icon }}</span>
+              <span class="other-race-card__name">{{ otherRace.name }}</span>
+            </a>
+          }
+        }
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="not-found section">
+    <div class="container" style="text-align: center; padding-top: calc(var(--navbar-height) + 4rem);">
+      <h1>Raza no encontrada</h1>
+      <p>La raza que buscas no existe.</p>
+      <a routerLink="/" class="btn btn--primary">Volver al inicio</a>
+    </div>
+  </section>
+}

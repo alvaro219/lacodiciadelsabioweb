@@ -1,0 +1,191 @@
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero__bg">
+    <div class="hero__particles"></div>
+    <div class="hero__gradient"></div>
+  </div>
+  <div class="hero__content container">
+    <span class="hero__badge">📜 Sistema de Rol de Mesa Original</span>
+    <h1 class="hero__title">
+      La Codicia<br>
+      <span class="gradient-text">del Sabio</span>
+    </h1>
+    <p class="hero__subtitle">
+      Un sistema de rol de mesa único con 9 clases, 10 razas jugables y una app compañera.
+      Forja tu leyenda en un mundo donde la sabiduría es el mayor tesoro.
+    </p>
+    <div class="hero__actions">
+      <a routerLink="/comunidad" class="btn btn--primary btn--lg">Únete a la Comunidad</a>
+      <a routerLink="/mecanicas" class="btn btn--secondary btn--lg">Descubre el Sistema</a>
+    </div>
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <span class="hero__stat-number">9</span>
+        <span class="hero__stat-label">Clases</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">18</span>
+        <span class="hero__stat-label">Subclases</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">10</span>
+        <span class="hero__stat-label">Razas</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">12</span>
+        <span class="hero__stat-label">Niveles</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features section">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿Qué hace único a <span class="gradient-text">La Codicia del Sabio</span>?</h2>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">⚜️</span>
+        <span class="ornament__line"></span>
+      </div>
+    </div>
+
+    <div class="features__grid">
+      <div class="card features__card">
+        <span class="features__card-icon">⚡</span>
+        <h3>Sistema de Recursos Dual</h3>
+        <p>Energía Marcial para guerreros y Energía Mágica para hechiceros. Dos caminos de poder completamente diferenciados.</p>
+      </div>
+      <div class="card features__card">
+        <span class="features__card-icon">🟢</span>
+        <h3>3 Acciones por Turno</h3>
+        <p>Cada turno tienes 3 acciones para atacar, moverte o usar habilidades. Modificable por condiciones como Acelerado o Ralentizado.</p>
+      </div>
+      <div class="card features__card">
+        <span class="features__card-icon">🛡️</span>
+        <h3>Escudo + Vida</h3>
+        <p>Sistema de doble capa de protección. El escudo absorbe daño antes que la vida, añadiendo profundidad táctica.</p>
+      </div>
+      <div class="card features__card">
+        <span class="features__card-icon">🎯</span>
+        <h3>Especialización o Multiclaseo</h3>
+        <p>Domina una clase hasta el nivel 12 con Pasiva de Maestría, o combina varias clases para crear builds únicos.</p>
+      </div>
+      <div class="card features__card">
+        <span class="features__card-icon">📱</span>
+        <h3>App Compañera</h3>
+        <p>Gestiona personajes, campañas y combates con nuestra app "La Codicia del Sabio", disponible para móvil.</p>
+      </div>
+      <div class="card features__card">
+        <span class="features__card-icon">🎲</span>
+        <h3>d20 + Mecánicas Propias</h3>
+        <p>Basado en d20 pero con mecánicas originales: DA, margen de daño, condiciones únicas y sistema de enemigos por tiers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES SECTION -->
+<section class="classes-section section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Las <span class="gradient-text">9 Clases</span></h2>
+      <p>Elige tu camino: la fuerza marcial o el poder arcano</p>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">⚔️</span>
+        <span class="ornament__line"></span>
+      </div>
+    </div>
+
+    <div class="classes-section__group">
+      <h3 class="classes-section__group-title">
+        <span class="text-martial">⚡ Clases Marciales</span>
+      </h3>
+      <div class="classes-section__grid">
+        @for (cls of martialClasses; track cls.id) {
+          <a [routerLink]="'/clases/' + cls.id" class="class-card card" [style.--class-color]="cls.color">
+            <span class="class-card__icon">{{ cls.icon }}</span>
+            <div class="class-card__info">
+              <h4 class="class-card__name">{{ cls.name }}</h4>
+              <span class="class-card__role">{{ cls.role }}</span>
+              <div class="class-card__meta">
+                <span class="class-card__shield">🛡️ {{ cls.shieldBase }}</span>
+                <span class="class-card__resource">{{ cls.resourceIcon }} {{ cls.resource }}</span>
+              </div>
+            </div>
+            <span class="class-card__arrow">→</span>
+          </a>
+        }
+      </div>
+    </div>
+
+    <div class="classes-section__group">
+      <h3 class="classes-section__group-title">
+        <span class="text-magic">💧 Clases Mágicas</span>
+      </h3>
+      <div class="classes-section__grid">
+        @for (cls of magicClasses; track cls.id) {
+          <a [routerLink]="'/clases/' + cls.id" class="class-card card" [style.--class-color]="cls.color">
+            <span class="class-card__icon">{{ cls.icon }}</span>
+            <div class="class-card__info">
+              <h4 class="class-card__name">{{ cls.name }}</h4>
+              <span class="class-card__role">{{ cls.role }}</span>
+              <div class="class-card__meta">
+                <span class="class-card__shield">🛡️ {{ cls.shieldBase }}</span>
+                <span class="class-card__resource">{{ cls.resourceIcon }} {{ cls.resource }}</span>
+              </div>
+            </div>
+            <span class="class-card__arrow">→</span>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RACES SECTION -->
+<section class="races-section section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Las <span class="gradient-text">10 Razas</span> Jugables</h2>
+      <p>Cada raza aporta habilidades únicas y una historia propia</p>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">🌍</span>
+        <span class="ornament__line"></span>
+      </div>
+    </div>
+
+    <div class="races-section__grid">
+      @for (race of races; track race.id) {
+        <a [routerLink]="'/razas/' + race.id" class="race-card card" [style.--race-color]="race.color">
+          <span class="race-card__icon">{{ race.icon }}</span>
+          <h4 class="race-card__name">{{ race.name }}</h4>
+          <div class="race-card__stats">
+            <span>📏 {{ race.size }}</span>
+            <span>👣 {{ race.speed }} pies</span>
+          </div>
+          <p class="race-card__passive">{{ race.passiveName }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta section">
+  <div class="container">
+    <div class="cta__card">
+      <div class="cta__content">
+        <h2>¿Listo para forjar tu leyenda?</h2>
+        <p>Únete a nuestra comunidad en Discord, participa en eventos, prueba la beta de la app y sé parte del desarrollo de La Codicia del Sabio.</p>
+        <div class="cta__actions">
+          <a routerLink="/comunidad" class="btn btn--primary btn--lg">Únete a la Comunidad</a>
+          <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--outline btn--lg">💬 Discord</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
