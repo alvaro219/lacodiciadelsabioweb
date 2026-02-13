@@ -54,9 +54,10 @@
   }
 
   &__title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(1.75rem, 6vw, 4rem);
     color: var(--color-text-primary);
     margin-bottom: var(--space-xs);
+    overflow-wrap: break-word;
   }
 
   &__role {

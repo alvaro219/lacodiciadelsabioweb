@@ -5,7 +5,7 @@ export const CLASSES: GameClass[] = [
   {
     id: 'escaramuzador',
     name: 'Escaramuzador',
-    role: 'Daño continuo mediante condiciones',
+    role: 'DPS por Condición / Sigilo',
     type: 'martial',
     resource: 'Energía',
     resourceIcon: '⚡',
@@ -56,7 +56,7 @@ export const CLASSES: GameClass[] = [
   {
     id: 'luchador',
     name: 'Luchador',
-    role: 'Autosuficiencia y control físico.',
+    role: 'DPS a melee / Autosuficiente',
     type: 'martial',
     resource: 'Energía',
     resourceIcon: '⚡',
@@ -107,7 +107,7 @@ export const CLASSES: GameClass[] = [
   {
     id: 'protector',
     name: 'Protector',
-    role: 'Tank / Soporte defensivo',
+    role: 'Tanque / Soporte defensivo',
     type: 'martial',
     resource: 'Energía',
     resourceIcon: '⚡',
@@ -158,7 +158,7 @@ export const CLASSES: GameClass[] = [
   {
     id: 'artillero',
     name: 'Artillero',
-    role: 'Presión mediante Invocaciones pasivas.',
+    role: 'Control / Táctico',
     type: 'martial',
     resource: 'Energía',
     resourceIcon: '⚡',
@@ -312,7 +312,7 @@ export const CLASSES: GameClass[] = [
   {
     id: 'velador',
     name: 'Velador',
-    role: 'Curación / Protección',
+    role: 'Protección / Gestión de escudos',
     type: 'magic',
     resource: 'Maná',
     resourceIcon: '💧',
@@ -414,7 +414,7 @@ export const CLASSES: GameClass[] = [
   {
     id: 'mistico',
     name: 'Místico',
-    role: 'Debuff / Control oscuro',
+    role: 'Debuff / Control',
     type: 'magic',
     resource: 'Maná',
     resourceIcon: '💧',
