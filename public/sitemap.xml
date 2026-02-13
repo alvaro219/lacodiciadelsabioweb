@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home -->
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Condiciones -->
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/condiciones</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Armas -->
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/armas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Mecánicas -->
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/mecanicas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Comunidad -->
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/comunidad</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Clases -->
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/escaramuzador</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/luchador</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/protector</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/artillero</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/controlador</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/invocador</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/velador</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/exaltador</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/clases/mistico</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Razas -->
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/humano</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/elfo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/enano</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/aasimar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/orco</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/mediano</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/lagarliz</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/bestani</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/omnimek</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alvaro219.github.io/lacodiciadelsabioweb/razas/lazuri</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
