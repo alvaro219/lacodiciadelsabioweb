@@ -1,0 +1,134 @@
+.text-center { text-align: center; }
+
+// ===== HERO =====
+.cond-hero {
+  position: relative;
+  padding: calc(var(--navbar-height) + var(--space-2xl)) 0 var(--space-2xl);
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(96, 165, 250, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__back {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+    transition: color var(--transition-fast);
+
+    &:hover { color: var(--color-gold); }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  &__icon {
+    font-size: 4rem;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: var(--space-xs);
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 600px;
+  }
+}
+
+// ===== SECTION HEADER =====
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+
+  h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  > p {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+  }
+}
+
+// ===== CONDITION GROUP =====
+.cond-group {
+  &:nth-child(odd) {
+    background: var(--color-bg-medium);
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+    margin-right: var(--space-xs);
+  }
+}
+
+// ===== CONDITION CATEGORY =====
+.cond-category {
+  margin-bottom: var(--space-2xl);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-lg);
+    font-weight: 700;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// ===== CONDITION CARD =====
+.condition-card {
+  border-left: 3px solid var(--cat-color, var(--color-purple));
+  transition: all var(--transition-normal);
+
+  &__name {
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  &:hover {
+    border-left-color: var(--color-gold);
+  }
+}

@@ -14,6 +14,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/race-detail/race-detail').then(m => m.RaceDetail)
   },
   {
+    path: 'condiciones',
+    loadComponent: () => import('./pages/conditions/conditions').then(m => m.Conditions)
+  },
+  {
+    path: 'armas',
+    loadComponent: () => import('./pages/weapons/weapons').then(m => m.Weapons)
+  },
+  {
     path: 'mecanicas',
     loadComponent: () => import('./pages/mechanics/mechanics').then(m => m.Mechanics)
   },

@@ -304,6 +304,158 @@
   }
 }
 
+// ===== CONDITIONS SECTION =====
+.conditions-section {
+  background: var(--color-bg-medium);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__cta {
+    text-align: center;
+    margin-top: var(--space-2xl);
+  }
+}
+
+.cond-preview-card {
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: var(--space-xl);
+  border-top: 3px solid var(--cond-color, var(--color-purple));
+
+  &__icon {
+    display: block;
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+  }
+
+  &__name {
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-sm);
+    line-height: 1.5;
+  }
+
+  &__count {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-purple-light);
+  }
+
+  &:hover &__name {
+    color: var(--color-gold);
+  }
+
+  &:hover {
+    border-color: var(--color-gold);
+  }
+}
+
+// ===== WEAPONS SECTION =====
+.weapons-section {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__cta {
+    text-align: center;
+    margin-top: var(--space-2xl);
+  }
+}
+
+.weap-preview-card {
+  text-decoration: none;
+  cursor: pointer;
+  border-left: 3px solid var(--color-purple);
+  transition: all var(--transition-normal);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  &__name {
+    font-size: 1rem;
+    color: var(--color-text-primary);
+  }
+
+  &__damage {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    background: rgba(240, 192, 64, 0.1);
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--radius-sm);
+  }
+
+  &__meta {
+    display: flex;
+    gap: var(--space-md);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  &__abilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-sm);
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--color-purple-light);
+  }
+
+  &:hover {
+    border-left-color: var(--color-gold);
+  }
+
+  &:hover &__name {
+    color: var(--color-gold);
+  }
+}
+
 // ===== CTA =====
 .cta {
   &__card {

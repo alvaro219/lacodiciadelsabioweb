@@ -1,0 +1,47 @@
+<!-- HERO -->
+<section class="cond-hero">
+  <div class="cond-hero__bg"></div>
+  <div class="cond-hero__content container">
+    <a routerLink="/" class="cond-hero__back">← Volver al inicio</a>
+    <div class="cond-hero__header">
+      <span class="cond-hero__icon">⚗️</span>
+      <div>
+        <h1 class="cond-hero__title">Condiciones</h1>
+        <p class="cond-hero__subtitle">Todos los estados que afectan a las criaturas durante el combate</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONDITION GROUPS -->
+@for (group of conditionGroups; track group.id) {
+  <section class="cond-group section" [style.--group-color]="group.color">
+    <div class="container">
+      <div class="section-header">
+        <h2><span class="cond-group__icon">{{ group.icon }}</span> <span class="gradient-text">{{ group.name }}</span></h2>
+        <p>{{ group.description }}</p>
+        <div class="ornament">
+          <span class="ornament__line"></span>
+          <span class="ornament__symbol">{{ group.icon }}</span>
+          <span class="ornament__line"></span>
+        </div>
+      </div>
+
+      @for (category of group.categories; track category.type) {
+        <div class="cond-category">
+          <h3 class="cond-category__title" [style.color]="category.color">
+            {{ category.icon }} {{ category.typeLabel }}
+          </h3>
+          <div class="cond-category__grid">
+            @for (condition of category.conditions; track condition.name) {
+              <div class="condition-card card" [style.--cat-color]="category.color">
+                <h4 class="condition-card__name">{{ condition.name }}</h4>
+                <p class="condition-card__desc">{{ condition.description }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}

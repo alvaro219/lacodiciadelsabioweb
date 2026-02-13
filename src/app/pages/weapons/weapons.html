@@ -1,0 +1,112 @@
+<!-- HERO -->
+<section class="weap-hero">
+  <div class="weap-hero__bg"></div>
+  <div class="weap-hero__content container">
+    <a routerLink="/" class="weap-hero__back">← Volver al inicio</a>
+    <div class="weap-hero__header">
+      <span class="weap-hero__icon">🗡️</span>
+      <div>
+        <h1 class="weap-hero__title">Armas</h1>
+        <p class="weap-hero__subtitle">Todas las armas disponibles y sus habilidades especiales</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEAPON ABILITIES -->
+<section class="weap-abilities section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Habilidades de <span class="gradient-text">Arma</span></h2>
+      <p>Propiedades especiales que poseen ciertas armas</p>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">⚜️</span>
+        <span class="ornament__line"></span>
+      </div>
+    </div>
+
+    <div class="weap-abilities__grid">
+      @for (ability of weaponAbilities; track ability.name) {
+        <div class="ability-badge card">
+          <h4 class="ability-badge__name">{{ ability.name }}</h4>
+          <p class="ability-badge__desc">{{ ability.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PRIMARY WEAPONS -->
+<section class="weap-list section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Armas <span class="gradient-text">Principales</span></h2>
+      <p>Armas que se equipan en la mano principal</p>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">⚔️</span>
+        <span class="ornament__line"></span>
+      </div>
+    </div>
+
+    <div class="weap-list__grid">
+      @for (weapon of primaryWeapons; track $index) {
+        <div class="weapon-card card">
+          <div class="weapon-card__header">
+            <h4 class="weapon-card__name">{{ weapon.name }}</h4>
+            <span class="weapon-card__damage">{{ weapon.damage }}</span>
+          </div>
+          <div class="weapon-card__meta">
+            <span class="weapon-card__mod">Mod. {{ weapon.modifier }}</span>
+            <span class="weapon-card__hands">{{ weapon.hands }}</span>
+          </div>
+          @if (weapon.abilities.length > 0) {
+            <div class="weapon-card__abilities">
+              @for (ab of weapon.abilities; track ab) {
+                <span class="weapon-card__ability-tag">{{ ab }}</span>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SECONDARY WEAPONS -->
+<section class="weap-list weap-list--secondary section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Armas <span class="gradient-text">Secundarias</span></h2>
+      <p>Armas que se equipan en la mano secundaria</p>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">🛡️</span>
+        <span class="ornament__line"></span>
+      </div>
+    </div>
+
+    <div class="weap-list__grid">
+      @for (weapon of secondaryWeapons; track $index) {
+        <div class="weapon-card card">
+          <div class="weapon-card__header">
+            <h4 class="weapon-card__name">{{ weapon.name }}</h4>
+            <span class="weapon-card__damage">{{ weapon.damage }}</span>
+          </div>
+          <div class="weapon-card__meta">
+            <span class="weapon-card__mod">Mod. {{ weapon.modifier }}</span>
+            <span class="weapon-card__hands">{{ weapon.hands }}</span>
+          </div>
+          @if (weapon.abilities.length > 0) {
+            <div class="weapon-card__abilities">
+              @for (ab of weapon.abilities; track ab) {
+                <span class="weapon-card__ability-tag">{{ ab }}</span>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

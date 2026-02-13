@@ -174,6 +174,77 @@
   </div>
 </section>
 
+<!-- CONDITIONS SECTION -->
+<section class="conditions-section section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Las <span class="gradient-text">Condiciones</span> de Combate</h2>
+      <p>Estados que alteran el curso de la batalla: restricciones, debilitaciones y potenciaciones</p>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">⚗️</span>
+        <span class="ornament__line"></span>
+      </div>
+    </div>
+
+    <div class="conditions-section__grid">
+      @for (group of conditionGroups; track group.id) {
+        <a routerLink="/condiciones" class="cond-preview-card card" [style.--cond-color]="group.color">
+          <span class="cond-preview-card__icon">{{ group.icon }}</span>
+          <h4 class="cond-preview-card__name">{{ group.name }}</h4>
+          <p class="cond-preview-card__desc">{{ group.description }}</p>
+          <span class="cond-preview-card__count">{{ group.categories.length }} categorías</span>
+        </a>
+      }
+    </div>
+
+    <div class="conditions-section__cta">
+      <a routerLink="/condiciones" class="btn btn--secondary">Ver todas las condiciones →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WEAPONS SECTION -->
+<section class="weapons-section section">
+  <div class="container">
+    <div class="section-header">
+      <h2>El <span class="gradient-text">Arsenal</span></h2>
+      <p>Armas principales y secundarias con habilidades únicas</p>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">🗡️</span>
+        <span class="ornament__line"></span>
+      </div>
+    </div>
+
+    <div class="weapons-section__grid">
+      @for (weapon of featuredWeapons; track $index) {
+        <a routerLink="/armas" class="weap-preview-card card">
+          <div class="weap-preview-card__header">
+            <h4 class="weap-preview-card__name">{{ weapon.name }}</h4>
+            <span class="weap-preview-card__damage">{{ weapon.damage }}</span>
+          </div>
+          <div class="weap-preview-card__meta">
+            <span>Mod. {{ weapon.modifier }}</span>
+            <span>{{ weapon.hands }}</span>
+          </div>
+          @if (weapon.abilities.length > 0) {
+            <div class="weap-preview-card__abilities">
+              @for (ab of weapon.abilities; track ab) {
+                <span class="weap-preview-card__tag">{{ ab }}</span>
+              }
+            </div>
+          }
+        </a>
+      }
+    </div>
+
+    <div class="weapons-section__cta">
+      <a routerLink="/armas" class="btn btn--secondary">Ver todo el arsenal →</a>
+    </div>
+  </div>
+</section>
+
 <!-- CTA SECTION -->
 <section class="cta section">
   <div class="container">
@@ -183,7 +254,7 @@
         <p>Únete a nuestra comunidad en Discord, participa en eventos, prueba la beta de la app y sé parte del desarrollo de La Codicia del Sabio.</p>
         <div class="cta__actions">
           <a routerLink="/comunidad" class="btn btn--primary btn--lg">Únete a la Comunidad</a>
-          <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--outline btn--lg">💬 Discord</a>
+          <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--outline btn--lg"><img src="assets/icons/discord-icon.svg" alt="" class="discord-icon"> Discord</a>
         </div>
       </div>
     </div>

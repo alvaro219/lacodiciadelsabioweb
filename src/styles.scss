@@ -367,6 +367,20 @@ a {
   }
 }
 
+// --- Discord Icon ---
+.discord-icon {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+  display: inline-block;
+  fill: white;
+
+  &--lg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
 // --- Selection ---
 ::selection {
   background: var(--color-purple-dark);
