@@ -36,9 +36,11 @@ export class Navbar {
 
   toggleClasses() {
     this.isClassesOpen.update(v => !v);
+    this.isRacesOpen.set(false);
   }
 
   toggleRaces() {
     this.isRacesOpen.update(v => !v);
+    this.isClassesOpen.set(false);
   }
 }
