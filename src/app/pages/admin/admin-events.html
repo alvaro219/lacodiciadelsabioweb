@@ -1,0 +1,268 @@
+<section class="admin">
+  <div class="container">
+    <a routerLink="/" class="admin__back">← Volver al inicio</a>
+    <h1 class="admin__title">Panel de <span class="gradient-text">Administración</span></h1>
+
+    <!-- LOGIN -->
+    @if (!isAuthenticated()) {
+      <div class="admin__login card">
+        <h2>Iniciar Sesión</h2>
+        <p>Accede con tu cuenta de administrador para gestionar los eventos.</p>
+        <form (ngSubmit)="login()" class="admin__login-form">
+          <div class="admin__field">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="admin@email.com"
+              [ngModel]="loginEmail()"
+              (ngModelChange)="loginEmail.set($event)"
+              name="email"
+            />
+          </div>
+          <div class="admin__field">
+            <label for="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              [ngModel]="loginPassword()"
+              (ngModelChange)="loginPassword.set($event)"
+              name="password"
+            />
+          </div>
+          @if (loginError()) {
+            <div class="admin__error">{{ loginError() }}</div>
+          }
+          @if (accessDenied()) {
+            <div class="admin__error">No tienes permisos de administrador. Solo los usuarios con rol "admin" pueden acceder a este panel.</div>
+          }
+          <button type="submit" class="btn btn--primary">Entrar</button>
+        </form>
+      </div>
+    } @else {
+      <!-- AUTHENTICATED -->
+      <div class="admin__header">
+        <h2>Gestión de Eventos</h2>
+        <div class="admin__header-actions">
+          <button class="btn btn--primary" (click)="openCreateForm()">+ Nuevo Evento</button>
+          <button class="btn btn--outline btn--sm" (click)="logout()">Cerrar Sesión</button>
+        </div>
+      </div>
+
+      <!-- EVENT FORM MODAL -->
+      @if (showForm()) {
+        <div class="admin__overlay" (click)="closeForm()"></div>
+        <div class="admin__modal card">
+          <h3>{{ editingEvent() ? 'Editar Evento' : 'Crear Evento' }}</h3>
+
+          <form (ngSubmit)="saveEvent()">
+            <div class="admin__field">
+              <label for="f-title">Título</label>
+              <input
+                type="text"
+                id="f-title"
+                placeholder="Nombre del evento"
+                [ngModel]="formTitle()"
+                (ngModelChange)="formTitle.set($event)"
+                name="title"
+              />
+            </div>
+
+            <div class="admin__field">
+              <label for="f-desc">Descripción</label>
+              <textarea
+                id="f-desc"
+                rows="3"
+                placeholder="Descripción del evento"
+                [ngModel]="formDescription()"
+                (ngModelChange)="formDescription.set($event)"
+                name="description"
+              ></textarea>
+            </div>
+
+            <div class="admin__row">
+              <div class="admin__field">
+                <label for="f-date">Fecha</label>
+                <input
+                  type="date"
+                  id="f-date"
+                  [ngModel]="formDate()"
+                  (ngModelChange)="formDate.set($event)"
+                  name="date"
+                />
+              </div>
+
+              <div class="admin__field">
+                <label for="f-type">Tipo</label>
+                <select
+                  id="f-type"
+                  [ngModel]="formType()"
+                  (ngModelChange)="formType.set($event)"
+                  name="type"
+                >
+                  <option value="evento">Evento</option>
+                  <option value="beta">Beta Testing</option>
+                  <option value="torneo">Torneo</option>
+                  <option value="sesion">Sesión</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="admin__row">
+              <div class="admin__field">
+                <label for="f-icon">Icono</label>
+                <input
+                  type="text"
+                  id="f-icon"
+                  placeholder="📅"
+                  [ngModel]="formIcon()"
+                  (ngModelChange)="formIcon.set($event)"
+                  name="icon"
+                />
+              </div>
+
+              <div class="admin__field">
+                <label for="f-spots">Plazas ocupadas</label>
+                <input
+                  type="number"
+                  id="f-spots"
+                  min="0"
+                  [ngModel]="formSpots()"
+                  (ngModelChange)="formSpots.set($event)"
+                  name="spots"
+                />
+              </div>
+
+              <div class="admin__field">
+                <label for="f-spotsTotal">Plazas totales</label>
+                <input
+                  type="number"
+                  id="f-spotsTotal"
+                  min="0"
+                  [ngModel]="formSpotsTotal()"
+                  (ngModelChange)="formSpotsTotal.set($event)"
+                  name="spotsTotal"
+                />
+              </div>
+            </div>
+
+            <div class="admin__field admin__field--checkbox">
+              <label>
+                <input
+                  type="checkbox"
+                  [ngModel]="formActive()"
+                  (ngModelChange)="formActive.set($event)"
+                  name="active"
+                />
+                Evento activo (visible públicamente)
+              </label>
+            </div>
+
+            @if (formError()) {
+              <div class="admin__error">{{ formError() }}</div>
+            }
+
+            <div class="admin__form-actions">
+              <button type="button" class="btn btn--outline" (click)="closeForm()">Cancelar</button>
+              <button type="submit" class="btn btn--primary" [disabled]="saving()">
+                {{ saving() ? 'Guardando...' : (editingEvent() ? 'Guardar Cambios' : 'Crear Evento') }}
+              </button>
+            </div>
+          </form>
+        </div>
+      }
+
+      <!-- EVENTS TABLE -->
+      @if (loading()) {
+        <p class="admin__loading">Cargando eventos...</p>
+      } @else if (events().length === 0) {
+        <div class="admin__empty card">
+          <p>No hay eventos creados. Crea el primero con el botón de arriba.</p>
+        </div>
+      } @else {
+        <div class="admin__table-wrapper">
+          <table class="admin__table">
+            <thead>
+              <tr>
+                <th>Icono</th>
+                <th>Título</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Plazas</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (event of events(); track event.id) {
+                <tr [class.inactive]="!event.active">
+                  <td class="admin__table-icon">{{ event.icon }}</td>
+                  <td class="admin__table-title">{{ event.title }}</td>
+                  <td>{{ event.date }}</td>
+                  <td>
+                    <span class="admin__badge" [attr.data-type]="event.type">{{ getTypeLabel(event.type) }}</span>
+                  </td>
+                  <td>
+                    @if (event.spots_total > 0) {
+                      {{ event.spots }}/{{ event.spots_total }}
+                    } @else {
+                      Abierto
+                    }
+                  </td>
+                  <td>
+                    <button class="admin__toggle" [class.active]="event.active" (click)="toggleActive(event)">
+                      {{ event.active ? 'Activo' : 'Inactivo' }}
+                    </button>
+                  </td>
+                  <td class="admin__table-actions">
+                    <button class="admin__btn admin__btn--view" (click)="viewSignups(event.id)" title="Ver inscripciones">👥</button>
+                    <button class="admin__btn admin__btn--edit" (click)="openEditForm(event)" title="Editar">✏️</button>
+                    <button class="admin__btn admin__btn--delete" (click)="deleteEvent(event)" title="Eliminar">🗑️</button>
+                  </td>
+                </tr>
+                @if (viewingSignups() === event.id) {
+                  <tr class="admin__signups-row">
+                    <td colspan="7">
+                      <div class="admin__signups">
+                        <h4>Inscripciones — {{ event.title }}</h4>
+                        @if (signupsLoading()) {
+                          <p>Cargando...</p>
+                        } @else if (signups().length === 0) {
+                          <p class="admin__signups-empty">No hay inscripciones aún.</p>
+                        } @else {
+                          <table class="admin__signups-table">
+                            <thead>
+                              <tr>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              @for (s of signups(); track s.id) {
+                                <tr>
+                                  <td>{{ s.name }}</td>
+                                  <td>{{ s.email }}</td>
+                                  <td>{{ s.created_at }}</td>
+                                  <td>
+                                    <button class="admin__btn admin__btn--delete" (click)="deleteSignup(s.id!, event.id)" title="Eliminar inscripción">🗑️</button>
+                                  </td>
+                                </tr>
+                              }
+                            </tbody>
+                          </table>
+                        }
+                      </div>
+                    </td>
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    }
+  </div>
+</section>

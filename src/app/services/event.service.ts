@@ -1,0 +1,145 @@
+import { Injectable, signal } from '@angular/core';
+import { SupabaseService } from './supabase.service';
+import { GameEvent, EventSignup } from '../models/event.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EventService {
+  readonly events = signal<GameEvent[]>([]);
+  readonly loading = signal(false);
+  readonly error = signal<string | null>(null);
+
+  constructor(private supabase: SupabaseService) {}
+
+  async loadEvents(): Promise<void> {
+    this.loading.set(true);
+    this.error.set(null);
+    try {
+      const { data, error } = await this.supabase.client
+        .from('events')
+        .select('*')
+        .order('date', { ascending: true });
+
+      if (error) throw error;
+      this.events.set(data as GameEvent[]);
+    } catch (e: any) {
+      this.error.set(e.message || 'Error al cargar eventos');
+    } finally {
+      this.loading.set(false);
+    }
+  }
+
+  async getActiveEvents(): Promise<GameEvent[]> {
+    const { data, error } = await this.supabase.client
+      .from('events')
+      .select('*')
+      .eq('active', true)
+      .order('date', { ascending: true });
+
+    if (error) throw error;
+    return data as GameEvent[];
+  }
+
+  async createEvent(event: Omit<GameEvent, 'id' | 'created_at'>): Promise<GameEvent> {
+    const { data, error } = await this.supabase.client
+      .from('events')
+      .insert(event)
+      .select()
+      .single();
+
+    if (error) throw error;
+    await this.loadEvents();
+    return data as GameEvent;
+  }
+
+  async updateEvent(id: string, updates: Partial<GameEvent>): Promise<GameEvent> {
+    const { data, error } = await this.supabase.client
+      .from('events')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    await this.loadEvents();
+    return data as GameEvent;
+  }
+
+  async deleteEvent(id: string): Promise<void> {
+    const { error } = await this.supabase.client
+      .from('events')
+      .delete()
+      .eq('id', id);
+
+    if (error) throw error;
+    await this.loadEvents();
+  }
+
+  async toggleEventActive(id: string, active: boolean): Promise<void> {
+    await this.updateEvent(id, { active });
+  }
+
+  async signup(signup: EventSignup): Promise<void> {
+    // Check capacity before inserting
+    const { data: event } = await this.supabase.client
+      .from('events')
+      .select('spots, spots_total')
+      .eq('id', signup.event_id)
+      .single();
+
+    if (event && event.spots_total > 0 && event.spots >= event.spots_total) {
+      throw new Error('EVENT_FULL');
+    }
+
+    const { error } = await this.supabase.client
+      .from('event_signups')
+      .insert(signup);
+
+    if (error) throw error;
+
+    // Increment spots count
+    if (event) {
+      await this.supabase.client
+        .from('events')
+        .update({ spots: event.spots + 1 })
+        .eq('id', signup.event_id);
+    }
+  }
+
+  async deleteSignup(signupId: string, eventId: string): Promise<void> {
+    const { error } = await this.supabase.client
+      .from('event_signups')
+      .delete()
+      .eq('id', signupId);
+
+    if (error) throw error;
+
+    // Fetch current spots from DB and decrement
+    const { data: event } = await this.supabase.client
+      .from('events')
+      .select('spots')
+      .eq('id', eventId)
+      .single();
+
+    if (event && event.spots > 0) {
+      await this.supabase.client
+        .from('events')
+        .update({ spots: event.spots - 1 })
+        .eq('id', eventId);
+    }
+
+    await this.loadEvents();
+  }
+
+  async getSignups(eventId: string): Promise<EventSignup[]> {
+    const { data, error } = await this.supabase.client
+      .from('event_signups')
+      .select('*')
+      .eq('event_id', eventId)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data as EventSignup[];
+  }
+}

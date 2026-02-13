@@ -35,7 +35,7 @@
   </div>
 </section>
 
-<!-- EVENTS -->
+<!-- UPCOMING EVENTS -->
 <section class="events-section section alt-bg">
   <div class="container">
     <h2 class="text-center">Próximos Eventos</h2>
@@ -45,30 +45,78 @@
       <span class="ornament__line"></span>
     </div>
 
-    <div class="events-grid">
-      @for (event of getActiveEvents(); track event.id) {
-        <div class="event-card card">
-          <div class="event-card__header">
-            <span class="event-card__icon">{{ event.icon }}</span>
-            <span class="event-card__type" [attr.data-type]="event.type">{{ getTypeLabel(event.type) }}</span>
+    @if (loading()) {
+      <div class="events-loading">
+        <p>Cargando eventos...</p>
+      </div>
+    } @else if (getUpcomingEvents().length === 0) {
+      <div class="events-empty">
+        <p>No hay próximos eventos en este momento. ¡Vuelve pronto!</p>
+      </div>
+    } @else {
+      <div class="events-grid">
+        @for (event of getUpcomingEvents(); track event.id) {
+          <div class="event-card card">
+            <div class="event-card__header">
+              <span class="event-card__icon">{{ event.icon }}</span>
+              <span class="event-card__type" [attr.data-type]="event.type">{{ getTypeLabel(event.type) }}</span>
+            </div>
+            <h3 class="event-card__title">{{ event.title }}</h3>
+            <p class="event-card__desc">{{ event.description }}</p>
+            <div class="event-card__footer">
+              <span class="event-card__date">📅 {{ event.date }}</span>
+              @if (event.spots_total > 0) {
+                <span class="event-card__spots">
+                  👥 {{ event.spots }}/{{ event.spots_total }} plazas
+                </span>
+              } @else {
+                <span class="event-card__spots open">👥 Abierto</span>
+              }
+            </div>
           </div>
-          <h3 class="event-card__title">{{ event.title }}</h3>
-          <p class="event-card__desc">{{ event.description }}</p>
-          <div class="event-card__footer">
-            <span class="event-card__date">📅 {{ event.date }}</span>
-            @if (event.spotsTotal > 0) {
-              <span class="event-card__spots">
-                👥 {{ event.spots }}/{{ event.spotsTotal }} plazas
-              </span>
-            } @else {
-              <span class="event-card__spots open">👥 Abierto</span>
-            }
-          </div>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    }
   </div>
 </section>
+
+<!-- PAST EVENTS -->
+@if (!loading() && getPastEvents().length > 0) {
+  <section class="events-section events-section--past section">
+    <div class="container">
+      <h2 class="text-center">Eventos Anteriores</h2>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">📜</span>
+        <span class="ornament__line"></span>
+      </div>
+
+      <div class="events-grid">
+        @for (event of getPastEvents(); track event.id) {
+          <div class="event-card event-card--past card">
+            <div class="event-card__header">
+              <span class="event-card__icon">{{ event.icon }}</span>
+              <span class="event-card__type" [attr.data-type]="event.type">{{ getTypeLabel(event.type) }}</span>
+              <span class="event-card__past-badge">Finalizado</span>
+            </div>
+            <h3 class="event-card__title">{{ event.title }}</h3>
+            <p class="event-card__desc">{{ event.description }}</p>
+            <div class="event-card__footer">
+              <span class="event-card__date">📅 {{ event.date }}</span>
+              @if (event.spots_total > 0) {
+                <span class="event-card__spots">
+                  👥 {{ event.spots }}/{{ event.spots_total }} plazas
+                </span>
+              } @else {
+                <span class="event-card__spots open">👥 Abierto</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}
 
 <!-- SIGNUP -->
 <section class="signup-section section" id="signup">
@@ -83,7 +131,13 @@
 
     <div class="signup-form-wrapper">
       <form class="signup-form card" (ngSubmit)="onSignup()">
-        @if (signupSuccess()) {
+        @if (signupFull()) {
+          <div class="signup-form__full">
+            <span class="signup-form__full-icon">⛔</span>
+            <h3>¡Evento completo!</h3>
+            <p>Ya no quedan plazas disponibles para el evento seleccionado.</p>
+          </div>
+        } @else if (signupSuccess()) {
           <div class="signup-form__success">
             <span class="signup-form__success-icon">✅</span>
             <h3>¡Inscripción enviada!</h3>
@@ -123,7 +177,7 @@
               name="event"
             >
               <option value="">Selecciona un evento...</option>
-              @for (event of getActiveEvents(); track event.id) {
+              @for (event of getUpcomingEvents(); track event.id) {
                 <option [value]="event.id">{{ event.icon }} {{ event.title }}</option>
               }
             </select>

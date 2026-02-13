@@ -1,18 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
-interface Event {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  type: 'evento' | 'beta' | 'torneo' | 'sesion';
-  icon: string;
-  spots: number;
-  spotsTotal: number;
-  active: boolean;
-}
+import { EventService } from '../../services/event.service';
+import { GameEvent } from '../../models/event.model';
 
 @Component({
   selector: 'app-community',
@@ -20,59 +10,35 @@ interface Event {
   templateUrl: './community.html',
   styleUrl: './community.scss'
 })
-export class Community {
-  protected readonly events: Event[] = [
-    {
-      id: '1',
-      title: 'Beta Testing — App v2.0',
-      description: 'Prueba las nuevas funcionalidades de la app antes que nadie. Necesitamos testers para el nuevo sistema de campañas y combate.',
-      date: '2026-03-15',
-      type: 'beta',
-      icon: '🧪',
-      spots: 12,
-      spotsTotal: 20,
-      active: true
-    },
-    {
-      id: '2',
-      title: 'Sesión de Introducción al Sistema',
-      description: 'Sesión guiada para nuevos jugadores. Aprende las mecánicas básicas y crea tu primer personaje con ayuda del equipo.',
-      date: '2026-03-22',
-      type: 'sesion',
-      icon: '📜',
-      spots: 4,
-      spotsTotal: 8,
-      active: true
-    },
-    {
-      id: '3',
-      title: 'Torneo PvP — Arena del Sabio',
-      description: 'Primer torneo oficial de PvP. Enfrenta tu personaje contra otros jugadores en combates 1v1 con reglas especiales.',
-      date: '2026-04-05',
-      type: 'torneo',
-      icon: '⚔️',
-      spots: 10,
-      spotsTotal: 16,
-      active: true
-    },
-    {
-      id: '4',
-      title: 'Evento Comunitario — Creación de Lore',
-      description: 'Contribuye al lore del mundo de La Codicia del Sabio. Las mejores propuestas serán incorporadas al canon oficial.',
-      date: '2026-04-20',
-      type: 'evento',
-      icon: '📖',
-      spots: 0,
-      spotsTotal: 0,
-      active: true
-    }
-  ];
+export class Community implements OnInit {
+  protected events = signal<GameEvent[]>([]);
+  protected loading = signal(true);
 
   protected readonly signupName = signal('');
   protected readonly signupEmail = signal('');
   protected readonly signupEvent = signal('');
   protected readonly signupSuccess = signal(false);
+  protected readonly signupFull = signal(false);
   protected readonly signupError = signal('');
+  protected readonly signupLoading = signal(false);
+
+  constructor(private eventService: EventService) {}
+
+  async ngOnInit() {
+    await this.loadEvents();
+  }
+
+  private async loadEvents() {
+    this.loading.set(true);
+    try {
+      const events = await this.eventService.getActiveEvents();
+      this.events.set(events);
+    } catch {
+      this.events.set([]);
+    } finally {
+      this.loading.set(false);
+    }
+  }
 
   getTypeLabel(type: string): string {
     const labels: Record<string, string> = {
@@ -84,13 +50,20 @@ export class Community {
     return labels[type] || type;
   }
 
-  getActiveEvents(): Event[] {
-    return this.events.filter(e => e.active);
+  getUpcomingEvents(): GameEvent[] {
+    const today = new Date().toISOString().split('T')[0];
+    return this.events().filter(e => e.date >= today);
   }
 
-  onSignup() {
+  getPastEvents(): GameEvent[] {
+    const today = new Date().toISOString().split('T')[0];
+    return this.events().filter(e => e.date < today);
+  }
+
+  async onSignup() {
     this.signupError.set('');
     this.signupSuccess.set(false);
+    this.signupFull.set(false);
 
     if (!this.signupName().trim()) {
       this.signupError.set('Por favor, introduce tu nombre.');
@@ -105,10 +78,26 @@ export class Community {
       return;
     }
 
-    // Simulate signup (in production, this would call a backend)
-    this.signupSuccess.set(true);
-    this.signupName.set('');
-    this.signupEmail.set('');
-    this.signupEvent.set('');
+    this.signupLoading.set(true);
+    try {
+      await this.eventService.signup({
+        event_id: this.signupEvent(),
+        name: this.signupName().trim(),
+        email: this.signupEmail().trim()
+      });
+      this.signupSuccess.set(true);
+      this.signupName.set('');
+      this.signupEmail.set('');
+      this.signupEvent.set('');
+      await this.loadEvents();
+    } catch (e: any) {
+      if (e.message === 'EVENT_FULL') {
+        this.signupFull.set(true);
+      } else {
+        this.signupError.set('Error al enviar la inscripción. Inténtalo de nuevo.');
+      }
+    } finally {
+      this.signupLoading.set(false);
+    }
   }
 }

@@ -30,6 +30,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/community/community').then(m => m.Community)
   },
   {
+    path: 'admin',
+    loadComponent: () => import('./pages/admin/admin-events').then(m => m.AdminEvents)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
