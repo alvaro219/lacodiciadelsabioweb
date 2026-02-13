@@ -40,6 +40,10 @@ export class Community implements OnInit {
     }
   }
 
+  scrollToSignup() {
+    document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   getTypeLabel(type: string): string {
     const labels: Record<string, string> = {
       evento: 'Evento',
