@@ -39,6 +39,13 @@ export class AdminEvents implements OnInit {
   protected signups = signal<EventSignup[]>([]);
   protected signupsLoading = signal(false);
 
+  // Confirm modal
+  protected showConfirm = signal(false);
+  protected confirmTitle = signal('');
+  protected confirmMessage = signal('');
+  protected confirmLoading = signal(false);
+  private confirmAction: (() => Promise<void>) | null = null;
+
   constructor(
     private eventService: EventService,
     private supabase: SupabaseService
@@ -179,15 +186,15 @@ export class AdminEvents implements OnInit {
     }
   }
 
-  async deleteEvent(event: GameEvent) {
-    if (!confirm(`¿Eliminar "${event.title}"? Esta acción no se puede deshacer.`)) return;
-
-    try {
-      await this.eventService.deleteEvent(event.id);
-      this.events.set(this.eventService.events());
-    } catch (e: any) {
-      alert('Error al eliminar: ' + (e.message || 'Error desconocido'));
-    }
+  deleteEvent(event: GameEvent) {
+    this.openConfirm(
+      'Eliminar evento',
+      `¿Eliminar "${event.title}"? Esta acción no se puede deshacer.`,
+      async () => {
+        await this.eventService.deleteEvent(event.id);
+        this.events.set(this.eventService.events());
+      }
+    );
   }
 
   async toggleActive(event: GameEvent) {
@@ -216,17 +223,41 @@ export class AdminEvents implements OnInit {
     }
   }
 
-  async deleteSignup(signupId: string, eventId: string) {
-    if (!confirm('¿Eliminar esta inscripción?')) return;
+  deleteSignup(signupId: string, eventId: string) {
+    this.openConfirm(
+      'Eliminar inscripción',
+      '¿Eliminar esta inscripción? El contador de plazas se actualizará.',
+      async () => {
+        await this.eventService.deleteSignup(signupId, eventId);
+        this.events.set(this.eventService.events());
+        const data = await this.eventService.getSignups(eventId);
+        this.signups.set(data);
+      }
+    );
+  }
 
+  private openConfirm(title: string, message: string, action: () => Promise<void>) {
+    this.confirmTitle.set(title);
+    this.confirmMessage.set(message);
+    this.confirmAction = action;
+    this.showConfirm.set(true);
+  }
+
+  closeConfirm() {
+    this.showConfirm.set(false);
+    this.confirmAction = null;
+  }
+
+  async executeConfirm() {
+    if (!this.confirmAction) return;
+    this.confirmLoading.set(true);
     try {
-      await this.eventService.deleteSignup(signupId, eventId);
-      this.events.set(this.eventService.events());
-      // Refresh the signups list
-      const data = await this.eventService.getSignups(eventId);
-      this.signups.set(data);
+      await this.confirmAction();
     } catch (e: any) {
-      alert('Error al eliminar inscripción: ' + (e.message || 'Error desconocido'));
+      this.formError.set(e.message || 'Error al ejecutar la acción.');
+    } finally {
+      this.confirmLoading.set(false);
+      this.closeConfirm();
     }
   }
 

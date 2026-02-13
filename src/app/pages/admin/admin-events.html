@@ -263,6 +263,22 @@
           </table>
         </div>
       }
+
+      <!-- CONFIRM MODAL -->
+      @if (showConfirm()) {
+        <div class="admin__overlay" (click)="closeConfirm()"></div>
+        <div class="admin__confirm card">
+          <div class="admin__confirm-icon">⚠️</div>
+          <h3 class="admin__confirm-title">{{ confirmTitle() }}</h3>
+          <p class="admin__confirm-message">{{ confirmMessage() }}</p>
+          <div class="admin__confirm-actions">
+            <button class="btn btn--outline" (click)="closeConfirm()" [disabled]="confirmLoading()">Cancelar</button>
+            <button class="btn btn--danger" (click)="executeConfirm()" [disabled]="confirmLoading()">
+              {{ confirmLoading() ? 'Eliminando...' : 'Eliminar' }}
+            </button>
+          </div>
+        </div>
+      }
     }
   </div>
 </section>
