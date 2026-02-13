@@ -81,25 +81,16 @@ export class EventService {
   }
 
   private async syncSpots(eventId: string): Promise<void> {
-    const { count, error } = await this.supabase.client
-      .from('event_signups')
-      .select('*', { count: 'exact', head: true })
-      .eq('event_id', eventId);
+    const { error } = await this.supabase.client
+      .rpc('sync_event_spots', { p_event_id: eventId });
 
     if (error) throw error;
-
-    await this.supabase.client
-      .from('events')
-      .update({ spots: count ?? 0 })
-      .eq('id', eventId);
   }
 
   async signup(signup: EventSignup): Promise<void> {
-    // Check capacity before inserting
-    const { count, error: countError } = await this.supabase.client
-      .from('event_signups')
-      .select('*', { count: 'exact', head: true })
-      .eq('event_id', signup.event_id);
+    // Check capacity using server-side count (bypasses RLS)
+    const { data: currentCount, error: countError } = await this.supabase.client
+      .rpc('get_event_signup_count', { p_event_id: signup.event_id });
 
     if (countError) throw countError;
 
@@ -109,7 +100,7 @@ export class EventService {
       .eq('id', signup.event_id)
       .single();
 
-    if (event && event.spots_total > 0 && (count ?? 0) >= event.spots_total) {
+    if (event && event.spots_total > 0 && (currentCount ?? 0) >= event.spots_total) {
       throw new Error('EVENT_FULL');
     }
 
