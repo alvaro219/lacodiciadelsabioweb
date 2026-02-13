@@ -80,15 +80,36 @@ export class EventService {
     await this.updateEvent(id, { active });
   }
 
+  private async syncSpots(eventId: string): Promise<void> {
+    const { count, error } = await this.supabase.client
+      .from('event_signups')
+      .select('*', { count: 'exact', head: true })
+      .eq('event_id', eventId);
+
+    if (error) throw error;
+
+    await this.supabase.client
+      .from('events')
+      .update({ spots: count ?? 0 })
+      .eq('id', eventId);
+  }
+
   async signup(signup: EventSignup): Promise<void> {
     // Check capacity before inserting
+    const { count, error: countError } = await this.supabase.client
+      .from('event_signups')
+      .select('*', { count: 'exact', head: true })
+      .eq('event_id', signup.event_id);
+
+    if (countError) throw countError;
+
     const { data: event } = await this.supabase.client
       .from('events')
-      .select('spots, spots_total')
+      .select('spots_total')
       .eq('id', signup.event_id)
       .single();
 
-    if (event && event.spots_total > 0 && event.spots >= event.spots_total) {
+    if (event && event.spots_total > 0 && (count ?? 0) >= event.spots_total) {
       throw new Error('EVENT_FULL');
     }
 
@@ -98,13 +119,8 @@ export class EventService {
 
     if (error) throw error;
 
-    // Increment spots count
-    if (event) {
-      await this.supabase.client
-        .from('events')
-        .update({ spots: event.spots + 1 })
-        .eq('id', signup.event_id);
-    }
+    await this.syncSpots(signup.event_id);
+    await this.loadEvents();
   }
 
   async deleteSignup(signupId: string, eventId: string): Promise<void> {
@@ -115,20 +131,7 @@ export class EventService {
 
     if (error) throw error;
 
-    // Fetch current spots from DB and decrement
-    const { data: event } = await this.supabase.client
-      .from('events')
-      .select('spots')
-      .eq('id', eventId)
-      .single();
-
-    if (event && event.spots > 0) {
-      await this.supabase.client
-        .from('events')
-        .update({ spots: event.spots - 1 })
-        .eq('id', eventId);
-    }
-
+    await this.syncSpots(eventId);
     await this.loadEvents();
   }
 
