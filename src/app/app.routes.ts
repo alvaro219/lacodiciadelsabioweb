@@ -37,6 +37,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/community/community').then(m => m.Community)
   },
   {
+    path: 'privacidad',
+    title: 'Política de Privacidad — La Codicia del Sabio',
+    loadComponent: () => import('./pages/privacy-policy/privacy-policy').then(m => m.PrivacyPolicy)
+  },
+  {
     path: 'admin',
     title: 'Admin — La Codicia del Sabio',
     loadComponent: () => import('./pages/admin/admin-events').then(m => m.AdminEvents)
