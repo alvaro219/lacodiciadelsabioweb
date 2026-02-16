@@ -42,6 +42,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/privacy-policy/privacy-policy').then(m => m.PrivacyPolicy)
   },
   {
+    path: 'eliminar-cuenta',
+    title: 'Eliminar Cuenta — La Codicia del Sabio',
+    loadComponent: () => import('./pages/delete-account/delete-account').then(m => m.DeleteAccount)
+  },
+  {
     path: 'admin',
     title: 'Admin — La Codicia del Sabio',
     loadComponent: () => import('./pages/admin/admin-events').then(m => m.AdminEvents)

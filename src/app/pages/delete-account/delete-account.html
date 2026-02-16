@@ -1,0 +1,121 @@
+<section class="delete-account">
+  <div class="container">
+    <a routerLink="/" class="delete-account__back">← Volver al inicio</a>
+    <h1 class="delete-account__title">Eliminar <span class="gradient-text">Cuenta</span></h1>
+
+    @if (deleted()) {
+      <!-- SUCCESS STATE -->
+      <div class="delete-account__result delete-account__result--success">
+        <span class="delete-account__result-icon">✅</span>
+        <h2>Cuenta eliminada correctamente</h2>
+        <p>Tu cuenta y todos los datos asociados han sido eliminados permanentemente.</p>
+        <a routerLink="/" class="btn btn--primary">Volver al inicio</a>
+      </div>
+    } @else if (!isAuthenticated()) {
+      <!-- LOGIN STATE -->
+      <div class="delete-account__login">
+        <div class="delete-account__warning-card">
+          <span class="delete-account__warning-icon">⚠️</span>
+          <h2>Zona de eliminación de cuenta</h2>
+          <p>Para eliminar tu cuenta, primero debes iniciar sesión. Esta acción es <strong>permanente e irreversible</strong>.</p>
+        </div>
+
+        <div class="delete-account__form-card">
+          <h3>Iniciar sesión</h3>
+          <form (ngSubmit)="login()" class="delete-account__form">
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                [ngModel]="email()"
+                (ngModelChange)="email.set($event)"
+                name="email"
+                placeholder="tu@email.com"
+                required
+              >
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input
+                type="password"
+                id="password"
+                [ngModel]="password()"
+                (ngModelChange)="password.set($event)"
+                name="password"
+                placeholder="••••••••"
+                required
+              >
+            </div>
+            @if (loginError()) {
+              <p class="delete-account__error">{{ loginError() }}</p>
+            }
+            <button type="submit" class="btn btn--secondary">Iniciar sesión</button>
+          </form>
+        </div>
+      </div>
+    } @else {
+      <!-- AUTHENTICATED STATE -->
+      <div class="delete-account__authenticated">
+        <div class="delete-account__warning-card delete-account__warning-card--danger">
+          <span class="delete-account__warning-icon">🗑️</span>
+          <h2>Eliminar cuenta permanentemente</h2>
+          <p>Estás a punto de eliminar la cuenta asociada a <strong>{{ userEmail() }}</strong>.</p>
+          <p>Esta acción eliminará:</p>
+          <ul>
+            <li>Tu cuenta de usuario</li>
+            <li>Tu perfil y datos asociados</li>
+            <li>Tus inscripciones a eventos</li>
+          </ul>
+          <p class="delete-account__danger-text">Esta acción es permanente y no se puede deshacer.</p>
+        </div>
+
+        <div class="delete-account__form-card">
+          <h3>Confirmar eliminación</h3>
+          <p class="delete-account__confirm-instruction">Escribe <strong>ELIMINAR</strong> para confirmar:</p>
+          <div class="form-group">
+            <input
+              type="text"
+              [ngModel]="confirmText()"
+              (ngModelChange)="confirmText.set($event)"
+              name="confirmText"
+              placeholder="Escribe ELIMINAR"
+              autocomplete="off"
+            >
+          </div>
+          @if (deleteError()) {
+            <p class="delete-account__error">{{ deleteError() }}</p>
+          }
+          <button
+            (click)="openConfirm()"
+            class="btn btn--danger"
+            [disabled]="confirmText() !== 'ELIMINAR'"
+          >
+            Eliminar mi cuenta
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- CONFIRM MODAL -->
+    @if (showConfirm()) {
+      <div class="confirm-overlay" (click)="closeConfirm()">
+        <div class="confirm-modal" (click)="$event.stopPropagation()">
+          <span class="confirm-modal__icon">⚠️</span>
+          <h3 class="confirm-modal__title">¿Estás completamente seguro?</h3>
+          <p class="confirm-modal__message">Esta acción eliminará tu cuenta y todos tus datos de forma permanente. No hay vuelta atrás.</p>
+          <div class="confirm-modal__actions">
+            <button class="btn btn--secondary" (click)="closeConfirm()" [disabled]="deleting()">Cancelar</button>
+            <button class="btn btn--danger" (click)="confirmDelete()" [disabled]="deleting()">
+              @if (deleting()) {
+                Eliminando...
+              } @else {
+                Sí, eliminar mi cuenta
+              }
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>
