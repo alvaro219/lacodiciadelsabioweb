@@ -232,7 +232,7 @@ export const CLASSES: GameClass[] = [
         weapons: 'Bastón (2 manos)',
         weaponType: '2-manos',
         description: 'El Mago es poder arcano directo y control absoluto. Inflige daño inevitable, encierra enemigos y manipula el espacio del combate con hechizos devastadores que obligan a sus rivales a jugar bajo sus reglas.',
-        icon: '🪄',
+        icon: '☄️',
         abilities: {
           hap1: 'Proyectiles Mágicos: Lanzas 1d4 proyectiles mágicos que impactan automáticamente y que infligen cada uno 1d4 de daño mágico.',
           hap2: 'Mano Mágica: Invocas una mano mágica que puede ser “Comandada” y que cuenta con 🟢🟢 para si mismo. Tiene 10 CA y si sufre cualquier cantidad de daño se desconvoca.',
