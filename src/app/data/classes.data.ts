@@ -326,7 +326,7 @@ export const CLASSES: GameClass[] = [
     description: 'Vitales y persistentes. Cuando todas las medidas de seguridad fallen y tu equipo esté a las puertas de la muerte, allí estarán estos excelentes aliados listos para daros una segunda oportunidad, o las que hagan falta.',
     lore: 'Los veladores son la luz en la oscuridad, la esperanza cuando todo parece perdido. Su magia no destruye, sino que restaura y protege. Cada curación es un acto de fe, cada barrera un juramento de protección. Un grupo sin velador camina hacia la muerte; con uno, camina hacia la victoria.',
     icon: '💚',
-    color: '#4ade80',
+    color: '#4adeadff',
     subclasses: [
       {
         id: 'clerigo',
