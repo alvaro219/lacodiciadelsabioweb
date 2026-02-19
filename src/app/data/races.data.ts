@@ -20,7 +20,7 @@ export const RACES: Race[] = [
     size: 'Mediano',
     speed: 30,
     traits: [
-      { attribute: 'PER', modifier: 1 },
+      { attribute: 'INT', modifier: 1 },
       { attribute: 'FUE', modifier: -1 }
     ],
     passiveName: 'Visión en la Oscuridad',
@@ -53,7 +53,7 @@ export const RACES: Race[] = [
     speed: 30,
     traits: [
       { attribute: 'CAR', modifier: 1 },
-      { attribute: 'FUE', modifier: -1 }
+      { attribute: 'PER', modifier: -1 }
     ],
     passiveName: 'Resplandor Celestial',
     passive: 'Emite luz en la oscuridad. Resistente al daño de Luz.',
