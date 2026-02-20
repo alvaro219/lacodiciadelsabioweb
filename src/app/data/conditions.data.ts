@@ -83,13 +83,13 @@ export const CONDITION_GROUPS: ConditionGroup[] = [
         icon: '✨',
         color: '#4ade80',
         conditions: [
-          { name: 'Anular', description: 'Se disipa la condición perjuiciosa objetivo.' },
+          { name: 'Anular', description: 'Se disipa la condición que no sea potenciación objetivo.' },
           { name: 'Impulso', description: 'Después de usar la siguiente habilidad, recuperas 🟢 .' },
           { name: 'Égida', description: 'El daño del siguiente golpe queda anulado.' },
           { name: 'Invulnerable', description: 'Eres inmune al daño recibido.' },
           { name: 'Vigorizado', description: 'El número de PH que cuestan hechizos y habilidades se reduce en 1.' },
           { name: 'Acelerado', description: 'El número de 🟢 por turno aumenta de 3 a 4.' },
-          { name: 'Coraje', description: 'Es inmune a las condiciones prejuiciosas.' }
+          { name: 'Coraje', description: 'Es inmune a las condiciones que no sean potenciaciones.' }
         ]
       },
       {
