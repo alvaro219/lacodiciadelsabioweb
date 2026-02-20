@@ -25,7 +25,7 @@ export const CONDITION_GROUPS: ConditionGroup[] = [
         icon: '💔',
         color: '#fb923c',
         conditions: [
-          { name: 'Desprevenido', description: 'Tiene dos enemigos en lugares opuestos, rodeándole.' }
+          { name: 'Desprevenido', description: 'Tienes desventaja en las tiradas de salvación.' }
         ]
       },
       {
