@@ -149,7 +149,7 @@ export const RACES: Race[] = [
     speed: 30,
     traits: [
       { attribute: 'PER', modifier: 1 },
-      { attribute: 'CON', modifier: -1 }
+      { attribute: 'DES', modifier: -1 }
     ],
     passiveName: 'Hijo del Mar',
     passive: 'Puede respirar bajo el agua. Sin penalización en combate acuático.',
