@@ -1,0 +1,41 @@
+<!-- HERO -->
+<section class="guides-hero">
+  <div class="guides-hero__bg"></div>
+  <div class="guides-hero__content container">
+    <a routerLink="/" class="guides-hero__back">← Volver al inicio</a>
+    <h1 class="guides-hero__title">Guías del <span class="gradient-text">Compendium</span></h1>
+    <p class="guides-hero__subtitle">
+      Manuales completos para jugadores y masters. Todo lo que necesitas para dominar La Codicia del Sabio.
+    </p>
+  </div>
+</section>
+
+<!-- GUIDES -->
+<section class="guides-list section">
+  <div class="container">
+    <h2 class="text-center">Manuales Disponibles</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">📚</span>
+      <span class="ornament__line"></span>
+    </div>
+    <div class="guides-list__grid">
+      @for (guide of guides; track guide.id) {
+        <a [routerLink]="'/guias/' + guide.id" class="guide-card card" [style.--guide-color]="guide.color">
+          <span class="guide-card__icon">{{ guide.icon }}</span>
+          <h2 class="guide-card__name">{{ guide.name }}</h2>
+          <p class="guide-card__desc">{{ guide.description }}</p>
+          <div class="guide-card__meta">
+            @if (guide.sections.length > 0) {
+              <span class="guide-card__badge">{{ guide.sections.length }} secciones</span>
+            } @else {
+              <span class="guide-card__badge guide-card__badge--soon">Próximamente</span>
+            }
+            <span class="guide-card__badge">📥 PDF</span>
+          </div>
+          <span class="guide-card__cta">Ver guía →</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>

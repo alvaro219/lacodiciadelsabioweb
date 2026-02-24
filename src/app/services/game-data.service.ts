@@ -3,10 +3,12 @@ import { RACES } from '../data/races.data';
 import { CLASSES } from '../data/classes.data';
 import { CONDITION_GROUPS } from '../data/conditions.data';
 import { WEAPONS, WEAPON_ABILITIES } from '../data/weapons.data';
+import { GUIDES } from '../data/guides.data';
 import { Race } from '../models/race.model';
 import { GameClass, Subclass } from '../models/class.model';
 import { ConditionGroup } from '../models/condition.model';
 import { Weapon, WeaponAbility } from '../models/weapon.model';
+import { Guide } from '../models/guide.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +58,13 @@ export class GameDataService {
 
   getWeaponAbilities(): WeaponAbility[] {
     return WEAPON_ABILITIES;
+  }
+
+  getGuides(): Guide[] {
+    return GUIDES;
+  }
+
+  getGuideById(id: string): Guide | undefined {
+    return GUIDES.find(g => g.id === id);
   }
 }

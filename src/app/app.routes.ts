@@ -32,6 +32,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/mechanics/mechanics').then(m => m.Mechanics)
   },
   {
+    path: 'guias',
+    title: 'Guías — La Codicia del Sabio',
+    loadComponent: () => import('./pages/guides/guides').then(m => m.Guides)
+  },
+  {
+    path: 'guias/:id',
+    title: 'Guías — La Codicia del Sabio',
+    loadComponent: () => import('./pages/guide-detail/guide-detail').then(m => m.GuideDetail)
+  },
+  {
     path: 'comunidad',
     title: 'Comunidad y Eventos — La Codicia del Sabio',
     loadComponent: () => import('./pages/community/community').then(m => m.Community)

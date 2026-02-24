@@ -1,0 +1,294 @@
+.text-center { text-align: center; }
+
+// ===== GUIDE HERO =====
+.guide-hero {
+  position: relative;
+  padding: calc(var(--navbar-height) + var(--space-2xl)) 0 var(--space-2xl);
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, color-mix(in srgb, var(--guide-color) 12%, transparent) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__back {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+    transition: color var(--transition-fast);
+
+    &:hover { color: var(--color-gold); }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  &__icon {
+    font-size: 4rem;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: var(--space-xs);
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 650px;
+    line-height: 1.7;
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+}
+
+.btn--download {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.95rem;
+}
+
+// ===== TABLE OF CONTENTS =====
+.guide-toc {
+  background: var(--color-bg-medium);
+
+  h2 { margin-bottom: 0; }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-sm);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-bg-card);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+    text-align: left;
+    color: var(--color-text-secondary);
+
+    &:hover {
+      border-color: rgba(139, 92, 246, 0.4);
+      background: var(--color-bg-card-hover);
+      color: var(--color-gold);
+      transform: translateY(-2px);
+    }
+
+    &.active {
+      border-color: rgba(240, 192, 64, 0.4);
+      color: var(--color-gold);
+    }
+
+    &-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    &-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  }
+}
+
+// ===== GUIDE SECTIONS =====
+.guide-sections {
+  .container {
+    max-width: 900px;
+  }
+}
+
+.guide-section {
+  margin-bottom: var(--space-xl);
+  scroll-margin-top: calc(var(--navbar-height) + var(--space-lg));
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid rgba(139, 92, 246, 0.2);
+  }
+
+  &__icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    color: var(--color-gold);
+    margin: 0;
+  }
+
+  &__subheading {
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    margin: var(--space-lg) 0 var(--space-sm);
+    font-weight: 700;
+
+    &:first-child { margin-top: 0; }
+  }
+
+  &__text {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+
+    strong { color: var(--color-text-primary); }
+  }
+
+  &__note {
+    background: rgba(139, 92, 246, 0.08);
+    border-left: 3px solid var(--color-purple);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+    font-size: 0.95rem;
+
+    strong { color: var(--color-text-primary); }
+  }
+
+  &__list {
+    padding-left: var(--space-xl);
+    margin-bottom: var(--space-md);
+
+    li {
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-sm);
+
+      strong { color: var(--color-text-primary); }
+    }
+
+    &--ordered {
+      list-style: decimal;
+
+      li {
+        padding-left: var(--space-sm);
+      }
+    }
+  }
+
+  &__table-wrap {
+    overflow-x: auto;
+    margin-bottom: var(--space-md);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+
+    th {
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--color-gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: var(--space-sm) var(--space-md);
+      color: var(--color-text-secondary);
+      border-top: 1px solid rgba(139, 92, 246, 0.08);
+      line-height: 1.6;
+
+      strong { color: var(--color-text-primary); }
+    }
+
+    tr:hover td {
+      background: rgba(139, 92, 246, 0.04);
+    }
+  }
+}
+
+// ===== COMING SOON =====
+.guide-coming-soon {
+  h2 {
+    color: var(--color-gold);
+    margin-bottom: 0;
+  }
+}
+
+// ===== OTHER GUIDES =====
+.other-guides {
+  background: var(--color-bg-medium);
+
+  h2 { margin-bottom: 0; }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.other-guide-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+
+  &__icon { font-size: 2.5rem; }
+
+  &__name {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+  }
+
+  &:hover &__name { color: var(--color-gold); }
+}
+
+// ===== DOWNLOAD CTA =====
+.guide-download-cta {
+  h2 {
+    color: var(--color-gold);
+    margin-bottom: 0;
+  }
+}

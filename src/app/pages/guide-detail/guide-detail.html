@@ -1,0 +1,174 @@
+@if (guide(); as g) {
+  <!-- HERO -->
+  <section class="guide-hero" [style.--guide-color]="g.color">
+    <div class="guide-hero__bg"></div>
+    <div class="guide-hero__content container">
+      <a routerLink="/guias" class="guide-hero__back">← Volver a Guías</a>
+      <div class="guide-hero__header">
+        <span class="guide-hero__icon">{{ g.icon }}</span>
+        <div>
+          <h1 class="guide-hero__title">{{ g.name }}</h1>
+          <p class="guide-hero__subtitle">{{ g.subtitle }}</p>
+        </div>
+      </div>
+
+      <div class="guide-hero__actions">
+        <button class="btn btn--primary btn--download" (click)="downloadPdf()">
+          📥 Descargar PDF
+        </button>
+      </div>
+    </div>
+  </section>
+
+  @if (g.sections.length > 0) {
+    <!-- TABLE OF CONTENTS -->
+    <section class="guide-toc section">
+      <div class="container">
+        <h2 class="text-center">Índice de Contenidos</h2>
+        <div class="ornament">
+          <span class="ornament__line"></span>
+          <span class="ornament__symbol">📋</span>
+          <span class="ornament__line"></span>
+        </div>
+        <div class="guide-toc__list">
+          @for (section of g.sections; track section.id) {
+            <button
+              class="guide-toc__item"
+              [class.active]="activeSection() === section.id"
+              (click)="scrollToSection(section.id)">
+              <span class="guide-toc__item-icon">{{ section.icon }}</span>
+              <span class="guide-toc__item-title">{{ section.title }}</span>
+            </button>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTIONS -->
+    <section class="guide-sections section">
+      <div class="container">
+        @for (section of g.sections; track section.id) {
+          <div class="guide-section card" [id]="section.id">
+            <div class="guide-section__header">
+              <span class="guide-section__icon">{{ section.icon }}</span>
+              <h2 class="guide-section__title">{{ section.title }}</h2>
+            </div>
+
+            @for (block of section.content; track $index) {
+              @switch (block.type) {
+                @case ('subheading') {
+                  <h3 class="guide-section__subheading" [innerHTML]="block.text"></h3>
+                }
+                @case ('paragraph') {
+                  <p class="guide-section__text" [innerHTML]="block.text"></p>
+                }
+                @case ('note') {
+                  <div class="guide-section__note" [innerHTML]="block.text"></div>
+                }
+                @case ('list') {
+                  <ul class="guide-section__list">
+                    @for (item of block.items; track $index) {
+                      <li [innerHTML]="item"></li>
+                    }
+                  </ul>
+                }
+                @case ('ordered-list') {
+                  <ol class="guide-section__list guide-section__list--ordered">
+                    @for (item of block.items; track $index) {
+                      <li [innerHTML]="item"></li>
+                    }
+                  </ol>
+                }
+                @case ('table') {
+                  <div class="guide-section__table-wrap">
+                    <table class="guide-section__table">
+                      @if (block.headers) {
+                        <thead>
+                          <tr>
+                            @for (header of block.headers; track $index) {
+                              <th>{{ header }}</th>
+                            }
+                          </tr>
+                        </thead>
+                      }
+                      @if (block.rows) {
+                        <tbody>
+                          @for (row of block.rows; track $index) {
+                            <tr>
+                              @for (cell of row; track $index) {
+                                <td [innerHTML]="cell"></td>
+                              }
+                            </tr>
+                          }
+                        </tbody>
+                      }
+                    </table>
+                  </div>
+                }
+              }
+            }
+          </div>
+        }
+      </div>
+    </section>
+  } @else {
+    <!-- COMING SOON -->
+    <section class="guide-coming-soon section">
+      <div class="container" style="text-align: center;">
+        <div class="card" style="max-width: 600px; margin: 0 auto; padding: var(--space-3xl);">
+          <span style="font-size: 4rem; display: block; margin-bottom: var(--space-lg);">🚧</span>
+          <h2>Próximamente</h2>
+          <p style="color: var(--color-text-secondary); margin-top: var(--space-md);">
+            El contenido de esta guía está siendo elaborado. ¡Vuelve pronto!
+          </p>
+        </div>
+      </div>
+    </section>
+  }
+
+  <!-- OTHER GUIDES -->
+  <section class="other-guides section">
+    <div class="container">
+      <h2 class="text-center">Otras Guías</h2>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">📚</span>
+        <span class="ornament__line"></span>
+      </div>
+      <div class="other-guides__grid">
+        @for (otherGuide of allGuides; track otherGuide.id) {
+          @if (otherGuide.id !== g.id) {
+            <a [routerLink]="'/guias/' + otherGuide.id" class="other-guide-card card">
+              <span class="other-guide-card__icon">{{ otherGuide.icon }}</span>
+              <span class="other-guide-card__name">{{ otherGuide.name }}</span>
+            </a>
+          }
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section class="guide-download-cta section">
+    <div class="container" style="text-align: center;">
+      <div class="card" style="max-width: 600px; margin: 0 auto; padding: var(--space-2xl);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: var(--space-md);">📥</span>
+        <h2>¿Prefieres leerlo offline?</h2>
+        <p style="color: var(--color-text-secondary); margin: var(--space-md) 0 var(--space-lg);">
+          Descarga el PDF completo de {{ g.name }} para consultarlo en cualquier momento.
+        </p>
+        <button class="btn btn--primary btn--download" (click)="downloadPdf()">
+          Descargar {{ g.name }} en PDF
+        </button>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="not-found section">
+    <div class="container" style="text-align: center; padding-top: calc(var(--navbar-height) + 4rem);">
+      <h1>Guía no encontrada</h1>
+      <p>La guía que buscas no existe.</p>
+      <a routerLink="/guias" class="btn btn--primary">Volver a Guías</a>
+    </div>
+  </section>
+}
