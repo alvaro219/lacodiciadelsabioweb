@@ -314,7 +314,38 @@ export const GUIDES: Guide[] = [
             ]
           }
         ]
-      }
+      },
+      {
+        id: 'accesorios',
+        title: '15. Accesorios',
+        icon: '💎',
+        content: [
+          { type: 'paragraph', text: 'Los accesorios son objetos mágicos que otorgan <strong>bonos o efectos especiales</strong>.' },
+          { type: 'paragraph', text: 'Puedes equipar <strong>hasta 2 accesorios a la vez</strong>.' },
+          {
+            type: 'list',
+            items: [
+              'No puedes equipar <strong>dos copias del mismo accesorio</strong>.',
+              'Solo pueden <strong>cambiarse fuera de combate</strong>.',
+              'Sus efectos <strong>complementan a tu personaje</strong>, pero <strong>no sustituyen tu clase o habilidades</strong>.'
+            ]
+          },
+          { type: 'subheading', text: 'Rareza' },
+          { type: 'paragraph', text: 'Los accesorios tienen distintos niveles de rareza que indican su poder y lo difíciles que son de encontrar:' },
+          {
+            type: 'list',
+            items: [
+              '🟢 <strong>Común</strong> — Bonos simples (+1 a tiradas o salvaciones).',
+              '🔵 <strong>Raro</strong> — Resistencias o mejoras moderadas.',
+              '🟣 <strong>Épico</strong> — Efectos potentes, normalmente limitados a 1 vez por turno o combate.',
+              '🟡 <strong>Legendario</strong> — Efectos únicos que pueden cambiar el combate.'
+            ]
+          },
+          { type: 'subheading', text: 'Obtención y precio' },
+          { type: 'paragraph', text: 'Cada accesorio tiene <strong>su propio precio individual</strong>.' },
+          { type: 'paragraph', text: 'Pueden <strong>comprarse en tiendas</strong> o <strong>obtenerse como recompensa del Director de Juego</strong>.' }
+        ]
+      },
     ]
   },
   {
@@ -625,8 +656,38 @@ export const GUIDES: Guide[] = [
         ]
       },
       {
+        id: 'accesorios-y-recompensas',
+        title: '11. Accesorios y Recompensas',
+        icon: '💎',
+        content: [
+          { type: 'paragraph', text: 'Los jugadores pueden equipar hasta 2 accesorios. No pueden repetir el mismo en ambos slots. Tú decides qué accesorios aparecen en tu campaña: si algo no encaja, no lo incluyas.' },
+          { type: 'subheading', text: 'Rarezas y cuándo entregarlas' },
+          {
+            type: 'list',
+            items: [
+              '🟢 <strong>Común</strong> — Bonos simples (+1). Disponibles en tiendas desde el inicio. Precio: 8-18.',
+              '🔵 <strong>Raro</strong> — Resistencias o bonos a estadísticas. Recompensa de misiones o jefes menores. Precio: 50-70.',
+              '🟣 <strong>Épico</strong> — Efectos fuertes (limitados por turno o combate). Tras mazmorras o arcos importantes. Precio: 150-220.',
+              '🟡 <strong>Legendario</strong> — Efectos únicos. Solo por decisión narrativa directa. Precio: 450-600.'
+            ]
+          },
+          { type: 'subheading', text: 'Cómo los obtienen' },
+          {
+            type: 'list',
+            items: [
+              'Comprándolos en tiendas o mercaderes con su dinero.',
+              'Gratis, como recompensa: botín, regalo de un NPC, hallazgo en una mazmorra, etc.'
+            ]
+          },
+          { type: 'subheading', text: 'Balance' },
+          { type: 'paragraph', text: 'Los accesorios no dan acciones extra ni alteran la economía de turnos. La clase y las habilidades siempre deben ser el núcleo del personaje. Vigila los accesorios que otorgan daño para no romper la experiencia.' },
+          { type: 'subheading', text: 'Dosifica los accesorios' },
+          { type: 'paragraph', text: 'Entrégalos poco a poco. Si cada objeto aparece en un momento especial de la historia, los jugadores lo valorarán más. Los épicos y legendarios funcionan mejor como recompensas de hitos narrativos.' }
+        ]
+      },
+      {
         id: 'consejos-para-el-dm',
-        title: '11. Consejos para el DM',
+        title: '12. Consejos para el DM',
         icon: '💡',
         content: [
           {
