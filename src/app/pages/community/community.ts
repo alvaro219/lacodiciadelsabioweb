@@ -2,6 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { EventService } from '../../services/event.service';
+import { TelegramService } from '../../services/telegram.service';
 import { GameEvent } from '../../models/event.model';
 
 @Component({
@@ -22,7 +23,7 @@ export class Community implements OnInit {
   protected readonly signupError = signal('');
   protected readonly signupLoading = signal(false);
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private telegram: TelegramService) {}
 
   async ngOnInit() {
     await this.loadEvents();
@@ -83,16 +84,22 @@ export class Community implements OnInit {
     }
 
     this.signupLoading.set(true);
+    const name = this.signupName().trim();
+    const email = this.signupEmail().trim();
+    const eventId = this.signupEvent();
+    const eventTitle = this.events().find(e => e.id === eventId)?.title ?? eventId;
+
     try {
       await this.eventService.signup({
-        event_id: this.signupEvent(),
-        name: this.signupName().trim(),
-        email: this.signupEmail().trim()
+        event_id: eventId,
+        name,
+        email
       });
       this.signupSuccess.set(true);
       this.signupName.set('');
       this.signupEmail.set('');
       this.signupEvent.set('');
+      this.telegram.sendSignupNotification(name, email, eventTitle);
       await this.loadEvents();
     } catch (e: any) {
       if (e.message === 'EVENT_FULL') {
