@@ -496,7 +496,7 @@
 
 // ===== PLAY STORE BUTTON =====
 .btn-playstore {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-md);
   padding: 0.75rem 1.5rem;
@@ -505,17 +505,25 @@
   border-radius: var(--radius-lg);
   color: var(--color-text-primary);
   font-family: var(--font-body);
-  cursor: not-allowed;
+  text-decoration: none;
+  cursor: pointer;
   transition: all var(--transition-fast);
 
-  &:disabled {
-    opacity: 0.6;
+  &:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(240, 192, 64, 0.15);
   }
 
   &__icon {
     width: 32px;
     height: 32px;
     color: var(--color-purple-light);
+    transition: color var(--transition-fast);
+  }
+
+  &:hover &__icon {
+    color: var(--color-gold);
   }
 
   &__content {
