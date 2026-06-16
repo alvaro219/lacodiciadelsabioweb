@@ -1,5 +1,5 @@
 import { Component, signal, OnInit, computed } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { EventService } from '../../services/event.service';
 import { TelegramService } from '../../services/telegram.service';
@@ -27,7 +27,7 @@ export class Community implements OnInit {
   protected readonly signupLoading = signal(false);
 
   // Social section
-  protected readonly activeTab = signal<'eventos' | 'social'>('eventos');
+  protected readonly activeTab = signal<'eventos' | 'social'>('social');
   protected readonly posts = signal<SocialPost[]>([]);
   protected readonly postsLoading = signal(false);
   protected readonly postsError = signal('');
@@ -80,11 +80,16 @@ export class Community implements OnInit {
   constructor(
     private eventService: EventService,
     private telegram: TelegramService,
-    protected social: SocialService
+    protected social: SocialService,
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
-    await this.loadEvents();
+    await Promise.all([this.loadEvents(), this.loadPosts(true)]);
+    const tab = this.route.snapshot.queryParamMap.get('tab');
+    if (tab === 'eventos') {
+      this.activeTab.set('eventos');
+    }
   }
 
   private async loadEvents() {
