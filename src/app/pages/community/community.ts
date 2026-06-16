@@ -1,9 +1,11 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { EventService } from '../../services/event.service';
 import { TelegramService } from '../../services/telegram.service';
+import { SocialService } from '../../services/social.service';
 import { GameEvent } from '../../models/event.model';
+import { SocialPost, SocialComment } from '../../models/social.model';
 
 @Component({
   selector: 'app-community',
@@ -23,7 +25,34 @@ export class Community implements OnInit {
   protected readonly signupError = signal('');
   protected readonly signupLoading = signal(false);
 
-  constructor(private eventService: EventService, private telegram: TelegramService) {}
+  // Social section
+  protected readonly activeTab = signal<'eventos' | 'social'>('eventos');
+  protected readonly posts = signal<SocialPost[]>([]);
+  protected readonly postsLoading = signal(false);
+  protected readonly postsError = signal('');
+  protected readonly hasMorePosts = signal(true);
+  protected readonly currentPage = signal(0);
+
+  protected readonly expandedPostId = signal<string | null>(null);
+  protected readonly postComments = signal<Partial<Record<string, SocialComment[]>>>({});
+  protected readonly commentsLoading = signal<Partial<Record<string, boolean>>>({});
+  protected readonly newComment = signal<Record<string, string>>({});
+  protected readonly commentSubmitting = signal<Record<string, boolean>>({});
+
+  protected readonly loginEmail = signal('');
+  protected readonly loginPassword = signal('');
+  protected readonly loginError = signal('');
+  protected readonly loginLoading = signal(false);
+  protected readonly showLoginForm = signal(false);
+
+  protected readonly currentUser = computed(() => this.social.currentUser());
+  protected readonly authLoading = computed(() => this.social.authLoading());
+
+  constructor(
+    private eventService: EventService,
+    private telegram: TelegramService,
+    protected social: SocialService
+  ) {}
 
   async ngOnInit() {
     await this.loadEvents();
@@ -110,5 +139,168 @@ export class Community implements OnInit {
     } finally {
       this.signupLoading.set(false);
     }
+  }
+
+  // ========== SOCIAL TAB ==========
+
+  async switchTab(tab: 'eventos' | 'social') {
+    this.activeTab.set(tab);
+    if (tab === 'social' && this.posts().length === 0) {
+      await this.loadPosts(true);
+    }
+  }
+
+  async loadPosts(reset = false) {
+    if (reset) {
+      this.currentPage.set(0);
+      this.posts.set([]);
+      this.hasMorePosts.set(true);
+    }
+    if (!this.hasMorePosts()) return;
+
+    this.postsLoading.set(true);
+    this.postsError.set('');
+    try {
+      const newPosts = await this.social.getPosts(this.currentPage(), 12);
+      if (reset) {
+        this.posts.set(newPosts);
+      } else {
+        this.posts.update(prev => [...prev, ...newPosts]);
+      }
+      this.hasMorePosts.set(newPosts.length === 12);
+      this.currentPage.update(p => p + 1);
+    } catch {
+      this.postsError.set('Error al cargar las creaciones. Inténtalo de nuevo.');
+    } finally {
+      this.postsLoading.set(false);
+    }
+  }
+
+  async onToggleLike(post: SocialPost) {
+    if (!this.currentUser()) {
+      this.showLoginForm.set(true);
+      return;
+    }
+    const wasLiked = post.user_has_liked;
+    this.posts.update(posts =>
+      posts.map(p => p.id === post.id
+        ? { ...p, user_has_liked: !wasLiked, likes_count: p.likes_count + (wasLiked ? -1 : 1) }
+        : p
+      )
+    );
+    try {
+      await this.social.toggleLike(post.id);
+    } catch {
+      this.posts.update(posts =>
+        posts.map(p => p.id === post.id
+          ? { ...p, user_has_liked: wasLiked, likes_count: p.likes_count + (wasLiked ? 1 : -1) }
+          : p
+        )
+      );
+    }
+  }
+
+  async toggleComments(postId: string) {
+    if (this.expandedPostId() === postId) {
+      this.expandedPostId.set(null);
+      return;
+    }
+    this.expandedPostId.set(postId);
+    if (!this.postComments()[postId]) {
+      await this.loadComments(postId);
+    }
+  }
+
+  private async loadComments(postId: string) {
+    this.commentsLoading.update(s => ({ ...s, [postId]: true }));
+    try {
+      const comments = await this.social.getComments(postId);
+      this.postComments.update(s => ({ ...s, [postId]: comments }));
+    } catch {
+      this.postComments.update(s => ({ ...s, [postId]: [] }));
+    } finally {
+      this.commentsLoading.update(s => ({ ...s, [postId]: false }));
+    }
+  }
+
+  async onSubmitComment(postId: string) {
+    const user = this.currentUser();
+    if (!user) { this.showLoginForm.set(true); return; }
+
+    const content = (this.newComment()[postId] ?? '').trim();
+    if (!content) return;
+
+    this.commentSubmitting.update(s => ({ ...s, [postId]: true }));
+    try {
+      const comment = await this.social.addComment(postId, content);
+      this.postComments.update(s => ({ ...s, [postId]: [...(s[postId] ?? []), comment] }));
+      this.newComment.update(s => ({ ...s, [postId]: '' }));
+      this.posts.update(posts =>
+        posts.map(p => p.id === postId ? { ...p, comments_count: p.comments_count + 1 } : p)
+      );
+    } catch {
+    } finally {
+      this.commentSubmitting.update(s => ({ ...s, [postId]: false }));
+    }
+  }
+
+  getCommentText(postId: string): string {
+    return this.newComment()[postId] ?? '';
+  }
+
+  setCommentText(postId: string, value: string) {
+    this.newComment.update(s => ({ ...s, [postId]: value }));
+  }
+
+  getTypeIcon(type: string): string {
+    const icons: Record<string, string> = {
+      personaje: '⚔️',
+      raza: '🌍',
+      clase: '🎯',
+      subclase: '⚡'
+    };
+    return icons[type] ?? '📜';
+  }
+
+  getTypeLabel2(type: string): string {
+    const labels: Record<string, string> = {
+      personaje: 'Personaje',
+      raza: 'Raza',
+      clase: 'Clase',
+      subclase: 'Subclase'
+    };
+    return labels[type] ?? type;
+  }
+
+  formatDate(dateStr: string): string {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  async onLogin() {
+    this.loginError.set('');
+    const email = this.loginEmail().trim();
+    const pass = this.loginPassword();
+    if (!email || !pass) {
+      this.loginError.set('Introduce email y contraseña.');
+      return;
+    }
+    this.loginLoading.set(true);
+    try {
+      await this.social.signInWithEmail(email, pass);
+      this.showLoginForm.set(false);
+      this.loginEmail.set('');
+      this.loginPassword.set('');
+      await this.loadPosts(true);
+    } catch {
+      this.loginError.set('Email o contraseña incorrectos.');
+    } finally {
+      this.loginLoading.set(false);
+    }
+  }
+
+  async onLogout() {
+    await this.social.signOut();
+    this.posts.update(posts => posts.map(p => ({ ...p, user_has_liked: false })));
   }
 }

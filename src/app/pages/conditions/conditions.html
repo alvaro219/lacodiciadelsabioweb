@@ -13,6 +13,33 @@
   </div>
 </section>
 
+<!-- INTRO -->
+<section class="cond-intro section">
+  <div class="container">
+    <div class="cond-intro__grid">
+      <div class="cond-intro__card card">
+        <span class="cond-intro__icon">⏱️</span>
+        <h3>Duración</h3>
+        <p><strong>Persistente:</strong> Se repite cada turno hasta superar la tirada de salvación al comienzo del propio turno.</p>
+        <p><strong>Temporal:</strong> Se aplica si fallas la tirada al recibirla. Dura N turnos (indicado como Miedo 2, etc.) y va bajando al inicio de cada turno.</p>
+        <p><strong>Momentánea:</strong> Se hace la tirada al recibirla. Si fallas, el efecto se desencadena y termina.</p>
+      </div>
+      <div class="cond-intro__card card">
+        <span class="cond-intro__icon">🎲</span>
+        <h3>Tiradas de Salvación</h3>
+        <p><strong>Fortaleza:</strong> Condiciones físicas (inmovilidad, veneno, mudez…).</p>
+        <p><strong>Voluntad:</strong> Condiciones mentales (miedo, confusión, provocado…).</p>
+        <p><strong>Agilidad:</strong> Principalmente para resistir daño de área. Uso secundario en condiciones.</p>
+      </div>
+      <div class="cond-intro__card card">
+        <span class="cond-intro__icon">📱</span>
+        <h3>Automatización</h3>
+        <p>La aplicación gestiona automáticamente cuándo se realizan las tiradas de salvación, reduce los contadores temporales al inicio de cada turno y notifica cuando una condición desaparece.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONDITION GROUPS -->
 @for (group of conditionGroups; track group.id) {
   <section class="cond-group section" [style.--group-color]="group.color">
@@ -29,14 +56,32 @@
 
       @for (category of group.categories; track category.type) {
         <div class="cond-category">
-          <h3 class="cond-category__title" [style.color]="category.color">
-            {{ category.icon }} {{ category.typeLabel }}
-          </h3>
           <div class="cond-category__grid">
             @for (condition of category.conditions; track condition.name) {
               <div class="condition-card card" [style.--cat-color]="category.color">
-                <h4 class="condition-card__name">{{ condition.name }}</h4>
+                <div class="condition-card__header">
+                  <h4 class="condition-card__name">{{ condition.name }}</h4>
+                  <div class="condition-card__badges">
+                    @if (condition.duration) {
+                      <span class="cond-badge cond-badge--duration">
+                        @switch (condition.duration) {
+                          @case ('persistente') { ♾️ Persistente }
+                          @case ('temporal') { ⏳ Temporal }
+                          @case ('momentanea') { ⚡ Momentánea }
+                        }
+                      </span>
+                    }
+                    @if (condition.savingThrow) {
+                      <span class="cond-badge cond-badge--save">🎲 {{ condition.savingThrow }}</span>
+                    }
+                  </div>
+                </div>
                 <p class="condition-card__desc">{{ condition.description }}</p>
+                @if (condition.exitCondition) {
+                  <div class="condition-card__exit">
+                    <span class="condition-card__exit-label">Salida:</span> {{ condition.exitCondition }}
+                  </div>
+                }
               </div>
             }
           </div>

@@ -4,13 +4,36 @@
   <div class="comm-hero__content container">
     <a routerLink="/" class="comm-hero__back">← Volver al inicio</a>
     <h1 class="comm-hero__title">Comunidad y <span class="gradient-text">Eventos</span></h1>
-    <p class="comm-hero__subtitle">Únete a la comunidad de La Codicia del Sabio. Participa en eventos, prueba la beta de la app y conecta con otros jugadores.</p>
+    <p class="comm-hero__subtitle">Únete a la comunidad de La Codicia del Sabio. Explora creaciones de otros jugadores, participa en eventos y conecta en Discord.</p>
     <div class="comm-hero__actions">
       <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--primary btn--lg"><img src="assets/icons/discord-icon.svg" alt="" class="discord-icon"> Únete al Discord</a>
       <a (click)="scrollToSignup()" class="btn btn--secondary btn--lg" style="cursor:pointer">Inscríbete a un Evento</a>
     </div>
   </div>
 </section>
+
+<!-- TAB NAV -->
+<div class="comm-tabs">
+  <div class="container">
+    <div class="comm-tabs__nav">
+      <button
+        class="comm-tabs__btn"
+        [class.active]="activeTab() === 'eventos'"
+        (click)="switchTab('eventos')">
+        📅 Eventos &amp; Comunidad
+      </button>
+      <button
+        class="comm-tabs__btn"
+        [class.active]="activeTab() === 'social'"
+        (click)="switchTab('social')">
+        🎨 Apartado Social
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EVENTOS TAB ===== -->
+@if (activeTab() === 'eventos') {
 
 <!-- DISCORD -->
 <section class="discord-section section">
@@ -220,9 +243,230 @@
       <div class="contribute-card card">
         <span class="contribute-card__icon">🐛</span>
         <h3>Bug Reports</h3>
-        <p>
-          ¿Encontraste un bug en la app? Repórtalo y ayúdanos a hacer La Codicia del Sabio más estable.</p>
+        <p>¿Encontraste un bug en la app? Repórtalo y ayúdanos a hacer La Codicia del Sabio más estable.</p>
       </div>
     </div>
   </div>
 </section>
+
+} <!-- end activeTab === 'eventos' -->
+
+
+<!-- ===== SOCIAL TAB ===== -->
+@if (activeTab() === 'social') {
+
+<!-- LOGIN MODAL -->
+@if (showLoginForm()) {
+  <div class="social-modal-backdrop" (click)="showLoginForm.set(false)">
+    <div class="social-modal card" (click)="$event.stopPropagation()">
+      <button class="social-modal__close" (click)="showLoginForm.set(false)">✕</button>
+      <h3>Iniciar sesión</h3>
+      <p class="social-modal__hint">Usa la misma cuenta de la app para valorar y comentar creaciones.</p>
+      <form (ngSubmit)="onLogin()">
+        <div class="signup-form__field">
+          <label for="login-email">Email</label>
+          <input
+            type="email"
+            id="login-email"
+            placeholder="tu@email.com"
+            [ngModel]="loginEmail()"
+            (ngModelChange)="loginEmail.set($event)"
+            name="login-email"
+          />
+        </div>
+        <div class="signup-form__field">
+          <label for="login-pass">Contraseña</label>
+          <input
+            type="password"
+            id="login-pass"
+            placeholder="••••••••"
+            [ngModel]="loginPassword()"
+            (ngModelChange)="loginPassword.set($event)"
+            name="login-pass"
+          />
+        </div>
+        @if (loginError()) {
+          <div class="signup-form__error">⚠️ {{ loginError() }}</div>
+        }
+        <button type="submit" class="btn btn--primary" [disabled]="loginLoading()" style="width:100%">
+          {{ loginLoading() ? 'Entrando...' : 'Entrar' }}
+        </button>
+      </form>
+    </div>
+  </div>
+}
+
+<!-- SOCIAL HEADER BAR -->
+<section class="social-section section">
+  <div class="container">
+
+    <div class="social-header">
+      <div>
+        <h2>Galería de <span class="gradient-text">Creaciones</span></h2>
+        <p class="social-header__sub">Creaciones compartidas por la comunidad desde la app. Valóralas con un ❤️ o deja un comentario.</p>
+      </div>
+      <div class="social-header__auth">
+        @if (authLoading()) {
+          <span class="social-auth-loading">Cargando...</span>
+        } @else if (currentUser()) {
+          <div class="social-user-pill">
+            <span class="social-user-pill__avatar">{{ currentUser()!.username[0].toUpperCase() }}</span>
+            <span class="social-user-pill__name">{{ currentUser()!.username }}</span>
+            <button class="social-user-pill__logout" (click)="onLogout()" title="Cerrar sesión">✕</button>
+          </div>
+        } @else {
+          <button class="btn btn--secondary btn--sm" (click)="showLoginForm.set(true)">
+            🔑 Iniciar sesión
+          </button>
+        }
+      </div>
+    </div>
+
+    @if (!currentUser() && !authLoading()) {
+      <div class="social-guest-banner">
+        <span class="social-guest-banner__icon">💡</span>
+        <span>Inicia sesión con tu cuenta de la app para dar ❤️ y dejar comentarios.</span>
+        <button class="btn btn--secondary btn--sm" (click)="showLoginForm.set(true)">Iniciar sesión</button>
+      </div>
+    }
+
+    <!-- POSTS LOADING -->
+    @if (postsLoading() && posts().length === 0) {
+      <div class="social-loading">
+        <div class="social-loading__spinner"></div>
+        <p>Cargando creaciones...</p>
+      </div>
+    }
+
+    <!-- POSTS ERROR -->
+    @if (postsError()) {
+      <div class="social-error">
+        <p>{{ postsError() }}</p>
+        <button class="btn btn--secondary btn--sm" (click)="loadPosts(true)">Reintentar</button>
+      </div>
+    }
+
+    <!-- POSTS EMPTY -->
+    @if (!postsLoading() && !postsError() && posts().length === 0) {
+      <div class="social-empty">
+        <span class="social-empty__icon">🎨</span>
+        <h3>Aún no hay creaciones compartidas</h3>
+        <p>Comparte personajes, razas, clases o subclases desde la app para que aparezcan aquí.</p>
+      </div>
+    }
+
+    <!-- POSTS GRID -->
+    @if (posts().length > 0) {
+      <div class="social-grid">
+        @for (post of posts(); track post.id) {
+          <div class="social-card card">
+
+            <!-- POST HEADER -->
+            <div class="social-card__header">
+              <div class="social-card__type-badge" [attr.data-type]="post.creation_type">
+                <span>{{ getTypeIcon(post.creation_type) }}</span>
+                <span>{{ getTypeLabel2(post.creation_type) }}</span>
+              </div>
+              <span class="social-card__date">{{ formatDate(post.created_at) }}</span>
+            </div>
+
+            <!-- POST IMAGE -->
+            @if (post.image_url) {
+              <div class="social-card__img-wrapper">
+                <img [src]="post.image_url" [alt]="post.title" class="social-card__img" loading="lazy" />
+              </div>
+            }
+
+            <!-- POST BODY -->
+            <div class="social-card__body">
+              <h4 class="social-card__title">{{ post.title }}</h4>
+              <p class="social-card__author">por <strong>{{ post.username }}</strong></p>
+              @if (post.description) {
+                <p class="social-card__desc">{{ post.description }}</p>
+              }
+            </div>
+
+            <!-- POST ACTIONS -->
+            <div class="social-card__actions">
+              <button
+                class="social-card__like-btn"
+                [class.liked]="post.user_has_liked"
+                (click)="onToggleLike(post)"
+                [title]="currentUser() ? (post.user_has_liked ? 'Quitar me gusta' : 'Me gusta') : 'Inicia sesión para valorar'">
+                <span class="social-card__like-heart">{{ post.user_has_liked ? '❤️' : '🤍' }}</span>
+                <span class="social-card__like-count">{{ post.likes_count }}</span>
+              </button>
+              <button
+                class="social-card__comment-btn"
+                [class.active]="expandedPostId() === post.id"
+                (click)="toggleComments(post.id)">
+                💬 {{ post.comments_count }}
+              </button>
+            </div>
+
+            <!-- COMMENTS PANEL -->
+            @if (expandedPostId() === post.id) {
+              <div class="social-card__comments">
+                @if (commentsLoading()[post.id]) {
+                  <p class="social-comments__loading">Cargando comentarios...</p>
+                } @else {
+                  @if ((postComments()[post.id] ?? []).length === 0) {
+                    <p class="social-comments__empty">Sé el primero en comentar.</p>
+                  }
+                  @for (comment of postComments()[post.id] ?? []; track comment.id) {
+                    <div class="social-comment">
+                      <div class="social-comment__avatar">{{ comment.username[0].toUpperCase() }}</div>
+                      <div class="social-comment__content">
+                        <span class="social-comment__author">{{ comment.username }}</span>
+                        <span class="social-comment__date">· {{ formatDate(comment.created_at) }}</span>
+                        <p class="social-comment__text">{{ comment.content }}</p>
+                      </div>
+                    </div>
+                  }
+                }
+
+                <!-- COMMENT INPUT -->
+                @if (currentUser()) {
+                  <form class="social-comment-form" (ngSubmit)="onSubmitComment(post.id)">
+                    <input
+                      type="text"
+                      class="social-comment-form__input"
+                      placeholder="Escribe un comentario..."
+                      [value]="getCommentText(post.id)"
+                      (input)="setCommentText(post.id, $any($event.target).value)"
+                      maxlength="300"
+                    />
+                    <button
+                      type="submit"
+                      class="btn btn--primary btn--sm"
+                      [disabled]="commentSubmitting()[post.id] || !getCommentText(post.id).trim()">
+                      {{ commentSubmitting()[post.id] ? '...' : 'Enviar' }}
+                    </button>
+                  </form>
+                } @else {
+                  <p class="social-comments__login-hint">
+                    <button class="social-comments__login-link" (click)="showLoginForm.set(true)">Inicia sesión</button>
+                    para dejar un comentario.
+                  </p>
+                }
+              </div>
+            }
+
+          </div>
+        }
+      </div>
+
+      <!-- LOAD MORE -->
+      @if (hasMorePosts()) {
+        <div class="social-load-more">
+          <button class="btn btn--secondary" [disabled]="postsLoading()" (click)="loadPosts()">
+            {{ postsLoading() ? 'Cargando...' : 'Cargar más creaciones' }}
+          </button>
+        </div>
+      }
+    }
+
+  </div>
+</section>
+
+} <!-- end activeTab === 'social' -->

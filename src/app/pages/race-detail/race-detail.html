@@ -14,17 +14,17 @@
 
       <div class="race-hero__stats">
         <div class="stat-badge">
-          <span class="stat-badge__label">Tamaño</span>
+          <span class="stat-badge__label">Tamaño base</span>
           <span class="stat-badge__value">📏 {{ r.size }}</span>
         </div>
         <div class="stat-badge">
-          <span class="stat-badge__label">Velocidad</span>
+          <span class="stat-badge__label">Velocidad base</span>
           <span class="stat-badge__value">👣 {{ r.speed }} pies</span>
         </div>
-        @for (trait of r.traits; track trait.attribute) {
-          <div class="stat-badge" [class.positive]="trait.modifier > 0" [class.negative]="trait.modifier < 0">
-            <span class="stat-badge__label">{{ trait.attribute }}</span>
-            <span class="stat-badge__value">{{ getModifierText(trait.modifier) }}</span>
+        @if (r.subraces && r.subraces.length > 0) {
+          <div class="stat-badge">
+            <span class="stat-badge__label">Subrazas</span>
+            <span class="stat-badge__value">🧬 {{ r.subraces.length }}</span>
           </div>
         }
       </div>
@@ -46,48 +46,41 @@
     </div>
   </section>
 
-  <!-- PASSIVE -->
-  <section class="race-passive section">
-    <div class="container">
-      <h2 class="text-center">Habilidad Racial Pasiva</h2>
-      <div class="ornament">
-        <span class="ornament__line"></span>
-        <span class="ornament__symbol">✨</span>
-        <span class="ornament__line"></span>
-      </div>
-      <div class="race-passive__card card" [style.--race-color]="r.color">
-        <span class="race-passive__icon">{{ r.icon }}</span>
-        <h3>{{ r.passiveName }}</h3>
-        <p>{{ r.passive }}</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRAITS DETAIL -->
-  @if (r.traits.length > 0) {
-    <section class="race-traits section">
+  <!-- SUBRACES -->
+  @if (r.subraces && r.subraces.length > 0) {
+    <section class="race-subraces section">
       <div class="container">
-        <h2 class="text-center">Modificadores de Atributo</h2>
+        <h2 class="text-center">Subrazas</h2>
         <div class="ornament">
           <span class="ornament__line"></span>
-          <span class="ornament__symbol">📊</span>
+          <span class="ornament__symbol">🧬</span>
           <span class="ornament__line"></span>
         </div>
-        <div class="race-traits__grid">
-          @for (trait of r.traits; track trait.attribute) {
-            <div class="trait-card card" [class.positive]="trait.modifier > 0" [class.negative]="trait.modifier < 0">
-              <span class="trait-card__attr">{{ trait.attribute }}</span>
-              <span class="trait-card__mod">{{ getModifierText(trait.modifier) }}</span>
-              <span class="trait-card__desc">
-                @switch (trait.attribute) {
-                  @case ('FUE') { Fuerza }
-                  @case ('DES') { Destreza }
-                  @case ('INT') { Inteligencia }
-                  @case ('PER') { Percepción }
-                  @case ('CON') { Constitución }
-                  @case ('CAR') { Carisma }
+        <div class="race-subraces__grid">
+          @for (sub of r.subraces; track sub.name) {
+            <div class="subrace-card card" [style.--race-color]="r.color">
+              <h3 class="subrace-card__name">{{ sub.name }}</h3>
+              <div class="subrace-card__badges">
+                @if (sub.size) {
+                  <span class="subrace-badge">📏 {{ sub.size }}</span>
                 }
-              </span>
+                @if (sub.speed) {
+                  <span class="subrace-badge">👣 {{ sub.speed }} pies</span>
+                }
+                @for (trait of sub.traits; track trait.attribute) {
+                  <span class="subrace-badge" [class.positive]="trait.modifier > 0" [class.negative]="trait.modifier < 0">
+                    {{ trait.attribute }} {{ getModifierText(trait.modifier) }}
+                  </span>
+                }
+                @if (!sub.size && !sub.speed && sub.traits.length === 0) {
+                  <span class="subrace-badge">Sin modificadores</span>
+                }
+              </div>
+              <p class="subrace-card__desc">{{ sub.description }}</p>
+              <div class="subrace-card__passive">
+                <span class="subrace-card__passive-label">Pasiva:</span>
+                {{ sub.passive }}
+              </div>
             </div>
           }
         </div>

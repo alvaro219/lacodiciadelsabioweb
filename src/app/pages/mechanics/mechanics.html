@@ -159,7 +159,7 @@
     <div class="damage-info">
       <div class="card">
         <h4>Armas</h4>
-        <p>Cada arma tiene: <strong>dado de daño</strong> (d4, d6, d8, d10, d12), <strong>número de ataques</strong> y <strong>modificador</strong> (qué atributo se suma).</p>
+        <p>Cada arma tiene: <strong>dado de daño</strong> (d4–d12), <strong>número de ataques</strong>, <strong>modificador</strong> (qué atributo se suma al daño) y <strong>propiedades</strong>.</p>
       </div>
       <div class="card">
         <h4>Margen de Daño</h4>
@@ -167,7 +167,53 @@
       </div>
       <div class="card">
         <h4>Críticos</h4>
-        <p>Se obtienen con un <strong>d20 natural 20</strong> ó <strong>superando la DA del objetivo en 6 ó más</strong>. Los críticos aumentan el nivel del dado de daño.</p>
+        <p>Se obtienen con un <strong>d20 natural 20</strong>. Los críticos aumentan el nivel del dado de daño al siguiente (d6 → d8, etc.).</p>
+      </div>
+    </div>
+
+    <div class="weapon-props card">
+      <h4>10 Propiedades de Arma</h4>
+      <div class="weapon-props__grid">
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Alcance</span>
+          <span class="weapon-prop__desc">Ataca desde 5 pies extra.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">A distancia</span>
+          <span class="weapon-prop__desc">Ataca objetivos a 30 pies.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Contundente</span>
+          <span class="weapon-prop__desc">Daño máximo provoca Aturdido.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Precisa</span>
+          <span class="weapon-prop__desc">Daño máximo provoca Inmóvil.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Flujo</span>
+          <span class="weapon-prop__desc">Daño máximo recupera 1 ⚡/💧.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Pesada</span>
+          <span class="weapon-prop__desc">Tirada de acierto con desventaja.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Encadenante</span>
+          <span class="weapon-prop__desc">Daño sobrante se reparte a enemigos al alcance.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Ágil</span>
+          <span class="weapon-prop__desc">Al derrotar enemigo, puedes moverte 5 pies.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Sorpresiva</span>
+          <span class="weapon-prop__desc">El daño se realiza antes del gasto de 🔶 enemigo.</span>
+        </div>
+        <div class="weapon-prop">
+          <span class="weapon-prop__name">Colosal</span>
+          <span class="weapon-prop__desc">No se pueden realizar críticos con este arma.</span>
+        </div>
       </div>
     </div>
   </div>
@@ -221,23 +267,20 @@
 
     <div class="conditions-grid">
       <div class="condition-group card">
-        <h3 class="condition-group__title restriction">🔒 Restricción</h3>
+        <h3 class="condition-group__title restriction">🔒 Restricción <span class="condition-count">7</span></h3>
         <div class="condition-group__list">
           <span class="condition-tag">Derribado</span>
-          <span class="condition-tag">Desplazado</span>
-          <span class="condition-tag">Levantado</span>
           <span class="condition-tag">Inmóvil</span>
           <span class="condition-tag">Incapacitar</span>
           <span class="condition-tag">Miedo</span>
           <span class="condition-tag">Mudez</span>
-          <span class="condition-tag">Confusión</span>
           <span class="condition-tag">Provocar</span>
-          <span class="condition-tag">Estructura</span>
+          <span class="condition-tag">Confusión</span>
         </div>
       </div>
 
       <div class="condition-group card">
-        <h3 class="condition-group__title debuff">⬇️ Debilitación</h3>
+        <h3 class="condition-group__title debuff">⬇️ Debilitación <span class="condition-count">8</span></h3>
         <div class="condition-group__list">
           <span class="condition-tag debuff">Desprevenido</span>
           <span class="condition-tag debuff">Parálisis</span>
@@ -251,10 +294,9 @@
       </div>
 
       <div class="condition-group card">
-        <h3 class="condition-group__title buff">⬆️ Potenciación</h3>
+        <h3 class="condition-group__title buff">⬆️ Potenciación <span class="condition-count">10</span></h3>
         <div class="condition-group__list">
           <span class="condition-tag buff">Montar</span>
-          <span class="condition-tag buff">Anular</span>
           <span class="condition-tag buff">Invisibilidad</span>
           <span class="condition-tag buff">Impulso</span>
           <span class="condition-tag buff">Égida</span>
@@ -262,30 +304,23 @@
           <span class="condition-tag buff">Vigorizado</span>
           <span class="condition-tag buff">Acelerado</span>
           <span class="condition-tag buff">Coraje</span>
+          <span class="condition-tag buff">Armonía</span>
+          <span class="condition-tag buff">Kiai</span>
         </div>
       </div>
 
       <div class="condition-group card">
-        <h3 class="condition-group__title damage">🔥 Dañino</h3>
+        <h3 class="condition-group__title damage">🔥 Dañino <span class="condition-count">2</span></h3>
         <div class="condition-group__list">
-          <span class="condition-tag damage">Envenenamiento (1d4)</span>
-          <span class="condition-tag damage">Quemadura (1d6)</span>
-          <span class="condition-tag damage">Explosivo</span>
-        </div>
-      </div>
-
-      <div class="condition-group card">
-        <h3 class="condition-group__title unique">⭐ Únicos</h3>
-        <div class="condition-group__list">
-          <span class="condition-tag unique">Armonía</span>
-          <span class="condition-tag unique">Kiai</span>
+          <span class="condition-tag damage">Envenenamiento (1d4 inicio turno)</span>
+          <span class="condition-tag damage">Quemadura (1d6 fin turno)</span>
         </div>
       </div>
     </div>
 
     <div class="mech-info card">
-      <h4>Rareza de Condiciones</h4>
-      <p>Las condiciones se clasifican en tres niveles de rareza: <strong>Común</strong>, <strong>Especial</strong> y <strong>Único</strong>.</p>
+      <h4>Duraciones</h4>
+      <p>Las condiciones tienen tres posibles duraciones: <strong>Momentánea</strong> (efecto instantáneo), <strong>Temporal</strong> (dura hasta superar una tirada de salvación) y <strong>Persistente</strong> (se retira al cumplir su condición de salida). Las temporales requieren tirada de <strong>Fortaleza</strong> (CON), <strong>Agilidad</strong> (DES) o <strong>Voluntad</strong> (INT).</p>
     </div>
   </div>
 </section>
@@ -331,7 +366,7 @@
           <span>Mod: +10</span>
           <span>Coste: 20 pts</span>
         </div>
-        <div class="tier-card__examples">Dragón, Ogro, Gárgola</div>
+        <div class="tier-card__examples">Dragón, Ogro, Gárgola (49 enemigos en total)</div>
       </div>
     </div>
   </div>

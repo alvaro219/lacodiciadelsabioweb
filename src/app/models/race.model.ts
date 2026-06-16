@@ -3,6 +3,15 @@ export interface RaceTrait {
   modifier: number;
 }
 
+export interface Subrace {
+  name: string;
+  description: string;
+  passive: string;
+  traits: RaceTrait[];
+  speed?: number;
+  size?: string;
+}
+
 export interface Race {
   id: string;
   name: string;
@@ -15,4 +24,5 @@ export interface Race {
   lore: string;
   icon: string;
   color: string;
+  subraces?: Subrace[];
 }

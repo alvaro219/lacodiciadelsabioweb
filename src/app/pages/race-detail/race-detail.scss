@@ -197,6 +197,84 @@
   }
 }
 
+// ===== SUBRACES =====
+.race-subraces {
+  h2 { margin-bottom: 0; }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+}
+
+.subrace-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border-top: 3px solid var(--race-color);
+
+  &__name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--race-color);
+    margin: 0;
+  }
+
+  &__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    flex: 1;
+  }
+
+  &__passive {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-left: 2px solid var(--race-color);
+  }
+
+  &__passive-label {
+    font-weight: 700;
+    color: var(--race-color);
+    margin-right: var(--space-xs);
+  }
+}
+
+.subrace-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--color-text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &.positive {
+    background: rgba(74, 222, 128, 0.12);
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.3);
+  }
+
+  &.negative {
+    background: rgba(248, 113, 113, 0.12);
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.3);
+  }
+}
+
 // ===== OTHER RACES =====
 .other-races {
   background: var(--color-bg-medium);

@@ -494,6 +494,94 @@
   }
 }
 
+// ===== APP SECTION =====
+.app-section {
+  background: var(--color-bg-medium);
+}
+
+.app-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-3xl);
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app-feature {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-normal);
+
+  &:hover {
+    border-color: rgba(240, 192, 64, 0.25);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  &__icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    width: 3rem;
+    text-align: center;
+  }
+
+  &__content {
+    flex: 1;
+
+    h4 {
+      font-size: 1rem;
+      margin-bottom: var(--space-xs);
+      color: var(--color-text-primary);
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+  }
+}
+
+.app-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
+  padding: var(--space-xl) var(--space-xl);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(240, 192, 64, 0.06));
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: var(--radius-xl);
+}
+
+.app-stat {
+  text-align: center;
+
+  &__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--color-gold);
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+}
+
 // ===== PLAY STORE BUTTON =====
 .btn-playstore {
   display: flex;

@@ -70,6 +70,44 @@
   }
 }
 
+// ===== INTRO =====
+.cond-intro {
+  background: var(--color-bg-medium);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+
+    @media (max-width: 900px) { grid-template-columns: 1fr; }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+
+    h3 {
+      font-size: 1rem;
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    strong { color: var(--color-text-primary); }
+  }
+
+  &__icon {
+    font-size: 1.75rem;
+  }
+}
+
 // ===== CONDITION GROUP =====
 .cond-group {
   &:nth-child(odd) {
@@ -115,11 +153,26 @@
 .condition-card {
   border-left: 3px solid var(--cat-color, var(--color-purple));
   transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
 
   &__name {
     font-size: 1rem;
     color: var(--color-text-primary);
-    margin-bottom: var(--space-xs);
+    margin: 0;
+  }
+
+  &__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
   }
 
   &__desc {
@@ -127,9 +180,48 @@
     color: var(--color-text-secondary);
     margin: 0;
     line-height: 1.6;
+    flex: 1;
+  }
+
+  &__exit {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-sm);
+    border-left: 2px solid var(--cat-color, var(--color-purple));
+    margin-top: auto;
+  }
+
+  &__exit-label {
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    margin-right: 3px;
   }
 
   &:hover {
     border-left-color: var(--color-gold);
+  }
+}
+
+.cond-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  &--duration {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--color-text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &--save {
+    background: rgba(139, 92, 246, 0.15);
+    color: #c4b5fd;
+    border: 1px solid rgba(139, 92, 246, 0.3);
   }
 }

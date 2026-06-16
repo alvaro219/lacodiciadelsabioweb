@@ -1,6 +1,9 @@
 export interface Condition {
   name: string;
   description: string;
+  duration: 'persistente' | 'temporal' | 'momentanea';
+  savingThrow?: 'Fortaleza' | 'Voluntad' | 'Agilidad';
+  exitCondition?: string;
 }
 
 export interface ConditionCategory {

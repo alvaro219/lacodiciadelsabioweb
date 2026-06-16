@@ -313,6 +313,67 @@
   }
 }
 
+// ===== CONDITION COUNT BADGE =====
+.condition-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(139, 92, 246, 0.2);
+  color: var(--color-purple-light);
+  border-radius: var(--radius-full);
+  margin-left: var(--space-xs);
+  vertical-align: middle;
+}
+
+// ===== WEAPON PROPS =====
+.weapon-props {
+  margin-top: var(--space-xl);
+
+  h4 {
+    color: var(--color-gold);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-md);
+
+    @media (max-width: 900px) { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 600px) { grid-template-columns: repeat(2, 1fr); }
+  }
+}
+
+.weapon-prop {
+  background: var(--color-bg-dark);
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  text-align: center;
+
+  &__name {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    margin-bottom: var(--space-xs);
+    letter-spacing: 0.02em;
+  }
+
+  &__desc {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+}
+
 // ===== ENEMY TIERS =====
 .enemy-tiers {
   display: grid;
