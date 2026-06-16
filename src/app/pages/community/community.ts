@@ -48,6 +48,9 @@ export class Community implements OnInit {
   protected readonly showCreacionForm = signal(false);
   protected readonly activeTipo = signal<CreationType | null>(null);
 
+  // Download state
+  protected readonly downloadedPost = signal<SocialPost | null>(null);
+
   // Report state
   protected readonly reportingPost = signal<SocialPost | null>(null);
   protected readonly reportReason = signal('');
@@ -345,6 +348,18 @@ export class Community implements OnInit {
   async onLogout() {
     await this.social.signOut();
     this.posts.update(posts => posts.map(p => ({ ...p, user_has_liked: false })));
+  }
+
+  async onDownload(post: SocialPost) {
+    await this.social.downloadPost(post);
+    this.posts.update(list =>
+      list.map(p => p.id === post.id ? { ...p, downloads_count: (p.downloads_count ?? 0) + 1 } : p)
+    );
+    this.downloadedPost.set(post);
+  }
+
+  closeDownload() {
+    this.downloadedPost.set(null);
   }
 
   onReport(post: SocialPost) {

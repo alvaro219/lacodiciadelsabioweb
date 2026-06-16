@@ -415,6 +415,12 @@
                 (click)="toggleComments(post.id)">
                 💬 {{ post.comments_count }}
               </button>
+              <button
+                class="social-card__download-btn"
+                (click)="onDownload(post)"
+                title="Descargar para la app">
+                ⬇️ {{ post.downloads_count }}
+              </button>
               @if (currentUser() && currentUser()!.id !== post.user_id) {
                 <button
                   class="social-card__report-btn"
@@ -500,6 +506,47 @@
 }
 
 } <!-- end activeTab === 'social' -->
+
+<!-- DOWNLOAD MODAL -->
+@if (downloadedPost()) {
+  <div class="report-overlay" (click)="closeDownload()">
+    <div class="report-modal card" (click)="$event.stopPropagation()">
+      <button class="report-modal__close" (click)="closeDownload()">✕</button>
+      <h4 class="report-modal__title">✅ ¡Descarga completada!</h4>
+      <p class="report-modal__subtitle">
+        <strong>{{ downloadedPost()!.title }}</strong> · {{ downloadedPost()!.creation_type }}
+      </p>
+
+      <div class="dl-steps">
+        <div class="dl-step">
+          <span class="dl-step__num">1</span>
+          <div>
+            <strong>Abre La Codicia del Sabio</strong>
+            <p>Asegúrate de tener la versión más reciente instalada.</p>
+          </div>
+        </div>
+        <div class="dl-step">
+          <span class="dl-step__num">2</span>
+          <div>
+            <strong>Ve a Crear → Importar Contenido</strong>
+            <p>Busca el botón de importar en el menú de creaciones.</p>
+          </div>
+        </div>
+        <div class="dl-step">
+          <span class="dl-step__num">3</span>
+          <div>
+            <strong>Selecciona el archivo descargado</strong>
+            <p>Busca en tu carpeta de Descargas un archivo <code>.json</code> con el nombre de la creación.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-modal__actions">
+        <button class="btn btn--primary" (click)="closeDownload()">Entendido</button>
+      </div>
+    </div>
+  </div>
+}
 
 <!-- REPORT MODAL -->
 @if (reportingPost()) {

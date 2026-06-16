@@ -203,7 +203,12 @@ export class SocialService {
     const { data, error } = await this.supabase.client
       .from('social_posts')
       .insert({
-        ...post,
+        creation_type: post.creation_type,
+        title: post.title,
+        description: post.description ?? null,
+        image_url: post.image_url ?? null,
+        data: post.data ?? null,
+        tags: post.tags ?? [],
         user_id: user.id,
         username: user.username,
         likes_count: 0,
@@ -215,8 +220,47 @@ export class SocialService {
       })
       .select()
       .single();
-    if (error) throw error;
+    if (error) throw new Error(`${error.message} (code: ${error.code}, details: ${error.details})`);
     return data as SocialPost;
+  }
+
+  async downloadPost(post: SocialPost): Promise<void> {
+    const TYPE_MAP: Record<string, string> = {
+      clase: 'classes', subclase: 'subclasses',
+      raza: 'races', subraza: 'subrazas', accesorio: 'accessories'
+    };
+
+    const payload = {
+      type: TYPE_MAP[post.creation_type] ?? post.creation_type,
+      version: '1.0',
+      data: [{ ...post.data, nombre: post.title }],
+      metadata: {
+        source: 'web_social',
+        author: post.username,
+        downloadDate: new Date().toISOString(),
+        webId: post.id,
+        description: post.description ?? ''
+      }
+    };
+
+    const json = JSON.stringify(payload, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const safeName = post.title.replace(/[^a-z0-9áéíóúüñ\s]/gi, '').trim().replace(/\s+/g, '_');
+    a.href = url;
+    a.download = `${safeName}_${post.creation_type}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    // Increment downloads_count (fire-and-forget)
+    this.supabase.client
+      .from('social_posts')
+      .update({ downloads_count: (post.downloads_count ?? 0) + 1 })
+      .eq('id', post.id)
+      .then(() => {});
   }
 
   async deletePost(postId: string): Promise<void> {

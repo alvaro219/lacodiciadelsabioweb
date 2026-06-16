@@ -462,6 +462,69 @@
   margin-top: var(--space-2xl);
 }
 
+// ===== DOWNLOAD BUTTON =====
+.social-card__download-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast), background var(--transition-fast);
+
+  &:hover {
+    color: var(--color-gold);
+    background: rgba(240,192,64,0.08);
+  }
+}
+
+// ===== DOWNLOAD STEPS =====
+.dl-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+.dl-step {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+
+  &__num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
+
+  p {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  code {
+    font-size: 0.78rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 1px 5px;
+    word-break: break-all;
+  }
+}
+
 // ===== REPORT BUTTON =====
 .social-card__report-btn {
   margin-left: auto;
