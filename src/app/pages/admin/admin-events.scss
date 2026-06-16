@@ -91,6 +91,10 @@
       }
     }
 
+    &--image-upload {
+      input[type='file'] { display: none; }
+    }
+
     &--checkbox {
       flex-direction: row;
       align-items: center;

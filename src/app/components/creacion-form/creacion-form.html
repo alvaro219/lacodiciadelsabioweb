@@ -1,0 +1,485 @@
+<!-- CREACION FORM v2 -->
+<div class="cf-overlay" (click)="close()"></div>
+<div class="cf-modal card">
+  <button class="cf-close" (click)="close()" aria-label="Cerrar">✕</button>
+  <h3 class="cf-title">
+    @if (!tipo()) { ✨ Nueva Creación }
+    @else { {{ steps[paso()] }} }
+  </h3>
+
+  <!-- STEP INDICATOR -->
+  @if (tipo()) {
+    <div class="cf-steps">
+      @for (s of steps; track s; let i = $index) {
+        <div class="cf-step" [class.active]="paso() === i" [class.done]="paso() > i">
+          <span class="cf-step__num">{{ i + 1 }}</span>
+        </div>
+        @if (i < steps.length - 1) {
+          <span class="cf-step__line" [class.done]="paso() > i"></span>
+        }
+      }
+    </div>
+  }
+
+  <!-- ===== SELECCIÓN DE TIPO ===== -->
+  @if (!tipo()) {
+    <div class="cf-tipo-grid">
+      @for (t of tiposCreacion; track t.value) {
+        <button class="cf-tipo-card" (click)="selectTipo(t.value)">
+          <span class="cf-tipo-card__icon">{{ t.icon }}</span>
+          <span class="cf-tipo-card__name">{{ t.label }}</span>
+          <span class="cf-tipo-card__desc">{{ t.desc }}</span>
+        </button>
+      }
+    </div>
+  }
+
+  <!-- ===== WIZARD POR TIPO ===== -->
+  @if (tipo()) {
+    <div class="cf-fields">
+
+      <!-- ══════ RAZA ══════ -->
+      @if (tipo() === 'raza') {
+        @if (paso() === 0) {
+          <div class="cf-field"><label>Nombre *</label>
+            <input type="text" placeholder="Nombre de la raza" maxlength="50"
+              [ngModel]="rNombre()" (ngModelChange)="rNombre.set($event)" name="rNombre"/>
+            <span class="cf-field__hint">{{rNombre().length}}/50</span>
+          </div>
+          <div class="cf-field"><label>Definición *</label>
+            <textarea rows="3" placeholder="Descripción breve de la raza" maxlength="500"
+              [ngModel]="rDefinicion()" (ngModelChange)="rDefinicion.set($event)" name="rDef"></textarea>
+            <span class="cf-field__hint">{{rDefinicion().length}}/500</span>
+          </div>
+          <div class="cf-field"><label>Pasiva *</label>
+            <textarea rows="2" placeholder="Habilidad pasiva de la raza" maxlength="300"
+              [ngModel]="rPasiva()" (ngModelChange)="rPasiva.set($event)" name="rPas"></textarea>
+          </div>
+        }
+        @if (paso() === 1) {
+          <div class="cf-field"><label>Tamaño *</label>
+            <div class="cf-radio-group">
+              @for (t of TAMANYOS; track t) {
+                <button class="cf-radio-btn" [class.active]="rTamanyo() === t" (click)="rTamanyo.set(t)">
+                  {{ t === 'pequeño' ? '👶 Pequeño' : t === 'mediano' ? '🧍 Mediano' : '🦣 Grande' }}
+                </button>
+              }
+            </div>
+          </div>
+          <div class="cf-field"><label>Velocidad *</label>
+            <div class="cf-radio-group">
+              @for (v of VELOCIDADES; track v) {
+                <button class="cf-radio-btn" [class.active]="rVelocidad() === v" (click)="rVelocidad.set(v)">
+                  {{ v }} pies
+                </button>
+              }
+            </div>
+          </div>
+        }
+        @if (paso() === 2) {
+          <div class="cf-field"><label>Bonificación (+1) <span class="cf-hint-inline">Opcional</span></label>
+            <select [ngModel]="rBono()" (ngModelChange)="rBono.set($event)" name="rBono">
+              <option value="">— Ninguna —</option>
+              @for (a of ATTRS; track a) { <option [value]="a">{{ a }}</option> }
+            </select>
+          </div>
+          <div class="cf-field"><label>Penalización (-1) <span class="cf-hint-inline">Opcional</span></label>
+            <select [ngModel]="rPena()" (ngModelChange)="rPena.set($event)" name="rPena">
+              <option value="">— Ninguna —</option>
+              @for (a of ATTRS; track a) {
+                <option [value]="a" [disabled]="a === rBono()">{{ a }}</option>
+              }
+            </select>
+          </div>
+        }
+        @if (isPreview) {
+          <div class="cf-preview-card">
+            <div class="cf-preview-card__header">🌍 Raza — {{ rNombre() }}</div>
+            <p><strong>Definición:</strong> {{ rDefinicion() }}</p>
+            <p><strong>Pasiva:</strong> {{ rPasiva() }}</p>
+            <p><strong>Tamaño:</strong> {{ rTamanyo() }} | <strong>Velocidad:</strong> {{ rVelocidad() }} pies</p>
+            @if (rBono()) { <p><strong>Bonificación:</strong> +1 {{ rBono() }}</p> }
+            @if (rPena()) { <p><strong>Penalización:</strong> -1 {{ rPena() }}</p> }
+          </div>
+        }
+      }
+
+      <!-- ══════ SUBRAZA ══════ -->
+      @if (tipo() === 'subraza') {
+        @if (paso() === 0) {
+          <div class="cf-field"><label>Raza Padre *</label>
+            <select [ngModel]="srRazaPadre()" (ngModelChange)="srRazaPadre.set($event)" name="srPadre">
+              <option value="">Selecciona una raza padre</option>
+              @for (r of RAZAS_PADRE; track r) { <option [value]="r">{{ r }}</option> }
+            </select>
+          </div>
+        }
+        @if (paso() === 1) {
+          <div class="cf-field"><label>Nombre *</label>
+            <input type="text" placeholder="Nombre de la subraza" maxlength="50"
+              [ngModel]="srNombre()" (ngModelChange)="srNombre.set($event)" name="srN"/>
+          </div>
+          <div class="cf-field"><label>Definición *</label>
+            <textarea rows="3" maxlength="500"
+              [ngModel]="srDefinicion()" (ngModelChange)="srDefinicion.set($event)" name="srD"></textarea>
+          </div>
+          <div class="cf-field"><label>Pasiva *</label>
+            <textarea rows="2" maxlength="300"
+              [ngModel]="srPasiva()" (ngModelChange)="srPasiva.set($event)" name="srP"></textarea>
+          </div>
+        }
+        @if (paso() === 2) {
+          <div class="cf-field"><label>Bonificación (+1) <span class="cf-hint-inline">Opcional</span></label>
+            <select [ngModel]="srBono()" (ngModelChange)="srBono.set($event)" name="srBono">
+              <option value="">— Ninguna —</option>
+              @for (a of ATTRS; track a) { <option [value]="a">{{ a }}</option> }
+            </select>
+          </div>
+          <div class="cf-field"><label>Penalización (-1) <span class="cf-hint-inline">Opcional</span></label>
+            <select [ngModel]="srPena()" (ngModelChange)="srPena.set($event)" name="srPena">
+              <option value="">— Ninguna —</option>
+              @for (a of ATTRS; track a) {
+                <option [value]="a" [disabled]="a === srBono()">{{ a }}</option>
+              }
+            </select>
+          </div>
+        }
+        @if (paso() === 3) {
+          <div class="cf-field"><label>Velocidad Override <span class="cf-hint-inline">Opcional — usa la de la raza padre si no se indica</span></label>
+            <select [ngModel]="srVelOverride()" (ngModelChange)="srVelOverride.set($event ? +$event : null)" name="srVel">
+              <option [value]="null">— Usar velocidad de la raza padre —</option>
+              @for (v of VELOCIDADES; track v) { <option [value]="v">{{ v }} pies</option> }
+            </select>
+          </div>
+          <div class="cf-field"><label>Tamaño Override <span class="cf-hint-inline">Opcional</span></label>
+            <select [ngModel]="srTamOverride()" (ngModelChange)="srTamOverride.set($event || null)" name="srTam">
+              <option [value]="null">— Usar tamaño de la raza padre —</option>
+              @for (t of TAMANYOS; track t) { <option [value]="t">{{ t }}</option> }
+            </select>
+          </div>
+        }
+        @if (isPreview) {
+          <div class="cf-preview-card">
+            <div class="cf-preview-card__header">🧬 Subraza de {{ srRazaPadre() }} — {{ srNombre() }}</div>
+            <p><strong>Definición:</strong> {{ srDefinicion() }}</p>
+            <p><strong>Pasiva:</strong> {{ srPasiva() }}</p>
+            @if (srBono()) { <p><strong>Bonificación:</strong> +1 {{ srBono() }}</p> }
+            @if (srPena()) { <p><strong>Penalización:</strong> -1 {{ srPena() }}</p> }
+          </div>
+        }
+      }
+
+      <!-- ══════ CLASE ══════ -->
+      @if (tipo() === 'clase') {
+        @if (paso() === 0) {
+          <div class="cf-field"><label>Nombre *</label>
+            <input type="text" placeholder="Ej: Ladrón de Sombras" maxlength="50"
+              [ngModel]="clNombre()" (ngModelChange)="clNombre.set($event)" name="clN"/>
+          </div>
+          <div class="cf-field"><label>Rol *</label>
+            <input type="text" placeholder="Ej: Tanque, DPS, Soporte" maxlength="50"
+              [ngModel]="clRol()" (ngModelChange)="clRol.set($event)" name="clR"/>
+          </div>
+          <div class="cf-field"><label>Definición *</label>
+            <textarea rows="3" maxlength="500"
+              [ngModel]="clDefinicion()" (ngModelChange)="clDefinicion.set($event)" name="clD"></textarea>
+          </div>
+        }
+        @if (paso() === 1) {
+          <div class="cf-row">
+            <div class="cf-field"><label>PV (1–3) *</label>
+              <input type="number" min="1" max="3"
+                [ngModel]="clPv()" (ngModelChange)="clPv.set(+$event)" name="clPv"/>
+            </div>
+            <div class="cf-field"><label>Escudo (1–3) *</label>
+              <input type="number" min="1" max="3"
+                [ngModel]="clEscudo()" (ngModelChange)="clEscudo.set(+$event)" name="clEs"/>
+            </div>
+            <div class="cf-field"><label>PH (3–7) *</label>
+              <input type="number" min="3" max="7"
+                [ngModel]="clPh()" (ngModelChange)="clPh.set(+$event)" name="clPh"/>
+            </div>
+          </div>
+        }
+        @if (paso() === 2) {
+          <div class="cf-field"><label>Tipo de recurso *</label>
+            <div class="cf-radio-group">
+              <button class="cf-radio-btn" [class.active]="!clEsMagica()" (click)="clEsMagica.set(false)">
+                ⚡ Energía — Marcial
+              </button>
+              <button class="cf-radio-btn" [class.active]="clEsMagica()" (click)="clEsMagica.set(true)">
+                💧 Maná — Mágica
+              </button>
+            </div>
+          </div>
+        }
+        @if (paso() === 3) {
+          <div class="cf-field"><label>Pasiva de Clase *</label>
+            <textarea rows="2" maxlength="300"
+              [ngModel]="clPasiva()" (ngModelChange)="clPasiva.set($event)" name="clPas"></textarea>
+          </div>
+          <div class="cf-ability-block">
+            <div class="cf-ability-block__title">HB1 — Habilidad Base 1</div>
+            <div class="cf-field"><label>Nombre</label>
+              <input type="text" maxlength="50"
+                [ngModel]="clHb1Nombre()" (ngModelChange)="clHb1Nombre.set($event)" name="hb1n"/>
+            </div>
+            <div class="cf-field"><label>Descripción</label>
+              <textarea rows="2"
+                [ngModel]="clHb1Desc()" (ngModelChange)="clHb1Desc.set($event)" name="hb1d"></textarea>
+            </div>
+          </div>
+          <div class="cf-ability-block">
+            <div class="cf-ability-block__title">HB2 — Habilidad Base 2</div>
+            <div class="cf-field"><label>Nombre</label>
+              <input type="text" maxlength="50"
+                [ngModel]="clHb2Nombre()" (ngModelChange)="clHb2Nombre.set($event)" name="hb2n"/>
+            </div>
+            <div class="cf-field"><label>Descripción</label>
+              <textarea rows="2"
+                [ngModel]="clHb2Desc()" (ngModelChange)="clHb2Desc.set($event)" name="hb2d"></textarea>
+            </div>
+          </div>
+        }
+        @if (isPreview) {
+          <div class="cf-preview-card">
+            <div class="cf-preview-card__header">🎯 Clase — {{ clNombre() }}</div>
+            <p><strong>Rol:</strong> {{ clRol() }} | <strong>Recurso:</strong> {{ clEsMagica() ? '💧 Maná' : '⚡ Energía' }}</p>
+            <p><strong>PV:</strong> {{ clPv() }} | <strong>Escudo:</strong> {{ clEscudo() }} | <strong>PH:</strong> {{ clPh() }}</p>
+            <p><strong>Definición:</strong> {{ clDefinicion() }}</p>
+            <p><strong>Pasiva:</strong> {{ clPasiva() }}</p>
+          </div>
+        }
+      }
+
+      <!-- ══════ SUBCLASE ══════ -->
+      @if (tipo() === 'subclase') {
+        @if (paso() === 0) {
+          <div class="cf-field"><label>Clase Padre *</label>
+            <select [ngModel]="scClasePadre()" (ngModelChange)="scClasePadre.set($event)" name="scP">
+              <option value="">Selecciona una clase padre</option>
+              @for (c of CLASES_PADRE; track c) { <option [value]="c">{{ c }}</option> }
+            </select>
+          </div>
+        }
+        @if (paso() === 1) {
+          <div class="cf-field"><label>Configuración de manos *</label>
+            <div class="cf-radio-group">
+              <button class="cf-radio-btn" [class.active]="scDosManos()" (click)="scDosManos.set(true)">
+                ⚔️ Dos manos — HAP1, HAP2, HAP3, HAP4 (reacción), HAD
+              </button>
+              <button class="cf-radio-btn" [class.active]="!scDosManos()" (click)="scDosManos.set(false)">
+                🗡️🛡️ Una mano — HAP1, HAP2, HAS1, HAS2 (reacción), HAD
+              </button>
+            </div>
+          </div>
+        }
+        @if (paso() === 2) {
+          <div class="cf-ability-block">
+            <div class="cf-ability-block__title">Arma Principal</div>
+            <div class="cf-row">
+              <div class="cf-field"><label>Tipo *</label>
+                <input type="text" placeholder="Ej: Espada" maxlength="30"
+                  [ngModel]="scAp_tipo()" (ngModelChange)="scAp_tipo.set($event)" name="apt"/>
+              </div>
+              <div class="cf-field"><label>Nombre *</label>
+                <input type="text" placeholder="Ej: Espada larga" maxlength="40"
+                  [ngModel]="scAp_nombre()" (ngModelChange)="scAp_nombre.set($event)" name="apn"/>
+              </div>
+            </div>
+            <div class="cf-row">
+              <div class="cf-field"><label>Dado de daño *</label>
+                <select [ngModel]="scAp_dado()" (ngModelChange)="scAp_dado.set(+$event)" name="apd">
+                  @for (d of DADOS; track d) { <option [value]="d">d{{ d }}</option> }
+                </select>
+              </div>
+              <div class="cf-field"><label>Nº ataques (1–3)</label>
+                <input type="number" min="1" max="3"
+                  [ngModel]="scAp_ataques()" (ngModelChange)="scAp_ataques.set(+$event)" name="apa"/>
+              </div>
+              <div class="cf-field"><label>Modificador</label>
+                <select [ngModel]="scAp_mod()" (ngModelChange)="scAp_mod.set($event)" name="apm">
+                  @for (m of MODS; track m) { <option [value]="m">{{ m }}</option> }
+                </select>
+              </div>
+            </div>
+          </div>
+        }
+        @if (paso() === 3) {
+          <div class="cf-ability-block">
+            <div class="cf-ability-block__title">Arma Secundaria</div>
+            <div class="cf-row">
+              <div class="cf-field"><label>Tipo *</label>
+                <input type="text" placeholder="Ej: Daga" maxlength="30"
+                  [ngModel]="scAs_tipo()" (ngModelChange)="scAs_tipo.set($event)" name="ast"/>
+              </div>
+              <div class="cf-field"><label>Nombre *</label>
+                <input type="text" placeholder="Ej: Daga corta" maxlength="40"
+                  [ngModel]="scAs_nombre()" (ngModelChange)="scAs_nombre.set($event)" name="asn"/>
+              </div>
+            </div>
+            <div class="cf-row">
+              <div class="cf-field"><label>Dado de daño</label>
+                <select [ngModel]="scAs_dado()" (ngModelChange)="scAs_dado.set(+$event)" name="asd">
+                  @for (d of DADOS; track d) { <option [value]="d">d{{ d }}</option> }
+                </select>
+              </div>
+              <div class="cf-field"><label>Nº ataques</label>
+                <input type="number" min="1" max="3"
+                  [ngModel]="scAs_ataques()" (ngModelChange)="scAs_ataques.set(+$event)" name="asa"/>
+              </div>
+              <div class="cf-field"><label>Modificador</label>
+                <select [ngModel]="scAs_mod()" (ngModelChange)="scAs_mod.set($event)" name="asm">
+                  @for (m of MODS; track m) { <option [value]="m">{{ m }}</option> }
+                </select>
+              </div>
+            </div>
+          </div>
+        }
+        @if (paso() === 4) {
+          <div class="cf-ability-block">
+            <div class="cf-ability-block__title">HAP1 — Habilidad Activa Principal 1</div>
+            <div class="cf-row">
+              <div class="cf-field"><label>Nombre</label><input type="text" maxlength="50" [ngModel]="scHap1Nombre()" (ngModelChange)="scHap1Nombre.set($event)" name="h1n"/></div>
+              <div class="cf-field"><label>Coste ⚡</label><input type="number" min="0" [ngModel]="scHap1Coste()" (ngModelChange)="scHap1Coste.set(+$event)" name="h1c"/></div>
+              <div class="cf-field"><label>Acciones</label><input type="number" min="1" [ngModel]="scHap1Acc()" (ngModelChange)="scHap1Acc.set(+$event)" name="h1a"/></div>
+            </div>
+            <div class="cf-field"><label>Descripción</label><textarea rows="2" [ngModel]="scHap1Desc()" (ngModelChange)="scHap1Desc.set($event)" name="h1d"></textarea></div>
+          </div>
+          <div class="cf-ability-block">
+            <div class="cf-ability-block__title">HAP2 — Habilidad Activa Principal 2</div>
+            <div class="cf-row">
+              <div class="cf-field"><label>Nombre</label><input type="text" maxlength="50" [ngModel]="scHap2Nombre()" (ngModelChange)="scHap2Nombre.set($event)" name="h2n"/></div>
+              <div class="cf-field"><label>Coste ⚡</label><input type="number" min="0" [ngModel]="scHap2Coste()" (ngModelChange)="scHap2Coste.set(+$event)" name="h2c"/></div>
+              <div class="cf-field"><label>Acciones</label><input type="number" min="1" [ngModel]="scHap2Acc()" (ngModelChange)="scHap2Acc.set(+$event)" name="h2a"/></div>
+            </div>
+            <div class="cf-field"><label>Descripción</label><textarea rows="2" [ngModel]="scHap2Desc()" (ngModelChange)="scHap2Desc.set($event)" name="h2d"></textarea></div>
+          </div>
+          @if (scDosManos()) {
+            <div class="cf-ability-block">
+              <div class="cf-ability-block__title">HAP3 — Habilidad Activa Principal 3</div>
+              <div class="cf-row">
+                <div class="cf-field"><label>Nombre</label><input type="text" maxlength="50" [ngModel]="scHap3Nombre()" (ngModelChange)="scHap3Nombre.set($event)" name="h3n"/></div>
+                <div class="cf-field"><label>Coste ⚡</label><input type="number" min="0" [ngModel]="scHap3Coste()" (ngModelChange)="scHap3Coste.set(+$event)" name="h3c"/></div>
+                <div class="cf-field"><label>Acciones</label><input type="number" min="1" [ngModel]="scHap3Acc()" (ngModelChange)="scHap3Acc.set(+$event)" name="h3a"/></div>
+              </div>
+              <div class="cf-field"><label>Descripción</label><textarea rows="2" [ngModel]="scHap3Desc()" (ngModelChange)="scHap3Desc.set($event)" name="h3d"></textarea></div>
+            </div>
+            <div class="cf-ability-block cf-ability-block--reaction">
+              <div class="cf-ability-block__title">HAP4 — Reacción 🔶</div>
+              <div class="cf-field"><label>Nombre</label><input type="text" maxlength="50" [ngModel]="scHap4Nombre()" (ngModelChange)="scHap4Nombre.set($event)" name="h4n"/></div>
+              <div class="cf-field"><label>Descripción</label><textarea rows="2" [ngModel]="scHap4Desc()" (ngModelChange)="scHap4Desc.set($event)" name="h4d"></textarea></div>
+            </div>
+          } @else {
+            <div class="cf-ability-block">
+              <div class="cf-ability-block__title">HAS1 — Habilidad Activa Secundaria 1</div>
+              <div class="cf-row">
+                <div class="cf-field"><label>Nombre</label><input type="text" maxlength="50" [ngModel]="scHas1Nombre()" (ngModelChange)="scHas1Nombre.set($event)" name="hs1n"/></div>
+                <div class="cf-field"><label>Coste ⚡</label><input type="number" min="0" [ngModel]="scHas1Coste()" (ngModelChange)="scHas1Coste.set(+$event)" name="hs1c"/></div>
+                <div class="cf-field"><label>Acciones</label><input type="number" min="1" [ngModel]="scHas1Acc()" (ngModelChange)="scHas1Acc.set(+$event)" name="hs1a"/></div>
+              </div>
+              <div class="cf-field"><label>Descripción</label><textarea rows="2" [ngModel]="scHas1Desc()" (ngModelChange)="scHas1Desc.set($event)" name="hs1d"></textarea></div>
+            </div>
+            <div class="cf-ability-block cf-ability-block--reaction">
+              <div class="cf-ability-block__title">HAS2 — Reacción 🔶</div>
+              <div class="cf-field"><label>Nombre</label><input type="text" maxlength="50" [ngModel]="scHas2Nombre()" (ngModelChange)="scHas2Nombre.set($event)" name="hs2n"/></div>
+              <div class="cf-field"><label>Descripción</label><textarea rows="2" [ngModel]="scHas2Desc()" (ngModelChange)="scHas2Desc.set($event)" name="hs2d"></textarea></div>
+            </div>
+          }
+          <div class="cf-ability-block cf-ability-block--ultimate">
+            <div class="cf-ability-block__title">HAD — Habilidad Definitiva 🚫💧⚡ 🟢🟢🟢</div>
+            <div class="cf-field"><label>Nombre</label><input type="text" maxlength="50" [ngModel]="scHadNombre()" (ngModelChange)="scHadNombre.set($event)" name="hadn"/></div>
+            <div class="cf-field"><label>Descripción</label><textarea rows="2" [ngModel]="scHadDesc()" (ngModelChange)="scHadDesc.set($event)" name="hadd"></textarea></div>
+          </div>
+        }
+        @if (isPreview) {
+          <div class="cf-preview-card">
+            <div class="cf-preview-card__header">⚡ Subclase de {{ scClasePadre() }}</div>
+            <p><strong>Tipo:</strong> {{ scDosManos() ? '⚔️ Dos manos' : '🗡️🛡️ Una mano' }}</p>
+            <p><strong>Arma:</strong> {{ scAp_nombre() }} (d{{ scAp_dado() }})</p>
+            @if (!scDosManos()) { <p><strong>Secundaria:</strong> {{ scAs_nombre() }} (d{{ scAs_dado() }})</p> }
+          </div>
+        }
+      }
+
+      <!-- ══════ ACCESORIO ══════ -->
+      @if (tipo() === 'accesorio') {
+        @if (paso() === 0) {
+          <div class="cf-field"><label>Nombre *</label>
+            <input type="text" maxlength="50" placeholder="Ej: Anillo de Fuego"
+              [ngModel]="acNombre()" (ngModelChange)="acNombre.set($event)" name="acN"/>
+          </div>
+          <div class="cf-field"><label>Descripción *</label>
+            <textarea rows="3" maxlength="400" placeholder="Describe el efecto del accesorio..."
+              [ngModel]="acDescripcion()" (ngModelChange)="acDescripcion.set($event)" name="acD"></textarea>
+          </div>
+          <div class="cf-field"><label>Precio (monedas) *</label>
+            <input type="number" min="0" max="10000" placeholder="0"
+              [ngModel]="acPrecio()" (ngModelChange)="acPrecio.set(+$event)" name="acP"/>
+          </div>
+        }
+        @if (paso() === 1) {
+          <div class="cf-field"><label>Rareza *</label>
+            <div class="cf-rarity-group">
+              @for (r of RAREZAS; track r) {
+                <button class="cf-rarity-btn" [class.active]="acRareza() === r"
+                  [style.--rarity-color]="rarityColor()"
+                  (click)="acRareza.set(r)">
+                  {{ r }}
+                </button>
+              }
+            </div>
+          </div>
+          <div class="cf-rarity-preview" [style.border-color]="rarityColor()">
+            <span [style.color]="rarityColor()">{{ acRareza() }}</span> — {{ acNombre() || 'Sin nombre' }}
+            <div class="cf-rarity-preview__price">💰 {{ acPrecio() }} monedas</div>
+          </div>
+        }
+        @if (isPreview) {
+          <div class="cf-preview-card" [style.border-color]="rarityColor()">
+            <div class="cf-preview-card__header" [style.color]="rarityColor()">💍 {{ acRareza() }} — {{ acNombre() }}</div>
+            <p>{{ acDescripcion() }}</p>
+            <p><strong>Precio:</strong> {{ acPrecio() }} monedas</p>
+          </div>
+        }
+      }
+
+      <!-- Imagen y tags en el paso preview -->
+      @if (isPreview) {
+        <div class="cf-field" style="margin-top:1rem">
+          <label>Imagen (opcional)</label>
+          <div class="cf-image-row">
+            <label class="btn btn--outline btn--sm" for="cf-img-input">
+              {{ uploading() ? 'Subiendo...' : '📷 Subir imagen' }}
+            </label>
+            <input type="file" id="cf-img-input" accept="image/*" (change)="onImageFile($event)" hidden/>
+            @if (imageUrl()) {
+              <img class="cf-img-preview" [src]="imageUrl()" alt="preview"/>
+              <button type="button" class="cf-img-remove" (click)="imageUrl.set('')">✕</button>
+            }
+          </div>
+        </div>
+        <div class="cf-field">
+          <label>Etiquetas (separadas por comas)</label>
+          <input type="text" placeholder="Ej: ofensivo, sigilo, magia"
+            [ngModel]="tags()" (ngModelChange)="tags.set($event)" name="tags"/>
+        </div>
+      }
+
+      @if (error()) { <div class="cf-error">⚠️ {{ error() }}</div> }
+
+      <!-- NAVEGACIÓN -->
+      <div class="cf-actions">
+        <button class="btn btn--outline" (click)="back()">← Atrás</button>
+        @if (isPreview) {
+          <button class="btn btn--primary" [disabled]="saving()" (click)="publish()">
+            {{ saving() ? 'Publicando...' : '🚀 Publicar' }}
+          </button>
+        } @else {
+          <button class="btn btn--primary" (click)="next()">Siguiente →</button>
+        }
+      </div>
+
+    </div>
+  }
+</div>

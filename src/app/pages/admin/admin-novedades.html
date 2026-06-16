@@ -1,0 +1,167 @@
+<section class="admin">
+  <div class="container">
+    <a routerLink="/" class="admin__back">← Volver al inicio</a>
+    <h1 class="admin__title">Admin — <span class="gradient-text">Novedades</span></h1>
+
+    <!-- LOGIN -->
+    @if (!isAuthenticated()) {
+      <div class="admin__login card">
+        <h2>Iniciar Sesión</h2>
+        <p>Accede con tu cuenta de administrador para gestionar las novedades.</p>
+        <form (ngSubmit)="login()" class="admin__login-form">
+          <div class="admin__field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="admin@email.com"
+              [ngModel]="loginEmail()" (ngModelChange)="loginEmail.set($event)" name="email" />
+          </div>
+          <div class="admin__field">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" placeholder="••••••••"
+              [ngModel]="loginPassword()" (ngModelChange)="loginPassword.set($event)" name="password" />
+          </div>
+          @if (loginError()) {
+            <div class="admin__error">{{ loginError() }}</div>
+          }
+          @if (accessDenied()) {
+            <div class="admin__error">No tienes permisos de administrador.</div>
+          }
+          <button type="submit" class="btn btn--primary">Entrar</button>
+        </form>
+      </div>
+    } @else {
+      <!-- HEADER -->
+      <div class="admin__header">
+        <h2>Gestión de Novedades</h2>
+        <div class="admin__header-actions">
+          <button class="btn btn--primary" (click)="openCreateForm()">+ Nueva Novedad</button>
+          <a routerLink="/novedades" class="btn btn--outline btn--sm" target="_blank">Ver página →</a>
+          <button class="btn btn--outline btn--sm" (click)="logout()">Cerrar Sesión</button>
+        </div>
+      </div>
+
+      <!-- FORM MODAL -->
+      @if (showForm()) {
+        <div class="admin__overlay" (click)="closeForm()"></div>
+        <div class="admin__modal card" style="max-width: 640px;">
+          <h3>{{ editingNovedad() ? 'Editar Novedad' : 'Nueva Novedad' }}</h3>
+          <form (ngSubmit)="saveNovedad()">
+
+            <div class="admin__field">
+              <label>Título *</label>
+              <input type="text" placeholder="Título de la novedad"
+                [ngModel]="formTitle()" (ngModelChange)="formTitle.set($event)" name="title" />
+            </div>
+
+            <div class="admin__field">
+              <label>Contenido *</label>
+              <textarea rows="8" placeholder="Escribe el contenido aquí..."
+                [ngModel]="formBody()" (ngModelChange)="formBody.set($event)" name="body"></textarea>
+            </div>
+
+            <div class="admin__field">
+              <label>Imagen (opcional)</label>
+              <div class="admin__image-upload">
+                <input type="file" id="img-upload" accept="image/*" (change)="onImageFileChange($event)" />
+                <label for="img-upload" class="btn btn--outline btn--sm">
+                  {{ uploadingImage() ? 'Subiendo...' : '📷 Subir imagen' }}
+                </label>
+                @if (formImageUrl()) {
+                  <div class="admin__image-preview">
+                    <img [src]="formImageUrl()" alt="preview" />
+                    <button type="button" class="admin__btn admin__btn--delete"
+                      (click)="formImageUrl.set('')" title="Quitar imagen">✕</button>
+                  </div>
+                }
+              </div>
+              <input type="text" placeholder="O pega una URL de imagen"
+                [ngModel]="formImageUrl()" (ngModelChange)="formImageUrl.set($event)" name="imageUrl" />
+            </div>
+
+            <div class="admin__row">
+              <div class="admin__field">
+                <label>Etiquetas (separadas por comas)</label>
+                <input type="text" placeholder="ej: App, Actualización, Evento"
+                  [ngModel]="formTags()" (ngModelChange)="formTags.set($event)" name="tags" />
+              </div>
+              <div class="admin__field admin__field--checkbox" style="justify-content: flex-end; padding-bottom: 0.25rem;">
+                <label>
+                  <input type="checkbox" [ngModel]="formPinned()" (ngModelChange)="formPinned.set($event)" name="pinned" />
+                  📌 Destacar
+                </label>
+              </div>
+            </div>
+
+            @if (formError()) {
+              <div class="admin__error">{{ formError() }}</div>
+            }
+            <div class="admin__form-actions">
+              <button type="button" class="btn btn--outline" (click)="closeForm()">Cancelar</button>
+              <button type="submit" class="btn btn--primary" [disabled]="saving() || uploadingImage()">
+                {{ saving() ? 'Guardando...' : (editingNovedad() ? 'Guardar Cambios' : 'Publicar') }}
+              </button>
+            </div>
+          </form>
+        </div>
+      }
+
+      <!-- LIST -->
+      @if (loading()) {
+        <p class="admin__loading">Cargando...</p>
+      } @else if (novedades().length === 0) {
+        <div class="admin__empty card">
+          <p>No hay novedades publicadas. Crea la primera con el botón de arriba.</p>
+        </div>
+      } @else {
+        <div class="admin__table-wrapper">
+          <table class="admin__table">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Etiquetas</th>
+                <th>Fecha</th>
+                <th>Destacado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (nov of novedades(); track nov.id) {
+                <tr>
+                  <td class="admin__table-title">{{ nov.title }}</td>
+                  <td>
+                    @if (nov.tags && nov.tags.length > 0) {
+                      {{ nov.tags.join(', ') }}
+                    } @else {
+                      <span style="color: var(--color-text-muted)">—</span>
+                    }
+                  </td>
+                  <td>{{ nov.published_at | date:'dd/MM/yyyy' }}</td>
+                  <td>{{ nov.pinned ? '📌' : '' }}</td>
+                  <td class="admin__table-actions">
+                    <button class="admin__btn admin__btn--edit" (click)="openEditForm(nov)" title="Editar">✏️</button>
+                    <button class="admin__btn admin__btn--delete" (click)="deleteNovedad(nov)" title="Eliminar">🗑️</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+
+      <!-- CONFIRM MODAL -->
+      @if (showConfirm()) {
+        <div class="admin__overlay" (click)="closeConfirm()"></div>
+        <div class="admin__confirm card">
+          <div class="admin__confirm-icon">⚠️</div>
+          <h3 class="admin__confirm-title">{{ confirmTitle() }}</h3>
+          <p class="admin__confirm-message">{{ confirmMessage() }}</p>
+          <div class="admin__confirm-actions">
+            <button class="btn btn--outline" (click)="closeConfirm()" [disabled]="confirmLoading()">Cancelar</button>
+            <button class="btn btn--danger" (click)="executeConfirm()" [disabled]="confirmLoading()">
+              {{ confirmLoading() ? 'Eliminando...' : 'Eliminar' }}
+            </button>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</section>

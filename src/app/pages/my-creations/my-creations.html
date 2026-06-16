@@ -1,0 +1,104 @@
+<div class="mc-page">
+  <div class="mc-header">
+    <a class="mc-back" routerLink="/comunidad">← Volver a Comunidad</a>
+    <h1 class="mc-title">Mis Creaciones</h1>
+    @if (social.currentUser()) {
+      <p class="mc-subtitle">{{ posts().length }} publicación{{ posts().length !== 1 ? 'es' : '' }}</p>
+    }
+  </div>
+
+  <!-- Sin sesión -->
+  @if (!social.authLoading() && !social.currentUser()) {
+    <div class="mc-empty">
+      <span class="mc-empty__icon">🔒</span>
+      <p>Necesitas iniciar sesión para ver tus creaciones.</p>
+      <a class="btn btn--primary" routerLink="/comunidad">Ir a Comunidad</a>
+    </div>
+  }
+
+  <!-- Cargando -->
+  @if (loading()) {
+    <div class="mc-loading">
+      <div class="mc-spinner"></div>
+      <span>Cargando tus creaciones...</span>
+    </div>
+  }
+
+  <!-- Error -->
+  @if (error()) {
+    <div class="mc-error">⚠️ {{ error() }}</div>
+  }
+
+  <!-- Sin creaciones -->
+  @if (!loading() && social.currentUser() && posts().length === 0 && !error()) {
+    <div class="mc-empty">
+      <span class="mc-empty__icon">✨</span>
+      <p>Todavía no has publicado ninguna creación.</p>
+      <a class="btn btn--primary" routerLink="/comunidad">Crear algo nuevo</a>
+    </div>
+  }
+
+  <!-- Lista -->
+  @if (!loading() && posts().length > 0) {
+    <div class="mc-grid">
+      @for (post of posts(); track post.id) {
+        <div class="mc-card card">
+          @if (post.image_url) {
+            <img class="mc-card__img" [src]="post.image_url" [alt]="post.title" />
+          } @else {
+            <div class="mc-card__img-placeholder">
+              @switch (post.creation_type) {
+                @case ('clase')     { 🎯 }
+                @case ('subclase')  { ⚡ }
+                @case ('raza')      { 🌍 }
+                @case ('subraza')   { 🧬 }
+                @case ('accesorio') { 💍 }
+              }
+            </div>
+          }
+          <div class="mc-card__body">
+            <div class="mc-card__meta">
+              <span class="mc-type-badge" [attr.data-type]="post.creation_type">
+                {{ TYPE_LABELS[post.creation_type] }}
+              </span>
+              <span class="mc-card__date">{{ formatDate(post.created_at) }}</span>
+            </div>
+            <h3 class="mc-card__title">{{ post.title }}</h3>
+            @if (post.description) {
+              <p class="mc-card__desc">{{ post.description }}</p>
+            }
+            <div class="mc-card__stats">
+              <span>❤️ {{ post.likes_count }}</span>
+              <span>💬 {{ post.comments_count }}</span>
+              <span>⬇️ {{ post.downloads_count }}</span>
+              @if (post.reports_count && post.reports_count > 0) {
+                <span class="mc-card__reports">🚩 {{ post.reports_count }} reporte{{ post.reports_count !== 1 ? 's' : '' }}</span>
+              }
+            </div>
+            <div class="mc-card__actions">
+              <button class="btn btn--danger btn--sm" (click)="askDelete(post.id)">
+                🗑️ Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<!-- Modal confirmación borrado -->
+@if (confirmId()) {
+  <div class="mc-confirm-overlay" (click)="cancelDelete()">
+    <div class="mc-confirm card" (click)="$event.stopPropagation()">
+      <h4>¿Eliminar creación?</h4>
+      <p>Esta acción es permanente y no se puede deshacer.</p>
+      <div class="mc-confirm__actions">
+        <button class="btn btn--outline" (click)="cancelDelete()">Cancelar</button>
+        <button class="btn btn--danger" [disabled]="deleting()" (click)="confirmDelete()">
+          {{ deleting() ? 'Eliminando...' : 'Sí, eliminar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

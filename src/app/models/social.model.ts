@@ -1,4 +1,4 @@
-export type CreationType = 'personaje' | 'raza' | 'clase' | 'subclase';
+export type CreationType = 'clase' | 'subclase' | 'raza' | 'subraza' | 'accesorio';
 
 export interface SocialPost {
   id: string;
@@ -13,6 +13,14 @@ export interface SocialPost {
   comments_count: number;
   created_at: string;
   user_has_liked?: boolean;
+  downloads_count: number;
+  rating: number;
+  rating_count: number;
+  tags?: string[];
+  version?: string;
+  is_premium_only?: boolean;
+  reports_count?: number;
+  user_has_reported?: boolean;
 }
 
 export interface SocialComment {
@@ -28,6 +36,14 @@ export interface SocialLike {
   id: string;
   post_id: string;
   user_id: string;
+  created_at: string;
+}
+
+export interface SocialReport {
+  id: string;
+  post_id: string;
+  user_id: string;
+  reason: string;
   created_at: string;
 }
 

@@ -32,14 +32,32 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/mechanics/mechanics').then(m => m.Mechanics)
   },
   {
-    path: 'guias',
-    title: 'Guías — La Codicia del Sabio',
+    path: 'manuales',
+    title: 'Manuales — La Codicia del Sabio',
     loadComponent: () => import('./pages/guides/guides').then(m => m.Guides)
   },
   {
-    path: 'guias/:id',
-    title: 'Guías — La Codicia del Sabio',
+    path: 'manuales/:id',
+    title: 'Manuales — La Codicia del Sabio',
     loadComponent: () => import('./pages/guide-detail/guide-detail').then(m => m.GuideDetail)
+  },
+  {
+    path: 'guias',
+    redirectTo: 'manuales'
+  },
+  {
+    path: 'guias/:id',
+    redirectTo: 'manuales/:id'
+  },
+  {
+    path: 'novedades',
+    title: 'Novedades — La Codicia del Sabio',
+    loadComponent: () => import('./pages/novedades/novedades').then(m => m.Novedades)
+  },
+  {
+    path: 'admin/novedades',
+    title: 'Admin Novedades — La Codicia del Sabio',
+    loadComponent: () => import('./pages/admin/admin-novedades').then(m => m.AdminNovedades)
   },
   {
     path: 'comunidad',
@@ -60,6 +78,16 @@ export const routes: Routes = [
     path: 'admin',
     title: 'Admin — La Codicia del Sabio',
     loadComponent: () => import('./pages/admin/admin-events').then(m => m.AdminEvents)
+  },
+  {
+    path: 'admin/creaciones',
+    title: 'Admin Creaciones — La Codicia del Sabio',
+    loadComponent: () => import('./pages/admin/admin-creaciones').then(m => m.AdminCreaciones)
+  },
+  {
+    path: 'mis-creaciones',
+    title: 'Mis Creaciones — La Codicia del Sabio',
+    loadComponent: () => import('./pages/my-creations/my-creations').then(m => m.MyCreations)
   },
   {
     path: '**',

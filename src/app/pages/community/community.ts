@@ -5,11 +5,12 @@ import { EventService } from '../../services/event.service';
 import { TelegramService } from '../../services/telegram.service';
 import { SocialService } from '../../services/social.service';
 import { GameEvent } from '../../models/event.model';
-import { SocialPost, SocialComment } from '../../models/social.model';
+import { SocialPost, SocialComment, CreationType } from '../../models/social.model';
+import { CreacionForm } from '../../components/creacion-form/creacion-form';
 
 @Component({
   selector: 'app-community',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, CreacionForm],
   templateUrl: './community.html',
   styleUrl: './community.scss'
 })
@@ -44,9 +45,34 @@ export class Community implements OnInit {
   protected readonly loginError = signal('');
   protected readonly loginLoading = signal(false);
   protected readonly showLoginForm = signal(false);
+  protected readonly showCreacionForm = signal(false);
+  protected readonly activeTipo = signal<CreationType | null>(null);
+
+  // Report state
+  protected readonly reportingPost = signal<SocialPost | null>(null);
+  protected readonly reportReason = signal('');
+  protected readonly reportSending = signal(false);
+  protected readonly reportError = signal('');
+  protected readonly reportSuccess = signal(false);
+
+  readonly reportReasons = [
+    'Contenido inapropiado',
+    'Spam o publicidad',
+    'Plagio o copia',
+    'Mecánicas rotas / no balanceadas',
+    'Otro'
+  ];
 
   protected readonly currentUser = computed(() => this.social.currentUser());
   protected readonly authLoading = computed(() => this.social.authLoading());
+
+  readonly tiposFiltro: { value: CreationType; icon: string; label: string }[] = [
+    { value: 'clase',     icon: '🎯', label: 'Clases' },
+    { value: 'subclase',  icon: '⚡',  label: 'Subclases' },
+    { value: 'raza',      icon: '🌍', label: 'Razas' },
+    { value: 'subraza',   icon: '🧬', label: 'Subrazas' },
+    { value: 'accesorio', icon: '💍', label: 'Accesorios' }
+  ];
 
   constructor(
     private eventService: EventService,
@@ -161,7 +187,10 @@ export class Community implements OnInit {
     this.postsLoading.set(true);
     this.postsError.set('');
     try {
-      const newPosts = await this.social.getPosts(this.currentPage(), 12);
+      const newPosts = await this.social.getPosts(
+        this.currentPage(), 12,
+        this.activeTipo() ?? undefined
+      );
       if (reset) {
         this.posts.set(newPosts);
       } else {
@@ -174,6 +203,16 @@ export class Community implements OnInit {
     } finally {
       this.postsLoading.set(false);
     }
+  }
+
+  async setTipoFilter(tipo: CreationType | null) {
+    this.activeTipo.set(tipo);
+    await this.loadPosts(true);
+  }
+
+  async onCreacionPublished() {
+    this.showCreacionForm.set(false);
+    await this.loadPosts(true);
   }
 
   async onToggleLike(post: SocialPost) {
@@ -254,20 +293,16 @@ export class Community implements OnInit {
 
   getTypeIcon(type: string): string {
     const icons: Record<string, string> = {
-      personaje: '⚔️',
-      raza: '🌍',
-      clase: '🎯',
-      subclase: '⚡'
+      clase: '🎯', subclase: '⚡',
+      raza: '🌍', subraza: '🧬', accesorio: '💍'
     };
     return icons[type] ?? '📜';
   }
 
   getTypeLabel2(type: string): string {
     const labels: Record<string, string> = {
-      personaje: 'Personaje',
-      raza: 'Raza',
-      clase: 'Clase',
-      subclase: 'Subclase'
+      clase: 'Clase', subclase: 'Subclase',
+      raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio'
     };
     return labels[type] ?? type;
   }
@@ -299,8 +334,47 @@ export class Community implements OnInit {
     }
   }
 
+  async onLoginGoogle() {
+    try {
+      await this.social.signInWithGoogle();
+    } catch {
+      this.loginError.set('Error al iniciar sesión con Google.');
+    }
+  }
+
   async onLogout() {
     await this.social.signOut();
     this.posts.update(posts => posts.map(p => ({ ...p, user_has_liked: false })));
+  }
+
+  onReport(post: SocialPost) {
+    this.reportingPost.set(post);
+    this.reportReason.set('');
+    this.reportError.set('');
+    this.reportSuccess.set(false);
+  }
+
+  closeReport() {
+    this.reportingPost.set(null);
+  }
+
+  async submitReport() {
+    const post = this.reportingPost();
+    const reason = this.reportReason();
+    if (!post || !reason) return;
+    this.reportSending.set(true);
+    this.reportError.set('');
+    try {
+      await this.social.reportPost(post.id, reason);
+      this.reportSuccess.set(true);
+      this.posts.update(list =>
+        list.map(p => p.id === post.id ? { ...p, user_has_reported: true } : p)
+      );
+      setTimeout(() => this.closeReport(), 1500);
+    } catch (e: any) {
+      this.reportError.set(e?.message ?? 'Error al enviar el reporte.');
+    } finally {
+      this.reportSending.set(false);
+    }
   }
 }

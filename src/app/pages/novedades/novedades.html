@@ -1,0 +1,60 @@
+<!-- HERO -->
+<section class="nov-hero">
+  <div class="nov-hero__bg"></div>
+  <div class="nov-hero__content container">
+    <a routerLink="/" class="nov-hero__back">← Volver al inicio</a>
+    <div class="nov-hero__header">
+      <span class="nov-hero__icon">📣</span>
+      <div>
+        <h1 class="nov-hero__title">Novedades</h1>
+        <p class="nov-hero__subtitle">Últimas noticias, actualizaciones y anuncios sobre La Codicia del Sabio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="nov-list section">
+  <div class="container">
+    @if (loading()) {
+      <div class="nov-loading">
+        <p>Cargando novedades...</p>
+      </div>
+    } @else if (novedades().length === 0) {
+      <div class="nov-empty card">
+        <span class="nov-empty__icon">📭</span>
+        <h3>Sin novedades por ahora</h3>
+        <p>Pronto publicaremos actualizaciones sobre el juego y la aplicación. ¡Vuelve pronto!</p>
+      </div>
+    } @else {
+      <div class="nov-grid">
+        @for (nov of novedades(); track nov.id) {
+          <article class="nov-card card" [class.nov-card--pinned]="nov.pinned">
+            @if (nov.pinned) {
+              <div class="nov-card__pin">📌 Destacado</div>
+            }
+            @if (nov.image_url) {
+              <div class="nov-card__image">
+                <img [src]="nov.image_url" [alt]="nov.title" loading="lazy" />
+              </div>
+            }
+            <div class="nov-card__body">
+              <div class="nov-card__meta">
+                <time class="nov-card__date">{{ nov.published_at | date:'d MMM yyyy' : '' : 'es' }}</time>
+                @if (nov.tags && nov.tags.length > 0) {
+                  <div class="nov-card__tags">
+                    @for (tag of nov.tags; track tag) {
+                      <span class="nov-tag">{{ tag }}</span>
+                    }
+                  </div>
+                }
+              </div>
+              <h2 class="nov-card__title">{{ nov.title }}</h2>
+              <div class="nov-card__text">{{ nov.body }}</div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

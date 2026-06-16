@@ -1,0 +1,226 @@
+<div class="ac-page">
+  <a class="ac-back" routerLink="/admin">← Panel de Admin</a>
+  <h1 class="ac-title">Gestión de Creaciones</h1>
+
+  <!-- LOGIN -->
+  @if (!isAuthenticated()) {
+    <div class="ac-login card">
+      @if (accessDenied()) {
+        <div class="ac-error">Acceso denegado. Solo administradores.</div>
+      }
+      @if (loginError()) {
+        <div class="ac-error">{{ loginError() }}</div>
+      }
+      <h3>Acceso Administrador</h3>
+      <div class="ac-field">
+        <label>Email</label>
+        <input type="email" [ngModel]="loginEmail()" (ngModelChange)="loginEmail.set($event)" name="email"/>
+      </div>
+      <div class="ac-field">
+        <label>Contraseña</label>
+        <input type="password" [ngModel]="loginPassword()" (ngModelChange)="loginPassword.set($event)" name="pwd"/>
+      </div>
+      <button class="btn btn--primary" (click)="login()">Entrar</button>
+    </div>
+  }
+
+  <!-- PANEL -->
+  @if (isAuthenticated()) {
+    <div class="ac-controls">
+      <div class="ac-tabs">
+        <button class="ac-tab" [class.active]="tab() === 'all'" (click)="tab.set('all')">
+          Todas ({{ allPosts().length }})
+        </button>
+        <button class="ac-tab" [class.active]="tab() === 'reported'" (click)="tab.set('reported')">
+          🚩 Reportadas ({{ reportedPosts().length }})
+        </button>
+      </div>
+      <div class="ac-search">
+        <input type="text" placeholder="Buscar por título, usuario o tipo..."
+          [ngModel]="filterQuery()" (ngModelChange)="filterQuery.set($event)" name="q"/>
+      </div>
+      <button class="btn btn--outline btn--sm" (click)="logout()">Cerrar sesión</button>
+    </div>
+
+    @if (error()) {
+      <div class="ac-error">⚠️ {{ error() }}</div>
+    }
+
+    @if (loading()) {
+      <div class="ac-loading"><div class="ac-spinner"></div> Cargando...</div>
+    }
+
+    <!-- TAB: TODAS -->
+    @if (!loading() && tab() === 'all') {
+      @if (filteredPosts.length === 0) {
+        <p class="ac-empty">No hay creaciones.</p>
+      } @else {
+        <div class="ac-table-wrap">
+          <table class="ac-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Título</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>❤️</th>
+                <th>🚩</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (post of filteredPosts; track post.id) {
+                <tr [class.ac-row--reported]="post.reports_count && post.reports_count > 0">
+                  <td><span class="ac-badge" [attr.data-type]="post.creation_type">{{ TYPE_LABELS[post.creation_type] }}</span></td>
+                  <td class="ac-cell-title">{{ post.title }}</td>
+                  <td class="ac-cell-user">{{ post.username }}</td>
+                  <td class="ac-cell-date">{{ formatDate(post.created_at) }}</td>
+                  <td>{{ post.likes_count }}</td>
+                  <td class="ac-cell-reports">{{ post.reports_count ?? 0 }}</td>
+                  <td>
+                    <button class="btn btn--outline btn--xs" (click)="openPost(post)" title="Ver contenido">👁</button>
+                    <button class="btn btn--danger btn--xs" (click)="askDelete(post)">🗑️</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    }
+
+    <!-- TAB: REPORTADAS -->
+    @if (!loading() && tab() === 'reported') {
+      @if (reportedPosts().length === 0) {
+        <p class="ac-empty">No hay creaciones reportadas. 🎉</p>
+      } @else {
+        <div class="ac-reported-list">
+          @for (post of reportedPosts(); track post.id) {
+            <div class="ac-reported-card card">
+              <div class="ac-reported-card__header">
+                <span class="ac-badge" [attr.data-type]="post.creation_type">{{ TYPE_LABELS[post.creation_type] }}</span>
+                <strong>{{ post.title }}</strong>
+                <span class="ac-reported-card__user">por {{ post.username }}</span>
+                <span class="ac-reported-card__date">{{ formatDate(post.created_at) }}</span>
+                <span class="ac-reported-card__count">🚩 {{ post.reports_count }} reporte{{ post.reports_count !== 1 ? 's' : '' }}</span>
+              </div>
+              @if (post.description) {
+                <p class="ac-reported-card__desc">{{ post.description }}</p>
+              }
+              @if (post.report_reasons && post.report_reasons.length > 0) {
+                <div class="ac-reported-card__reasons">
+                  <span class="ac-reasons-label">Motivos:</span>
+                  @for (r of post.report_reasons; track r) {
+                    <span class="ac-reason-tag">{{ r }}</span>
+                  }
+                </div>
+              }
+              <div class="ac-reported-card__actions">
+                <button class="btn btn--outline btn--sm" (click)="openPost(post)">👁 Ver contenido</button>
+                <button class="btn btn--danger btn--sm" (click)="askDelete(post)">🗑️ Eliminar creación</button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    }
+  }
+</div>
+
+<!-- POST PREVIEW MODAL -->
+@if (viewingPost()) {
+  <div class="ac-overlay" (click)="closePost()">
+    <div class="ac-preview-modal card" (click)="$event.stopPropagation()">
+      <button class="ac-preview-modal__close" (click)="closePost()">✕</button>
+
+      <!-- Header -->
+      <div class="ac-preview-modal__header">
+        <span class="ac-badge" [attr.data-type]="viewingPost()!.creation_type">
+          {{ TYPE_LABELS[viewingPost()!.creation_type] }}
+        </span>
+        <h3 class="ac-preview-modal__title">{{ viewingPost()!.title }}</h3>
+        <div class="ac-preview-modal__meta">
+          por <strong>{{ viewingPost()!.username }}</strong>
+          · {{ formatDate(viewingPost()!.created_at) }}
+        </div>
+      </div>
+
+      <!-- Image -->
+      @if (viewingPost()!.image_url) {
+        <img class="ac-preview-modal__img" [src]="viewingPost()!.image_url" [alt]="viewingPost()!.title" />
+      }
+
+      <!-- Description -->
+      @if (viewingPost()!.description) {
+        <p class="ac-preview-modal__desc">{{ viewingPost()!.description }}</p>
+      }
+
+      <!-- Tags -->
+      @if (viewingPost()!.tags && viewingPost()!.tags!.length > 0) {
+        <div class="ac-preview-modal__tags">
+          @for (tag of viewingPost()!.tags!; track tag) {
+            <span class="ac-preview-modal__tag">{{ tag }}</span>
+          }
+        </div>
+      }
+
+      <!-- Stats -->
+      <div class="ac-preview-modal__stats">
+        <span>❤️ {{ viewingPost()!.likes_count }} likes</span>
+        <span>💬 {{ viewingPost()!.comments_count }} comentarios</span>
+        <span>⬇️ {{ viewingPost()!.downloads_count }} descargas</span>
+        @if (viewingPost()!.reports_count && viewingPost()!.reports_count! > 0) {
+          <span class="ac-preview-modal__stat--danger">🚩 {{ viewingPost()!.reports_count }} reportes</span>
+        }
+      </div>
+
+      <!-- Report reasons if any -->
+      @if (viewingPost()!.report_reasons && viewingPost()!.report_reasons!.length > 0) {
+        <div class="ac-preview-modal__reasons">
+          <span class="ac-reasons-label">Motivos de reporte:</span>
+          @for (r of viewingPost()!.report_reasons!; track r) {
+            <span class="ac-reason-tag">{{ r }}</span>
+          }
+        </div>
+      }
+
+      <!-- Creation data -->
+      @if (postDataEntries(viewingPost()!).length > 0) {
+        <div class="ac-preview-modal__data">
+          <div class="ac-preview-modal__data-title">Datos de la creación</div>
+          <div class="ac-preview-modal__data-grid">
+            @for (entry of postDataEntries(viewingPost()!); track entry.key) {
+              <div class="ac-preview-modal__data-row">
+                <span class="ac-preview-modal__data-key">{{ entry.key }}</span>
+                <span class="ac-preview-modal__data-val">{{ entry.value }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Actions -->
+      <div class="ac-preview-modal__actions">
+        <button class="btn btn--outline" (click)="closePost()">Cerrar</button>
+        <button class="btn btn--danger" (click)="closePost(); askDelete(viewingPost()!)">🗑️ Eliminar</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Confirm modal -->
+@if (confirmId()) {
+  <div class="ac-overlay" (click)="cancelDelete()">
+    <div class="ac-confirm card" (click)="$event.stopPropagation()">
+      <h4>Confirmar eliminación</h4>
+      <p>{{ confirmMsg() }}</p>
+      <p class="ac-confirm__warn">Esta acción es irreversible.</p>
+      <div class="ac-confirm__actions">
+        <button class="btn btn--outline" (click)="cancelDelete()">Cancelar</button>
+        <button class="btn btn--danger" [disabled]="deleting()" (click)="confirmDelete()">
+          {{ deleting() ? 'Eliminando...' : 'Sí, eliminar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
