@@ -62,7 +62,7 @@ export class SocialService {
   async signInWithGoogle(): Promise<void> {
     const { error } = await this.supabase.client.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: window.location.origin + '/comunidad' }
+      options: { redirectTo: 'https://alvaro219.github.io/lacodiciadelsabioweb/comunidad' }
     });
     if (error) throw error;
   }
