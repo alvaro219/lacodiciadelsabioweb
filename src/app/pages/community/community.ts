@@ -62,6 +62,11 @@ export class Community implements OnInit {
     });
   });
 
+  // Detail modal
+  protected readonly detailPost = signal<SocialPost | null>(null);
+  openDetail(post: SocialPost) { this.detailPost.set(post); }
+  closeDetail() { this.detailPost.set(null); }
+
   // Download state
   protected readonly downloadedPost = signal<SocialPost | null>(null);
 

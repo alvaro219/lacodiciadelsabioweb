@@ -406,7 +406,7 @@
             }
 
             <!-- POST BODY -->
-            <div class="social-card__body">
+            <div class="social-card__body" (click)="openDetail(post)" style="cursor:pointer">
               <h4 class="social-card__title">{{ post.title }}</h4>
               <p class="social-card__author">por <strong>{{ post.username }}</strong></p>
               @if (post.description) {
@@ -452,7 +452,7 @@
               <button
                 class="social-card__like-btn"
                 [class.liked]="post.user_has_liked"
-                (click)="onToggleLike(post)"
+                (click)="$event.stopPropagation(); onToggleLike(post)"
                 [title]="currentUser() ? (post.user_has_liked ? 'Quitar me gusta' : 'Me gusta') : 'Inicia sesión para valorar'">
                 <span class="social-card__like-heart">{{ post.user_has_liked ? '❤️' : '🤍' }}</span>
                 <span class="social-card__like-count">{{ post.likes_count }}</span>
@@ -460,13 +460,13 @@
               <button
                 class="social-card__comment-btn"
                 [class.active]="expandedPostId() === post.id"
-                (click)="toggleComments(post.id)">
+                (click)="$event.stopPropagation(); toggleComments(post.id)">
                 💬 {{ post.comments_count }}
               </button>
               <button
                 class="social-card__download-btn"
                 [class.locked]="!currentUser()"
-                (click)="currentUser() ? onDownload(post) : showLoginForm.set(true)"
+                (click)="$event.stopPropagation(); currentUser() ? onDownload(post) : showLoginForm.set(true)"
                 [title]="currentUser() ? 'Descargar para la app' : 'Inicia sesión para descargar'">
                 <span class="social-card__download-btn__icon">⬇</span>
                 <span>{{ post.downloads_count }}</span>
@@ -476,7 +476,7 @@
                   class="social-card__report-btn"
                   [class.reported]="post.user_has_reported"
                   [title]="post.user_has_reported ? 'Ya reportado' : 'Reportar creación'"
-                  (click)="onReport(post)">
+                  (click)="$event.stopPropagation(); onReport(post)">
                   🚩
                 </button>
               }
@@ -556,6 +556,247 @@
 }
 
 } <!-- end activeTab === 'social' -->
+
+<!-- DETAIL MODAL -->
+@if (detailPost()) {
+  <div class="report-overlay" (click)="closeDetail()">
+    <div class="detail-modal card" (click)="$event.stopPropagation()">
+      <button class="report-modal__close" (click)="closeDetail()">✕</button>
+
+      <!-- Header -->
+      <div class="detail-modal__header">
+        <div class="social-card__type-badge" [attr.data-type]="detailPost()!.creation_type">
+          <span>{{ getTypeIcon(detailPost()!.creation_type) }}</span>
+          <span>{{ getTypeLabel2(detailPost()!.creation_type) }}</span>
+        </div>
+        <span class="social-card__date">{{ formatDate(detailPost()!.created_at) }}</span>
+      </div>
+
+      @if (detailPost()!.image_url) {
+        <img class="detail-modal__img" [src]="detailPost()!.image_url" [alt]="detailPost()!.title" />
+      }
+
+      <h3 class="detail-modal__title">{{ detailPost()!.title }}</h3>
+      <p class="detail-modal__author">por <strong>{{ detailPost()!.username }}</strong></p>
+
+      @if (detailPost()!.description) {
+        <p class="detail-modal__desc">{{ detailPost()!.description }}</p>
+      }
+
+      <!-- ACCESORIO -->
+      @if (detailPost()!.creation_type === 'accesorio' && detailPost()!.data) {
+        <div class="detail-section">
+          <div class="detail-row">
+            @if (detailPost()!.data!['rareza']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Rareza</span>
+                <span class="detail-stat__value detail-stat__value--rareza">{{ detailPost()!.data!['rareza'] }}</span>
+              </div>
+            }
+            @if (detailPost()!.data!['precio']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Precio</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['precio'] }} mo.</span>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- RAZA / SUBRAZA -->
+      @if ((detailPost()!.creation_type === 'raza' || detailPost()!.creation_type === 'subraza') && detailPost()!.data) {
+        <div class="detail-section">
+          <div class="detail-row">
+            @if (detailPost()!.data!['tamano']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Tamaño</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['tamano'] }}</span>
+              </div>
+            }
+            @if (detailPost()!.data!['velocidad']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Velocidad</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['velocidad'] }} ft</span>
+              </div>
+            }
+            @if (detailPost()!.data!['razaPadre']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Raza base</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['razaPadre'] }}</span>
+              </div>
+            }
+          </div>
+          @if (detailPost()!.data!['pasiva']) {
+            <div class="detail-block">
+              <span class="detail-block__label">⭐ Pasiva</span>
+              <p>{{ detailPost()!.data!['pasiva'] }}</p>
+            </div>
+          }
+          @if (detailPost()!.data!['rasgos'] && $any(detailPost()!.data!['rasgos']).length > 0) {
+            <div class="detail-block">
+              <span class="detail-block__label">📊 Rasgos</span>
+              <div class="detail-tags">
+                @for (r of $any(detailPost()!.data!['rasgos']); track r) {
+                  <span class="detail-tag">{{ r }}</span>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- CLASE -->
+      @if (detailPost()!.creation_type === 'clase' && detailPost()!.data) {
+        <div class="detail-section">
+          <div class="detail-row">
+            @if (detailPost()!.data!['rol']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Rol</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['rol'] }}</span>
+              </div>
+            }
+            @if (detailPost()!.data!['pv']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">PV base</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['pv'] }}</span>
+              </div>
+            }
+            @if (detailPost()!.data!['escudo']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Escudo</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['escudo'] }}</span>
+              </div>
+            }
+            @if (detailPost()!.data!['ph']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">PH</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['ph'] }}</span>
+              </div>
+            }
+            @if (detailPost()!.data!['esMagica']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Tipo</span>
+                <span class="detail-stat__value detail-stat__value--magic">✨ Mágica</span>
+              </div>
+            }
+          </div>
+          @if (detailPost()!.data!['pasiva']) {
+            <div class="detail-block">
+              <span class="detail-block__label">⭐ Pasiva</span>
+              <p>{{ detailPost()!.data!['pasiva'] }}</p>
+            </div>
+          }
+          @if (detailPost()!.data!['hb1Nombre']) {
+            <div class="detail-block">
+              <span class="detail-block__label">🔵 {{ detailPost()!.data!['hb1Nombre'] }}</span>
+              <p>{{ detailPost()!.data!['hb1'] }}</p>
+            </div>
+          }
+          @if (detailPost()!.data!['hb2Nombre']) {
+            <div class="detail-block">
+              <span class="detail-block__label">🟣 {{ detailPost()!.data!['hb2Nombre'] }}</span>
+              <p>{{ detailPost()!.data!['hb2'] }}</p>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- SUBCLASE -->
+      @if (detailPost()!.creation_type === 'subclase' && detailPost()!.data) {
+        <div class="detail-section">
+          <div class="detail-row">
+            @if (detailPost()!.data!['clasePadre']) {
+              <div class="detail-stat">
+                <span class="detail-stat__label">Clase base</span>
+                <span class="detail-stat__value">{{ detailPost()!.data!['clasePadre'] }}</span>
+              </div>
+            }
+          </div>
+          @if (detailPost()!.data!['armaPrincipal']) {
+            <div class="detail-block">
+              <span class="detail-block__label">⚔️ Arma Principal</span>
+              <p>
+                {{ $any(detailPost()!.data!['armaPrincipal'])['nombre'] || $any(detailPost()!.data!['armaPrincipal'])['tipo'] }}
+                · d{{ $any(detailPost()!.data!['armaPrincipal'])['dado'] }}
+                · {{ $any(detailPost()!.data!['armaPrincipal'])['ataques'] }} ataque(s)
+                · Mod. {{ $any(detailPost()!.data!['armaPrincipal'])['modificador'] }}
+              </p>
+            </div>
+          }
+          @if (detailPost()!.data!['armaSecundaria']) {
+            <div class="detail-block">
+              <span class="detail-block__label">🗡️ Arma Secundaria</span>
+              <p>
+                {{ $any(detailPost()!.data!['armaSecundaria'])['nombre'] || $any(detailPost()!.data!['armaSecundaria'])['tipo'] }}
+                · d{{ $any(detailPost()!.data!['armaSecundaria'])['dado'] }}
+                · {{ $any(detailPost()!.data!['armaSecundaria'])['ataques'] }} ataque(s)
+              </p>
+            </div>
+          }
+          @if (detailPost()!.data!['habilidades']) {
+            @for (key of ['hap1','hap2','hap3','hap4','has1','has2','had']; track key) {
+              @if ($any(detailPost()!.data!['habilidades'])[key]) {
+                <div class="detail-block">
+                  <span class="detail-block__label">🔹 {{ $any(detailPost()!.data!['habilidades'])[key]['nombre'] }}</span>
+                  @if ($any(detailPost()!.data!['habilidades'])[key]['coste']) {
+                    <span class="detail-tag" style="margin-bottom:4px">{{ $any(detailPost()!.data!['habilidades'])[key]['coste'] }} 🟢</span>
+                  }
+                  @if ($any(detailPost()!.data!['habilidades'])[key]['esReaccion']) {
+                    <span class="detail-tag" style="margin-bottom:4px">🔶 Reacción</span>
+                  }
+                  <p>{{ $any(detailPost()!.data!['habilidades'])[key]['descripcion'] }}</p>
+                </div>
+              }
+            }
+          }
+        </div>
+      }
+
+      <!-- TAGS -->
+      @if (detailPost()!.tags && detailPost()!.tags!.length > 0) {
+        <div class="detail-tags-row">
+          @for (tag of detailPost()!.tags!; track tag) {
+            <span class="social-card__tag">#{{ tag }}</span>
+          }
+        </div>
+      }
+
+      <!-- ACTIONS -->
+      <div class="detail-modal__actions">
+        <button
+          class="social-card__like-btn"
+          [class.liked]="detailPost()!.user_has_liked"
+          (click)="onToggleLike(detailPost()!); detailPost.set({...detailPost()!, user_has_liked: !detailPost()!.user_has_liked, likes_count: detailPost()!.likes_count + (detailPost()!.user_has_liked ? -1 : 1)})"
+          [title]="currentUser() ? (detailPost()!.user_has_liked ? 'Quitar me gusta' : 'Me gusta') : 'Inicia sesión para valorar'">
+          <span class="social-card__like-heart">{{ detailPost()!.user_has_liked ? '❤️' : '🤍' }}</span>
+          <span class="social-card__like-count">{{ detailPost()!.likes_count }}</span>
+        </button>
+        <button
+          class="social-card__comment-btn"
+          (click)="closeDetail(); toggleComments(detailPost()!.id)">
+          💬 {{ detailPost()!.comments_count }}
+        </button>
+        <button
+          class="social-card__download-btn"
+          [class.locked]="!currentUser()"
+          (click)="currentUser() ? onDownload(detailPost()!) : showLoginForm.set(true)"
+          [title]="currentUser() ? 'Descargar para la app' : 'Inicia sesión para descargar'">
+          <span class="social-card__download-btn__icon">⬇</span>
+          <span>{{ detailPost()!.downloads_count }}</span>
+        </button>
+        @if (currentUser() && currentUser()!.id !== detailPost()!.user_id) {
+          <button
+            class="social-card__report-btn"
+            [class.reported]="detailPost()!.user_has_reported"
+            [title]="detailPost()!.user_has_reported ? 'Ya reportado' : 'Reportar creación'"
+            (click)="closeDetail(); onReport(detailPost()!)">
+            🚩
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+}
 
 <!-- DOWNLOAD MODAL -->
 @if (downloadedPost()) {
