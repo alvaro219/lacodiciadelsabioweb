@@ -50,6 +50,31 @@
         </div>
       </div>
 
+      <!-- ADMIN NAV -->
+      <div class="admin__nav">
+        <a routerLink="/admin" class="admin__nav-card admin__nav-card--active">
+          <span class="admin__nav-card__icon">📅</span>
+          <div>
+            <div class="admin__nav-card__title">Eventos</div>
+            <div class="admin__nav-card__desc">Gestionar eventos y plazas</div>
+          </div>
+        </a>
+        <a routerLink="/admin/novedades" class="admin__nav-card">
+          <span class="admin__nav-card__icon">📰</span>
+          <div>
+            <div class="admin__nav-card__title">Novedades</div>
+            <div class="admin__nav-card__desc">Crear y editar noticias</div>
+          </div>
+        </a>
+        <a routerLink="/admin/creaciones" class="admin__nav-card">
+          <span class="admin__nav-card__icon">🎨</span>
+          <div>
+            <div class="admin__nav-card__title">Creaciones</div>
+            <div class="admin__nav-card__desc">Moderar publicaciones y reportes</div>
+          </div>
+        </a>
+      </div>
+
       <!-- EVENT FORM MODAL -->
       @if (showForm()) {
         <div class="admin__overlay" (click)="closeForm()"></div>

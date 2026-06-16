@@ -8,6 +8,7 @@ import { SocialPost, SocialComment, SocialReport, AppUser, CreationType } from '
 export class SocialService {
   readonly currentUser = signal<AppUser | null>(null);
   readonly authLoading = signal(true);
+  readonly isAdmin = signal(false);
 
   constructor(private supabase: SupabaseService) {
     this.initAuth();
@@ -25,22 +26,23 @@ export class SocialService {
         await this.loadProfile(session.user.id, session.user.email ?? '');
       } else {
         this.currentUser.set(null);
+        this.isAdmin.set(false);
       }
     });
   }
 
   private async loadProfile(userId: string, email: string) {
-    const { data } = await this.supabase.client
-      .from('profiles')
-      .select('username')
-      .eq('id', userId)
-      .single();
+    const [profileRes, adminRes] = await Promise.all([
+      this.supabase.client.from('profiles').select('username').eq('id', userId).single(),
+      this.supabase.client.from('user_profiles').select('role').eq('id', userId).single()
+    ]);
 
     this.currentUser.set({
       id: userId,
       email,
-      username: data?.username ?? email.split('@')[0]
+      username: profileRes.data?.username ?? email.split('@')[0]
     });
+    this.isAdmin.set(adminRes.data?.role === 'admin');
   }
 
   async signInWithEmail(email: string, password: string): Promise<void> {

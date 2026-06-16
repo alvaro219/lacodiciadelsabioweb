@@ -153,6 +153,58 @@
     }
   }
 
+  // ===== NAV =====
+  &__nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__nav-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--color-text-primary);
+      transform: translateY(-2px);
+    }
+
+    &--active {
+      border-color: var(--color-gold);
+      background: rgba(240,192,64,0.07);
+      color: var(--color-text-primary);
+    }
+
+    &__icon { font-size: 1.6rem; line-height: 1; }
+
+    &__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: inherit;
+    }
+
+    &__desc {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+  }
+
   // ===== MODAL =====
   &__overlay {
     position: fixed;

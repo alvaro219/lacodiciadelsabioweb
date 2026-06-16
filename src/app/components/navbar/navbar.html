@@ -79,10 +79,12 @@
               <a routerLink="/comunidad" class="navbar__user-menu-item" (click)="closeMenu()">
                 � Comunidad
               </a>
-              <div class="navbar__user-menu-divider"></div>
-              <a routerLink="/admin/creaciones" class="navbar__user-menu-item navbar__user-menu-item--admin" (click)="closeMenu()">
-                🛡️ Admin Creaciones
-              </a>
+              @if (isAdmin()) {
+                <div class="navbar__user-menu-divider"></div>
+                <a routerLink="/admin/creaciones" class="navbar__user-menu-item navbar__user-menu-item--admin" (click)="closeMenu()">
+                  🛡️ Admin Creaciones
+                </a>
+              }
               <div class="navbar__user-menu-divider"></div>
               <button class="navbar__user-menu-item navbar__user-menu-item--danger" (click)="onLogout()">
                 🚪 Cerrar Sesión

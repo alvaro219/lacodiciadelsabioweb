@@ -25,6 +25,7 @@ export class Navbar {
 
   protected readonly currentUser = computed(() => this.social.currentUser());
   protected readonly authLoading = computed(() => this.social.authLoading());
+  protected readonly isAdmin = computed(() => this.social.isAdmin());
 
   constructor(private social: SocialService) {}
 

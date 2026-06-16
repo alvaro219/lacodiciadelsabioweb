@@ -1,46 +1,78 @@
-<div class="ac-page">
-  <a class="ac-back" routerLink="/admin">← Panel de Admin</a>
-  <h1 class="ac-title">Gestión de Creaciones</h1>
+<section class="admin">
+  <div class="container">
+    <a routerLink="/" class="admin__back">← Volver al inicio</a>
+    <h1 class="admin__title">Panel de <span class="gradient-text">Administración</span></h1>
 
-  <!-- LOGIN -->
-  @if (!isAuthenticated()) {
-    <div class="ac-login card">
-      @if (accessDenied()) {
-        <div class="ac-error">Acceso denegado. Solo administradores.</div>
-      }
-      @if (loginError()) {
-        <div class="ac-error">{{ loginError() }}</div>
-      }
-      <h3>Acceso Administrador</h3>
-      <div class="ac-field">
-        <label>Email</label>
-        <input type="email" [ngModel]="loginEmail()" (ngModelChange)="loginEmail.set($event)" name="email"/>
+    <!-- LOGIN -->
+    @if (!isAuthenticated()) {
+      <div class="admin__login card">
+        <h2>Iniciar Sesión</h2>
+        <p>Accede con tu cuenta de administrador para moderar las creaciones.</p>
+        <form (ngSubmit)="login()" class="admin__login-form">
+          <div class="admin__field">
+            <label for="ac-email">Email</label>
+            <input type="email" id="ac-email" placeholder="admin@email.com"
+              [ngModel]="loginEmail()" (ngModelChange)="loginEmail.set($event)" name="email"/>
+          </div>
+          <div class="admin__field">
+            <label for="ac-pwd">Contraseña</label>
+            <input type="password" id="ac-pwd" placeholder="••••••••"
+              [ngModel]="loginPassword()" (ngModelChange)="loginPassword.set($event)" name="pwd"/>
+          </div>
+          @if (loginError()) { <div class="admin__error">{{ loginError() }}</div> }
+          @if (accessDenied()) { <div class="admin__error">No tienes permisos de administrador.</div> }
+          <button type="submit" class="btn btn--primary">Entrar</button>
+        </form>
       </div>
-      <div class="ac-field">
-        <label>Contraseña</label>
-        <input type="password" [ngModel]="loginPassword()" (ngModelChange)="loginPassword.set($event)" name="pwd"/>
+    } @else {
+      <!-- HEADER -->
+      <div class="admin__header">
+        <h2>Gestión de Creaciones</h2>
+        <div class="admin__header-actions">
+          <button class="btn btn--outline btn--sm" (click)="logout()">Cerrar Sesión</button>
+        </div>
       </div>
-      <button class="btn btn--primary" (click)="login()">Entrar</button>
-    </div>
-  }
 
-  <!-- PANEL -->
-  @if (isAuthenticated()) {
-    <div class="ac-controls">
-      <div class="ac-tabs">
-        <button class="ac-tab" [class.active]="tab() === 'all'" (click)="tab.set('all')">
-          Todas ({{ allPosts().length }})
-        </button>
-        <button class="ac-tab" [class.active]="tab() === 'reported'" (click)="tab.set('reported')">
-          🚩 Reportadas ({{ reportedPosts().length }})
-        </button>
+      <!-- ADMIN NAV -->
+      <div class="admin__nav">
+        <a routerLink="/admin" class="admin__nav-card">
+          <span class="admin__nav-card__icon">📅</span>
+          <div>
+            <div class="admin__nav-card__title">Eventos</div>
+            <div class="admin__nav-card__desc">Gestionar eventos y plazas</div>
+          </div>
+        </a>
+        <a routerLink="/admin/novedades" class="admin__nav-card">
+          <span class="admin__nav-card__icon">📰</span>
+          <div>
+            <div class="admin__nav-card__title">Novedades</div>
+            <div class="admin__nav-card__desc">Crear y editar noticias</div>
+          </div>
+        </a>
+        <a routerLink="/admin/creaciones" class="admin__nav-card admin__nav-card--active">
+          <span class="admin__nav-card__icon">🎨</span>
+          <div>
+            <div class="admin__nav-card__title">Creaciones</div>
+            <div class="admin__nav-card__desc">Moderar publicaciones y reportes</div>
+          </div>
+        </a>
       </div>
-      <div class="ac-search">
-        <input type="text" placeholder="Buscar por título, usuario o tipo..."
-          [ngModel]="filterQuery()" (ngModelChange)="filterQuery.set($event)" name="q"/>
+
+      <!-- CONTROLS -->
+      <div class="ac-controls">
+        <div class="ac-tabs">
+          <button class="ac-tab" [class.active]="tab() === 'all'" (click)="tab.set('all')">
+            Todas ({{ allPosts().length }})
+          </button>
+          <button class="ac-tab" [class.active]="tab() === 'reported'" (click)="tab.set('reported')">
+            🚩 Reportadas ({{ reportedPosts().length }})
+          </button>
+        </div>
+        <div class="ac-search">
+          <input type="text" placeholder="Buscar por título, usuario o tipo..."
+            [ngModel]="filterQuery()" (ngModelChange)="filterQuery.set($event)" name="q"/>
+        </div>
       </div>
-      <button class="btn btn--outline btn--sm" (click)="logout()">Cerrar sesión</button>
-    </div>
 
     @if (error()) {
       <div class="ac-error">⚠️ {{ error() }}</div>
@@ -124,8 +156,9 @@
         </div>
       }
     }
-  }
-</div>
+    } <!-- end @else authenticated -->
+  </div>
+</section>
 
 <!-- POST PREVIEW MODAL -->
 @if (viewingPost()) {
