@@ -48,6 +48,20 @@ export class Community implements OnInit {
   protected readonly showCreacionForm = signal(false);
   protected readonly activeTipo = signal<CreationType | null>(null);
 
+  // Search
+  protected readonly searchQuery = signal('');
+  protected readonly filteredPosts = computed(() => {
+    const q = this.searchQuery().toLowerCase().trim();
+    if (!q) return this.posts();
+    return this.posts().filter(p => {
+      const inTitle = p.title.toLowerCase().includes(q);
+      const inDesc  = (p.description ?? '').toLowerCase().includes(q);
+      const tag = q.startsWith('#') ? q.slice(1) : q;
+      const inTags  = (p.tags ?? []).some(t => t.toLowerCase().includes(tag));
+      return inTitle || inDesc || inTags;
+    });
+  });
+
   // Download state
   protected readonly downloadedPost = signal<SocialPost | null>(null);
 

@@ -34,14 +34,12 @@ export class SocialService {
   private async loadProfile(userId: string, email: string) {
     const [profileRes, adminRes] = await Promise.all([
       this.supabase.client.from('profiles').select('username').eq('id', userId).single(),
-      this.supabase.client.from('user_profiles').select('role').eq('id', userId).single()
+      this.supabase.client.from('user_profiles').select('role, display_name').eq('id', userId).single()
     ]);
 
-    this.currentUser.set({
-      id: userId,
-      email,
-      username: profileRes.data?.username ?? email.split('@')[0]
-    });
+    const username = profileRes.data?.username ?? email.split('@')[0];
+    const display_name = adminRes.data?.display_name || undefined;
+    this.currentUser.set({ id: userId, email, username, display_name });
     this.isAdmin.set(adminRes.data?.role === 'admin');
   }
 
@@ -159,7 +157,7 @@ export class SocialService {
       .insert({
         post_id: postId,
         user_id: user.id,
-        username: user.username,
+        username: user.display_name ?? user.username,
         content: content.trim()
       })
       .select()
@@ -210,7 +208,7 @@ export class SocialService {
         data: post.data ?? null,
         tags: post.tags ?? [],
         user_id: user.id,
-        username: user.username,
+        username: user.display_name ?? user.username,
         likes_count: 0,
         comments_count: 0,
         downloads_count: 0,
@@ -261,6 +259,29 @@ export class SocialService {
       .update({ downloads_count: (post.downloads_count ?? 0) + 1 })
       .eq('id', post.id)
       .then(() => {});
+  }
+
+  async updatePost(postId: string, patch: {
+    title: string;
+    description: string;
+    image_url?: string | null;
+    data?: Record<string, unknown>;
+    tags?: string[];
+  }): Promise<void> {
+    const user = this.currentUser();
+    if (!user) throw new Error('NOT_LOGGED_IN');
+    const { error } = await this.supabase.client
+      .from('social_posts')
+      .update({
+        title: patch.title,
+        description: patch.description ?? null,
+        image_url: patch.image_url ?? null,
+        data: patch.data ?? null,
+        tags: patch.tags ?? []
+      })
+      .eq('id', postId)
+      .eq('user_id', user.id);
+    if (error) throw new Error(`${error.message} (code: ${error.code})`);
   }
 
   async deletePost(postId: string): Promise<void> {

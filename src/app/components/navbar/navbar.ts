@@ -14,6 +14,7 @@ export class Navbar {
   protected readonly isScrolled = signal(false);
   protected readonly isClassesOpen = signal(false);
   protected readonly isRacesOpen = signal(false);
+  protected readonly isMecanicasOpen = signal(false);
   protected readonly isUserMenuOpen = signal(false);
   protected readonly showAuthModal = signal(false);
   protected readonly loginEmail = signal('');
@@ -55,6 +56,7 @@ export class Navbar {
     this.isMenuOpen.set(false);
     this.isClassesOpen.set(false);
     this.isRacesOpen.set(false);
+    this.isMecanicasOpen.set(false);
     this.isUserMenuOpen.set(false);
     document.body.style.overflow = '';
   }
@@ -134,16 +136,25 @@ export class Navbar {
 
   getAvatarLetter(): string {
     const u = this.currentUser();
-    return u ? u.username[0].toUpperCase() : '';
+    if (!u) return '';
+    return (u.display_name ?? u.username)[0].toUpperCase();
   }
 
   toggleClasses() {
     this.isClassesOpen.update(v => !v);
     this.isRacesOpen.set(false);
+    this.isMecanicasOpen.set(false);
   }
 
   toggleRaces() {
     this.isRacesOpen.update(v => !v);
     this.isClassesOpen.set(false);
+    this.isMecanicasOpen.set(false);
+  }
+
+  toggleMecanicas() {
+    this.isMecanicasOpen.update(v => !v);
+    this.isClassesOpen.set(false);
+    this.isRacesOpen.set(false);
   }
 }

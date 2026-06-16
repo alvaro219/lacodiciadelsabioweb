@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SocialService } from '../../services/social.service';
 import { CreationType } from '../../models/social.model';
@@ -13,7 +13,8 @@ const MODS  = ['Fuerza','Destreza','Inteligencia','Percepción','Constitución',
   templateUrl: './creacion-form.html',
   styleUrl: './creacion-form.scss'
 })
-export class CreacionForm {
+export class CreacionForm implements OnInit {
+  @Input() editPost: import('../../models/social.model').SocialPost | null = null;
   @Output() closed    = new EventEmitter<void>();
   @Output() published = new EventEmitter<void>();
 
@@ -302,14 +303,19 @@ export class CreacionForm {
     this.error.set('');
     try {
       const tagList = this.tags().split(',').map(t => t.trim()).filter(Boolean);
-      await this.social.createPost({
+      const patch = {
         creation_type: this.tipo() as CreationType,
         title: this.previewTitle,
         description: this.previewDesc,
         image_url: this.imageUrl() || null,
         data: this.buildData(),
         tags: tagList
-      });
+      };
+      if (this.editPost) {
+        await this.social.updatePost(this.editPost.id, patch);
+      } else {
+        await this.social.createPost(patch);
+      }
       this.published.emit();
     } catch (e: any) {
       this.error.set(e?.message ?? 'Error al publicar.');
@@ -321,4 +327,57 @@ export class CreacionForm {
   close() { this.closed.emit(); }
 
   constructor(private social: SocialService) {}
+
+  ngOnInit() {
+    const p = this.editPost;
+    if (!p) return;
+    const d = (p.data ?? {}) as Record<string, any>;
+    this.tipo.set(p.creation_type);
+    this.tags.set((p.tags ?? []).join(', '));
+    this.imageUrl.set(p.image_url ?? '');
+    // Jump straight to preview (last step)
+    const steps = this.pasosPorTipo[p.creation_type];
+    this.paso.set(steps.length - 1);
+
+    if (p.creation_type === 'accesorio') {
+      this.acNombre.set(d['nombre'] ?? p.title);
+      this.acDescripcion.set(d['descripcion'] ?? p.description ?? '');
+      this.acPrecio.set(d['precio'] ?? 0);
+      const r = (d['rareza'] ?? 'Común') as string;
+      this.acRareza.set((r[0].toUpperCase() + r.slice(1)) as any);
+    }
+    if (p.creation_type === 'raza') {
+      this.rNombre.set(d['nombre'] ?? p.title);
+      this.rDefinicion.set(d['definicion'] ?? p.description ?? '');
+      this.rPasiva.set(d['pasiva'] ?? '');
+      this.rTamanyo.set(d['tamano'] ?? 'mediano');
+      this.rVelocidad.set(d['velocidad'] ?? 30);
+    }
+    if (p.creation_type === 'subraza') {
+      this.srNombre.set(d['nombre'] ?? p.title);
+      this.srDefinicion.set(d['definicion'] ?? p.description ?? '');
+      this.srPasiva.set(d['pasiva'] ?? '');
+      this.srRazaPadre.set(d['razaPadre'] ?? '');
+    }
+    if (p.creation_type === 'clase') {
+      this.clNombre.set(d['nombre'] ?? p.title);
+      this.clRol.set(d['rol'] ?? '');
+      this.clDefinicion.set(d['definicion'] ?? p.description ?? '');
+      this.clPv.set(d['pv'] ?? 2);
+      this.clEscudo.set(d['escudo'] ?? 2);
+      this.clPh.set(d['ph'] ?? 5);
+      this.clEsMagica.set(d['esMagica'] ?? false);
+      this.clPasiva.set(d['pasiva'] ?? '');
+    }
+    if (p.creation_type === 'subclase') {
+      this.scClasePadre.set(d['clasePadre'] ?? '');
+      this.scDosManos.set(d['usaDosManos'] ?? true);
+      const ap = (d['armaPrincipal'] ?? {}) as any;
+      this.scAp_tipo.set(ap['tipo'] ?? 'Espada');
+      this.scAp_nombre.set(ap['nombre'] ?? '');
+      this.scAp_dado.set(ap['dado'] ?? 8);
+      this.scAp_ataques.set(ap['ataques'] ?? 1);
+      this.scAp_mod.set(ap['modificador'] ?? 'Fuerza');
+    }
+  }
 }

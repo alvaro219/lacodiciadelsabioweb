@@ -473,7 +473,7 @@
         <button class="btn btn--outline" (click)="back()">← Atrás</button>
         @if (isPreview) {
           <button class="btn btn--primary" [disabled]="saving()" (click)="publish()">
-            {{ saving() ? 'Publicando...' : '🚀 Publicar' }}
+            {{ saving() ? (editPost ? 'Guardando...' : 'Publicando...') : (editPost ? '💾 Guardar cambios' : '🚀 Publicar') }}
           </button>
         } @else {
           <button class="btn btn--primary" (click)="next()">Siguiente →</button>

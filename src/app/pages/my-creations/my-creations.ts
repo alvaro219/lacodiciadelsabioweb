@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SocialService } from '../../services/social.service';
 import { SocialPost } from '../../models/social.model';
+import { CreacionForm } from '../../components/creacion-form/creacion-form';
 
 const TYPE_LABELS: Record<string, string> = {
   clase: 'Clase', subclase: 'Subclase', raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio'
@@ -9,7 +10,7 @@ const TYPE_LABELS: Record<string, string> = {
 
 @Component({
   selector: 'app-my-creations',
-  imports: [RouterLink],
+  imports: [RouterLink, CreacionForm],
   templateUrl: './my-creations.html',
   styleUrl: './my-creations.scss'
 })
@@ -19,6 +20,7 @@ export class MyCreations implements OnInit {
   protected error = signal('');
   protected confirmId = signal<string | null>(null);
   protected deleting = signal(false);
+  protected editingPost = signal<SocialPost | null>(null);
 
   readonly TYPE_LABELS = TYPE_LABELS;
 
@@ -35,6 +37,15 @@ export class MyCreations implements OnInit {
       this.error.set(e?.message ?? 'Error cargando creaciones.');
     } finally {
       this.loading.set(false);
+    }
+  }
+
+  startEdit(post: SocialPost) { this.editingPost.set(post); }
+  onEdited() {
+    const edited = this.editingPost();
+    this.editingPost.set(null);
+    if (edited) {
+      this.social.getMyPosts().then(list => this.posts.set(list));
     }
   }
 

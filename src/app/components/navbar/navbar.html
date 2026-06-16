@@ -45,9 +45,16 @@
         </div>
       </div>
 
-      <a routerLink="/condiciones" routerLinkActive="active" (click)="closeMenu()">Condiciones</a>
-      <a routerLink="/armas" routerLinkActive="active" (click)="closeMenu()">Armas</a>
-      <a routerLink="/mecanicas" routerLinkActive="active" (click)="closeMenu()">Mecánicas</a>
+      <div class="navbar__dropdown">
+        <button class="navbar__dropdown-trigger" (click)="toggleMecanicas()">
+          Mecánicas <span class="arrow" [class.open]="isMecanicasOpen()">▾</span>
+        </button>
+        <div class="navbar__dropdown-menu" [class.open]="isMecanicasOpen()">
+          <a routerLink="/condiciones" routerLinkActive="active" (click)="closeMenu()">⚗️ Condiciones</a>
+          <a routerLink="/armas" routerLinkActive="active" (click)="closeMenu()">🗡️ Armas</a>
+          <a routerLink="/mecanicas" routerLinkActive="active" (click)="closeMenu()">⚙️ Mecánicas</a>
+        </div>
+      </div>
       <a routerLink="/manuales" routerLinkActive="active" (click)="closeMenu()">Manuales</a>
       <a routerLink="/novedades" routerLinkActive="active" (click)="closeMenu()">Novedades</a>
       <a routerLink="/comunidad" routerLinkActive="active" (click)="closeMenu()">Comunidad</a>
@@ -61,23 +68,20 @@
       } @else if (currentUser()) {
         <div class="navbar__user" (click)="toggleUserMenu($event)">
           <div class="navbar__avatar">{{ getAvatarLetter() }}</div>
-          <span class="navbar__username">{{ currentUser()!.username }}</span>
+          <span class="navbar__username">{{ currentUser()!.display_name ?? currentUser()!.username }}</span>
           <span class="navbar__user-arrow" [class.open]="isUserMenuOpen()">▾</span>
           @if (isUserMenuOpen()) {
             <div class="navbar__user-menu">
               <div class="navbar__user-menu-header">
                 <div class="navbar__user-menu-avatar">{{ getAvatarLetter() }}</div>
                 <div>
-                  <div class="navbar__user-menu-name">{{ currentUser()!.username }}</div>
+                  <div class="navbar__user-menu-name">{{ currentUser()!.display_name ?? currentUser()!.username }}</div>
                   <div class="navbar__user-menu-email">{{ currentUser()!.email }}</div>
                 </div>
               </div>
               <div class="navbar__user-menu-divider"></div>
               <a routerLink="/mis-creaciones" class="navbar__user-menu-item" (click)="closeMenu()">
                 🎨 Mis Creaciones
-              </a>
-              <a routerLink="/comunidad" class="navbar__user-menu-item" (click)="closeMenu()">
-                � Comunidad
               </a>
               @if (isAdmin()) {
                 <div class="navbar__user-menu-divider"></div>

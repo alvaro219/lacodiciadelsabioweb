@@ -456,6 +456,54 @@
   }
 }
 
+// ===== SEARCH =====
+.social-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+
+  &__icon {
+    position: absolute;
+    left: 0.9rem;
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.6rem 2.5rem 0.6rem 2.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-full);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+
+    &::placeholder { color: var(--color-text-muted); }
+    &:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      background: rgba(255,255,255,0.07);
+    }
+  }
+
+  &__clear {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--radius-sm);
+    &:hover { color: var(--color-text-primary); }
+  }
+}
+
 // ===== LOAD MORE =====
 .social-load-more {
   text-align: center;
@@ -464,19 +512,79 @@
 
 // ===== DOWNLOAD BUTTON =====
 .social-card__download-btn {
-  background: none;
-  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, rgba(240,192,64,0.15), rgba(240,192,64,0.07));
+  border: 1px solid rgba(240,192,64,0.4);
+  border-radius: var(--radius-full);
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-gold);
   cursor: pointer;
-  font-size: 0.85rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-sm);
-  color: var(--color-text-muted);
-  transition: color var(--transition-fast), background var(--transition-fast);
+  transition: all var(--transition-fast);
+  margin-left: auto;
+
+  &__icon {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
 
   &:hover {
-    color: var(--color-gold);
-    background: rgba(240,192,64,0.08);
+    background: linear-gradient(135deg, rgba(240,192,64,0.28), rgba(240,192,64,0.14));
+    border-color: var(--color-gold);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(240,192,64,0.25);
   }
+
+  &.locked {
+    opacity: 0.45;
+    filter: grayscale(0.4);
+    cursor: not-allowed;
+    &:hover { transform: none; box-shadow: none; }
+  }
+}
+
+// ===== DATA TAGS =====
+.social-card__data {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: var(--space-sm);
+}
+
+.social-card__data-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(139,92,246,0.1);
+  border: 1px solid rgba(139,92,246,0.2);
+  color: var(--color-text-secondary);
+
+  &--rareza {
+    background: rgba(240,192,64,0.1);
+    border-color: rgba(240,192,64,0.3);
+    color: var(--color-gold);
+    text-transform: capitalize;
+  }
+
+  &--magic {
+    background: rgba(167,139,250,0.12);
+    border-color: rgba(167,139,250,0.3);
+    color: #c4b5fd;
+  }
+}
+
+.social-card__tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(96,165,250,0.08);
+  border: 1px solid rgba(96,165,250,0.18);
+  color: #93c5fd;
 }
 
 // ===== DOWNLOAD STEPS =====
@@ -527,7 +635,6 @@
 
 // ===== REPORT BUTTON =====
 .social-card__report-btn {
-  margin-left: auto;
   background: none;
   border: none;
   cursor: pointer;

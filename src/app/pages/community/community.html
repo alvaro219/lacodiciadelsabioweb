@@ -335,6 +335,21 @@
       }
     </div>
 
+    <!-- SEARCH -->
+    <div class="social-search">
+      <span class="social-search__icon">🔍</span>
+      <input
+        class="social-search__input"
+        type="text"
+        placeholder="Buscar por nombre o #hashtag..."
+        [ngModel]="searchQuery()"
+        (ngModelChange)="searchQuery.set($event)"
+        name="social-search" />
+      @if (searchQuery()) {
+        <button class="social-search__clear" (click)="searchQuery.set('')" title="Limpiar">✕</button>
+      }
+    </div>
+
     @if (!currentUser() && !authLoading()) {
       <div class="social-guest-banner">
         <span class="social-guest-banner__icon">💡</span>
@@ -360,7 +375,7 @@
     }
 
     <!-- POSTS EMPTY -->
-    @if (!postsLoading() && !postsError() && posts().length === 0) {
+    @if (!postsLoading() && !postsError() && filteredPosts().length === 0) {
       <div class="social-empty">
         <span class="social-empty__icon">🎨</span>
         <h3>Aún no hay creaciones compartidas</h3>
@@ -369,9 +384,9 @@
     }
 
     <!-- POSTS GRID -->
-    @if (posts().length > 0) {
+    @if (filteredPosts().length > 0) {
       <div class="social-grid">
-        @for (post of posts(); track post.id) {
+        @for (post of filteredPosts(); track post.id) {
           <div class="social-card card">
 
             <!-- POST HEADER -->
@@ -397,6 +412,39 @@
               @if (post.description) {
                 <p class="social-card__desc">{{ post.description }}</p>
               }
+              @if (post.data) {
+                <div class="social-card__data">
+                  @if (post.data['rareza']) {
+                    <span class="social-card__data-tag social-card__data-tag--rareza">✨ {{ post.data['rareza'] }}</span>
+                  }
+                  @if (post.data['precio']) {
+                    <span class="social-card__data-tag">💰 {{ post.data['precio'] }} mo.</span>
+                  }
+                  @if (post.data['tamano']) {
+                    <span class="social-card__data-tag">📐 {{ post.data['tamano'] }}</span>
+                  }
+                  @if (post.data['velocidad']) {
+                    <span class="social-card__data-tag">💨 {{ post.data['velocidad'] }}ft</span>
+                  }
+                  @if (post.data['pv']) {
+                    <span class="social-card__data-tag">❤️ PV ×{{ post.data['pv'] }}</span>
+                  }
+                  @if (post.data['esMagica']) {
+                    <span class="social-card__data-tag social-card__data-tag--magic">✨ Mágica</span>
+                  }
+                  @if (post.data['clasePadre']) {
+                    <span class="social-card__data-tag">🎯 {{ post.data['clasePadre'] }}</span>
+                  }
+                  @if (post.data['razaPadre']) {
+                    <span class="social-card__data-tag">🌍 {{ post.data['razaPadre'] }}</span>
+                  }
+                  @if (post.tags && post.tags.length > 0) {
+                    @for (tag of post.tags; track tag) {
+                      <span class="social-card__tag">#{{ tag }}</span>
+                    }
+                  }
+                </div>
+              }
             </div>
 
             <!-- POST ACTIONS -->
@@ -417,9 +465,11 @@
               </button>
               <button
                 class="social-card__download-btn"
-                (click)="onDownload(post)"
-                title="Descargar para la app">
-                ⬇️ {{ post.downloads_count }}
+                [class.locked]="!currentUser()"
+                (click)="currentUser() ? onDownload(post) : showLoginForm.set(true)"
+                [title]="currentUser() ? 'Descargar para la app' : 'Inicia sesión para descargar'">
+                <span class="social-card__download-btn__icon">⬇</span>
+                <span>{{ post.downloads_count }}</span>
               </button>
               @if (currentUser() && currentUser()!.id !== post.user_id) {
                 <button

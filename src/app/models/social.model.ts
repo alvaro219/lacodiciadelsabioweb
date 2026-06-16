@@ -51,4 +51,5 @@ export interface AppUser {
   id: string;
   email: string;
   username: string;
+  display_name?: string;
 }

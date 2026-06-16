@@ -76,6 +76,9 @@
               }
             </div>
             <div class="mc-card__actions">
+              <button class="btn btn--outline btn--sm" (click)="startEdit(post)">
+                ✏️ Editar
+              </button>
               <button class="btn btn--danger btn--sm" (click)="askDelete(post.id)">
                 🗑️ Eliminar
               </button>
@@ -86,6 +89,15 @@
     </div>
   }
 </div>
+
+<!-- EDIT FORM -->
+@if (editingPost()) {
+  <app-creacion-form
+    [editPost]="editingPost()"
+    (closed)="editingPost.set(null)"
+    (published)="onEdited()">
+  </app-creacion-form>
+}
 
 <!-- Modal confirmación borrado -->
 @if (confirmId()) {
