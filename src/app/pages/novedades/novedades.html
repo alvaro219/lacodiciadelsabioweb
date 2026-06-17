@@ -3,7 +3,7 @@
   <div class="nov-hero__bg"></div>
   <div class="nov-hero__content container">
     @if (selectedNovedad()) {
-      <button class="nov-hero__back" (click)="closeNovedad()">← Volver a Novedades</button>
+      <button class="nov-hero__back nov-hero__back--btn" (click)="closeNovedad()">← Volver a Novedades</button>
     } @else {
       <a routerLink="/" class="nov-hero__back">← Volver al inicio</a>
     }
@@ -45,7 +45,7 @@
                   <span class="nov-index-item__pin">📌 Destacado</span>
                 }
                 <h2 class="nov-index-item__title">{{ nov.title }}</h2>
-                <p class="nov-index-item__excerpt">{{ nov.body | slice:0:120 }}{{ nov.body.length > 120 ? '...' : '' }}</p>
+                <p class="nov-index-item__excerpt">{{ nov.synopsis || (nov.body | slice:0:140) }}</p>
                 <div class="nov-index-item__meta">
                   <time class="nov-card__date">{{ nov.published_at | date:'d MMM yyyy' : '' : 'es' }}</time>
                   @if (nov.tags && nov.tags.length > 0) {
@@ -70,13 +70,13 @@
 @if (selectedNovedad()) {
   <section class="nov-list section">
     <div class="container">
-      <article class="nov-card card">
+      <article class="nov-card card nov-card--detail">
         @if (selectedNovedad()!.pinned) {
           <div class="nov-card__pin">📌 Destacado</div>
         }
         @if (selectedNovedad()!.image_url) {
           <div class="nov-card__image">
-            <img [src]="selectedNovedad()!.image_url!" [alt]="selectedNovedad()!.title" loading="lazy" />
+            <img [src]="selectedNovedad()!.image_url!" [alt]="selectedNovedad()!.title" loading="eager" />
           </div>
         }
         <div class="nov-card__body">

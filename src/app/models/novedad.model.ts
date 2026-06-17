@@ -7,6 +7,7 @@ export interface Novedad {
   published_at?: string;
   created_at?: string;
   pinned?: boolean;
+  synopsis?: string | null;
 }
 
 export interface NovComment {

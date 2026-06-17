@@ -28,6 +28,7 @@ export class AdminNovedades implements OnInit {
   protected readonly uploadingImage = signal(false);
 
   protected readonly formTitle = signal('');
+  protected readonly formSynopsis = signal('');
   protected readonly formBody = signal('');
   protected readonly formImageUrl = signal('');
   protected readonly formTags = signal('');
@@ -100,6 +101,7 @@ export class AdminNovedades implements OnInit {
   openCreateForm() {
     this.editingNovedad.set(null);
     this.formTitle.set('');
+    this.formSynopsis.set('');
     this.formBody.set('');
     this.formImageUrl.set('');
     this.formTags.set('');
@@ -111,6 +113,7 @@ export class AdminNovedades implements OnInit {
   openEditForm(nov: Novedad) {
     this.editingNovedad.set(nov);
     this.formTitle.set(nov.title);
+    this.formSynopsis.set(nov.synopsis ?? '');
     this.formBody.set(nov.body);
     this.formImageUrl.set(nov.image_url ?? '');
     this.formTags.set(nov.tags?.join(', ') ?? '');
@@ -165,6 +168,7 @@ export class AdminNovedades implements OnInit {
     const tags = this.formTags().split(',').map(t => t.trim()).filter(Boolean);
     const payload: Omit<Novedad, 'id' | 'created_at'> = {
       title: this.formTitle().trim(),
+      synopsis: this.formSynopsis().trim() || null,
       body: this.formBody().trim(),
       image_url: this.formImageUrl() || null,
       tags,

@@ -25,6 +25,7 @@ export class NovedadService {
       .from('novedades')
       .insert({
         title: novedad.title,
+        synopsis: novedad.synopsis ?? null,
         body: novedad.body,
         image_url: novedad.image_url ?? null,
         tags: novedad.tags ?? [],
