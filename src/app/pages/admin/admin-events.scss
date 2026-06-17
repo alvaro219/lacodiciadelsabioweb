@@ -569,3 +569,18 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.admin__image-preview {
+  margin-top: var(--space-sm);
+  position: relative;
+  display: inline-block;
+
+  img {
+    max-width: 320px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-md);
+    display: block;
+  }
+}

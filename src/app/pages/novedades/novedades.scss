@@ -101,16 +101,15 @@
   display: flex;
   align-items: center;
   gap: var(--space-lg);
-  padding: var(--space-lg) 0;
+  padding: var(--space-lg) var(--space-sm);
   border-bottom: 1px solid rgba(255,255,255,0.07);
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), padding var(--transition-fast), transform var(--transition-fast);
   border-radius: var(--radius-md);
 
   &:hover {
     background: rgba(255,255,255,0.03);
-    padding-left: var(--space-sm);
-    padding-right: var(--space-sm);
+    transform: translateX(4px);
 
     .nov-index-item__arrow { opacity: 1; color: var(--color-gold); }
     .nov-index-item__title { color: var(--color-gold); }
