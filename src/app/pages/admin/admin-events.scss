@@ -515,3 +515,57 @@
     box-shadow: none;
   }
 }
+
+// ===== FORMAT BAR =====
+.admin__format-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  flex-wrap: wrap;
+}
+
+.admin__fmt-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  color: var(--color-text-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  line-height: 1.4;
+
+  &:hover {
+    background: rgba(240,192,64,0.15);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+
+  &--bold strong { font-weight: 900; }
+  &--italic em { font-style: italic; }
+}
+
+.admin__fmt-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255,255,255,0.1);
+  margin: 0 4px;
+}
+
+.admin__fmt-hint {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  margin-left: auto;
+  font-style: italic;
+}
+
+.admin__field textarea#form-body {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

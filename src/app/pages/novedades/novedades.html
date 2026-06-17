@@ -2,7 +2,11 @@
 <section class="nov-hero">
   <div class="nov-hero__bg"></div>
   <div class="nov-hero__content container">
-    <a routerLink="/" class="nov-hero__back">← Volver al inicio</a>
+    @if (selectedNovedad()) {
+      <button class="nov-hero__back" (click)="closeNovedad()">← Volver a Novedades</button>
+    } @else {
+      <a routerLink="/" class="nov-hero__back">← Volver al inicio</a>
+    }
     <div class="nov-hero__header">
       <span class="nov-hero__icon">📣</span>
       <div>
@@ -13,120 +17,148 @@
   </div>
 </section>
 
-<!-- CONTENT -->
-<section class="nov-list section">
-  <div class="container">
-    @if (loading()) {
-      <div class="nov-loading">
-        <p>Cargando novedades...</p>
-      </div>
-    } @else if (novedades().length === 0) {
-      <div class="nov-empty card">
-        <span class="nov-empty__icon">📭</span>
-        <h3>Sin novedades por ahora</h3>
-        <p>Pronto publicaremos actualizaciones sobre el juego y la aplicación. ¡Vuelve pronto!</p>
-      </div>
-    } @else {
-      <div class="nov-grid">
-        @for (nov of novedades(); track nov.id) {
-          <article class="nov-card card" [class.nov-card--pinned]="nov.pinned">
-            @if (nov.pinned) {
-              <div class="nov-card__pin">📌 Destacado</div>
-            }
-            @if (nov.image_url) {
-              <div class="nov-card__image">
-                <img [src]="nov.image_url" [alt]="nov.title" loading="lazy" />
-              </div>
-            }
-            <div class="nov-card__body">
-              <div class="nov-card__meta">
-                <time class="nov-card__date">{{ nov.published_at | date:'d MMM yyyy' : '' : 'es' }}</time>
-                @if (nov.tags && nov.tags.length > 0) {
-                  <div class="nov-card__tags">
-                    @for (tag of nov.tags; track tag) {
-                      <span class="nov-tag">{{ tag }}</span>
-                    }
-                  </div>
+<!-- INDEX VIEW -->
+@if (!selectedNovedad()) {
+  <section class="nov-list section">
+    <div class="container">
+      @if (loading()) {
+        <div class="nov-loading"><p>Cargando novedades...</p></div>
+      } @else if (novedades().length === 0) {
+        <div class="nov-empty card">
+          <span class="nov-empty__icon">📭</span>
+          <h3>Sin novedades por ahora</h3>
+          <p>Pronto publicaremos actualizaciones sobre el juego y la aplicación. ¡Vuelve pronto!</p>
+        </div>
+      } @else {
+        <div class="nov-index">
+          @for (nov of novedades(); track nov.id) {
+            <div class="nov-index-item" [class.nov-index-item--pinned]="nov.pinned" (click)="openNovedad(nov)">
+              <div class="nov-index-item__thumb">
+                @if (nov.image_url) {
+                  <img [src]="nov.image_url" [alt]="nov.title" loading="lazy" />
+                } @else {
+                  <div class="nov-index-item__thumb-placeholder">📣</div>
                 }
               </div>
-              <h2 class="nov-card__title">{{ nov.title }}</h2>
-              <div class="nov-card__text">{{ nov.body }}</div>
-            </div>
-
-            <!-- COMMENT TOGGLE -->
-            <div class="nov-card__footer">
-              <button class="nov-comment-btn" [class.active]="expandedId() === nov.id" (click)="toggleComments(nov.id!)">
-                💬 {{ commentsCount(nov.id!) > 0 ? commentsCount(nov.id!) + ' comentarios' : 'Comentar' }}
-              </button>
-            </div>
-
-            <!-- COMMENTS PANEL -->
-            @if (expandedId() === nov.id) {
-              <div class="nov-comments">
-                @if (commentsLoading()[nov.id!]) {
-                  <p class="nov-comments__loading">Cargando...</p>
-                } @else {
-                  @if ((comments()[nov.id!] ?? []).length === 0) {
-                    <p class="nov-comments__empty">Sé el primero en comentar.</p>
-                  }
-                  @for (c of comments()[nov.id!] ?? []; track c.id) {
-                    <div class="nov-comment">
-                      <div class="nov-comment__header">
-                        <strong class="nov-comment__author">{{ c.username }}</strong>
-                        <span class="nov-comment__date">{{ c.created_at | date:'d MMM yyyy' : '' : 'es' }}</span>
-                      </div>
-                      <p class="nov-comment__body">{{ c.body }}</p>
-
-                      @if (c.admin_reply) {
-                        <div class="nov-comment__reply">
-                          <span class="nov-comment__reply-label">🛡️ Admin</span>
-                          <p>{{ c.admin_reply }}</p>
-                        </div>
-                      }
-
-                      @if (isAdmin()) {
-                        <button class="nov-comment__delete-btn" title="Eliminar comentario" (click)="deleteComment(c)">🗑️</button>
-                      }
-
-                      @if (isAdmin() && !c.admin_reply) {
-                        @if (replyingId() === c.id) {
-                          <div class="nov-comment__reply-form">
-                            <textarea class="nov-comment__reply-input" [(ngModel)]="replyText" placeholder="Escribe tu respuesta..." rows="2" [name]="'reply-' + c.id"></textarea>
-                            <div class="nov-comment__reply-actions">
-                              <button class="btn btn--sm btn--outline" (click)="cancelReply()">Cancelar</button>
-                              <button class="btn btn--sm btn--primary" [disabled]="replySaving() || !replyText().trim()" (click)="submitReply(c)">
-                                {{ replySaving() ? 'Enviando...' : 'Responder' }}
-                              </button>
-                            </div>
-                          </div>
-                        } @else {
-                          <button class="nov-comment__reply-btn" (click)="startReply(c.id!)">↩ Responder</button>
-                        }
+              <div class="nov-index-item__info">
+                @if (nov.pinned) {
+                  <span class="nov-index-item__pin">📌 Destacado</span>
+                }
+                <h2 class="nov-index-item__title">{{ nov.title }}</h2>
+                <p class="nov-index-item__excerpt">{{ nov.body | slice:0:120 }}{{ nov.body.length > 120 ? '...' : '' }}</p>
+                <div class="nov-index-item__meta">
+                  <time class="nov-card__date">{{ nov.published_at | date:'d MMM yyyy' : '' : 'es' }}</time>
+                  @if (nov.tags && nov.tags.length > 0) {
+                    <div class="nov-card__tags">
+                      @for (tag of nov.tags; track tag) {
+                        <span class="nov-tag">{{ tag }}</span>
                       }
                     </div>
                   }
-                }
+                </div>
+              </div>
+              <span class="nov-index-item__arrow">›</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+}
 
-                @if (currentUser()) {
-                  <div class="nov-comment-form">
-                    <textarea class="nov-comment-form__input" [(ngModel)]="newComment" [name]="'comment-' + nov.id" placeholder="Escribe un comentario..." rows="3"></textarea>
-                    @if (commentError()) {
-                      <p class="nov-comment-form__error">⚠️ {{ commentError() }}</p>
-                    }
-                    <button class="btn btn--primary btn--sm" [disabled]="commentSaving() || !newComment().trim()" (click)="submitComment(nov.id!)">
-                      {{ commentSaving() ? 'Enviando...' : 'Publicar comentario' }}
-                    </button>
-                  </div>
-                } @else {
-                  <p class="nov-comments__login">
-                    <a routerLink="/comunidad">Inicia sesión</a> para comentar.
-                  </p>
+<!-- DETAIL VIEW -->
+@if (selectedNovedad()) {
+  <section class="nov-list section">
+    <div class="container">
+      <article class="nov-card card">
+        @if (selectedNovedad()!.pinned) {
+          <div class="nov-card__pin">📌 Destacado</div>
+        }
+        @if (selectedNovedad()!.image_url) {
+          <div class="nov-card__image">
+            <img [src]="selectedNovedad()!.image_url!" [alt]="selectedNovedad()!.title" loading="lazy" />
+          </div>
+        }
+        <div class="nov-card__body">
+          <div class="nov-card__meta">
+            <time class="nov-card__date">{{ selectedNovedad()!.published_at | date:'d MMM yyyy' : '' : 'es' }}</time>
+            @if (selectedNovedad()!.tags && selectedNovedad()!.tags!.length > 0) {
+              <div class="nov-card__tags">
+                @for (tag of selectedNovedad()!.tags!; track tag) {
+                  <span class="nov-tag">{{ tag }}</span>
                 }
               </div>
             }
-          </article>
-        }
-      </div>
-    }
-  </div>
-</section>
+          </div>
+          <h2 class="nov-card__title">{{ selectedNovedad()!.title }}</h2>
+          <div class="nov-card__text nov-card__text--rich" [innerHTML]="selectedNovedad()!.body | markdown"></div>
+        </div>
+
+        <!-- COMMENTS -->
+        <div class="nov-card__footer">
+          <span class="nov-comment-btn active">
+            💬 {{ commentsCount(selectedNovedad()!.id!) > 0 ? commentsCount(selectedNovedad()!.id!) + ' comentarios' : 'Comentarios' }}
+          </span>
+        </div>
+
+        <div class="nov-comments">
+          @if ((comments()[selectedNovedad()!.id!] ?? []).length === 0) {
+            <p class="nov-comments__empty">Sé el primero en comentar.</p>
+          }
+          @for (c of comments()[selectedNovedad()!.id!] ?? []; track c.id) {
+            <div class="nov-comment">
+              <div class="nov-comment__header">
+                <strong class="nov-comment__author">{{ c.username }}</strong>
+                <span class="nov-comment__date">{{ c.created_at | date:'d MMM yyyy' : '' : 'es' }}</span>
+              </div>
+              <p class="nov-comment__body">{{ c.body }}</p>
+
+              @if (c.admin_reply) {
+                <div class="nov-comment__reply">
+                  <span class="nov-comment__reply-label">🛡️ Admin</span>
+                  <p>{{ c.admin_reply }}</p>
+                </div>
+              }
+
+              @if (isAdmin()) {
+                <button class="nov-comment__delete-btn" title="Eliminar comentario" (click)="deleteComment(c)">🗑️</button>
+              }
+
+              @if (isAdmin() && !c.admin_reply) {
+                @if (replyingId() === c.id) {
+                  <div class="nov-comment__reply-form">
+                    <textarea class="nov-comment__reply-input" [(ngModel)]="replyText" placeholder="Escribe tu respuesta..." rows="2" [name]="'reply-' + c.id"></textarea>
+                    <div class="nov-comment__reply-actions">
+                      <button class="btn btn--sm btn--outline" (click)="cancelReply()">Cancelar</button>
+                      <button class="btn btn--sm btn--primary" [disabled]="replySaving() || !replyText().trim()" (click)="submitReply(c)">
+                        {{ replySaving() ? 'Enviando...' : 'Responder' }}
+                      </button>
+                    </div>
+                  </div>
+                } @else {
+                  <button class="nov-comment__reply-btn" (click)="startReply(c.id!)">↩ Responder</button>
+                }
+              }
+            </div>
+          }
+
+          @if (currentUser()) {
+            <div class="nov-comment-form">
+              <textarea class="nov-comment-form__input" [(ngModel)]="newComment" [name]="'comment-detail'" placeholder="Escribe un comentario..." rows="3"></textarea>
+              @if (commentError()) {
+                <p class="nov-comment-form__error">⚠️ {{ commentError() }}</p>
+              }
+              <button class="btn btn--primary btn--sm" [disabled]="commentSaving() || !newComment().trim()" (click)="submitComment(selectedNovedad()!.id!)">
+                {{ commentSaving() ? 'Enviando...' : 'Publicar comentario' }}
+              </button>
+            </div>
+          } @else {
+            <p class="nov-comments__login">
+              <a routerLink="/comunidad">Inicia sesión</a> para comentar.
+            </p>
+          }
+        </div>
+      </article>
+    </div>
+  </section>
+}

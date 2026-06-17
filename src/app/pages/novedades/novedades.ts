@@ -1,14 +1,15 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { DatePipe, SlicePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { NovedadService } from '../../services/novedad.service';
 import { SocialService } from '../../services/social.service';
 import { Novedad, NovComment } from '../../models/novedad.model';
 
 @Component({
   selector: 'app-novedades',
-  imports: [RouterLink, DatePipe, FormsModule],
+  imports: [RouterLink, DatePipe, SlicePipe, FormsModule, MarkdownPipe],
   templateUrl: './novedades.html',
   styleUrl: './novedades.scss'
 })
@@ -18,6 +19,27 @@ export class Novedades implements OnInit {
 
   protected readonly currentUser = computed(() => this.social.currentUser());
   protected readonly isAdmin = computed(() => this.social.isAdmin());
+
+  protected readonly selectedNovedad = signal<Novedad | null>(null);
+
+  openNovedad(nov: Novedad) {
+    this.selectedNovedad.set(nov);
+    this.expandedId.set(null);
+    this.newComment.set('');
+    this.commentError.set('');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!this.comments()[nov.id!]) {
+      this.novedadService.getComments(nov.id!).then(list => {
+        this.comments.update(s => ({ ...s, [nov.id!]: list }));
+      });
+    }
+  }
+
+  closeNovedad() {
+    this.selectedNovedad.set(null);
+    this.expandedId.set(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   protected readonly expandedId = signal<string | null>(null);
   protected readonly comments = signal<Record<string, NovComment[]>>({});

@@ -121,6 +121,30 @@ export class AdminNovedades implements OnInit {
 
   closeForm() { this.showForm.set(false); }
 
+  insertFormat(type: 'h1' | 'h2' | 'h3' | 'bold' | 'italic') {
+    const textarea = document.getElementById('form-body') as HTMLTextAreaElement;
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selected = this.formBody().substring(start, end);
+    const before = this.formBody().substring(0, start);
+    const after = this.formBody().substring(end);
+
+    let wrapped = '';
+    if (type === 'h1') wrapped = `# ${selected || 'Título 1'}`;
+    else if (type === 'h2') wrapped = `## ${selected || 'Título 2'}`;
+    else if (type === 'h3') wrapped = `### ${selected || 'Título 3'}`;
+    else if (type === 'bold') wrapped = `**${selected || 'negrita'}**`;
+    else if (type === 'italic') wrapped = `*${selected || 'cursiva'}*`;
+
+    this.formBody.set(before + wrapped + after);
+    setTimeout(() => {
+      textarea.focus();
+      const newPos = start + wrapped.length;
+      textarea.setSelectionRange(newPos, newPos);
+    }, 0);
+  }
+
   async onImageFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files?.length) return;

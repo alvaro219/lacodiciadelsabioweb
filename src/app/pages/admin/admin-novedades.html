@@ -79,7 +79,16 @@
 
             <div class="admin__field">
               <label>Contenido *</label>
-              <textarea rows="8" placeholder="Escribe el contenido aquí..."
+              <div class="admin__format-bar">
+                <button type="button" class="admin__fmt-btn" title="Título grande" (click)="insertFormat('h1')">H1</button>
+                <button type="button" class="admin__fmt-btn" title="Título mediano" (click)="insertFormat('h2')">H2</button>
+                <button type="button" class="admin__fmt-btn" title="Título pequeño" (click)="insertFormat('h3')">H3</button>
+                <span class="admin__fmt-sep"></span>
+                <button type="button" class="admin__fmt-btn admin__fmt-btn--bold" title="Negrita: **texto**" (click)="insertFormat('bold')"><strong>B</strong></button>
+                <button type="button" class="admin__fmt-btn admin__fmt-btn--italic" title="Cursiva: *texto*" (click)="insertFormat('italic')"><em>I</em></button>
+                <span class="admin__fmt-hint">Selecciona texto y pulsa un botón para aplicar formato</span>
+              </div>
+              <textarea id="form-body" rows="10" placeholder="Escribe el contenido aquí...&#10;&#10;Usa # para títulos, **negrita**, *cursiva*"
                 [ngModel]="formBody()" (ngModelChange)="formBody.set($event)" name="body"></textarea>
             </div>
 
