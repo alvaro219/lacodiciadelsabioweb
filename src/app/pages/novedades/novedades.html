@@ -35,7 +35,7 @@
             <div class="nov-index-item" [class.nov-index-item--pinned]="nov.pinned" (click)="openNovedad(nov)">
               <div class="nov-index-item__thumb">
                 @if (nov.image_url) {
-                  <img [src]="nov.image_url" [alt]="nov.title" loading="lazy" />
+                  <img [src]="nov.image_url" [alt]="nov.title" loading="eager" />
                 } @else {
                   <div class="nov-index-item__thumb-placeholder">📣</div>
                 }
@@ -45,7 +45,7 @@
                   <span class="nov-index-item__pin">📌 Destacado</span>
                 }
                 <h2 class="nov-index-item__title">{{ nov.title }}</h2>
-                <p class="nov-index-item__excerpt">{{ nov.synopsis || (nov.body | slice:0:140) }}</p>
+                <p class="nov-index-item__excerpt">{{ nov.synopsis || stripMarkdown(nov.body) }}</p>
                 <div class="nov-index-item__meta">
                   <time class="nov-card__date">{{ nov.published_at | date:'d MMM yyyy' : '' : 'es' }}</time>
                   @if (nov.tags && nov.tags.length > 0) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DatePipe, SlicePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { NovedadService } from '../../services/novedad.service';
@@ -9,7 +9,7 @@ import { Novedad, NovComment } from '../../models/novedad.model';
 
 @Component({
   selector: 'app-novedades',
-  imports: [RouterLink, DatePipe, SlicePipe, FormsModule, MarkdownPipe],
+  imports: [RouterLink, DatePipe, FormsModule, MarkdownPipe],
   templateUrl: './novedades.html',
   styleUrl: './novedades.scss'
 })
@@ -121,6 +121,15 @@ export class Novedades implements OnInit {
     await this.novedadService.deleteComment(comment.id!);
     const list = await this.novedadService.getComments(comment.novedad_id);
     this.comments.update(s => ({ ...s, [comment.novedad_id]: list }));
+  }
+
+  stripMarkdown(text: string): string {
+    return text
+      .replace(/^#{1,3} /gm, '')
+      .replace(/\*\*(.+?)\*\*/g, '$1')
+      .replace(/\*(.+?)\*/g, '$1')
+      .replace(/\n/g, ' ')
+      .slice(0, 160);
   }
 
   commentsCount(novId: string): number {
