@@ -12,29 +12,6 @@
   </div>
 </section>
 
-<!-- TAB NAV -->
-<div class="comm-tabs">
-  <div class="container">
-    <div class="comm-tabs__nav">
-      <button
-        class="comm-tabs__btn"
-        [class.active]="activeTab() === 'eventos'"
-        (click)="switchTab('eventos')">
-        📅 Eventos &amp; Comunidad
-      </button>
-      <button
-        class="comm-tabs__btn"
-        [class.active]="activeTab() === 'social'"
-        (click)="switchTab('social')">
-        🎨 Apartado Social
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ===== EVENTOS TAB ===== -->
-@if (activeTab() === 'eventos') {
-
 <!-- DISCORD -->
 <section class="discord-section section">
   <div class="container">
@@ -249,11 +226,7 @@
   </div>
 </section>
 
-} <!-- end activeTab === 'eventos' -->
-
-
-<!-- ===== SOCIAL TAB ===== -->
-@if (activeTab() === 'social') {
+<!-- SOCIAL SECTION -->
 
 <!-- LOGIN MODAL -->
 @if (showLoginForm()) {
@@ -554,8 +527,6 @@
     (published)="onCreacionPublished()">
   </app-creacion-form>
 }
-
-} <!-- end activeTab === 'social' -->
 
 <!-- DETAIL MODAL -->
 @if (detailPost()) {

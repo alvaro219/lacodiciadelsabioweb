@@ -1,0 +1,238 @@
+<!-- HERO -->
+<section class="events-hero">
+  <div class="events-hero__bg"></div>
+  <div class="events-hero__content container">
+    <a routerLink="/" class="events-hero__back">← Volver al inicio</a>
+    <h1 class="events-hero__title">Eventos y <span class="gradient-text">Comunidad</span></h1>
+    <p class="events-hero__subtitle">Participa en eventos, beta testing y sesiones de juego. Conecta con otros jugadores.</p>
+    <div class="events-hero__actions">
+      <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+        <img src="assets/icons/discord-icon.svg" alt="" class="discord-icon"> Únete al Discord
+      </a>
+      <a (click)="scrollToSignup()" class="btn btn--secondary btn--lg" style="cursor:pointer">Inscríbete a un Evento</a>
+    </div>
+  </div>
+</section>
+
+<!-- DISCORD -->
+<section class="discord-section section">
+  <div class="container">
+    <div class="discord-card card">
+      <div class="discord-card__content">
+        <span class="discord-card__icon">
+          <img src="assets/icons/discord-icon.svg" alt="Discord" class="discord-icon discord-icon--lg">
+        </span>
+        <div>
+          <h2>Servidor de Discord</h2>
+          <p>Nuestro servidor de Discord es el centro de la comunidad. Aquí encontrarás:</p>
+          <ul>
+            <li>Canales para buscar grupo y organizar partidas</li>
+            <li>Discusión sobre mecánicas y estrategias</li>
+            <li>Soporte directo del equipo de desarrollo</li>
+            <li>Anuncios de actualizaciones y eventos</li>
+            <li>Feedback y sugerencias para la app</li>
+          </ul>
+          <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--primary">Unirse al Discord</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING EVENTS -->
+<section class="events-section section alt-bg">
+  <div class="container">
+    <h2 class="text-center">Próximos Eventos</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">📅</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    @if (loading()) {
+      <div class="events-loading">
+        <p>Cargando eventos...</p>
+      </div>
+    } @else if (getUpcomingEvents().length === 0) {
+      <div class="events-empty">
+        <p>No hay próximos eventos en este momento. ¡Vuelve pronto!</p>
+      </div>
+    } @else {
+      <div class="events-grid">
+        @for (event of getUpcomingEvents(); track event.id) {
+          <div class="event-card card">
+            <div class="event-card__header">
+              <span class="event-card__icon">{{ event.icon }}</span>
+              <span class="event-card__type" [attr.data-type]="event.type">{{ getTypeLabel(event.type) }}</span>
+            </div>
+            <h3 class="event-card__title">{{ event.title }}</h3>
+            <p class="event-card__desc">{{ event.description }}</p>
+            <div class="event-card__footer">
+              <span class="event-card__date">📅 {{ event.date }}</span>
+              @if (event.spots_total > 0) {
+                <span class="event-card__spots">
+                  👥 {{ event.spots }}/{{ event.spots_total }} plazas
+                </span>
+              } @else {
+                <span class="event-card__spots open">👥 Abierto</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- PAST EVENTS -->
+@if (!loading() && getPastEvents().length > 0) {
+  <section class="events-section events-section--past section">
+    <div class="container">
+      <h2 class="text-center">Eventos Anteriores</h2>
+      <div class="ornament">
+        <span class="ornament__line"></span>
+        <span class="ornament__symbol">📜</span>
+        <span class="ornament__line"></span>
+      </div>
+
+      <div class="events-grid">
+        @for (event of getPastEvents(); track event.id) {
+          <div class="event-card event-card--past card">
+            <div class="event-card__header">
+              <span class="event-card__icon">{{ event.icon }}</span>
+              <span class="event-card__type" [attr.data-type]="event.type">{{ getTypeLabel(event.type) }}</span>
+              <span class="event-card__past-badge">Finalizado</span>
+            </div>
+            <h3 class="event-card__title">{{ event.title }}</h3>
+            <p class="event-card__desc">{{ event.description }}</p>
+            <div class="event-card__footer">
+              <span class="event-card__date">📅 {{ event.date }}</span>
+              @if (event.spots_total > 0) {
+                <span class="event-card__spots">
+                  👥 {{ event.spots }}/{{ event.spots_total }} plazas
+                </span>
+              } @else {
+                <span class="event-card__spots open">👥 Abierto</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+<!-- SIGNUP -->
+<section class="signup-section section" id="signup">
+  <div class="container">
+    <h2 class="text-center">Inscríbete</h2>
+    <p class="text-center signup-subtitle">Apúntate a un evento, beta testing o sesión de juego.</p>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">✍️</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="signup-form-wrapper">
+      <form class="signup-form card" (ngSubmit)="onSignup()">
+        @if (signupFull()) {
+          <div class="signup-form__full">
+            <span class="signup-form__full-icon">⛔</span>
+            <h3>¡Evento completo!</h3>
+            <p>Ya no quedan plazas disponibles para el evento seleccionado.</p>
+          </div>
+        } @else if (signupSuccess()) {
+          <div class="signup-form__success">
+            <span class="signup-form__success-icon">✅</span>
+            <h3>¡Inscripción enviada!</h3>
+            <p>Te hemos registrado correctamente. Recibirás un email con los detalles.</p>
+          </div>
+        } @else {
+          <div class="signup-form__field">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Tu nombre o nick"
+              [ngModel]="signupName()"
+              (ngModelChange)="signupName.set($event)"
+              name="name"
+            />
+          </div>
+
+          <div class="signup-form__field">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="tu@email.com"
+              [ngModel]="signupEmail()"
+              (ngModelChange)="signupEmail.set($event)"
+              name="email"
+            />
+          </div>
+
+          <div class="signup-form__field">
+            <label for="event">Evento</label>
+            <select
+              id="event"
+              [ngModel]="signupEvent()"
+              (ngModelChange)="signupEvent.set($event)"
+              name="event">
+              <option value="">Selecciona un evento...</option>
+              @for (event of getUpcomingEvents(); track event.id) {
+                @if (event.spots_total === 0 || event.spots < event.spots_total) {
+                  <option [value]="event.id">
+                    {{ event.icon }} {{ event.title }} ({{ event.date }})
+                    @if (event.spots_total > 0) {
+                      - {{ event.spots_total - event.spots }} plazas libres
+                    }
+                  </option>
+                }
+              }
+            </select>
+          </div>
+
+          @if (signupError()) {
+            <div class="signup-form__error">⚠️ {{ signupError() }}</div>
+          }
+
+          <button type="submit" class="btn btn--primary" [disabled]="signupLoading()">
+            {{ signupLoading() ? 'Enviando...' : 'Enviar Inscripción' }}
+          </button>
+        }
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRIBUTE -->
+<section class="contribute-section section alt-bg">
+  <div class="container">
+    <h2 class="text-center">Colabora con la Comunidad</h2>
+    <div class="ornament">
+      <span class="ornament__line"></span>
+      <span class="ornament__symbol">🤝</span>
+      <span class="ornament__line"></span>
+    </div>
+
+    <div class="contribute-grid">
+      <div class="contribute-card card">
+        <span class="contribute-card__icon">🎨</span>
+        <h3>Creaciones</h3>
+        <p>Diseña y comparte tus propias clases, razas, subclases y más con otros jugadores.</p>
+        <a routerLink="/creaciones" class="btn btn--secondary btn--sm">Ver Creaciones</a>
+      </div>
+      <div class="contribute-card card">
+        <span class="contribute-card__icon">💡</span>
+        <h3>Sugerencias</h3>
+        <p>¿Tienes ideas para mejorar el sistema? Compártelas en Discord o en nuestras encuestas.</p>
+      </div>
+      <div class="contribute-card card">
+        <span class="contribute-card__icon">🐛</span>
+        <h3>Bug Reports</h3>
+        <p>¿Encontraste un bug en la app? Repórtalo y ayúdanos a hacer La Codicia del Sabio más estable.</p>
+      </div>
+    </div>
+  </div>
+</section>

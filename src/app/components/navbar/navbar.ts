@@ -15,6 +15,7 @@ export class Navbar {
   protected readonly isClassesOpen = signal(false);
   protected readonly isRacesOpen = signal(false);
   protected readonly isMecanicasOpen = signal(false);
+  protected readonly isComunidadOpen = signal(false);
   protected readonly isUserMenuOpen = signal(false);
   protected readonly showAuthModal = signal(false);
   protected readonly loginEmail = signal('');
@@ -41,6 +42,12 @@ export class Navbar {
     if (!target.closest('.navbar__user')) {
       this.isUserMenuOpen.set(false);
     }
+    if (!target.closest('.navbar__dropdown')) {
+      this.isClassesOpen.set(false);
+      this.isRacesOpen.set(false);
+      this.isMecanicasOpen.set(false);
+      this.isComunidadOpen.set(false);
+    }
   }
 
   toggleMenu() {
@@ -57,8 +64,17 @@ export class Navbar {
     this.isClassesOpen.set(false);
     this.isRacesOpen.set(false);
     this.isMecanicasOpen.set(false);
+    this.isComunidadOpen.set(false);
     this.isUserMenuOpen.set(false);
     document.body.style.overflow = '';
+  }
+
+  toggleComunidad() {
+    const wasOpen = this.isComunidadOpen();
+    this.isClassesOpen.set(false);
+    this.isRacesOpen.set(false);
+    this.isMecanicasOpen.set(false);
+    this.isComunidadOpen.set(!wasOpen);
   }
 
   toggleUserMenu(e: Event) {
@@ -141,20 +157,26 @@ export class Navbar {
   }
 
   toggleClasses() {
-    this.isClassesOpen.update(v => !v);
+    const wasOpen = this.isClassesOpen();
+    this.isClassesOpen.set(!wasOpen);
     this.isRacesOpen.set(false);
     this.isMecanicasOpen.set(false);
+    this.isComunidadOpen.set(false);
   }
 
   toggleRaces() {
-    this.isRacesOpen.update(v => !v);
+    const wasOpen = this.isRacesOpen();
+    this.isRacesOpen.set(!wasOpen);
     this.isClassesOpen.set(false);
     this.isMecanicasOpen.set(false);
+    this.isComunidadOpen.set(false);
   }
 
   toggleMecanicas() {
-    this.isMecanicasOpen.update(v => !v);
+    const wasOpen = this.isMecanicasOpen();
+    this.isMecanicasOpen.set(!wasOpen);
     this.isClassesOpen.set(false);
     this.isRacesOpen.set(false);
+    this.isComunidadOpen.set(false);
   }
 }

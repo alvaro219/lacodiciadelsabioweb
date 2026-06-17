@@ -1,0 +1,117 @@
+import { Component, OnInit, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { EventService } from '../../services/event.service';
+import { TelegramService } from '../../services/telegram.service';
+import { GameEvent } from '../../models/event.model';
+
+@Component({
+  selector: 'app-eventos',
+  imports: [RouterLink, FormsModule],
+  templateUrl: './eventos.html',
+  styleUrl: './eventos.scss'
+})
+export class Eventos implements OnInit {
+  protected events = signal<GameEvent[]>([]);
+  protected loading = signal(true);
+
+  protected readonly signupName = signal('');
+  protected readonly signupEmail = signal('');
+  protected readonly signupEvent = signal('');
+  protected readonly signupSuccess = signal(false);
+  protected readonly signupFull = signal(false);
+  protected readonly signupError = signal('');
+  protected readonly signupLoading = signal(false);
+
+  constructor(
+    private eventService: EventService,
+    private telegram: TelegramService
+  ) {}
+
+  async ngOnInit() {
+    await this.loadEvents();
+  }
+
+  private async loadEvents() {
+    this.loading.set(true);
+    try {
+      const events = await this.eventService.getActiveEvents();
+      this.events.set(events);
+    } catch {
+      this.events.set([]);
+    } finally {
+      this.loading.set(false);
+    }
+  }
+
+  getTypeLabel(type: string): string {
+    const labels: Record<string, string> = {
+      evento: 'Evento',
+      beta: 'Beta Testing',
+      torneo: 'Torneo',
+      sesion: 'Sesión'
+    };
+    return labels[type] || type;
+  }
+
+  getUpcomingEvents(): GameEvent[] {
+    const today = new Date().toISOString().split('T')[0];
+    return this.events().filter(e => e.date >= today);
+  }
+
+  getPastEvents(): GameEvent[] {
+    const today = new Date().toISOString().split('T')[0];
+    return this.events().filter(e => e.date < today);
+  }
+
+  scrollToSignup() {
+    document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  async onSignup() {
+    this.signupError.set('');
+    this.signupSuccess.set(false);
+    this.signupFull.set(false);
+
+    if (!this.signupName().trim()) {
+      this.signupError.set('Por favor, introduce tu nombre.');
+      return;
+    }
+    if (!this.signupEmail().trim() || !this.signupEmail().includes('@')) {
+      this.signupError.set('Por favor, introduce un email válido.');
+      return;
+    }
+    if (!this.signupEvent()) {
+      this.signupError.set('Por favor, selecciona un evento.');
+      return;
+    }
+
+    this.signupLoading.set(true);
+    const name = this.signupName().trim();
+    const email = this.signupEmail().trim();
+    const eventId = this.signupEvent();
+    const eventTitle = this.events().find(e => e.id === eventId)?.title ?? eventId;
+
+    try {
+      await this.eventService.signup({
+        event_id: eventId,
+        name,
+        email
+      });
+      this.signupSuccess.set(true);
+      this.signupName.set('');
+      this.signupEmail.set('');
+      this.signupEvent.set('');
+      this.telegram.sendSignupNotification(name, email, eventTitle);
+      await this.loadEvents();
+    } catch (e: any) {
+      if (e.message === 'EVENT_FULL') {
+        this.signupFull.set(true);
+      } else {
+        this.signupError.set('Error al enviar la inscripción. Inténtalo de nuevo.');
+      }
+    } finally {
+      this.signupLoading.set(false);
+    }
+  }
+}

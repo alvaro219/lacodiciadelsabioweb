@@ -60,9 +60,18 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/admin/admin-novedades').then(m => m.AdminNovedades)
   },
   {
+    path: 'eventos',
+    title: 'Eventos — La Codicia del Sabio',
+    loadComponent: () => import('./pages/eventos/eventos').then(m => m.Eventos)
+  },
+  {
+    path: 'creaciones',
+    title: 'Creaciones — La Codicia del Sabio',
+    loadComponent: () => import('./pages/creaciones/creaciones').then(m => m.Creaciones)
+  },
+  {
     path: 'comunidad',
-    title: 'Comunidad y Eventos — La Codicia del Sabio',
-    loadComponent: () => import('./pages/community/community').then(m => m.Community)
+    redirectTo: 'creaciones'
   },
   {
     path: 'privacidad',

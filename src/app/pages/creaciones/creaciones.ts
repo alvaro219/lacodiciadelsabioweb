@@ -1,38 +1,23 @@
-import { Component, signal, OnInit, computed } from '@angular/core';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, signal, computed } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { EventService } from '../../services/event.service';
-import { TelegramService } from '../../services/telegram.service';
+import { JsonPipe } from '@angular/common';
 import { SocialService } from '../../services/social.service';
-import { GameEvent } from '../../models/event.model';
 import { SocialPost, SocialComment, CreationType } from '../../models/social.model';
 import { CreacionForm } from '../../components/creacion-form/creacion-form';
 
 @Component({
-  selector: 'app-community',
-  imports: [RouterLink, FormsModule, CreacionForm],
-  templateUrl: './community.html',
-  styleUrl: './community.scss'
+  selector: 'app-creaciones',
+  imports: [RouterLink, FormsModule, JsonPipe, CreacionForm],
+  templateUrl: './creaciones.html',
+  styleUrl: './creaciones.scss'
 })
-export class Community implements OnInit {
-  protected events = signal<GameEvent[]>([]);
-  protected loading = signal(true);
-
-  protected readonly signupName = signal('');
-  protected readonly signupEmail = signal('');
-  protected readonly signupEvent = signal('');
-  protected readonly signupSuccess = signal(false);
-  protected readonly signupFull = signal(false);
-  protected readonly signupError = signal('');
-  protected readonly signupLoading = signal(false);
-
-  // Social section
-  // Tabs removed - all content shown vertically
-  protected readonly posts = signal<SocialPost[]>([]);
-  protected readonly postsLoading = signal(false);
-  protected readonly postsError = signal('');
-  protected readonly hasMorePosts = signal(true);
-  protected readonly currentPage = signal(0);
+export class Creaciones implements OnInit {
+  protected posts = signal<SocialPost[]>([]);
+  protected postsLoading = signal(false);
+  protected postsError = signal('');
+  protected hasMorePosts = signal(true);
+  protected currentPage = signal(0);
 
   protected readonly expandedPostId = signal<string | null>(null);
   protected readonly postComments = signal<Partial<Record<string, SocialComment[]>>>({});
@@ -48,7 +33,6 @@ export class Community implements OnInit {
   protected readonly showCreacionForm = signal(false);
   protected readonly activeTipo = signal<CreationType | null>(null);
 
-  // Search
   protected readonly searchQuery = signal('');
   protected readonly filteredPosts = computed(() => {
     const q = this.searchQuery().toLowerCase().trim();
@@ -62,15 +46,8 @@ export class Community implements OnInit {
     });
   });
 
-  // Detail modal
   protected readonly detailPost = signal<SocialPost | null>(null);
-  openDetail(post: SocialPost) { this.detailPost.set(post); }
-  closeDetail() { this.detailPost.set(null); }
-
-  // Download state
   protected readonly downloadedPost = signal<SocialPost | null>(null);
-
-  // Report state
   protected readonly reportingPost = signal<SocialPost | null>(null);
   protected readonly reportReason = signal('');
   protected readonly reportSending = signal(false);
@@ -96,109 +73,15 @@ export class Community implements OnInit {
     { value: 'accesorio', icon: '💍', label: 'Accesorios' }
   ];
 
-  constructor(
-    private eventService: EventService,
-    private telegram: TelegramService,
-    protected social: SocialService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(protected social: SocialService) {}
 
   async ngOnInit() {
-    await this.loadEvents();
-    // Load posts immediately - they're the main content now
     await this.loadPosts(true);
   }
 
-  private async loadEvents() {
-    this.loading.set(true);
-    try {
-      const events = await this.eventService.getActiveEvents();
-      this.events.set(events);
-    } catch {
-      this.events.set([]);
-    } finally {
-      this.loading.set(false);
-    }
-  }
-
-  scrollToSignup() {
-    document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  getTypeLabel(type: string): string {
-    const labels: Record<string, string> = {
-      evento: 'Evento',
-      beta: 'Beta Testing',
-      torneo: 'Torneo',
-      sesion: 'Sesión'
-    };
-    return labels[type] || type;
-  }
-
-  getUpcomingEvents(): GameEvent[] {
-    const today = new Date().toISOString().split('T')[0];
-    return this.events().filter(e => e.date >= today);
-  }
-
-  getPastEvents(): GameEvent[] {
-    const today = new Date().toISOString().split('T')[0];
-    return this.events().filter(e => e.date < today);
-  }
-
-  async onSignup() {
-    this.signupError.set('');
-    this.signupSuccess.set(false);
-    this.signupFull.set(false);
-
-    if (!this.signupName().trim()) {
-      this.signupError.set('Por favor, introduce tu nombre.');
-      return;
-    }
-    if (!this.signupEmail().trim() || !this.signupEmail().includes('@')) {
-      this.signupError.set('Por favor, introduce un email válido.');
-      return;
-    }
-    if (!this.signupEvent()) {
-      this.signupError.set('Por favor, selecciona un evento.');
-      return;
-    }
-
-    this.signupLoading.set(true);
-    const name = this.signupName().trim();
-    const email = this.signupEmail().trim();
-    const eventId = this.signupEvent();
-    const eventTitle = this.events().find(e => e.id === eventId)?.title ?? eventId;
-
-    try {
-      await this.eventService.signup({
-        event_id: eventId,
-        name,
-        email
-      });
-      this.signupSuccess.set(true);
-      this.signupName.set('');
-      this.signupEmail.set('');
-      this.signupEvent.set('');
-      this.telegram.sendSignupNotification(name, email, eventTitle);
-      await this.loadEvents();
-    } catch (e: any) {
-      if (e.message === 'EVENT_FULL') {
-        this.signupFull.set(true);
-      } else {
-        this.signupError.set('Error al enviar la inscripción. Inténtalo de nuevo.');
-      }
-    } finally {
-      this.signupLoading.set(false);
-    }
-  }
-
-  // ========== SOCIAL TAB ==========
-
-  // Tab switching removed - content now displayed vertically without tabs
-
   async loadPosts(reset = false) {
-    if (this.postsLoading()) return; // Prevent concurrent loads
-    
+    if (this.postsLoading()) return;
+
     if (reset) {
       this.currentPage.set(0);
       this.posts.set([]);
@@ -208,7 +91,7 @@ export class Community implements OnInit {
 
     this.postsLoading.set(true);
     this.postsError.set('');
-    
+
     try {
       const newPosts = await this.social.getPosts(
         this.currentPage(), 12,
@@ -228,7 +111,7 @@ export class Community implements OnInit {
       this.postsLoading.set(false);
     }
   }
-  
+
   async retryLoadPosts() {
     await this.loadPosts(true);
   }
@@ -327,7 +210,7 @@ export class Community implements OnInit {
     return icons[type] ?? '📜';
   }
 
-  getTypeLabel2(type: string): string {
+  getTypeLabel(type: string): string {
     const labels: Record<string, string> = {
       clase: 'Clase', subclase: 'Subclase',
       raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio'
@@ -417,4 +300,7 @@ export class Community implements OnInit {
       this.reportSending.set(false);
     }
   }
+
+  openDetail(post: SocialPost) { this.detailPost.set(post); }
+  closeDetail() { this.detailPost.set(null); }
 }

@@ -57,7 +57,16 @@
       </div>
       <a routerLink="/manuales" routerLinkActive="active" (click)="closeMenu()">Manuales</a>
       <a routerLink="/novedades" routerLinkActive="active" (click)="closeMenu()">Novedades</a>
-      <a routerLink="/comunidad" routerLinkActive="active" (click)="closeMenu()">Comunidad</a>
+
+      <div class="navbar__dropdown">
+        <button class="navbar__dropdown-trigger" (click)="toggleComunidad()">
+          Comunidad <span class="arrow" [class.open]="isComunidadOpen()">▾</span>
+        </button>
+        <div class="navbar__dropdown-menu" [class.open]="isComunidadOpen()">
+          <a routerLink="/eventos" routerLinkActive="active" (click)="closeMenu()">📅 Eventos</a>
+          <a routerLink="/creaciones" routerLinkActive="active" (click)="closeMenu()">🎨 Creaciones</a>
+        </div>
+      </div>
     </div>
 
     <div class="navbar__actions">
