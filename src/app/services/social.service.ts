@@ -33,8 +33,8 @@ export class SocialService {
 
   private async loadProfile(userId: string, email: string) {
     const [profileRes, adminRes] = await Promise.all([
-      this.supabase.client.from('profiles').select('username').eq('id', userId).single(),
-      this.supabase.client.from('user_profiles').select('role, display_name').eq('id', userId).single()
+      this.supabase.client.from('profiles').select('username').eq('id', userId).maybeSingle(),
+      this.supabase.client.from('user_profiles').select('role, display_name').eq('id', userId).maybeSingle()
     ]);
 
     const username = profileRes.data?.username ?? email.split('@')[0];
