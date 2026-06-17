@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase.service';
-import { Novedad } from '../models/novedad.model';
+import { Novedad, NovComment } from '../models/novedad.model';
 
 @Injectable({ providedIn: 'root' })
 export class NovedadService {
@@ -65,10 +65,50 @@ export class NovedadService {
     const { error } = await this.supabase.client.storage
       .from('novedades-images')
       .upload(path, file, { upsert: false });
-    if (error) return { url: null, error: error.message };
+    if (error) {
+      if (error.message.includes('403') || error.message.includes('Unauthorized') || error.message.includes('security'))
+        return { url: null, error: 'Sin permisos para subir imágenes. Ve a Supabase → Storage → novedades-images → Policies y añade política INSERT para authenticated.' };
+      return { url: null, error: error.message };
+    }
     const { data } = this.supabase.client.storage
       .from('novedades-images')
       .getPublicUrl(path);
     return { url: data.publicUrl, error: null };
+  }
+
+  async getComments(novedadId: string): Promise<NovComment[]> {
+    const { data, error } = await this.supabase.client
+      .from('novedad_comments')
+      .select('*')
+      .eq('novedad_id', novedadId)
+      .order('created_at', { ascending: true });
+    if (error || !data) return [];
+    return data as NovComment[];
+  }
+
+  async addComment(novedadId: string, userId: string, username: string, body: string): Promise<{ error: string | null }> {
+    const { error } = await this.supabase.client
+      .from('novedad_comments')
+      .insert({ novedad_id: novedadId, user_id: userId, username, body });
+    if (error) return { error: error.message };
+    return { error: null };
+  }
+
+  async deleteComment(commentId: string): Promise<{ error: string | null }> {
+    const { error } = await this.supabase.client
+      .from('novedad_comments')
+      .delete()
+      .eq('id', commentId);
+    if (error) return { error: error.message };
+    return { error: null };
+  }
+
+  async replyComment(commentId: string, reply: string): Promise<{ error: string | null }> {
+    const { error } = await this.supabase.client
+      .from('novedad_comments')
+      .update({ admin_reply: reply, admin_reply_at: new Date().toISOString() })
+      .eq('id', commentId);
+    if (error) return { error: error.message };
+    return { error: null };
   }
 }

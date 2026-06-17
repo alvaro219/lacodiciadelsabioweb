@@ -8,3 +8,14 @@ export interface Novedad {
   created_at?: string;
   pinned?: boolean;
 }
+
+export interface NovComment {
+  id?: string;
+  novedad_id: string;
+  user_id: string;
+  username: string;
+  body: string;
+  created_at?: string;
+  admin_reply?: string | null;
+  admin_reply_at?: string | null;
+}

@@ -52,6 +52,78 @@
               <h2 class="nov-card__title">{{ nov.title }}</h2>
               <div class="nov-card__text">{{ nov.body }}</div>
             </div>
+
+            <!-- COMMENT TOGGLE -->
+            <div class="nov-card__footer">
+              <button class="nov-comment-btn" [class.active]="expandedId() === nov.id" (click)="toggleComments(nov.id!)">
+                💬 {{ commentsCount(nov.id!) > 0 ? commentsCount(nov.id!) + ' comentarios' : 'Comentar' }}
+              </button>
+            </div>
+
+            <!-- COMMENTS PANEL -->
+            @if (expandedId() === nov.id) {
+              <div class="nov-comments">
+                @if (commentsLoading()[nov.id!]) {
+                  <p class="nov-comments__loading">Cargando...</p>
+                } @else {
+                  @if ((comments()[nov.id!] ?? []).length === 0) {
+                    <p class="nov-comments__empty">Sé el primero en comentar.</p>
+                  }
+                  @for (c of comments()[nov.id!] ?? []; track c.id) {
+                    <div class="nov-comment">
+                      <div class="nov-comment__header">
+                        <strong class="nov-comment__author">{{ c.username }}</strong>
+                        <span class="nov-comment__date">{{ c.created_at | date:'d MMM yyyy' : '' : 'es' }}</span>
+                      </div>
+                      <p class="nov-comment__body">{{ c.body }}</p>
+
+                      @if (c.admin_reply) {
+                        <div class="nov-comment__reply">
+                          <span class="nov-comment__reply-label">🛡️ Admin</span>
+                          <p>{{ c.admin_reply }}</p>
+                        </div>
+                      }
+
+                      @if (isAdmin()) {
+                        <button class="nov-comment__delete-btn" title="Eliminar comentario" (click)="deleteComment(c)">🗑️</button>
+                      }
+
+                      @if (isAdmin() && !c.admin_reply) {
+                        @if (replyingId() === c.id) {
+                          <div class="nov-comment__reply-form">
+                            <textarea class="nov-comment__reply-input" [(ngModel)]="replyText" placeholder="Escribe tu respuesta..." rows="2" [name]="'reply-' + c.id"></textarea>
+                            <div class="nov-comment__reply-actions">
+                              <button class="btn btn--sm btn--outline" (click)="cancelReply()">Cancelar</button>
+                              <button class="btn btn--sm btn--primary" [disabled]="replySaving() || !replyText().trim()" (click)="submitReply(c)">
+                                {{ replySaving() ? 'Enviando...' : 'Responder' }}
+                              </button>
+                            </div>
+                          </div>
+                        } @else {
+                          <button class="nov-comment__reply-btn" (click)="startReply(c.id!)">↩ Responder</button>
+                        }
+                      }
+                    </div>
+                  }
+                }
+
+                @if (currentUser()) {
+                  <div class="nov-comment-form">
+                    <textarea class="nov-comment-form__input" [(ngModel)]="newComment" [name]="'comment-' + nov.id" placeholder="Escribe un comentario..." rows="3"></textarea>
+                    @if (commentError()) {
+                      <p class="nov-comment-form__error">⚠️ {{ commentError() }}</p>
+                    }
+                    <button class="btn btn--primary btn--sm" [disabled]="commentSaving() || !newComment().trim()" (click)="submitComment(nov.id!)">
+                      {{ commentSaving() ? 'Enviando...' : 'Publicar comentario' }}
+                    </button>
+                  </div>
+                } @else {
+                  <p class="nov-comments__login">
+                    <a routerLink="/comunidad">Inicia sesión</a> para comentar.
+                  </p>
+                }
+              </div>
+            }
           </article>
         }
       </div>
