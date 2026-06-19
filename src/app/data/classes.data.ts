@@ -583,16 +583,16 @@ export const CLASSES: GameClass[] = [
       {
         id: 'arlequin',
         name: 'Arlequín',
-        weapons: 'Próximamente',
+        weapons: 'Pistola + Daga (1 mano cada)',
         weaponType: '1-mano',
-        description: 'Subclase en desarrollo. Próximamente disponible.',
+        description: 'El Arlequín ',
         icon: '🃏',
         abilities: {
-          hap1: 'Próximamente.',
-          hap2: 'Próximamente.',
-          has1: 'Próximamente.',
-          has2: 'Próximamente.',
-          had: 'Próximamente.'
+          hap1: 'Don Comedia (1/Turno): Generas un clon intangíble pero visible de tí que se mueve a hasta 10 pies y tiene ❤️ y 10 DA. Este clon repite tus movimientos y habilidades sin sus efectos. Cuando un enemigo te haga objetivo, debe tirar un dado para determinar si te elige a ti o a uno de tus clones.',
+          hap2: 'Falso Llanto: Cedes todas tus condiciones que no sean potenciadoras a los clones y estos esparcen sus condiciones a todos los enemigos a 15 pies de ellos. Quien ya sufriese de alguna condición que no sea potenciadora, sufre 1d6 de daño por cada condición.',
+          has1: '¡Telón abajo!: Te infliges “Incapacitar 2” y “Debilidad 2”. Si ya sufrías alguna condición que no sea potenciadora, además obtienes “Invisibilidad”.',
+          has2: 'Cajita de Sorpresas: Un enemigo hace objetivo a un clon. Le infliges “Confusión 2” y “Provocado 1”.',
+          had: 'Risa Amarga (1/Día): Tras una macabra risa, todos tus clones empiezan a explotar, infligiendo “Miedo 1” y 1d6 de daño a todos los enemigos a 15 pies por cada condición que sufran. Además, aumenta en 1 la duración de sus condiciones que no sean potenciadoras.'
         }
       }
     ]
