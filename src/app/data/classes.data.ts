@@ -585,7 +585,7 @@ export const CLASSES: GameClass[] = [
         name: 'Arlequín',
         weapons: 'Pistola + Daga (1 mano cada)',
         weaponType: '1-mano',
-        description: 'El Arlequín ',
+        description: 'El Arlequín es un especialista en el engaño y las ilusiones. Castigando a sus rivales por equivocarse de objetivo y esparciendo el caos en la batalla.',
         icon: '🃏',
         abilities: {
           hap1: 'Don Comedia (1/Turno): Generas un clon intangíble pero visible de tí que se mueve a hasta 10 pies y tiene ❤️ y 10 DA. Este clon repite tus movimientos y habilidades sin sus efectos. Cuando un enemigo te haga objetivo, debe tirar un dado para determinar si te elige a ti o a uno de tus clones.',
