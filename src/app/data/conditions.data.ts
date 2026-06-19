@@ -83,7 +83,7 @@ export const CONDITION_GROUPS: ConditionGroup[] = [
           },
           {
             name: 'Parálisis',
-            description: 'Cuando intentes realizar cualquier acción debes superar una tirada de salvación (CD = 12 - 🟢 restantes). En caso de no superarla, la acción se cancela y los recursos usados se pierden.',
+            description: 'Cuando intentes realizar cualquier acción ó habilidad debes superar una tirada de salvación (CD = 12 - 🟢 restantes). En caso de no superarla, la acción se cancela y los recursos usados se pierden.',
             duration: 'persistente',
             savingThrow: 'Fortaleza',
             exitCondition: 'Superar salvación de Fortaleza al inicio del turno.'
