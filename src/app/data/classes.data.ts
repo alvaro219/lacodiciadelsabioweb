@@ -517,16 +517,16 @@ export const CLASSES: GameClass[] = [
       {
         id: 'bailarin',
         name: 'Bailarín',
-        weapons: 'Próximamente',
-        weaponType: '1-mano',
-        description: 'Subclase en desarrollo. Próximamente disponible.',
+        weapons: 'Nudilleras (2 manos)',
+        weaponType: '2-manos',
+        description: 'El bailarín es un maestro del apoyo en combate. Cambia de estilo de baile para centrarte en la ofensiva o defensiva.',
         icon: '💃',
         abilities: {
-          hap1: 'Próximamente.',
-          hap2: 'Próximamente.',
-          has1: 'Próximamente.',
-          has2: 'Próximamente.',
-          had: 'Próximamente.'
+          hap1: 'Artista Elevado (1/Combate): Adoptas uno de los Estilos de Baile: \n- Ginga: Siempre que uses una habilidad en esta postura, otorgas “Vigorizado 1” a ti y a los aliados a 15 pies de ti. Obtienes “Postura”.\n- Tribal: Siempre que uses una habilidad en esta postura, otorgas “Coraje 1” a ti y a los aliados a 15 pies de ti. Obtienes “Postura”.',
+          hap2: 'Martelo/Flor: Dependiendo del Estilo de Baile: \n- Ginga: Descargas una poderosa patada a mele hacia delante que le inflige “Derribado” si aciertas y daño completo. En postura empuja al objetivo 10 pies. \n- Tribal: Realizas un grácil ataque al objetivo a mele y después te desplazas 10 pies. En postura, obtienes "Impulso".',
+          has1: 'Media Luna/Atardecer: Dependiendo del Estilo de Baile: \n- Ginga: Trazas un arco completo alrededor tuya que daña a todos los enemigos alrededor tuya. En postura aumenta el nivel del dado de daño en 1. \n- Tribal: Compenetras unos pasos complejos e hipnotizadores que terminan en un golpe en el suelo que daña a todos los enemigos a mele. En postura, infliges "Entumecido 2".',
+          has2: 'Contrapaso: Si infliges daño con una habilidad, puedes cambiar de postura. Obtienes “Acelerado 1”.',
+          had: 'Carnaval de Media Noche (1/Día): Animas el valor de tus aliados con tus pasos de baile, otorgando a todos tus aliados a 20 pies y a ti “Acelerado 2” y “Impulso” e infligiendo a tus enemigos a 20 pies 1d8 de daño.'
         }
       }
     ]
