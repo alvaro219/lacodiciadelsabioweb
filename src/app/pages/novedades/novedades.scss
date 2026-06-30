@@ -98,9 +98,17 @@
 }
 
 .nov-index-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-lg);
+
+  &__seo-link {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
   padding: var(--space-lg) var(--space-sm);
   border-bottom: 1px solid rgba(255,255,255,0.07);
   cursor: pointer;

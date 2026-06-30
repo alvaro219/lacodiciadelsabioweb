@@ -32,15 +32,18 @@ export class SocialService {
   }
 
   private async loadProfile(userId: string, email: string) {
-    const [profileRes, adminRes] = await Promise.all([
-      this.supabase.client.from('profiles').select('username').eq('id', userId).maybeSingle(),
-      this.supabase.client.from('user_profiles').select('role, display_name').eq('id', userId).maybeSingle()
-    ]);
+    const { data, error } = await this.supabase.client
+      .from('user_profiles')
+      .select('role, display_name, username')
+      .eq('id', userId)
+      .maybeSingle();
 
-    const username = profileRes.data?.username ?? email.split('@')[0];
-    const display_name = adminRes.data?.display_name || undefined;
+    if (error) console.error('[SocialService] loadProfile error:', error);
+
+    const username = data?.username ?? email.split('@')[0];
+    const display_name = data?.display_name || undefined;
     this.currentUser.set({ id: userId, email, username, display_name });
-    this.isAdmin.set(adminRes.data?.role === 'admin');
+    this.isAdmin.set(data?.role === 'admin');
   }
 
   async signInWithEmail(email: string, password: string): Promise<void> {
@@ -53,7 +56,7 @@ export class SocialService {
     if (error) throw error;
     if (data.user) {
       await this.supabase.client
-        .from('profiles')
+        .from('user_profiles')
         .upsert({ id: data.user.id, username });
       this.currentUser.set({ id: data.user.id, email, username });
     }

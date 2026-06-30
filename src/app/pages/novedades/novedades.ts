@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { NovedadService } from '../../services/novedad.service';
 import { SocialService } from '../../services/social.service';
+import { SeoService } from '../../services/seo.service';
 import { Novedad, NovComment } from '../../models/novedad.model';
 
 @Component({
@@ -54,10 +55,12 @@ export class Novedades implements OnInit {
 
   constructor(
     private novedadService: NovedadService,
-    private social: SocialService
+    private social: SocialService,
+    private seo: SeoService
   ) {}
 
   async ngOnInit() {
+    this.seo.setNovedadesIndex();
     try {
       await this.novedadService.loadNovedades();
       this.novedades.set(this.novedadService.novedades());

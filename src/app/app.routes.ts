@@ -55,6 +55,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/novedades/novedades').then(m => m.Novedades)
   },
   {
+    path: 'novedades/:id',
+    loadComponent: () => import('./pages/novedad-detail/novedad-detail').then(m => m.NovedadDetail)
+  },
+  {
     path: 'admin/novedades',
     title: 'Admin Novedades — La Codicia del Sabio',
     loadComponent: () => import('./pages/admin/admin-novedades').then(m => m.AdminNovedades)

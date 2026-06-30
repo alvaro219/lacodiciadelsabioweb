@@ -1,0 +1,135 @@
+<!-- HERO -->
+<section class="nov-hero">
+  <div class="nov-hero__bg"></div>
+  <div class="nov-hero__content container">
+    <a routerLink="/novedades" class="nov-hero__back nov-hero__back--btn">← Volver a Novedades</a>
+    <div class="nov-hero__header">
+      <span class="nov-hero__icon">📣</span>
+      <div>
+        <h1 class="nov-hero__title">Novedades</h1>
+        <p class="nov-hero__subtitle">Últimas noticias, actualizaciones y anuncios sobre La Codicia del Sabio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOADING -->
+@if (loading()) {
+  <section class="nov-list section">
+    <div class="container">
+      <div class="nov-loading"><p>Cargando novedad...</p></div>
+    </div>
+  </section>
+}
+
+<!-- NOT FOUND -->
+@if (!loading() && notFound()) {
+  <section class="nov-list section">
+    <div class="container">
+      <div class="nov-empty card">
+        <span class="nov-empty__icon">📭</span>
+        <h3>Novedad no encontrada</h3>
+        <p>Esta novedad no existe o ha sido eliminada.</p>
+        <a routerLink="/novedades" class="btn btn--primary btn--sm">Ver todas las novedades</a>
+      </div>
+    </div>
+  </section>
+}
+
+<!-- DETAIL -->
+@if (!loading() && novedad()) {
+  <section class="nov-list section">
+    <div class="container">
+      <article class="nov-card card nov-card--detail">
+        @if (novedad()!.pinned) {
+          <div class="nov-card__pin">📌 Destacado</div>
+        }
+        @if (novedad()!.image_url) {
+          <div class="nov-card__image">
+            <img [src]="novedad()!.image_url!" [alt]="novedad()!.title" loading="eager" />
+          </div>
+        }
+        <div class="nov-card__body">
+          <div class="nov-card__meta">
+            <time class="nov-card__date">{{ novedad()!.published_at | date:'d MMM yyyy' : '' : 'es' }}</time>
+            @if (novedad()!.tags && novedad()!.tags!.length > 0) {
+              <div class="nov-card__tags">
+                @for (tag of novedad()!.tags!; track tag) {
+                  <span class="nov-tag">{{ tag }}</span>
+                }
+              </div>
+            }
+          </div>
+          <h2 class="nov-card__title">{{ novedad()!.title }}</h2>
+          <div class="nov-card__text nov-card__text--rich" [innerHTML]="novedad()!.body | markdown"></div>
+        </div>
+
+        <!-- COMMENTS HEADER -->
+        <div class="nov-card__footer">
+          <span class="nov-comment-btn active">
+            💬 {{ comments().length > 0 ? comments().length + ' comentarios' : 'Comentarios' }}
+          </span>
+        </div>
+
+        <!-- COMMENTS LIST -->
+        <div class="nov-comments">
+          @if (comments().length === 0) {
+            <p class="nov-comments__empty">Sé el primero en comentar.</p>
+          }
+          @for (c of comments(); track c.id) {
+            <div class="nov-comment">
+              <div class="nov-comment__header">
+                <strong class="nov-comment__author">{{ c.username }}</strong>
+                <span class="nov-comment__date">{{ c.created_at | date:'d MMM yyyy' : '' : 'es' }}</span>
+              </div>
+              <p class="nov-comment__body">{{ c.body }}</p>
+
+              @if (c.admin_reply) {
+                <div class="nov-comment__reply">
+                  <span class="nov-comment__reply-label">🛡️ Admin</span>
+                  <p>{{ c.admin_reply }}</p>
+                </div>
+              }
+
+              @if (isAdmin()) {
+                <button class="nov-comment__delete-btn" title="Eliminar comentario" (click)="deleteComment(c)">🗑️</button>
+              }
+
+              @if (isAdmin() && !c.admin_reply) {
+                @if (replyingId() === c.id) {
+                  <div class="nov-comment__reply-form">
+                    <textarea class="nov-comment__reply-input" [(ngModel)]="replyText" placeholder="Escribe tu respuesta..." rows="2" [name]="'reply-' + c.id"></textarea>
+                    <div class="nov-comment__reply-actions">
+                      <button class="btn btn--sm btn--outline" (click)="cancelReply()">Cancelar</button>
+                      <button class="btn btn--sm btn--primary" [disabled]="replySaving() || !replyText().trim()" (click)="submitReply(c)">
+                        {{ replySaving() ? 'Enviando...' : 'Responder' }}
+                      </button>
+                    </div>
+                  </div>
+                } @else {
+                  <button class="nov-comment__reply-btn" (click)="startReply(c.id!)">↩ Responder</button>
+                }
+              }
+            </div>
+          }
+
+          @if (currentUser()) {
+            <div class="nov-comment-form">
+              <textarea class="nov-comment-form__input" [(ngModel)]="newComment" name="comment-detail" placeholder="Escribe un comentario..." rows="3"></textarea>
+              @if (commentError()) {
+                <p class="nov-comment-form__error">⚠️ {{ commentError() }}</p>
+              }
+              <button class="btn btn--primary btn--sm" [disabled]="commentSaving() || !newComment().trim()" (click)="submitComment()">
+                {{ commentSaving() ? 'Enviando...' : 'Publicar comentario' }}
+              </button>
+            </div>
+          } @else {
+            <p class="nov-comments__login">
+              <a routerLink="/creaciones">Inicia sesión</a> para comentar.
+            </p>
+          }
+        </div>
+      </article>
+    </div>
+  </section>
+}
