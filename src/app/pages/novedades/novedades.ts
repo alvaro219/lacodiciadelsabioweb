@@ -58,9 +58,14 @@ export class Novedades implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await this.novedadService.loadNovedades();
-    this.novedades.set(this.novedadService.novedades());
-    this.loading.set(false);
+    try {
+      await this.novedadService.loadNovedades();
+      this.novedades.set(this.novedadService.novedades());
+    } catch (err) {
+      console.error('[Novedades] Error cargando novedades:', err);
+    } finally {
+      this.loading.set(false);
+    }
   }
 
   async toggleComments(novId: string) {

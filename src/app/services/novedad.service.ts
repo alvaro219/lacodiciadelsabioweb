@@ -15,9 +15,10 @@ export class NovedadService {
       .order('pinned', { ascending: false })
       .order('published_at', { ascending: false });
 
-    if (!error && data) {
-      this.novedades.set(data as Novedad[]);
+    if (error) {
+      console.error('[NovedadService] loadNovedades error:', error);
     }
+    this.novedades.set((data ?? []) as Novedad[]);
   }
 
   async create(novedad: Omit<Novedad, 'id' | 'created_at'>): Promise<{ error: string | null }> {
