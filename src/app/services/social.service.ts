@@ -10,16 +10,24 @@ export class SocialService {
   readonly authLoading = signal(true);
   readonly isAdmin = signal(false);
 
+  /** Resolves when initial auth check is complete */
+  readonly authReady: Promise<void>;
+
   constructor(private supabase: SupabaseService) {
-    this.initAuth();
+    this.authReady = this.initAuth();
   }
 
-  private async initAuth() {
-    const { data: { session } } = await this.supabase.client.auth.getSession();
-    if (session?.user) {
-      await this.loadProfile(session.user.id, session.user.email ?? '');
+  private async initAuth(): Promise<void> {
+    try {
+      const { data: { session } } = await this.supabase.client.auth.getSession();
+      if (session?.user) {
+        await this.loadProfile(session.user.id, session.user.email ?? '');
+      }
+    } catch (err) {
+      console.error('[SocialService] initAuth error:', err);
+    } finally {
+      this.authLoading.set(false);
     }
-    this.authLoading.set(false);
 
     this.supabase.client.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {

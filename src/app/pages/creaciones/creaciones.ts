@@ -1,13 +1,14 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 import { SocialService } from '../../services/social.service';
 import { SocialPost, SocialComment, CreationType } from '../../models/social.model';
 import { CreacionForm } from '../../components/creacion-form/creacion-form';
 
 @Component({
   selector: 'app-creaciones',
-  imports: [RouterLink, FormsModule, CreacionForm],
+  imports: [RouterLink, FormsModule, JsonPipe, CreacionForm],
   templateUrl: './creaciones.html',
   styleUrl: './creaciones.scss'
 })
@@ -78,6 +79,7 @@ export class Creaciones implements OnInit {
   async ngOnInit() {
     this.startLoadTimeout();
     try {
+      await this.social.authReady;
       await this.loadPosts(true);
     } catch (err) {
       console.error('[Creaciones] ngOnInit error:', err);

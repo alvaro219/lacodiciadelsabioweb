@@ -165,23 +165,29 @@ export class AdminNovedades implements OnInit {
     }
     this.saving.set(true);
     this.formError.set('');
-    const tags = this.formTags().split(',').map(t => t.trim()).filter(Boolean);
-    const payload: Omit<Novedad, 'id' | 'created_at'> = {
-      title: this.formTitle().trim(),
-      synopsis: this.formSynopsis().trim() || null,
-      body: this.formBody().trim(),
-      image_url: this.formImageUrl() || null,
-      tags,
-      pinned: this.formPinned()
-    };
-    const editing = this.editingNovedad();
-    const result = editing
-      ? await this.novedadService.update(editing.id!, payload)
-      : await this.novedadService.create(payload);
-    this.saving.set(false);
-    if (result.error) { this.formError.set(result.error); return; }
-    this.novedades.set(this.novedadService.novedades());
-    this.closeForm();
+    try {
+      const tags = this.formTags().split(',').map(t => t.trim()).filter(Boolean);
+      const payload: Omit<Novedad, 'id' | 'created_at'> = {
+        title: this.formTitle().trim(),
+        synopsis: this.formSynopsis().trim() || null,
+        body: this.formBody().trim(),
+        image_url: this.formImageUrl() || null,
+        tags,
+        pinned: this.formPinned()
+      };
+      const editing = this.editingNovedad();
+      const result = editing
+        ? await this.novedadService.update(editing.id!, payload)
+        : await this.novedadService.create(payload);
+      if (result.error) { this.formError.set(result.error); return; }
+      this.novedades.set(this.novedadService.novedades());
+      this.closeForm();
+    } catch (e: any) {
+      console.error('[AdminNovedades] saveNovedad error:', e);
+      this.formError.set(e?.message ?? 'Error inesperado al guardar.');
+    } finally {
+      this.saving.set(false);
+    }
   }
 
   deleteNovedad(nov: Novedad) {
