@@ -23,6 +23,12 @@
     <div class="container">
       @if (loading()) {
         <div class="nov-loading"><p>Cargando novedades...</p></div>
+      } @else if (loadError()) {
+        <div class="nov-empty card">
+          <span class="nov-empty__icon">⚠️</span>
+          <h3>{{ loadError() }}</h3>
+          <button class="btn btn--primary btn--sm" (click)="retryLoad()">Reintentar</button>
+        </div>
       } @else if (novedades().length === 0) {
         <div class="nov-empty card">
           <span class="nov-empty__icon">📭</span>

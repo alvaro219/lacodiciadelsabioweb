@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,9 +14,11 @@ import { Novedad, NovComment } from '../../models/novedad.model';
   templateUrl: './novedades.html',
   styleUrl: './novedades.scss'
 })
-export class Novedades implements OnInit {
+export class Novedades implements OnInit, OnDestroy {
   protected readonly novedades = signal<Novedad[]>([]);
   protected readonly loading = signal(true);
+  protected readonly loadError = signal('');
+  private loadTimeout: any;
 
   protected readonly currentUser = computed(() => this.social.currentUser());
   protected readonly isAdmin = computed(() => this.social.isAdmin());
@@ -61,14 +63,41 @@ export class Novedades implements OnInit {
 
   async ngOnInit() {
     this.seo.setNovedadesIndex();
+    this.startLoadTimeout();
     try {
       await this.novedadService.loadNovedades();
       this.novedades.set(this.novedadService.novedades());
     } catch (err) {
       console.error('[Novedades] Error cargando novedades:', err);
+      this.loadError.set('Error al cargar las novedades. Pulsa "Reintentar".');
     } finally {
       this.loading.set(false);
+      this.clearLoadTimeout();
     }
+  }
+
+  private startLoadTimeout() {
+    this.clearLoadTimeout();
+    this.loadTimeout = setTimeout(() => {
+      if (this.loading() && this.novedades().length === 0) {
+        console.warn('[Novedades] Timeout de carga alcanzado');
+        this.loading.set(false);
+        this.loadError.set('La carga está tardando demasiado. Pulsa "Reintentar".');
+      }
+    }, 10000);
+  }
+
+  private clearLoadTimeout() {
+    if (this.loadTimeout) {
+      clearTimeout(this.loadTimeout);
+      this.loadTimeout = null;
+    }
+  }
+
+  async retryLoad() {
+    this.loadError.set('');
+    this.loading.set(true);
+    await this.ngOnInit();
   }
 
   async toggleComments(novId: string) {
@@ -142,5 +171,9 @@ export class Novedades implements OnInit {
 
   commentsCount(novId: string): number {
     return (this.comments()[novId] ?? []).length;
+  }
+
+  ngOnDestroy() {
+    this.clearLoadTimeout();
   }
 }

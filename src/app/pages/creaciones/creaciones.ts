@@ -1,14 +1,13 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
 import { SocialService } from '../../services/social.service';
 import { SocialPost, SocialComment, CreationType } from '../../models/social.model';
 import { CreacionForm } from '../../components/creacion-form/creacion-form';
 
 @Component({
   selector: 'app-creaciones',
-  imports: [RouterLink, FormsModule, JsonPipe, CreacionForm],
+  imports: [RouterLink, FormsModule, CreacionForm],
   templateUrl: './creaciones.html',
   styleUrl: './creaciones.scss'
 })
@@ -18,6 +17,7 @@ export class Creaciones implements OnInit {
   protected postsError = signal('');
   protected hasMorePosts = signal(true);
   protected currentPage = signal(0);
+  private loadTimeout: any;
 
   protected readonly expandedPostId = signal<string | null>(null);
   protected readonly postComments = signal<Partial<Record<string, SocialComment[]>>>({});
@@ -76,7 +76,34 @@ export class Creaciones implements OnInit {
   constructor(protected social: SocialService) {}
 
   async ngOnInit() {
-    await this.loadPosts(true);
+    this.startLoadTimeout();
+    try {
+      await this.loadPosts(true);
+    } catch (err) {
+      console.error('[Creaciones] ngOnInit error:', err);
+      this.postsLoading.set(false);
+      this.postsError.set('Error al cargar las creaciones. Pulsa "Reintentar".');
+    } finally {
+      this.clearLoadTimeout();
+    }
+  }
+
+  private startLoadTimeout() {
+    this.clearLoadTimeout();
+    this.loadTimeout = setTimeout(() => {
+      if (this.postsLoading() && this.posts().length === 0) {
+        console.warn('[Creaciones] Timeout de carga alcanzado');
+        this.postsLoading.set(false);
+        this.postsError.set('La carga está tardando demasiado. Pulsa "Reintentar".');
+      }
+    }, 10000);
+  }
+
+  private clearLoadTimeout() {
+    if (this.loadTimeout) {
+      clearTimeout(this.loadTimeout);
+      this.loadTimeout = null;
+    }
   }
 
   async loadPosts(reset = false) {
@@ -91,6 +118,7 @@ export class Creaciones implements OnInit {
 
     this.postsLoading.set(true);
     this.postsError.set('');
+    this.startLoadTimeout();
 
     try {
       const newPosts = await this.social.getPosts(
@@ -109,10 +137,12 @@ export class Creaciones implements OnInit {
       this.postsError.set('Error al cargar las creaciones. Pulsa "Reintentar".');
     } finally {
       this.postsLoading.set(false);
+      this.clearLoadTimeout();
     }
   }
 
   async retryLoadPosts() {
+    this.postsError.set('');
     await this.loadPosts(true);
   }
 
