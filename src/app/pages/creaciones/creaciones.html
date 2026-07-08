@@ -322,7 +322,230 @@
       @if (detailPost()!.data) {
         <div class="crea-detail-modal__data">
           <h4>Detalles</h4>
-          <pre>{{ detailPost()!.data | json }}</pre>
+
+          <!-- ═══ RAZA ═══ -->
+          @if (detailPost()!.creation_type === 'raza') {
+            <div class="detail-section">
+              @if (d('pasiva')) {
+                <div class="detail-field">
+                  <span class="detail-label">Pasiva</span>
+                  <span class="detail-value">{{ d('pasiva') }}</span>
+                </div>
+              }
+              <div class="detail-row">
+                @if (d('tamano')) {
+                  <div class="detail-field">
+                    <span class="detail-label">Tamaño</span>
+                    <span class="detail-value">{{ d('tamano') }}</span>
+                  </div>
+                }
+                @if (d('velocidad')) {
+                  <div class="detail-field">
+                    <span class="detail-label">Velocidad</span>
+                    <span class="detail-value">{{ d('velocidad') }} m</span>
+                  </div>
+                }
+              </div>
+              @if (d('rasgos')?.length) {
+                <div class="detail-field">
+                  <span class="detail-label">Rasgos</span>
+                  <div class="detail-chips">
+                    @for (r of d('rasgos'); track r) {
+                      <span class="detail-chip">{{ r }}</span>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          <!-- ═══ SUBRAZA ═══ -->
+          @if (detailPost()!.creation_type === 'subraza') {
+            <div class="detail-section">
+              @if (d('razaPadre')) {
+                <div class="detail-field">
+                  <span class="detail-label">Raza base</span>
+                  <span class="detail-value">{{ d('razaPadre') }}</span>
+                </div>
+              }
+              @if (d('pasiva')) {
+                <div class="detail-field">
+                  <span class="detail-label">Pasiva</span>
+                  <span class="detail-value">{{ d('pasiva') }}</span>
+                </div>
+              }
+              <div class="detail-row">
+                @if (d('tamanoOverride')) {
+                  <div class="detail-field">
+                    <span class="detail-label">Tamaño</span>
+                    <span class="detail-value">{{ d('tamanoOverride') }}</span>
+                  </div>
+                }
+                @if (d('velocidadOverride')) {
+                  <div class="detail-field">
+                    <span class="detail-label">Velocidad</span>
+                    <span class="detail-value">{{ d('velocidadOverride') }} m</span>
+                  </div>
+                }
+              </div>
+              @if (d('rasgos')?.length) {
+                <div class="detail-field">
+                  <span class="detail-label">Rasgos</span>
+                  <div class="detail-chips">
+                    @for (r of d('rasgos'); track r) {
+                      <span class="detail-chip">{{ r }}</span>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          <!-- ═══ CLASE ═══ -->
+          @if (detailPost()!.creation_type === 'clase') {
+            <div class="detail-section">
+              @if (d('rol')) {
+                <div class="detail-field">
+                  <span class="detail-label">Rol</span>
+                  <span class="detail-value">{{ capitalize(d('rol')) }}</span>
+                </div>
+              }
+              <div class="detail-row">
+                @if (d('pv')) {
+                  <div class="detail-stat">
+                    <span class="detail-stat__value">{{ d('pv') }}</span>
+                    <span class="detail-stat__label">PV</span>
+                  </div>
+                }
+                @if (d('escudo')) {
+                  <div class="detail-stat">
+                    <span class="detail-stat__value">{{ d('escudo') }}</span>
+                    <span class="detail-stat__label">Escudo</span>
+                  </div>
+                }
+                @if (d('ph')) {
+                  <div class="detail-stat">
+                    <span class="detail-stat__value">{{ d('ph') }}</span>
+                    <span class="detail-stat__label">PH</span>
+                  </div>
+                }
+              </div>
+              @if (d('esMagica') !== null) {
+                <div class="detail-field">
+                  <span class="detail-label">Tipo</span>
+                  <span class="detail-value">{{ d('esMagica') ? 'Clase Mágica' : 'Clase Marcial' }}</span>
+                </div>
+              }
+              @if (d('pasiva')) {
+                <div class="detail-field">
+                  <span class="detail-label">Pasiva de Maestría</span>
+                  <span class="detail-value">{{ d('pasiva') }}</span>
+                </div>
+              }
+              @if (d('hb1Nombre') || d('hb1')) {
+                <div class="detail-ability">
+                  <span class="detail-ability__name">{{ d('hb1Nombre') || 'Habilidad Base 1' }}</span>
+                  <p class="detail-ability__desc">{{ d('hb1') }}</p>
+                </div>
+              }
+              @if (d('hb2Nombre') || d('hb2')) {
+                <div class="detail-ability">
+                  <span class="detail-ability__name">{{ d('hb2Nombre') || 'Habilidad Base 2' }}</span>
+                  <p class="detail-ability__desc">{{ d('hb2') }}</p>
+                </div>
+              }
+            </div>
+          }
+
+          <!-- ═══ SUBCLASE ═══ -->
+          @if (detailPost()!.creation_type === 'subclase') {
+            <div class="detail-section">
+              @if (d('clasePadre')) {
+                <div class="detail-field">
+                  <span class="detail-label">Clase base</span>
+                  <span class="detail-value">{{ d('clasePadre') }}</span>
+                </div>
+              }
+              @if (d('usaDosManos') !== null) {
+                <div class="detail-field">
+                  <span class="detail-label">Estilo</span>
+                  <span class="detail-value">{{ d('usaDosManos') ? 'Dos manos' : 'Una mano + secundaria' }}</span>
+                </div>
+              }
+
+              <!-- Arma Principal -->
+              @if (arma('armaPrincipal')) {
+                <div class="detail-weapon">
+                  <span class="detail-weapon__title">Arma Principal</span>
+                  <div class="detail-row">
+                    <div class="detail-field"><span class="detail-label">Nombre</span><span class="detail-value">{{ arma('armaPrincipal').nombre }}</span></div>
+                    <div class="detail-field"><span class="detail-label">Tipo</span><span class="detail-value">{{ arma('armaPrincipal').tipo }}</span></div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-field"><span class="detail-label">Dado</span><span class="detail-value">{{ arma('armaPrincipal').dado }}</span></div>
+                    <div class="detail-field"><span class="detail-label">Ataques</span><span class="detail-value">{{ arma('armaPrincipal').ataques }}</span></div>
+                    <div class="detail-field"><span class="detail-label">Modificador</span><span class="detail-value">{{ arma('armaPrincipal').modificador }}</span></div>
+                  </div>
+                </div>
+              }
+
+              <!-- Arma Secundaria -->
+              @if (arma('armaSecundaria')) {
+                <div class="detail-weapon">
+                  <span class="detail-weapon__title">Arma Secundaria</span>
+                  <div class="detail-row">
+                    <div class="detail-field"><span class="detail-label">Nombre</span><span class="detail-value">{{ arma('armaSecundaria').nombre }}</span></div>
+                    <div class="detail-field"><span class="detail-label">Tipo</span><span class="detail-value">{{ arma('armaSecundaria').tipo }}</span></div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-field"><span class="detail-label">Dado</span><span class="detail-value">{{ arma('armaSecundaria').dado }}</span></div>
+                    <div class="detail-field"><span class="detail-label">Ataques</span><span class="detail-value">{{ arma('armaSecundaria').ataques }}</span></div>
+                    <div class="detail-field"><span class="detail-label">Modificador</span><span class="detail-value">{{ arma('armaSecundaria').modificador }}</span></div>
+                  </div>
+                </div>
+              }
+
+              <!-- Habilidades -->
+              @for (key of habKeys(); track key) {
+                @if (hab(key)) {
+                  <div class="detail-ability">
+                    <span class="detail-ability__name">
+                      {{ hab(key).nombre || habLabel(key) }}
+                      @if (hab(key).esReaccion) { <span class="detail-badge">Reacción</span> }
+                    </span>
+                    @if (hab(key).coste || hab(key).acciones) {
+                      <div class="detail-ability__meta">
+                        @if (hab(key).coste) { <span>Coste: {{ hab(key).coste }}</span> }
+                        @if (hab(key).acciones) { <span>Acciones: {{ hab(key).acciones }}</span> }
+                      </div>
+                    }
+                    <p class="detail-ability__desc">{{ hab(key).descripcion }}</p>
+                  </div>
+                }
+              }
+            </div>
+          }
+
+          <!-- ═══ ACCESORIO ═══ -->
+          @if (detailPost()!.creation_type === 'accesorio') {
+            <div class="detail-section">
+              <div class="detail-row">
+                @if (d('rareza')) {
+                  <div class="detail-field">
+                    <span class="detail-label">Rareza</span>
+                    <span class="detail-value detail-rarity" [attr.data-rarity]="d('rareza')">{{ capitalize(d('rareza')) }}</span>
+                  </div>
+                }
+                @if (d('precio')) {
+                  <div class="detail-field">
+                    <span class="detail-label">Precio</span>
+                    <span class="detail-value">{{ d('precio') }} 🪙</span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
         </div>
       }
 

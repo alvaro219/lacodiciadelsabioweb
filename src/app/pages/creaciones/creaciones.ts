@@ -359,4 +359,40 @@ export class Creaciones implements OnInit {
 
   openDetail(post: SocialPost) { this.detailPost.set(post); }
   closeDetail() { this.detailPost.set(null); }
+
+  /** Returns data field or fallback */
+  d(key: string): any {
+    return this.detailPost()?.data?.[key] ?? null;
+  }
+
+  /** Returns subclass ability object */
+  hab(key: string): any {
+    return (this.detailPost()?.data as any)?.habilidades?.[key] ?? null;
+  }
+
+  /** Returns subclass weapon object */
+  arma(key: string): any {
+    return (this.detailPost()?.data as any)?.[key] ?? null;
+  }
+
+  /** Get all subclass ability keys that exist */
+  habKeys(): string[] {
+    const habs = (this.detailPost()?.data as any)?.habilidades;
+    return habs ? Object.keys(habs) : [];
+  }
+
+  habLabel(key: string): string {
+    const labels: Record<string, string> = {
+      had: 'Habilidad de Daño',
+      hap1: 'Habilidad Activa 1', hap2: 'Habilidad Activa 2',
+      hap3: 'Habilidad Activa 3', hap4: 'Habilidad Activa 4',
+      has1: 'Habilidad Secundaria 1', has2: 'Habilidad Secundaria 2'
+    };
+    return labels[key] ?? key;
+  }
+
+  capitalize(s: string | null): string {
+    if (!s) return '';
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
 }
