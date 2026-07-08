@@ -9,7 +9,7 @@ export class NovedadService {
   constructor(private supabase: SupabaseService) {}
 
   async loadNovedades(): Promise<void> {
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.anonClient
       .from('novedades')
       .select('*')
       .order('pinned', { ascending: false })
@@ -79,7 +79,7 @@ export class NovedadService {
   }
 
   async getComments(novedadId: string): Promise<NovComment[]> {
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.anonClient
       .from('novedad_comments')
       .select('*')
       .eq('novedad_id', novedadId)

@@ -15,6 +15,7 @@ export class SocialService {
   }
 
   private initAuth(): void {
+    // Register listener — it will receive the INITIAL_SESSION event
     this.supabase.client.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
         await this.loadProfile(session.user.id, session.user.email ?? '');
@@ -25,17 +26,40 @@ export class SocialService {
       this.authLoading.set(false);
     });
 
-    // Safety: if onAuthStateChange never fires, stop loading after 5s
+    // Trigger the INITIAL_SESSION event (fire-and-forget)
+    this.supabase.client.auth.getSession().catch(err => {
+      console.error('[SocialService] getSession error:', err);
+    });
+
+    // Fallback: if getSession hangs (navigator lock), restore session from localStorage
     setTimeout(() => {
       if (this.authLoading()) {
-        console.warn('[SocialService] Auth timeout — proceeding without session');
-        this.authLoading.set(false);
+        this.restoreSessionFromStorage();
       }
-    }, 5000);
+    }, 2000);
+  }
+
+  private async restoreSessionFromStorage(): Promise<void> {
+    try {
+      const storageKey = 'sb-tuqwzvlsaeqlhgjrgvze-auth-token';
+      const raw = localStorage.getItem(storageKey);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        const user = parsed?.user;
+        if (user?.id && user?.email) {
+          await this.loadProfile(user.id, user.email);
+          this.authLoading.set(false);
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('[SocialService] restoreSessionFromStorage error:', e);
+    }
+    this.authLoading.set(false);
   }
 
   private async loadProfile(userId: string, email: string) {
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.anonClient
       .from('user_profiles')
       .select('role, display_name, username')
       .eq('id', userId)
@@ -50,7 +74,11 @@ export class SocialService {
   }
 
   async signInWithEmail(email: string, password: string): Promise<void> {
-    const { error } = await this.supabase.client.auth.signInWithPassword({ email, password });
+    const signInPromise = this.supabase.client.auth.signInWithPassword({ email, password });
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('TIMEOUT')), 10000)
+    );
+    const { error } = await Promise.race([signInPromise, timeout]);
     if (error) throw error;
   }
 
@@ -83,7 +111,8 @@ export class SocialService {
     const from = page * limit;
     const to = from + limit - 1;
 
-    let q = this.supabase.client
+    // Always use anonClient for reading posts — bypasses auth lock completely
+    let q = this.supabase.anonClient
       .from('social_posts')
       .select('*, social_comments(id)')
       .order('created_at', { ascending: false })
@@ -101,16 +130,21 @@ export class SocialService {
       social_comments: undefined
     })) as SocialPost[];
 
+    // Likes lookup — use anonClient with user_id filter (no auth needed for SELECT on social_likes)
     if (userId && posts.length > 0) {
-      const postIds = posts.map(p => p.id);
-      const { data: likes } = await this.supabase.client
-        .from('social_likes')
-        .select('post_id')
-        .eq('user_id', userId)
-        .in('post_id', postIds);
+      try {
+        const postIds = posts.map(p => p.id);
+        const { data: likes } = await this.supabase.anonClient
+          .from('social_likes')
+          .select('post_id')
+          .eq('user_id', userId)
+          .in('post_id', postIds);
 
-      const likedIds = new Set((likes ?? []).map((l: { post_id: string }) => l.post_id));
-      posts.forEach(p => { p.user_has_liked = likedIds.has(p.id); });
+        const likedIds = new Set((likes ?? []).map((l: { post_id: string }) => l.post_id));
+        posts.forEach(p => { p.user_has_liked = likedIds.has(p.id); });
+      } catch {
+        // Non-critical: likes info couldn't load, posts still display
+      }
     }
 
     return posts;
@@ -144,7 +178,7 @@ export class SocialService {
   }
 
   async getComments(postId: string): Promise<SocialComment[]> {
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.anonClient
       .from('social_comments')
       .select('*')
       .eq('post_id', postId)

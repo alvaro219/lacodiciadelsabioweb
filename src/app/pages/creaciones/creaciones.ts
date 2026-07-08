@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, signal, computed, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
@@ -74,7 +74,22 @@ export class Creaciones implements OnInit {
     { value: 'accesorio', icon: '💍', label: 'Accesorios' }
   ];
 
-  constructor(protected social: SocialService) {}
+  private authResolved = false;
+
+  constructor(protected social: SocialService) {
+    // When auth finishes and we have a user but no posts loaded, reload
+    effect(() => {
+      const loading = this.social.authLoading();
+      const user = this.social.currentUser();
+      if (!loading && user && !this.authResolved) {
+        this.authResolved = true;
+        if (this.posts().length === 0 && !this.postsLoading()) {
+          this.loadPosts(true);
+        }
+      }
+      if (!loading) this.authResolved = true;
+    });
+  }
 
   async ngOnInit() {
     this.startLoadTimeout();
@@ -269,8 +284,18 @@ export class Creaciones implements OnInit {
       this.loginEmail.set('');
       this.loginPassword.set('');
       await this.loadPosts(true);
-    } catch {
-      this.loginError.set('Email o contraseña incorrectos.');
+    } catch (e: any) {
+      if (e?.message === 'TIMEOUT') {
+        // Auth may have succeeded but lock hung — check if user appeared
+        if (this.social.currentUser()) {
+          this.showLoginForm.set(false);
+          await this.loadPosts(true);
+        } else {
+          this.loginError.set('El inicio de sesión está tardando. Recarga la página e inténtalo de nuevo.');
+        }
+      } else {
+        this.loginError.set('Email o contraseña incorrectos.');
+      }
     } finally {
       this.loginLoading.set(false);
     }
