@@ -296,6 +296,10 @@ export class CreacionForm implements OnInit {
   }
 
   async publish() {
+    if (!this.social.currentUser()) {
+      this.error.set('Debes iniciar sesión para publicar. Cierra este formulario, inicia sesión y vuelve a intentarlo.');
+      return;
+    }
     const err = this.validateCurrentStep();
     if (err) { this.error.set(err); return; }
     if (this.saving()) return;
@@ -318,7 +322,10 @@ export class CreacionForm implements OnInit {
       }
       this.published.emit();
     } catch (e: any) {
-      this.error.set(e?.message ?? 'Error al publicar.');
+      const msg = e?.message === 'NOT_LOGGED_IN'
+        ? 'Tu sesión ha expirado. Cierra el formulario, inicia sesión de nuevo y vuelve a intentarlo.'
+        : (e?.message ?? 'Error al publicar.');
+      this.error.set(msg);
     } finally {
       this.saving.set(false);
     }

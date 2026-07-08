@@ -79,7 +79,6 @@ export class Creaciones implements OnInit {
   async ngOnInit() {
     this.startLoadTimeout();
     try {
-      await this.social.authReady;
       await this.loadPosts(true);
     } catch (err) {
       console.error('[Creaciones] ngOnInit error:', err);

@@ -159,6 +159,10 @@ export class AdminNovedades implements OnInit {
   }
 
   async saveNovedad() {
+    if (!this.isAuthenticated()) {
+      this.formError.set('Tu sesión ha expirado. Vuelve a iniciar sesión.');
+      return;
+    }
     if (!this.formTitle().trim() || !this.formBody().trim()) {
       this.formError.set('El título y el contenido son obligatorios.');
       return;

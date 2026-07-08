@@ -65,7 +65,6 @@ export class Novedades implements OnInit, OnDestroy {
     this.seo.setNovedadesIndex();
     this.startLoadTimeout();
     try {
-      await this.social.authReady;
       await this.novedadService.loadNovedades();
       this.novedades.set(this.novedadService.novedades());
     } catch (err) {
