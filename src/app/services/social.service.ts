@@ -17,6 +17,9 @@ export class SocialService {
   private initAuth(): void {
     // Register listener — it will receive the INITIAL_SESSION event
     this.supabase.client.auth.onAuthStateChange(async (_event, session) => {
+      // Sync session to write client so authenticated mutations work without Navigator Lock
+      this.supabase.setWriteSession(session);
+
       if (session?.user) {
         await this.loadProfile(session.user.id, session.user.email ?? '');
       } else {
@@ -46,8 +49,14 @@ export class SocialService {
       if (raw) {
         const parsed = JSON.parse(raw);
         const user = parsed?.user;
+        const access_token = parsed?.access_token;
+        const refresh_token = parsed?.refresh_token;
         if (user?.id && user?.email) {
           await this.loadProfile(user.id, user.email);
+          // Also sync tokens to write client so writes work
+          if (access_token && refresh_token) {
+            this.supabase.setWriteSession({ access_token, refresh_token } as any);
+          }
           this.authLoading.set(false);
           return;
         }
@@ -86,7 +95,9 @@ export class SocialService {
     const { data, error } = await this.supabase.client.auth.signUp({ email, password });
     if (error) throw error;
     if (data.user) {
-      await this.supabase.client
+      // Sync session to write client so the upsert works
+      if (data.session) await this.supabase.setWriteSession(data.session);
+      await this.supabase.authClient
         .from('user_profiles')
         .upsert({ id: data.user.id, username });
       this.currentUser.set({ id: data.user.id, email, username });
@@ -103,6 +114,7 @@ export class SocialService {
 
   async signOut(): Promise<void> {
     await this.supabase.client.auth.signOut();
+    this.supabase.setWriteSession(null);
     this.currentUser.set(null);
   }
 
@@ -130,11 +142,11 @@ export class SocialService {
       social_comments: undefined
     })) as SocialPost[];
 
-    // Likes lookup — use anonClient with user_id filter (no auth needed for SELECT on social_likes)
+    // Likes lookup — must use authClient (RLS requires authenticated user)
     if (userId && posts.length > 0) {
       try {
         const postIds = posts.map(p => p.id);
-        const { data: likes } = await this.supabase.anonClient
+        const { data: likes } = await this.supabase.authClient
           .from('social_likes')
           .select('post_id')
           .eq('user_id', userId)
@@ -154,7 +166,7 @@ export class SocialService {
     const user = this.currentUser();
     if (!user) throw new Error('NOT_LOGGED_IN');
 
-    const { data: existing } = await this.supabase.client
+    const { data: existing } = await this.supabase.authClient
       .from('social_likes')
       .select('id')
       .eq('post_id', postId)
@@ -162,19 +174,19 @@ export class SocialService {
       .maybeSingle();
 
     if (existing) {
-      const { error } = await this.supabase.client
+      const { error } = await this.supabase.authClient
         .from('social_likes')
         .delete()
         .eq('id', existing.id);
       if (error) throw error;
     } else {
-      const { error } = await this.supabase.client
+      const { error } = await this.supabase.authClient
         .from('social_likes')
         .insert({ post_id: postId, user_id: user.id });
       if (error) throw error;
     }
 
-    await this.supabase.client.rpc('sync_post_likes', { p_post_id: postId }).then(() => {});
+    await this.supabase.authClient.rpc('sync_post_likes', { p_post_id: postId }).then(() => {});
   }
 
   async getComments(postId: string): Promise<SocialComment[]> {
@@ -192,7 +204,7 @@ export class SocialService {
     const user = this.currentUser();
     if (!user) throw new Error('NOT_LOGGED_IN');
 
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.authClient
       .from('social_comments')
       .insert({
         post_id: postId,
@@ -209,7 +221,7 @@ export class SocialService {
   }
 
   async deleteComment(commentId: string, postId?: string): Promise<void> {
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('social_comments')
       .delete()
       .eq('id', commentId);
@@ -218,11 +230,11 @@ export class SocialService {
   }
 
   private async syncCommentsCount(postId: string): Promise<void> {
-    const { count } = await this.supabase.client
+    const { count } = await this.supabase.anonClient
       .from('social_comments')
       .select('*', { count: 'exact', head: true })
       .eq('post_id', postId);
-    await this.supabase.client
+    await this.supabase.authClient
       .from('social_posts')
       .update({ comments_count: count ?? 0 })
       .eq('id', postId);
@@ -238,7 +250,7 @@ export class SocialService {
   }): Promise<SocialPost> {
     const user = this.currentUser();
     if (!user) throw new Error('NOT_LOGGED_IN');
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.authClient
       .from('social_posts')
       .insert({
         creation_type: post.creation_type,
@@ -293,8 +305,9 @@ export class SocialService {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    // Increment downloads_count (fire-and-forget)
-    this.supabase.client
+    // Increment downloads_count (fire-and-forget) — try authClient first, fallback to anonClient
+    const dlClient = this.currentUser() ? this.supabase.authClient : this.supabase.anonClient;
+    dlClient
       .from('social_posts')
       .update({ downloads_count: (post.downloads_count ?? 0) + 1 })
       .eq('id', post.id)
@@ -310,7 +323,7 @@ export class SocialService {
   }): Promise<void> {
     const user = this.currentUser();
     if (!user) throw new Error('NOT_LOGGED_IN');
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('social_posts')
       .update({
         title: patch.title,
@@ -327,7 +340,7 @@ export class SocialService {
   async deletePost(postId: string): Promise<void> {
     const user = this.currentUser();
     if (!user) throw new Error('NOT_LOGGED_IN');
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('social_posts')
       .delete()
       .eq('id', postId)
@@ -338,7 +351,7 @@ export class SocialService {
   async getMyPosts(): Promise<SocialPost[]> {
     const user = this.currentUser();
     if (!user) return [];
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.authClient
       .from('social_posts')
       .select('*')
       .eq('user_id', user.id)
@@ -348,7 +361,7 @@ export class SocialService {
   }
 
   async adminDeletePost(postId: string): Promise<void> {
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('social_posts')
       .delete()
       .eq('id', postId);
@@ -360,7 +373,7 @@ export class SocialService {
     if (!user) throw new Error('NOT_LOGGED_IN');
 
     // Try insert first
-    const { error: insertError } = await this.supabase.client
+    const { error: insertError } = await this.supabase.authClient
       .from('social_reports')
       .insert({ post_id: postId, user_id: user.id, reason });
 
@@ -368,7 +381,7 @@ export class SocialService {
 
     // If duplicate key, update the reason instead
     if (insertError.code === '23505') {
-      const { error: updateError } = await this.supabase.client
+      const { error: updateError } = await this.supabase.authClient
         .from('social_reports')
         .update({ reason })
         .eq('post_id', postId)
@@ -381,7 +394,7 @@ export class SocialService {
   }
 
   async getReportedPosts(): Promise<Array<SocialPost & { report_reasons: string[] }>> {
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.authClient
       .from('social_posts')
       .select('*, social_reports(reason, user_id, created_at)')
       .gt('reports_count', 0)
@@ -394,17 +407,18 @@ export class SocialService {
   }
 
   async incrementDownloads(postId: string): Promise<void> {
-    await this.supabase.client.rpc('increment_downloads', { p_post_id: postId }).then(() => {});
+    const client = this.currentUser() ? this.supabase.authClient : this.supabase.anonClient;
+    await client.rpc('increment_downloads', { p_post_id: postId }).then(() => {});
   }
 
   async uploadImage(file: File, bucket = 'social-images'): Promise<string> {
     const ext = file.name.split('.').pop();
     const path = `creaciones/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await this.supabase.client.storage
+    const { error } = await this.supabase.authClient.storage
       .from(bucket)
       .upload(path, file, { upsert: false });
     if (error) throw error;
-    const { data } = this.supabase.client.storage.from(bucket).getPublicUrl(path);
+    const { data } = this.supabase.authClient.storage.from(bucket).getPublicUrl(path);
     return data.publicUrl;
   }
 }

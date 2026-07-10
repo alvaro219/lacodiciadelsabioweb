@@ -74,6 +74,8 @@ export class AdminNovedades implements OnInit {
       await this.supabase.client.auth.signOut();
       return;
     }
+    // Sync session to write client for authenticated mutations
+    if (data.session) await this.supabase.setWriteSession(data.session);
     this.isAuthenticated.set(true);
     await this.loadNovedades();
   }
@@ -85,7 +87,7 @@ export class AdminNovedades implements OnInit {
   }
 
   private async checkAdminRole(userId: string): Promise<boolean> {
-    const { data, error } = await this.supabase.client
+    const { data, error } = await this.supabase.anonClient
       .from('user_profiles').select('role').eq('id', userId).single();
     if (error || !data) return false;
     return data.role === 'admin';

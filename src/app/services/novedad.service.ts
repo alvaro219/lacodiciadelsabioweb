@@ -22,7 +22,7 @@ export class NovedadService {
   }
 
   async create(novedad: Omit<Novedad, 'id' | 'created_at'>): Promise<{ error: string | null }> {
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('novedades')
       .insert({
         title: novedad.title,
@@ -42,7 +42,7 @@ export class NovedadService {
   }
 
   async update(id: string, changes: Partial<Novedad>): Promise<{ error: string | null }> {
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('novedades')
       .update(changes)
       .eq('id', id);
@@ -52,7 +52,7 @@ export class NovedadService {
   }
 
   async delete(id: string): Promise<{ error: string | null }> {
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('novedades')
       .delete()
       .eq('id', id);
@@ -64,7 +64,7 @@ export class NovedadService {
   async uploadImage(file: File): Promise<{ url: string | null; error: string | null }> {
     const ext = file.name.split('.').pop();
     const path = `novedades/${Date.now()}.${ext}`;
-    const { error } = await this.supabase.client.storage
+    const { error } = await this.supabase.authClient.storage
       .from('novedades-images')
       .upload(path, file, { upsert: false });
     if (error) {
@@ -72,7 +72,7 @@ export class NovedadService {
         return { url: null, error: 'Sin permisos para subir imágenes. Ve a Supabase → Storage → novedades-images → Policies y añade política INSERT para authenticated.' };
       return { url: null, error: error.message };
     }
-    const { data } = this.supabase.client.storage
+    const { data } = this.supabase.authClient.storage
       .from('novedades-images')
       .getPublicUrl(path);
     return { url: data.publicUrl, error: null };
@@ -89,7 +89,7 @@ export class NovedadService {
   }
 
   async addComment(novedadId: string, userId: string, username: string, body: string): Promise<{ error: string | null }> {
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('novedad_comments')
       .insert({ novedad_id: novedadId, user_id: userId, username, body });
     if (error) return { error: error.message };
@@ -97,7 +97,7 @@ export class NovedadService {
   }
 
   async deleteComment(commentId: string): Promise<{ error: string | null }> {
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('novedad_comments')
       .delete()
       .eq('id', commentId);
@@ -106,7 +106,7 @@ export class NovedadService {
   }
 
   async replyComment(commentId: string, reply: string): Promise<{ error: string | null }> {
-    const { error } = await this.supabase.client
+    const { error } = await this.supabase.authClient
       .from('novedad_comments')
       .update({ admin_reply: reply, admin_reply_at: new Date().toISOString() })
       .eq('id', commentId);
