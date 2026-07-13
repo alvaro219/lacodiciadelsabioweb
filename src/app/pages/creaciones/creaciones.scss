@@ -356,6 +356,7 @@
   padding: var(--space-md);
   padding-top: 0;
   border-top: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden;
 
   &__loading,
   &__empty {
@@ -370,6 +371,12 @@
     padding: var(--space-sm);
     font-size: 0.85rem;
     color: var(--color-text-muted);
+  }
+
+  &__error {
+    font-size: 0.8rem;
+    color: #f87171;
+    margin-top: 0.4rem;
   }
 }
 
@@ -407,22 +414,35 @@
 
 .crea-comment-form {
   display: flex;
-  gap: var(--space-sm);
+  flex-direction: column;
+  gap: var(--space-xs);
   padding-top: var(--space-sm);
+  width: 100%;
 
   &__input {
-    flex: 1;
+    width: 100%;
     padding: 0.6rem 1rem;
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-md);
     color: var(--color-text-primary);
     font-size: 0.9rem;
+    font-family: inherit;
+    resize: none;
+    overflow-y: hidden;
+    min-height: 2.4rem;
+    line-height: 1.5;
+    box-sizing: border-box;
+    field-sizing: content;
 
     &:focus {
       outline: none;
       border-color: var(--color-gold);
     }
+  }
+
+  &__btn {
+    align-self: flex-end;
   }
 }
 

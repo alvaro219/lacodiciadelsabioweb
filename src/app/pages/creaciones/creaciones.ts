@@ -1,14 +1,13 @@
 import { Component, OnInit, signal, computed, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
 import { SocialService } from '../../services/social.service';
 import { SocialPost, SocialComment, CreationType } from '../../models/social.model';
 import { CreacionForm } from '../../components/creacion-form/creacion-form';
 
 @Component({
   selector: 'app-creaciones',
-  imports: [RouterLink, FormsModule, JsonPipe, CreacionForm],
+  imports: [RouterLink, FormsModule, CreacionForm],
   templateUrl: './creaciones.html',
   styleUrl: './creaciones.scss'
 })
@@ -25,6 +24,7 @@ export class Creaciones implements OnInit {
   protected readonly commentsLoading = signal<Partial<Record<string, boolean>>>({});
   protected readonly newComment = signal<Record<string, string>>({});
   protected readonly commentSubmitting = signal<Record<string, boolean>>({});
+  protected readonly commentError = signal<Record<string, string>>({});
 
   protected readonly loginEmail = signal('');
   protected readonly loginPassword = signal('');
@@ -226,6 +226,7 @@ export class Creaciones implements OnInit {
     const content = (this.newComment()[postId] ?? '').trim();
     if (!content) return;
 
+    this.commentError.update(s => ({ ...s, [postId]: '' }));
     this.commentSubmitting.update(s => ({ ...s, [postId]: true }));
     try {
       const comment = await this.social.addComment(postId, content);
@@ -234,7 +235,14 @@ export class Creaciones implements OnInit {
       this.posts.update(posts =>
         posts.map(p => p.id === postId ? { ...p, comments_count: p.comments_count + 1 } : p)
       );
-    } catch {
+    } catch (e: any) {
+      const msg = e?.message ?? '';
+      if (msg === 'NOT_LOGGED_IN') {
+        this.showLoginForm.set(true);
+      } else {
+        this.commentError.update(s => ({ ...s, [postId]: 'Error al enviar el comentario. Inténtalo de nuevo.' }));
+      }
+      console.error('[Creaciones] addComment error:', e);
     } finally {
       this.commentSubmitting.update(s => ({ ...s, [postId]: false }));
     }

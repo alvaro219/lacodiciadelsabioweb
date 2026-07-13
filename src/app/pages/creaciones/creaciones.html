@@ -168,21 +168,24 @@
 
                 @if (currentUser()) {
                   <div class="crea-comment-form">
-                    <input
+                    <textarea
                       class="crea-comment-form__input"
-                      type="text"
                       placeholder="Escribe un comentario..."
+                      rows="1"
                       [ngModel]="getCommentText(post.id)"
                       (ngModelChange)="setCommentText(post.id, $event)"
                       [name]="'comment-' + post.id"
-                      (keydown.enter)="onSubmitComment(post.id)" />
+                      (keydown.enter)="$event.preventDefault(); onSubmitComment(post.id)"></textarea>
                     <button
-                      class="btn btn--primary btn--sm"
+                      class="btn btn--primary btn--sm crea-comment-form__btn"
                       [disabled]="commentSubmitting()[post.id] || !getCommentText(post.id).trim()"
                       (click)="onSubmitComment(post.id)">
                       {{ commentSubmitting()[post.id] ? '...' : 'Enviar' }}
                     </button>
                   </div>
+                  @if (commentError()[post.id]) {
+                    <p class="crea-comments__error">{{ commentError()[post.id] }}</p>
+                  }
                 } @else {
                   <p class="crea-comments__login">
                     <button class="btn btn--secondary btn--sm" (click)="showLoginForm.set(true)">Inicia sesión</button> para comentar.
