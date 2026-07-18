@@ -12,7 +12,7 @@ export class SeoService {
   setDefault() {
     this.set({
       title: `${SITE_NAME} — Sistema de Rol de Mesa`,
-      description: 'La Codicia del Sabio es un sistema de rol de mesa con 9 clases, 29 subclases y 10 razas. Explora mecánicas únicas, novedades y la comunidad.',
+      description: 'La Codicia del Sabio es un sistema de rol de mesa con 9 clases, 27 subclases y 10 razas. Explora mecánicas únicas, novedades y la comunidad.',
       url: BASE_URL,
       image: DEFAULT_IMAGE
     });
