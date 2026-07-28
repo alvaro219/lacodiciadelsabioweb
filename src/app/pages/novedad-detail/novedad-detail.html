@@ -79,20 +79,37 @@
           @for (c of comments(); track c.id) {
             <div class="nov-comment">
               <div class="nov-comment__header">
-                <strong class="nov-comment__author">{{ c.username }}</strong>
+                <strong class="nov-comment__author">{{ formatUsername(c.username) }}</strong>
                 <span class="nov-comment__date">{{ c.created_at | date:'d MMM yyyy' : '' : 'es' }}</span>
+                @if (isAdmin() || isOwnComment(c)) {
+                  <div class="nov-comment__actions">
+                    @if (isOwnComment(c)) {
+                      <button class="nov-comment__action-btn" title="Editar" (click)="startEdit(c)">✏️</button>
+                    }
+                    <button class="nov-comment__action-btn nov-comment__action-btn--danger" title="Eliminar" (click)="deleteComment(c)">🗑️</button>
+                  </div>
+                }
               </div>
-              <p class="nov-comment__body">{{ c.body }}</p>
+
+              @if (editingId() === c.id) {
+                <div class="nov-comment__edit-form">
+                  <textarea class="nov-comment__reply-input" [(ngModel)]="editText" placeholder="Edita tu comentario..." rows="2" [name]="'edit-' + c.id"></textarea>
+                  <div class="nov-comment__reply-actions">
+                    <button class="btn btn--sm btn--outline" (click)="cancelEdit()">Cancelar</button>
+                    <button class="btn btn--sm btn--primary" [disabled]="editSaving() || !editText().trim()" (click)="submitEdit(c)">
+                      {{ editSaving() ? 'Guardando...' : 'Guardar' }}
+                    </button>
+                  </div>
+                </div>
+              } @else {
+                <p class="nov-comment__body">{{ c.body }}</p>
+              }
 
               @if (c.admin_reply) {
                 <div class="nov-comment__reply nov-comment__reply--admin">
-                  <span class="nov-comment__reply-label">🛡️ Admin</span>
+                  <span class="nov-comment__reply-label">�️ Admin</span>
                   <p>{{ c.admin_reply }}</p>
                 </div>
-              }
-
-              @if (isAdmin()) {
-                <button class="nov-comment__delete-btn" title="Eliminar comentario" (click)="deleteComment(c)">🗑️</button>
               }
 
               @if (currentUser()) {
@@ -116,12 +133,29 @@
                   @for (r of c.replies; track r.id) {
                     <div class="nov-comment nov-comment--reply">
                       <div class="nov-comment__header">
-                        <strong class="nov-comment__author">{{ r.username }}</strong>
+                        <strong class="nov-comment__author">{{ formatUsername(r.username) }}</strong>
                         <span class="nov-comment__date">{{ r.created_at | date:'d MMM yyyy' : '' : 'es' }}</span>
+                        @if (isAdmin() || isOwnComment(r)) {
+                          <div class="nov-comment__actions">
+                            @if (isOwnComment(r)) {
+                              <button class="nov-comment__action-btn" title="Editar" (click)="startEdit(r)">✏️</button>
+                            }
+                            <button class="nov-comment__action-btn nov-comment__action-btn--danger" title="Eliminar" (click)="deleteComment(r)">🗑️</button>
+                          </div>
+                        }
                       </div>
-                      <p class="nov-comment__body">{{ r.body }}</p>
-                      @if (isAdmin()) {
-                        <button class="nov-comment__delete-btn" title="Eliminar respuesta" (click)="deleteComment(r)">🗑️</button>
+                      @if (editingId() === r.id) {
+                        <div class="nov-comment__edit-form">
+                          <textarea class="nov-comment__reply-input" [(ngModel)]="editText" placeholder="Edita tu comentario..." rows="2" [name]="'edit-' + r.id"></textarea>
+                          <div class="nov-comment__reply-actions">
+                            <button class="btn btn--sm btn--outline" (click)="cancelEdit()">Cancelar</button>
+                            <button class="btn btn--sm btn--primary" [disabled]="editSaving() || !editText().trim()" (click)="submitEdit(r)">
+                              {{ editSaving() ? 'Guardando...' : 'Guardar' }}
+                            </button>
+                          </div>
+                        </div>
+                      } @else {
+                        <p class="nov-comment__body">{{ r.body }}</p>
                       }
                     </div>
                   }

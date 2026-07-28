@@ -123,6 +123,15 @@ export class NovedadService {
     return { error: null };
   }
 
+  async updateComment(commentId: string, body: string): Promise<{ error: string | null }> {
+    const { error } = await this.supabase.authClient
+      .from('novedad_comments')
+      .update({ body })
+      .eq('id', commentId);
+    if (error) return { error: error.message };
+    return { error: null };
+  }
+
   async deleteComment(commentId: string): Promise<{ error: string | null }> {
     const { error } = await this.supabase.authClient
       .from('novedad_comments')
@@ -141,17 +150,29 @@ export class NovedadService {
     return { error: null };
   }
 
-  /** Count top-level comments without admin reply (pending admin attention) */
+  /** Count top-level comments without admin reply and without a reply from the current admin user */
   async getPendingAdminCommentsCount(): Promise<number> {
-    const { count, error } = await this.supabase.authClient
+    const { data: { user } } = await this.supabase.authClient.auth.getUser();
+    if (!user) return 0;
+
+    const { data: pending, error } = await this.supabase.authClient
       .from('novedad_comments')
-      .select('*', { count: 'exact', head: true })
+      .select('id')
       .is('parent_id', null)
       .is('admin_reply', null);
     if (error) {
       console.error('[NovedadService] getPendingAdminCommentsCount error:', error);
       return 0;
     }
-    return count ?? 0;
+    const pendingIds = (pending ?? []).map(c => c.id);
+    if (pendingIds.length === 0) return 0;
+
+    const { data: replied } = await this.supabase.authClient
+      .from('novedad_comments')
+      .select('parent_id')
+      .in('parent_id', pendingIds)
+      .eq('user_id', user.id);
+    const repliedIds = new Set((replied ?? []).map((r: any) => r.parent_id));
+    return pendingIds.length - repliedIds.size;
   }
 }

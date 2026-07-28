@@ -309,6 +309,27 @@
     }
   }
 
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-left: auto;
+  }
+
+  &__action-btn {
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0.1rem;
+    opacity: 0.4;
+    transition: opacity var(--transition-fast);
+
+    &:hover { opacity: 1; }
+
+    &--danger:hover { color: #f87171; }
+  }
+
   &__delete-btn {
     background: none;
     border: none;
@@ -320,6 +341,13 @@
     margin-left: auto;
 
     &:hover { opacity: 1; }
+  }
+
+  &__edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-top: var(--space-xs);
   }
 
   &__reply-btn {

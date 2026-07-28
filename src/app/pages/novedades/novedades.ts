@@ -70,6 +70,14 @@ export class Novedades implements OnInit, OnDestroy {
       .slice(0, 160);
   }
 
+  buildSlug(title: string, id: string): string {
+    const base = title.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+    return `${base}-${id.slice(0, 8)}`;
+  }
+
   ngOnDestroy() {
     this.clearLoadTimeout();
   }

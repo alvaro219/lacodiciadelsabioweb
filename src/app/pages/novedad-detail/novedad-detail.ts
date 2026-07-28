@@ -31,6 +31,10 @@ export class NovedadDetail implements OnInit {
   protected readonly replyText = signal('');
   protected readonly replySaving = signal(false);
 
+  protected readonly editingId = signal<string | null>(null);
+  protected readonly editText = signal('');
+  protected readonly editSaving = signal(false);
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,12 +44,12 @@ export class NovedadDetail implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (!id) { this.notFound.set(true); this.loading.set(false); return; }
+    const slug = this.route.snapshot.paramMap.get('slug');
+    if (!slug) { this.notFound.set(true); this.loading.set(false); return; }
 
     try {
       await this.novedadService.loadNovedades();
-      const found = this.novedadService.novedades().find(n => n.id === id);
+      const found = this.findBySlug(slug);
       if (!found) {
         this.notFound.set(true);
       } else {
@@ -54,9 +58,9 @@ export class NovedadDetail implements OnInit {
           title: found.title,
           description: found.synopsis ?? this.stripMarkdown(found.body),
           image: found.image_url,
-          slug: id
+          slug
         });
-        const list = await this.novedadService.getComments(id);
+        const list = await this.novedadService.getComments(found.id!);
         this.comments.set(list);
       }
     } catch (err) {
@@ -65,6 +69,25 @@ export class NovedadDetail implements OnInit {
     } finally {
       this.loading.set(false);
     }
+  }
+
+  private findBySlug(slug: string): Novedad | undefined {
+    return this.novedadService.novedades().find(n => this.buildSlug(n.title, n.id!) === slug)
+      ?? this.novedadService.novedades().find(n => n.id === slug);
+  }
+
+  buildSlug(title: string, id: string): string {
+    const base = title.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+    return `${base}-${id.slice(0, 8)}`;
+  }
+
+  formatUsername(username: string): string {
+    if (!username) return 'Anónimo';
+    if (username.includes('@')) return username.split('@')[0];
+    return username;
   }
 
   async submitComment() {
@@ -113,6 +136,37 @@ export class NovedadDetail implements OnInit {
     if (!confirm('¿Eliminar este comentario?')) return;
     await this.novedadService.deleteComment(comment.id!);
     this.comments.set(await this.novedadService.getComments(comment.novedad_id));
+  }
+
+  isOwnComment(comment: NovComment): boolean {
+    const user = this.currentUser();
+    return !!user && user.id === comment.user_id;
+  }
+
+  startEdit(comment: NovComment) {
+    this.editingId.set(comment.id!);
+    this.editText.set(comment.body);
+  }
+
+  cancelEdit() {
+    this.editingId.set(null);
+    this.editText.set('');
+  }
+
+  async submitEdit(comment: NovComment) {
+    const text = this.editText().trim();
+    if (!text || text === comment.body) {
+      this.cancelEdit();
+      return;
+    }
+    this.editSaving.set(true);
+    const result = await this.novedadService.updateComment(comment.id!, text);
+    if (!result.error) {
+      this.comments.set(await this.novedadService.getComments(comment.novedad_id));
+    }
+    this.editingId.set(null);
+    this.editText.set('');
+    this.editSaving.set(false);
   }
 
   stripMarkdown(text: string): string {
