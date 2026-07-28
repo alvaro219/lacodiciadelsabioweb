@@ -1,5 +1,5 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
@@ -33,6 +33,7 @@ export class NovedadDetail implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private novedadService: NovedadService,
     private social: SocialService,
     private seo: SeoService
@@ -86,13 +87,26 @@ export class NovedadDetail implements OnInit {
   cancelReply() { this.replyingId.set(null); this.replyText.set(''); }
 
   async submitReply(comment: NovComment) {
-    if (!this.replyText().trim()) return;
+    const user = this.currentUser();
+    if (!user || !this.replyText().trim()) return;
     this.replySaving.set(true);
-    await this.novedadService.replyComment(comment.id!, this.replyText().trim());
-    this.comments.set(await this.novedadService.getComments(comment.novedad_id));
+    const result = await this.novedadService.addComment(
+      comment.novedad_id,
+      user.id,
+      user.username,
+      this.replyText().trim(),
+      comment.id
+    );
+    if (!result.error) {
+      this.comments.set(await this.novedadService.getComments(comment.novedad_id));
+    }
     this.replyingId.set(null);
     this.replyText.set('');
     this.replySaving.set(false);
+  }
+
+  goBack() {
+    this.router.navigate(['/novedades']);
   }
 
   async deleteComment(comment: NovComment) {

@@ -11,14 +11,19 @@ export class NovedadService {
   async loadNovedades(): Promise<void> {
     const { data, error } = await this.supabase.anonClient
       .from('novedades')
-      .select('*')
+      .select('*, novedad_comments(id)')
       .order('pinned', { ascending: false })
       .order('published_at', { ascending: false });
 
     if (error) {
       console.error('[NovedadService] loadNovedades error:', error);
     }
-    this.novedades.set((data ?? []) as Novedad[]);
+    const list = (data ?? []).map((n: any) => ({
+      ...n,
+      novedad_comments: undefined,
+      comments_count: Array.isArray(n.novedad_comments) ? n.novedad_comments.length : 0
+    })) as Novedad[];
+    this.novedades.set(list);
   }
 
   async create(novedad: Omit<Novedad, 'id' | 'created_at'>): Promise<{ error: string | null }> {
@@ -85,13 +90,35 @@ export class NovedadService {
       .eq('novedad_id', novedadId)
       .order('created_at', { ascending: true });
     if (error || !data) return [];
-    return data as NovComment[];
+    return this.nestComments(data as NovComment[]);
   }
 
-  async addComment(novedadId: string, userId: string, username: string, body: string): Promise<{ error: string | null }> {
+  private nestComments(flat: NovComment[]): NovComment[] {
+    const map = new Map<string, NovComment>();
+    const roots: NovComment[] = [];
+    for (const c of flat) {
+      map.set(c.id!, { ...c, replies: [] });
+    }
+    for (const c of flat) {
+      const node = map.get(c.id!);
+      if (!node) continue;
+      if (c.parent_id && map.has(c.parent_id)) {
+        const parent = map.get(c.parent_id)!;
+        parent.replies = parent.replies ?? [];
+        parent.replies.push(node);
+      } else {
+        roots.push(node);
+      }
+    }
+    return roots;
+  }
+
+  async addComment(novedadId: string, userId: string, username: string, body: string, parentId?: string | null): Promise<{ error: string | null }> {
+    const payload: any = { novedad_id: novedadId, user_id: userId, username, body };
+    if (parentId) payload.parent_id = parentId;
     const { error } = await this.supabase.authClient
       .from('novedad_comments')
-      .insert({ novedad_id: novedadId, user_id: userId, username, body });
+      .insert(payload);
     if (error) return { error: error.message };
     return { error: null };
   }
@@ -112,5 +139,19 @@ export class NovedadService {
       .eq('id', commentId);
     if (error) return { error: error.message };
     return { error: null };
+  }
+
+  /** Count top-level comments without admin reply (pending admin attention) */
+  async getPendingAdminCommentsCount(): Promise<number> {
+    const { count, error } = await this.supabase.authClient
+      .from('novedad_comments')
+      .select('*', { count: 'exact', head: true })
+      .is('parent_id', null)
+      .is('admin_reply', null);
+    if (error) {
+      console.error('[NovedadService] getPendingAdminCommentsCount error:', error);
+      return 0;
+    }
+    return count ?? 0;
   }
 }

@@ -8,6 +8,7 @@ export interface Novedad {
   created_at?: string;
   pinned?: boolean;
   synopsis?: string | null;
+  comments_count?: number;
 }
 
 export interface NovComment {
@@ -17,6 +18,8 @@ export interface NovComment {
   username: string;
   body: string;
   created_at?: string;
+  parent_id?: string | null;
   admin_reply?: string | null;
   admin_reply_at?: string | null;
+  replies?: NovComment[];
 }

@@ -1,7 +1,8 @@
-import { Component, signal, HostListener, computed } from '@angular/core';
+import { Component, signal, HostListener, computed, effect, OnDestroy } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SocialService } from '../../services/social.service';
+import { NovedadService } from '../../services/novedad.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { SocialService } from '../../services/social.service';
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
-export class Navbar {
+export class Navbar implements OnDestroy {
   protected readonly isMenuOpen = signal(false);
   protected readonly isScrolled = signal(false);
   protected readonly isClassesOpen = signal(false);
@@ -28,8 +29,41 @@ export class Navbar {
   protected readonly currentUser = computed(() => this.social.currentUser());
   protected readonly authLoading = computed(() => this.social.authLoading());
   protected readonly isAdmin = computed(() => this.social.isAdmin());
+  protected readonly pendingCommentsCount = signal(0);
 
-  constructor(private social: SocialService) {}
+  private pendingCommentsInterval: any;
+
+  constructor(private social: SocialService, private novedadService: NovedadService) {
+    effect(() => {
+      if (this.isAdmin() && this.currentUser()) {
+        this.loadPendingCommentsCount();
+        this.startPendingCommentsPolling();
+      } else {
+        this.pendingCommentsCount.set(0);
+        this.stopPendingCommentsPolling();
+      }
+    });
+  }
+
+  private async loadPendingCommentsCount() {
+    this.pendingCommentsCount.set(await this.novedadService.getPendingAdminCommentsCount());
+  }
+
+  private startPendingCommentsPolling() {
+    this.stopPendingCommentsPolling();
+    this.pendingCommentsInterval = setInterval(() => this.loadPendingCommentsCount(), 60000);
+  }
+
+  private stopPendingCommentsPolling() {
+    if (this.pendingCommentsInterval) {
+      clearInterval(this.pendingCommentsInterval);
+      this.pendingCommentsInterval = null;
+    }
+  }
+
+  ngOnDestroy() {
+    this.stopPendingCommentsPolling();
+  }
 
   @HostListener('window:scroll')
   onScroll() {

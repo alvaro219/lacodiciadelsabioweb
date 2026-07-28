@@ -56,7 +56,12 @@
         </div>
       </div>
       <a routerLink="/manuales" routerLinkActive="active" (click)="closeMenu()">Manuales</a>
-      <a routerLink="/novedades" routerLinkActive="active" (click)="closeMenu()">Novedades</a>
+      <a routerLink="/novedades" routerLinkActive="active" (click)="closeMenu()">
+        Novedades
+        @if (isAdmin() && pendingCommentsCount() > 0) {
+          <span class="navbar__badge navbar__badge--nav">{{ pendingCommentsCount() }}</span>
+        }
+      </a>
 
       <div class="navbar__dropdown">
         <button class="navbar__dropdown-trigger" (click)="toggleComunidad()">
@@ -96,6 +101,9 @@
                 <div class="navbar__user-menu-divider"></div>
                 <a routerLink="/admin" class="navbar__user-menu-item navbar__user-menu-item--admin" (click)="closeMenu()">
                   🛡️ Panel de Administración
+                  @if (pendingCommentsCount() > 0) {
+                    <span class="navbar__badge">{{ pendingCommentsCount() }}</span>
+                  }
                 </a>
               }
               <div class="navbar__user-menu-divider"></div>
