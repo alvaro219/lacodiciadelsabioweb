@@ -96,7 +96,7 @@ export class NovedadDetail implements OnInit {
     if (!user || !nov || !this.newComment().trim()) return;
     this.commentSaving.set(true);
     this.commentError.set('');
-    const result = await this.novedadService.addComment(nov.id!, user.id, user.username, this.newComment().trim());
+    const result = await this.novedadService.addComment(nov.id!, user.id, user.display_name ?? user.username, this.newComment().trim());
     if (result.error) {
       this.commentError.set(result.error);
     } else {
@@ -116,7 +116,7 @@ export class NovedadDetail implements OnInit {
     const result = await this.novedadService.addComment(
       comment.novedad_id,
       user.id,
-      user.username,
+      user.display_name ?? user.username,
       this.replyText().trim(),
       comment.id
     );
