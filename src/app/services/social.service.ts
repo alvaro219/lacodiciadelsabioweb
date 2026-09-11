@@ -17,8 +17,9 @@ export class SocialService {
   private initAuth(): void {
     // Register listener — it will receive the INITIAL_SESSION event
     this.supabase.client.auth.onAuthStateChange(async (_event, session) => {
-      // Sync session to write client so authenticated mutations work without Navigator Lock
-      this.supabase.setWriteSession(session);
+      // Sync session to write client so authenticated mutations work without Navigator Lock.
+      // Se espera a que termine: loadProfile lee el perfil con esa sesión.
+      await this.supabase.setWriteSession(session);
 
       if (session?.user) {
         await this.loadProfile(session.user.id, session.user.email ?? '');
@@ -52,11 +53,11 @@ export class SocialService {
         const access_token = parsed?.access_token;
         const refresh_token = parsed?.refresh_token;
         if (user?.id && user?.email) {
-          await this.loadProfile(user.id, user.email);
-          // Also sync tokens to write client so writes work
+          // Sync tokens to write client first: loadProfile reads the profile with that session
           if (access_token && refresh_token) {
-            this.supabase.setWriteSession({ access_token, refresh_token } as any);
+            await this.supabase.setWriteSession({ access_token, refresh_token } as any);
           }
+          await this.loadProfile(user.id, user.email);
           this.authLoading.set(false);
           return;
         }
@@ -67,14 +68,27 @@ export class SocialService {
     this.authLoading.set(false);
   }
 
+  /**
+   * Lee el perfil propio con la sesión del usuario. El perfil completo se lee
+   * con la función get_my_profile: de los demás usuarios la base de datos solo
+   * deja leer id, nombre visible, avatar y rol. Si la función no existe aún,
+   * se leen directamente el rol y el nombre visible.
+   */
   private async loadProfile(userId: string, email: string) {
-    const { data, error } = await this.supabase.anonClient
-      .from('user_profiles')
-      .select('role, display_name, username')
-      .eq('id', userId)
-      .maybeSingle();
+    let data: { role?: string; display_name?: string | null; username?: string | null } | null = null;
 
-    if (error) console.error('[SocialService] loadProfile error:', error);
+    const rpc = await this.supabase.authClient.rpc('get_my_profile');
+    if (!rpc.error && Array.isArray(rpc.data) && rpc.data.length > 0) {
+      data = rpc.data[0];
+    } else {
+      const direct = await this.supabase.authClient
+        .from('user_profiles')
+        .select('role, display_name')
+        .eq('id', userId)
+        .maybeSingle();
+      if (direct.error) console.error('[SocialService] loadProfile error:', direct.error);
+      data = direct.data;
+    }
 
     const username = data?.username ?? email.split('@')[0];
     const display_name = data?.display_name || undefined;
@@ -92,15 +106,18 @@ export class SocialService {
   }
 
   async signUpWithEmail(email: string, password: string, username: string): Promise<void> {
-    const { data, error } = await this.supabase.client.auth.signUp({ email, password });
+    // El nombre elegido llega al servidor como nombre visible: el perfil lo
+    // crea la base de datos al registrarse (y lo valida; si no es válido, usa
+    // el nombre de usuario generado a partir del email).
+    const { data, error } = await this.supabase.client.auth.signUp({
+      email,
+      password,
+      options: { data: { display_name: username } }
+    });
     if (error) throw error;
     if (data.user) {
-      // Sync session to write client so the upsert works
       if (data.session) await this.supabase.setWriteSession(data.session);
-      await this.supabase.authClient
-        .from('user_profiles')
-        .upsert({ id: data.user.id, username });
-      this.currentUser.set({ id: data.user.id, email, username });
+      this.currentUser.set({ id: data.user.id, email, username, display_name: username });
     }
   }
 
