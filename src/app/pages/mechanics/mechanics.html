@@ -27,17 +27,17 @@
       <div class="resource-card card">
         <span class="resource-card__icon">⚡</span>
         <h3>Energía</h3>
-        <p>Recurso de clases físicas (Escaramuzador, Luchador, Protector, Artillero). <strong>Inicial: 5</strong>. Crece +1 cada 2 niveles.</p>
+        <p>Recurso de las clases marciales ({{ martialNames }}). Reserva de <strong>5</strong> (+1 cada 2 niveles). <strong>Empieza cada combate al máximo y recupera 1</strong> al comienzo de tu turno.</p>
       </div>
       <div class="resource-card card">
         <span class="resource-card__icon">💧</span>
         <h3>Maná</h3>
-        <p>Recurso de clases mágicas (Controlador, Invocador, Velador, Exaltador, Místico). <strong>Inicial: 5</strong>. Crece +1 cada 2 niveles.</p>
+        <p>Recurso de las clases mágicas ({{ magicNames }}). Reserva de <strong>5</strong> (+1 cada 2 niveles). <strong>Empieza cada combate a 0 y recupera 2</strong> al comienzo de tu turno.</p>
       </div>
       <div class="resource-card card">
         <span class="resource-card__icon">❤️</span>
         <h3>Vida (PV)</h3>
-        <p>Puntos de vida. <strong>Base = 2 + modificador de Constitución</strong>.</p>
+        <p>Puntos de vida. <strong>Base = 3 + modificador de Constitución</strong>. Al llegar a 0, caes.</p>
       </div>
       <div class="resource-card card">
         <span class="resource-card__icon">🛡️</span>
@@ -47,7 +47,7 @@
       <div class="resource-card card">
         <span class="resource-card__icon">🔶</span>
         <h3>Reacción</h3>
-        <p>Recurso especial para habilidades reactivas. <strong>1 por turno</strong>.</p>
+        <p>Para contraataques, bloqueos y habilidades reactivas fuera de tu turno. <strong>1</strong>, que se recupera al comienzo de tu turno.</p>
       </div>
     </div>
   </div>
@@ -102,6 +102,7 @@
         <li><strong>Base de atributo:</strong> 10</li>
         <li><strong>Modificador:</strong> Valor - 10</li>
         <li><strong>DA (Dificultad de Acierto):</strong> 10 + Mod. Destreza</li>
+          <li><strong>Iniciativa:</strong> 10 + Mod. Destreza − armadura (media −3, pesada −6). Al empezar el combate se tira 1d20 + (Iniciativa − 10)</li>
       </ul>
     </div>
   </div>
@@ -141,7 +142,7 @@
     </div>
 
     <div class="mech-info card">
-      <p>Se tira <strong>d20</strong> contra una CD (generalmente <strong>CD 10 + modificador del atacante</strong>).</p>
+      <p>Se tira <strong>1d20 + modificador</strong> y hay que <strong>igualar o superar la CD</strong> que indique la habilidad o el efecto.</p>
     </div>
   </div>
 </section>
@@ -163,7 +164,7 @@
       </div>
       <div class="card">
         <h4>Margen de Daño</h4>
-        <p>El margen base para infligir daño es <strong>4</strong>. Modificable por condiciones: Frágil = 5, Debilidad = 3.</p>
+        <p>Cada <strong>4</strong> puntos de la tirada de daño (dado + modificador) hacen 1 de daño: 4+ → 1, 8+ → 2, 12+ → 3. <strong>Frágil</strong> baja a 3 el margen del daño que recibes; <strong>Debilidad</strong> sube a 5 el del daño que infliges.</p>
       </div>
       <div class="card">
         <h4>Críticos</h4>
@@ -172,48 +173,14 @@
     </div>
 
     <div class="weapon-props card">
-      <h4>10 Propiedades de Arma</h4>
+      <h4>{{ weaponProperties.length }} Propiedades de Arma</h4>
       <div class="weapon-props__grid">
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Alcance</span>
-          <span class="weapon-prop__desc">Ataca desde 5 pies extra.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">A distancia</span>
-          <span class="weapon-prop__desc">Ataca objetivos a 30 pies.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Contundente</span>
-          <span class="weapon-prop__desc">Daño máximo provoca Aturdido.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Precisa</span>
-          <span class="weapon-prop__desc">Daño máximo provoca Inmóvil.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Flujo</span>
-          <span class="weapon-prop__desc">Daño máximo recupera 1 ⚡/💧.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Pesada</span>
-          <span class="weapon-prop__desc">Tirada de acierto con desventaja.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Encadenante</span>
-          <span class="weapon-prop__desc">Daño sobrante se reparte a enemigos al alcance.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Ágil</span>
-          <span class="weapon-prop__desc">Al derrotar enemigo, puedes moverte 5 pies.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Sorpresiva</span>
-          <span class="weapon-prop__desc">El daño se realiza antes del gasto de 🔶 enemigo.</span>
-        </div>
-        <div class="weapon-prop">
-          <span class="weapon-prop__name">Colosal</span>
-          <span class="weapon-prop__desc">No se pueden realizar críticos con este arma.</span>
-        </div>
+        @for (p of weaponProperties; track p.nombre) {
+          <div class="weapon-prop">
+            <span class="weapon-prop__name">{{ p.nombre }}</span>
+            <span class="weapon-prop__desc">{{ p.descripcion }}</span>
+          </div>
+        }
       </div>
     </div>
   </div>
@@ -245,7 +212,8 @@
         <h3>🔀 Multiclaseo</h3>
         <p class="progression-card__desc">Combina varias clases para mayor versatilidad.</p>
         <ul>
-          <li>Obtienes habilidades base de la nueva clase, sin mejoras</li>
+          <li>Usas las subclases de todas tus clases; la pasiva y las habilidades básicas son las de la clase activa</li>
+          <li>Cada clase mejora sus habilidades según tu nivel en ella</li>
           <li>Estadísticas por nivel igual que especialización</li>
           <li>Si mezclas ⚡ y 💧: ambos recursos se dividen a la mitad (solo 1 vez)</li>
           <li><strong>No hay Pasiva de Maestría</strong></li>
@@ -266,61 +234,24 @@
     </div>
 
     <div class="conditions-grid">
-      <div class="condition-group card">
-        <h3 class="condition-group__title restriction">🔒 Restricción <span class="condition-count">7</span></h3>
-        <div class="condition-group__list">
-          <span class="condition-tag">Derribado</span>
-          <span class="condition-tag">Inmóvil</span>
-          <span class="condition-tag">Incapacitar</span>
-          <span class="condition-tag">Miedo</span>
-          <span class="condition-tag">Mudez</span>
-          <span class="condition-tag">Provocar</span>
-          <span class="condition-tag">Confusión</span>
+      @for (group of conditionGroups; track group.id) {
+        <div class="condition-group card">
+          <h3 class="condition-group__title {{ conditionClass[group.id] }}">
+            {{ group.icon }} {{ group.categories[0].typeLabel }}
+            <span class="condition-count">{{ group.categories[0].conditions.length }}</span>
+          </h3>
+          <div class="condition-group__list">
+            @for (c of group.categories[0].conditions; track c.name) {
+              <span class="condition-tag {{ conditionClass[group.id] }}">{{ c.name }}</span>
+            }
+          </div>
         </div>
-      </div>
-
-      <div class="condition-group card">
-        <h3 class="condition-group__title debuff">⬇️ Debilitación <span class="condition-count">8</span></h3>
-        <div class="condition-group__list">
-          <span class="condition-tag debuff">Desprevenido</span>
-          <span class="condition-tag debuff">Parálisis</span>
-          <span class="condition-tag debuff">Entumecido</span>
-          <span class="condition-tag debuff">Aturdido</span>
-          <span class="condition-tag debuff">Cegar</span>
-          <span class="condition-tag debuff">Frágil</span>
-          <span class="condition-tag debuff">Ralentizado</span>
-          <span class="condition-tag debuff">Debilidad</span>
-        </div>
-      </div>
-
-      <div class="condition-group card">
-        <h3 class="condition-group__title buff">⬆️ Potenciación <span class="condition-count">10</span></h3>
-        <div class="condition-group__list">
-          <span class="condition-tag buff">Montar</span>
-          <span class="condition-tag buff">Invisibilidad</span>
-          <span class="condition-tag buff">Impulso</span>
-          <span class="condition-tag buff">Égida</span>
-          <span class="condition-tag buff">Invulnerable</span>
-          <span class="condition-tag buff">Vigorizado</span>
-          <span class="condition-tag buff">Acelerado</span>
-          <span class="condition-tag buff">Coraje</span>
-          <span class="condition-tag buff">Armonía</span>
-          <span class="condition-tag buff">Kiai</span>
-        </div>
-      </div>
-
-      <div class="condition-group card">
-        <h3 class="condition-group__title damage">🔥 Dañino <span class="condition-count">2</span></h3>
-        <div class="condition-group__list">
-          <span class="condition-tag damage">Envenenamiento (1d4 inicio turno)</span>
-          <span class="condition-tag damage">Quemadura (1d6 fin turno)</span>
-        </div>
-      </div>
+      }
     </div>
 
     <div class="mech-info card">
       <h4>Duraciones</h4>
-      <p>Las condiciones tienen tres posibles duraciones: <strong>Momentánea</strong> (efecto instantáneo), <strong>Temporal</strong> (dura hasta superar una tirada de salvación) y <strong>Persistente</strong> (se retira al cumplir su condición de salida). Las temporales requieren tirada de <strong>Fortaleza</strong> (CON), <strong>Agilidad</strong> (DES) o <strong>Voluntad</strong> (INT).</p>
+      <p><strong>Momentánea</strong>: se resuelve al aplicarse. <strong>Temporal</strong>: dura un número de turnos y baja 1 al comienzo de tu turno. <strong>Persistente</strong>: dura hasta que se cumple su condición de salida, a menudo una salvación de <strong>Fortaleza</strong> (CON), <strong>Agilidad</strong> (DES) o <strong>Voluntad</strong> (INT) al comienzo de tu turno. <a routerLink="/condiciones">Ver todas las condiciones →</a></p>
     </div>
   </div>
 </section>
@@ -366,9 +297,10 @@
           <span>Mod: +10</span>
           <span>Coste: 20 pts</span>
         </div>
-        <div class="tier-card__examples">Dragón, Ogro, Gárgola (49 enemigos en total)</div>
+        <div class="tier-card__examples">Dragón, Ogro, Gárgola, Falsa Hidra</div>
       </div>
     </div>
+    <p class="mech-more"><a routerLink="/bestiario" class="btn btn--secondary">Ver los {{ stats.enemigos }} enemigos del bestiario →</a></p>
   </div>
 </section>
 
@@ -386,7 +318,7 @@
       <div class="combat-step card">
         <span class="combat-step__number">1</span>
         <h4>Iniciativa</h4>
-        <p>d20 + modificador de Destreza. Orden de mayor a menor.</p>
+        <p>1d20 + (Iniciativa − 10): el Mod. Destreza menos la penalización de armadura. Se actúa de mayor a menor.</p>
       </div>
       <div class="combat-step card">
         <span class="combat-step__number">2</span>
@@ -396,12 +328,12 @@
       <div class="combat-step card">
         <span class="combat-step__number">3</span>
         <h4>Turnos</h4>
-        <p>3 🟢 por turno para gastar en habilidades, movimiento o ataques.</p>
+        <p>3 🟢 por turno para moverte, atacar o usar habilidades, y 1 🔶 para reaccionar fuera de tu turno.</p>
       </div>
       <div class="combat-step card">
         <span class="combat-step__number">4</span>
-        <h4>Campañas</h4>
-        <p>Guardan participantes, estado de combate y orden de iniciativa.</p>
+        <h4>Tablero Entrelazado</h4>
+        <p>El Máster dirige el combate desde su móvil y cada jugador lleva su ficha en el suyo, en tiempo real.</p>
       </div>
     </div>
   </div>

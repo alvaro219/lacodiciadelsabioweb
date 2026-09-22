@@ -1,0 +1,126 @@
+.season {
+  &:nth-of-type(odd) {
+    background: var(--color-bg-medium);
+  }
+
+  &__header {
+    margin-bottom: var(--space-xl);
+
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+    }
+  }
+
+  &__new {
+    display: inline-block;
+    margin-bottom: var(--space-xs);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+}
+
+.campaign-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.campaign-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  background: var(--color-bg-card);
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  border-radius: var(--radius-lg);
+
+  &--chapter {
+    grid-column: 1 / -1;
+    border-color: rgba(240, 192, 64, 0.35);
+    background: linear-gradient(135deg, rgba(240, 192, 64, 0.08), var(--color-bg-card) 55%);
+
+    .campaign-card__name {
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  &__kind {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  &__name {
+    font-size: 1.2rem;
+  }
+
+  &__summary {
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+
+  &__description {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  &__more {
+    align-self: flex-start;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-purple-light);
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-gold);
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-lg);
+    margin-top: auto;
+    padding-top: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+
+  &__styles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+}
+
+.campaigns-cta {
+  text-align: center;
+
+  p {
+    max-width: 640px;
+    margin: 0 auto var(--space-lg);
+    color: var(--color-text-secondary);
+  }
+}

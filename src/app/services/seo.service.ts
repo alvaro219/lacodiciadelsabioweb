@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { GAME_STATS } from '../data/stats.data';
 
 const SITE_NAME = 'La Codicia del Sabio';
 const BASE_URL = 'https://alvaro219.github.io/lacodiciadelsabioweb';
@@ -12,7 +13,7 @@ export class SeoService {
   setDefault() {
     this.set({
       title: `${SITE_NAME} — Sistema de Rol de Mesa`,
-      description: 'La Codicia del Sabio es un sistema de rol de mesa con 9 clases, 27 subclases y 10 razas. Explora mecánicas únicas, novedades y la comunidad.',
+      description: `La Codicia del Sabio es un sistema de rol de mesa con ${GAME_STATS.clases} clases, ${GAME_STATS.subclases} subclases y ${GAME_STATS.razas} razas, y una app compañera para jugarlo. Explora sus mecánicas, el mundo de Magna y la comunidad.`,
       url: BASE_URL,
       image: DEFAULT_IMAGE
     });
@@ -25,6 +26,16 @@ export class SeoService {
       description: opts.description.slice(0, 155),
       url,
       image: opts.image ?? DEFAULT_IMAGE
+    });
+  }
+
+  /** Metadatos de una página cualquiera; `path` empieza por «/». */
+  setPage(opts: { title: string; description: string; path: string; image?: string | null }) {
+    this.set({
+      title: `${opts.title} — ${SITE_NAME}`,
+      description: opts.description.slice(0, 155),
+      url: `${BASE_URL}${opts.path}`,
+      image: opts.image ? `${BASE_URL}/${opts.image}` : DEFAULT_IMAGE,
     });
   }
 

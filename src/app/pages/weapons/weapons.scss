@@ -1,186 +1,141 @@
-.text-center { text-align: center; }
-
-// ===== HERO =====
-.weap-hero {
-  position: relative;
-  padding: calc(var(--navbar-height) + var(--space-2xl)) 0 var(--space-2xl);
-  overflow: hidden;
-
-  &__bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 30% 50%, rgba(248, 113, 113, 0.12) 0%, transparent 60%),
-      radial-gradient(ellipse at 70% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
-  }
-
-  &__content {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__back {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-xl);
-    transition: color var(--transition-fast);
-
-    &:hover { color: var(--color-gold); }
-  }
-
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xl);
-    margin-bottom: var(--space-xl);
-  }
-
-  &__icon {
-    font-size: 4rem;
-    flex-shrink: 0;
-  }
-
-  &__title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    margin-bottom: var(--space-xs);
-  }
-
-  &__subtitle {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    margin: 0;
-    max-width: 600px;
-  }
-}
-
-// ===== SECTION HEADER =====
-.section-header {
-  text-align: center;
-  margin-bottom: var(--space-2xl);
-
-  h2 {
-    margin-bottom: var(--space-sm);
-  }
-
-  > p {
-    color: var(--color-text-muted);
-    font-size: 1.05rem;
-  }
-}
-
-// ===== WEAPON ABILITIES =====
+// ===== PROPIEDADES DE ARMA =====
 .weap-abilities {
   background: var(--color-bg-medium);
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: var(--space-md);
-
-    @media (max-width: 900px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: 560px) {
-      grid-template-columns: 1fr;
-    }
   }
 }
 
 .ability-badge {
-  border-left: 3px solid var(--color-gold);
+  --tag-color: var(--color-gold);
+  padding: var(--space-lg);
+  background: var(--color-bg-card);
+  border: 1px solid rgba(139, 92, 246, 0.14);
+  border-left: 3px solid var(--tag-color);
+  border-radius: var(--radius-lg);
 
   &__name {
     font-size: 1rem;
-    color: var(--color-gold);
+    color: color-mix(in srgb, var(--tag-color) 70%, white);
     margin-bottom: var(--space-xs);
   }
 
   &__desc {
-    font-size: 0.85rem;
+    font-size: 0.87rem;
     color: var(--color-text-secondary);
     margin: 0;
     line-height: 1.6;
   }
 }
 
-// ===== WEAPON LIST =====
+// ===== LISTA DE ARMAS =====
 .weap-list {
-  &--secondary {
+  &:nth-of-type(even) {
     background: var(--color-bg-medium);
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: var(--space-lg);
 
-    @media (max-width: 900px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: 560px) {
+    @media (max-width: 400px) {
       grid-template-columns: 1fr;
     }
   }
 }
 
-// ===== WEAPON CARD =====
 .weapon-card {
-  border-left: 3px solid var(--color-purple);
-  transition: all var(--transition-normal);
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-bg-card);
+  border: 1px solid rgba(139, 92, 246, 0.14);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+
+  &:hover {
+    border-color: rgba(240, 192, 64, 0.45);
+    transform: translateY(-2px);
+  }
+
+  &__art {
+    flex-shrink: 0;
+    width: 76px;
+    height: 76px;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle, rgba(240, 192, 64, 0.14), transparent 70%);
+    border-radius: var(--radius-md);
+
+    img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    }
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-sm);
+    gap: var(--space-sm);
+    margin-bottom: 2px;
   }
 
   &__name {
     font-size: 1.05rem;
-    color: var(--color-text-primary);
   }
 
   &__damage {
+    flex-shrink: 0;
     font-family: var(--font-heading);
-    font-size: 1rem;
     font-weight: 700;
     color: var(--color-gold);
     background: rgba(240, 192, 64, 0.1);
-    padding: 0.15rem 0.5rem;
+    padding: 0.1rem 0.5rem;
     border-radius: var(--radius-sm);
   }
 
   &__meta {
     display: flex;
-    gap: var(--space-md);
+    flex-wrap: wrap;
+    gap: 0 var(--space-md);
     font-size: 0.8rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-sm);
   }
 
-  &__abilities {
+  &__tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
-    margin-top: var(--space-sm);
+    margin-bottom: var(--space-sm);
   }
 
-  &__ability-tag {
-    display: inline-block;
-    padding: 0.15rem 0.5rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    background: rgba(139, 92, 246, 0.15);
-    color: var(--color-purple-light);
-  }
+  &__users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-sm);
+    font-size: 0.8rem;
 
-  &:hover {
-    border-left-color: var(--color-gold);
+    a {
+      color: var(--color-purple-light);
+
+      &:hover {
+        color: var(--color-gold);
+      }
+    }
   }
 }

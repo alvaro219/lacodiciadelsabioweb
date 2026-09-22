@@ -1,0 +1,444 @@
+[
+  {
+    "nombre": "Humano",
+    "definicion": "Los humanos son comúnmente conocidos por su perseverancia y tenacidad ante los peligros. Pese a que no porten ninguna ventaja física con respecto a otras razas, están más que dispuestos a realizar cualquier tipo de tareas. Por esto, saben que sus esfuerzos merecen reconocimiento pues habrán sido ellos solos y sin ayuda de nada los que completen sus objetivos.",
+    "pasiva": "Los críticos te inspiran otorgándote ventaja en la siguiente tirada con un d20 que realices.",
+    "velocidad": 30,
+    "tamano": "mediano",
+    "subrazas": [
+      {
+        "nombre": "Humano",
+        "definicion": "Los humanos son comúnmente conocidos por su perseverancia y tenacidad ante los peligros. Pese a que no porten ninguna ventaja física con respecto a otras razas, están más que dispuestos a realizar cualquier tipo de tareas. Por esto, saben que sus esfuerzos merecen reconocimiento pues habrán sido ellos solos y sin ayuda de nada los que completen sus objetivos.",
+        "pasiva": "Los críticos te inspiran otorgándote ventaja en la siguiente tirada con un d20 que realices.",
+        "rasgos": []
+      },
+      {
+        "nombre": "Primalga",
+        "definicion": "Seres peludos con una gran capacidad en sus 4 extremidades que usan de misma forma para toda clase de tareas. Algunos quedan fascinados con la alta capacidad física e intelectual de estos grandes escaladores.",
+        "pasiva": "Puedes escalar a tu velocidad de movimiento completa sin penalización y tienes ventaja en tiradas de atletismo para trepar.",
+        "rasgos": [
+          "+1 FUE",
+          "-1 CAR"
+        ]
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_bard_human_man_01_A.png",
+      "assets/avatars/sticker_bard_human_man_01_B.png",
+      "assets/avatars/sticker_circus_human_woman_01.png",
+      "assets/avatars/sticker_highpriest_human_man_01.png",
+      "assets/avatars/sticker_highpriest_human_man_02.png",
+      "assets/avatars/sticker_highwizard_human_man_03.png",
+      "assets/avatars/sticker_highwizard_human_woman_01.png",
+      "assets/avatars/sticker_highwizard_human_woman_02.png",
+      "assets/avatars/sticker_knight_human_man_01.png",
+      "assets/avatars/sticker_knight_human_man_02.png",
+      "assets/avatars/sticker_knight_human_man_03.png",
+      "assets/avatars/sticker_knight_human_man_04_alt.png",
+      "assets/avatars/sticker_knight_human_man_05.png",
+      "assets/avatars/sticker_knight_human_man_06.png",
+      "assets/avatars/sticker_noble_human_man_01.png",
+      "assets/avatars/sticker_noble_human_man_02.png",
+      "assets/avatars/sticker_noble_human_woman_01.png",
+      "assets/avatars/sticker_noble_human_woman_02.png",
+      "assets/avatars/sticker_noble_human_woman_03.png",
+      "assets/avatars/sticker_noble_human_woman_05.png",
+      "assets/avatars/sticker_priest_human_woman_01.png",
+      "assets/avatars/sticker_resident_human_man_01.png",
+      "assets/avatars/sticker_resident_human_man_02.png",
+      "assets/avatars/sticker_resident_human_man_03.png",
+      "assets/avatars/sticker_resident_human_man_04.png",
+      "assets/avatars/sticker_resident_human_man_05.png",
+      "assets/avatars/sticker_resident_human_man_06_A.png",
+      "assets/avatars/sticker_resident_human_man_06_B.png",
+      "assets/avatars/sticker_resident_human_man_06_C.png",
+      "assets/avatars/sticker_resident_human_woman_01.png",
+      "assets/avatars/sticker_resident_human_woman_02.png",
+      "assets/avatars/sticker_resident_human_woman_03.png",
+      "assets/avatars/sticker_resident_human_woman_04.png",
+      "assets/avatars/sticker_resident_human_woman_05.png",
+      "assets/avatars/sticker_resident_human_woman_06.png",
+      "assets/avatars/sticker_scholar_human_man_01.png",
+      "assets/avatars/sticker_scholar_human_man_02.png",
+      "assets/avatars/sticker_scholar_human_woman_01.png",
+      "assets/avatars/sticker_warrior_human_girl_01.png",
+      "assets/avatars/sticker_warrior_human_girl_01_alt.png",
+      "assets/avatars/sticker_warrior_human_man_01.png",
+      "assets/avatars/sticker_warrior_human_man_02.png",
+      "assets/avatars/sticker_warrior_human_man_03.png",
+      "assets/avatars/sticker_warrior_human_man_04.png",
+      "assets/avatars/sticker_warrior_human_man_05.png",
+      "assets/avatars/sticker_warrior_human_man_06.png",
+      "assets/avatars/sticker_warrior_human_man_07.png",
+      "assets/avatars/sticker_warrior_human_man_08.png",
+      "assets/avatars/sticker_warrior_human_man_09.png",
+      "assets/avatars/sticker_warrior_human_man_10.png",
+      "assets/avatars/sticker_warrior_human_man_11.png",
+      "assets/avatars/sticker_warrior_human_woman_01.png",
+      "assets/avatars/sticker_warrior_human_woman_02.png",
+      "assets/avatars/sticker_warrior_human_woman_03.png",
+      "assets/avatars/sticker_warrior_human_woman_04.png",
+      "assets/avatars/sticker_warrior_human_woman_05.png",
+      "assets/avatars/sticker_warrior_human_woman_06.png",
+      "assets/avatars/sticker_warrior_human_woman_07.png",
+      "assets/avatars/sticker_wizard_human_man_01.png",
+      "assets/avatars/sticker_wizard_human_man_02.png",
+      "assets/avatars/sticker_wizard_human_man_03.png",
+      "assets/avatars/sticker_wizard_human_man_04.png",
+      "assets/avatars/sticker_wizard_human_man_05.png",
+      "assets/avatars/sticker_wizard_human_man_07.png",
+      "assets/avatars/sticker_wizard_human_woman_01.png",
+      "assets/avatars/sticker_wizard_human_woman_03.png",
+      "assets/avatars/sticker_wizard_human_woman_04.png",
+      "assets/avatars/sticker_wizard_human_woman_05.png",
+      "assets/avatars/sticker_deity_woman_03.png"
+    ]
+  },
+  {
+    "nombre": "Elfo",
+    "definicion": "Los elfos son artistas natos, conocidos por su pasión por todas las formas de arte y su profundo interés en la biología. Estos seres orgánicos presentan una fusión única con la naturaleza, con características como cabello hecho de ramas y hojas. Su conexión con la naturaleza se refleja en su creatividad y habilidad para transformar el entorno en expresiones artísticas vivas.",
+    "pasiva": "Tienes \"visión en la oscuridad\" y eres resistente al elemento Naturaleza.",
+    "velocidad": 30,
+    "tamano": "mediano",
+    "subrazas": [
+      {
+        "nombre": "Elfo",
+        "definicion": "Los elfos son artistas natos, conocidos por su pasión por todas las formas de arte y su profundo interés en la biología. Estos seres orgánicos presentan una fusión única con la naturaleza, con características como cabello hecho de ramas y hojas. Su conexión con la naturaleza se refleja en su creatividad y habilidad para transformar el entorno en expresiones artísticas vivas.",
+        "pasiva": "Tienes \"visión en la oscuridad\" y eres resistente al elemento Naturaleza.",
+        "rasgos": [
+          "+1 INT",
+          "-1 FUE"
+        ]
+      },
+      {
+        "nombre": "Funguleno",
+        "definicion": "Mientras que los elfos normales se centran en la vida, los Fungulenos se centran en la descomposición y la corrupción. Son el final del ciclo vital y se aprovechan de ello.",
+        "pasiva": "Eres inmune a \"Envenenamiento\".",
+        "rasgos": [
+          "+1 CON",
+          "-1 PER"
+        ]
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_doctor_sylvan_woman_01.png",
+      "assets/avatars/sticker_resident_sylvan_man_01.png",
+      "assets/avatars/sticker_resident_sylvan_man_02.png",
+      "assets/avatars/sticker_resident_sylvan_man_03.png",
+      "assets/avatars/sticker_resident_sylvan_woman_01.png",
+      "assets/avatars/sticker_warrior_sylvan_man_01.png"
+    ]
+  },
+  {
+    "nombre": "Enano",
+    "definicion": "Los enanos son habitantes de las montañas, donde han creado una vasta red de túneles subterráneos que conectan sus reinos. Son estoicos y, aunque pueden parecer rudos al principio, poseen un gran corazón y una lealtad inquebrantable hacia sus amigos y familia. Su habilidad para trabajar con metales y piedra es legendaria, y son conocidos por su resistencia y determinación.",
+    "pasiva": "Digieres perfectamente cualquier mineral cocinado y eres resistente al elemento Fuego.",
+    "velocidad": 25,
+    "tamano": "mediano",
+    "subrazas": [
+      {
+        "nombre": "Enano",
+        "definicion": "Los enanos son habitantes de las montañas, donde han creado una vasta red de túneles subterráneos que conectan sus reinos. Son estoicos y, aunque pueden parecer rudos al principio, poseen un gran corazón y una lealtad inquebrantable hacia sus amigos y familia. Su habilidad para trabajar con metales y piedra es legendaria, y son conocidos por su resistencia y determinación.",
+        "pasiva": "Digieres perfectamente cualquier mineral cocinado y eres resistente al elemento Fuego.",
+        "rasgos": [
+          "+1 CON",
+          "-1 DES"
+        ]
+      },
+      {
+        "nombre": "Titán",
+        "definicion": "Seres creados directamente de alguna veta de un material. Opuestamente grandes a sus homólogos, con una composición puramente de algún material que les exime de muchas necesidades y beneficios orgánicos, aunque no todos.",
+        "pasiva": "Tienes ventaja en tiradas de Voluntad.",
+        "rasgos": [
+          "+1 FUE",
+          "-1 DES"
+        ],
+        "velocidad": 30,
+        "tamano": "grande"
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_resident_dwarf_man_01.png",
+      "assets/avatars/sticker_warrior_dwarf_man_01.png",
+      "assets/avatars/sticker_warrior_dwarf_man_02.png",
+      "assets/avatars/sticker_wizard_dwarf_man_01.png"
+    ]
+  },
+  {
+    "nombre": "Aasimar",
+    "definicion": "Los Aasimar son seres celestiales, descendientes de ángeles o entidades divinas. Irradian una presencia majestuosa y poseen un fuerte sentido del deber y la justicia. A menudo son vistos como protectores y líderes naturales, utilizando sus habilidades para iluminar el camino en tiempos de oscuridad.",
+    "pasiva": "Puedes resplandecer en la oscuridad y dar luz a una sala pequeña y eres resistente al elemento Luz.",
+    "velocidad": 30,
+    "tamano": "mediano",
+    "subrazas": [
+      {
+        "nombre": "Aasimar",
+        "definicion": "Los Aasimar son seres celestiales, descendientes de ángeles o entidades divinas. Irradian una presencia majestuosa y poseen un fuerte sentido del deber y la justicia. A menudo son vistos como protectores y líderes naturales, utilizando sus habilidades para iluminar el camino en tiempos de oscuridad.",
+        "pasiva": "Puedes resplandecer en la oscuridad y dar luz a una sala pequeña y eres resistente al elemento Luz.",
+        "rasgos": [
+          "+1 CAR",
+          "-1 PER"
+        ]
+      },
+      {
+        "nombre": "Tiefling",
+        "definicion": "Despreciados y temidos, estos incomprendidos seres alados viajan con sus barcos voladores de país en país buscando un lugar al que poder llamar hogar.",
+        "pasiva": "Puedes gastar 🟢 para planear con tus alas, reduciendo el daño por caída en 1 y eres resistente al elemento Fuego.",
+        "rasgos": [
+          "+1 INT",
+          "-1 FUE"
+        ]
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_deity_man_03.png"
+    ]
+  },
+  {
+    "nombre": "Orco",
+    "definicion": "Los orcos son una raza guerrera conocida por su fuerza bruta y su resistencia implacable. Viven en clanes tribales y valoran el poder y el honor en combate. A pesar de su apariencia temible, los orcos poseen una cultura rica y compleja, centrada en la preservación de la cultura y el linaje así como la búsqueda espiritual.",
+    "pasiva": "La primera vez al día que tu salud llege a 0, recuperas ❤️ instantáneamente y al final de tu turno sufres 1 de daño.",
+    "velocidad": 35,
+    "tamano": "grande",
+    "subrazas": [
+      {
+        "nombre": "Orco",
+        "definicion": "Los orcos son una raza guerrera conocida por su fuerza bruta y su resistencia implacable. Viven en clanes tribales y valoran el poder y el honor en combate. A pesar de su apariencia temible, los orcos poseen una cultura rica y compleja, centrada en la preservación de la cultura y el linaje así como la búsqueda espiritual.",
+        "pasiva": "La primera vez al día que tu salud llege a 0, recuperas ❤️ instantáneamente y al final de tu turno sufres 1 de daño.",
+        "rasgos": [
+          "+1 FUE",
+          "-1 INT"
+        ]
+      },
+      {
+        "nombre": "Goblin",
+        "definicion": "Incomprendidos seres del bosque que acaban muchas veces hostigando a sus vecinos por provocaciones previas tras fracasados intentos de convivencia. En parte, por su baja capacidad oradora.",
+        "pasiva": "Puedes comunicarte vagamente en cualquier idioma con cualquier ser consciente.",
+        "rasgos": [
+          "+1 DES",
+          "-1 PER"
+        ],
+        "velocidad": 30,
+        "tamano": "pequeño"
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_marine_orc_man_01.png",
+      "assets/avatars/sticker_resident_orc_woman_01.png",
+      "assets/avatars/sticker_warrior_orc_man_01.png",
+      "assets/avatars/sticker_warrior_orc_man_02.png",
+      "assets/avatars/sticker_warrior_orc_man_03.png",
+      "assets/avatars/sticker_warrior_orc_woman_01.png",
+      "assets/avatars/sticker_resident_goblin_man_01.png",
+      "assets/avatars/sticker_resident_goblin_woman_01.png",
+      "assets/avatars/sticker_warrior_goblin_woman_01.png",
+      "assets/avatars/sticker_wizard_goblin_woman_01.png",
+      "assets/avatars/sticker_wizard_goblin_woman_02.png",
+      "assets/avatars/sticker_wizard_goblin_woman_03.png",
+      "assets/avatars/sticker_wizard_goblin_woman_04.png"
+    ]
+  },
+  {
+    "nombre": "Mediano",
+    "definicion": "Los medianos son una raza pequeña y astuta, conocida por su ingenio y su capacidad para pasar desapercibidos. Viven en comunidades rurales y tienen una afinidad natural con la magia y los objetos mágicos. Su curiosidad insaciable y su espíritu aventurero los llevan a menudo a embarcarse en grandes viajes.",
+    "pasiva": "Puedes ver las convergencias mágicas.",
+    "velocidad": 25,
+    "tamano": "pequeño",
+    "subrazas": [
+      {
+        "nombre": "Mediano",
+        "definicion": "Los medianos son una raza pequeña y astuta, conocida por su ingenio y su capacidad para pasar desapercibidos. Viven en comunidades rurales y tienen una afinidad natural con la magia y los objetos mágicos. Su curiosidad insaciable y su espíritu aventurero los llevan a menudo a embarcarse en grandes viajes.",
+        "pasiva": "Puedes ver las convergencias mágicas.",
+        "rasgos": [
+          "+1 INT",
+          "-1 CON"
+        ]
+      },
+      {
+        "nombre": "Hada",
+        "definicion": "Estos seres han centrado su cultura alrededor de la magia y desprestigian cualquier atisbo que difiera de ella. De forma que crean grandes e intrincadas redes de tradiciones y dependencias con las convergencias más grandes que encuentren.",
+        "pasiva": "Puedes gastar 🟢 y levitar en el aire.",
+        "rasgos": [
+          "+1 CAR",
+          "-1 FUE"
+        ]
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_circus_halfelin_woman_01.png",
+      "assets/avatars/sticker_resident_halfelin_woman_01.png",
+      "assets/avatars/sticker_wizard_halfelin_man_01.png",
+      "assets/avatars/sticker_wizard_halfelin_woman_01.png",
+      "assets/avatars/sticker_ranger_elve_woman_01.png",
+      "assets/avatars/sticker_resident_elve_man_02.png"
+    ]
+  },
+  {
+    "nombre": "Lagarliz",
+    "definicion": "Los lagarliz son una raza reptiliana adaptada a una variedad de entornos, desde selvas densas hasta pantanos oscuros. Su piel escamosa y sus reflejos rápidos los convierten en cazadores eficientes y supervivientes natos. Son conocidos por su adaptabilidad y su capacidad para mezclarse con su entorno.",
+    "pasiva": "El color de tu piel se adapta al entorno y eres resistente a \"Envenenar\".",
+    "velocidad": 30,
+    "tamano": "mediano",
+    "subrazas": [
+      {
+        "nombre": "Lagarliz",
+        "definicion": "Los lagarliz son una raza reptiliana adaptada a una variedad de entornos, desde selvas densas hasta pantanos oscuros. Su piel escamosa y sus reflejos rápidos los convierten en cazadores eficientes y supervivientes natos. Son conocidos por su adaptabilidad y su capacidad para mezclarse con su entorno.",
+        "pasiva": "El color de tu piel se adapta al entorno y eres resistente a \"Envenenar\".",
+        "rasgos": [
+          "+1 PER",
+          "-1 FUE"
+        ]
+      },
+      {
+        "nombre": "Dracánido",
+        "definicion": "Ostentosos guerreros y orgullosos capaces de las grandes hazañas de héroes y tiranos registradas a lo largo de la historia.",
+        "pasiva": "Una vez por día, puedes gastar 🟢 y exhalar un aliento elemental (Fuego, Agua o Rayo a elección en la creación) en un cono de 15 pies, infligiendo 1d6 de daño del elemento elegido a todos los afectados.",
+        "rasgos": [
+          "+1 FUE",
+          "-1 DES"
+        ],
+        "tamano": "grande"
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_deity_man_01.png"
+    ]
+  },
+  {
+    "nombre": "Bestani",
+    "definicion": "Los bestani son seres antropomorfos que viven de forma desestructurada y están repartidos por todo el mundo. En el pasado, tuvieron una cultura floreciente, pero ahora quedan pocos vestigios de esa civilización. Los bestani se dedican a todo tipo de oficios en diversos lugares, buscando labrarse un nuevo lugar en el mundo.",
+    "pasiva": "Puedes oler la sangre a kilómetros de distancia y gastar 🟢 para correr más a 4 patas (20 pies extras) hasta que te vuelvas a erguir.",
+    "velocidad": 30,
+    "tamano": "mediano",
+    "subrazas": [
+      {
+        "nombre": "Bestani",
+        "definicion": "Los bestani son seres antropomorfos que viven de forma desestructurada y están repartidos por todo el mundo. En el pasado, tuvieron una cultura floreciente, pero ahora quedan pocos vestigios de esa civilización. Los bestani se dedican a todo tipo de oficios en diversos lugares, buscando labrarse un nuevo lugar en el mundo.",
+        "pasiva": "Puedes oler la sangre a kilómetros de distancia y gastar 🟢 para correr más a 4 patas (20 pies extras) hasta que te vuelvas a erguir.",
+        "rasgos": [
+          "+1 PER",
+          "-1 INT"
+        ]
+      },
+      {
+        "nombre": "Kenku",
+        "definicion": "Solitarios, silenciosos y muy pillos. Estos seres suelen hacer su vida durante la noche, ocasión que aprovechan para realizar todo tipo de actos. Su garganta ultra-avanzada les permite interpretar la voz de otros seres y sus nombres suelen ser simples sonidos.",
+        "pasiva": "Puedes imitar perfectamente cualquier voz o sonido que hayas escuchado. Tienes ventaja en tiradas de engaño cuando imitas a alguien.",
+        "rasgos": [
+          "+1 DES",
+          "-1 INT"
+        ]
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_circus_avian_woman_01.png",
+      "assets/avatars/sticker_resident_avian_man_01.png",
+      "assets/avatars/sticker_resident_avian_woman_01.png",
+      "assets/avatars/sticker_warrior_avian_man_01_A.png",
+      "assets/avatars/sticker_warrior_avian_man_01_B.png",
+      "assets/avatars/sticker_wizard_avian_man_01.png"
+    ]
+  },
+  {
+    "nombre": "Omnimek",
+    "definicion": "Los omnimek son robots casi en su totalidad, envueltos en un misticismo debido a su origen desconocido. Nadie sabe quién los creó, cómo, ni cuándo, ni con qué propósito. Estos seres curiosos vagan por el mundo en busca de algo que incluso muchos de ellos han olvidado con el tiempo. Su existencia es un enigma, y su búsqueda incansable los impulsa a explorar y descubrir.",
+    "pasiva": "No necesitas comer ni respirar.",
+    "velocidad": 30,
+    "tamano": "mediano",
+    "subrazas": [
+      {
+        "nombre": "Omnimek",
+        "definicion": "Los omnimek son robots casi en su totalidad, envueltos en un misticismo debido a su origen desconocido. Nadie sabe quién los creó, cómo, ni cuándo, ni con qué propósito. Estos seres curiosos vagan por el mundo en busca de algo que incluso muchos de ellos han olvidado con el tiempo. Su existencia es un enigma, y su búsqueda incansable los impulsa a explorar y descubrir.",
+        "pasiva": "No necesitas comer ni respirar.",
+        "rasgos": [
+          "+1 CON",
+          "-1 CAR"
+        ]
+      },
+      {
+        "nombre": "Germinante",
+        "definicion": "Golems creados a partir de la germinación de los núcleos que portan los omnimeks, estos han terminado creando su propia senda, formando círculos culturales muy cerrados donde el habla no suele ser común y se comunican con gestos.",
+        "pasiva": "No puedes perder más de ❤️❤️ por ataque ó habilidad.",
+        "rasgos": [
+          "+1 CAR",
+          "-1 CON"
+        ],
+        "tamano": "grande"
+      }
+    ],
+    "avatares": []
+  },
+  {
+    "nombre": "Lazuri",
+    "definicion": "Los Lazuri son una raza anfibia de cuerpos esbeltos y ojos que brillan como la luna sobre el agua. Maestros de la percepción y la adaptación, habitan en ciudades semi-sumergidas de coral y piedra, guiados por un profundo vínculo espiritual con las corrientes oceánicas. Su agudeza para ver y escuchar más allá de lo evidente contrasta con su frágil constitución.",
+    "pasiva": "Puedes respirar bajo el agua y moverte a tu velocidad máxima sin penalización en medios acuáticos.",
+    "velocidad": 30,
+    "tamano": "mediano",
+    "subrazas": [
+      {
+        "nombre": "Lazuri",
+        "definicion": "Los Lazuri son una raza anfibia de cuerpos esbeltos y ojos que brillan como la luna sobre el agua. Maestros de la percepción y la adaptación, habitan en ciudades semi-sumergidas de coral y piedra, guiados por un profundo vínculo espiritual con las corrientes oceánicas. Su agudeza para ver y escuchar más allá de lo evidente contrasta con su frágil constitución.",
+        "pasiva": "Puedes aguantar la respiración 1 hora y moverte a tu velocidad máxima sin penalización en medios acuáticos. Además, eres resistente al elemento Agua",
+        "rasgos": [
+          "+1 PER",
+          "-1 CON"
+        ]
+      },
+      {
+        "nombre": "Abisal",
+        "definicion": "Grandes nadadores de las más extremas profundidades del mar. No hay que dejarse engañar por las apariencias, puesto que aunque suelan portar un aspecto terrorífico, suelen ser inofensivos salvo si se les provoca.",
+        "pasiva": "Puedes respirar bajo el agua y moverte a tu velocidad máxima sin penalización en medios acuáticos. Además, tienes visión en la oscuridad.",
+        "rasgos": [
+          "+1 DES",
+          "-1 CAR"
+        ],
+        "velocidad": 25
+      }
+    ],
+    "avatares": [
+      "assets/avatars/sticker_resident_ondin_man_01.png",
+      "assets/avatars/sticker_resident_ondin_man_02.png",
+      "assets/avatars/sticker_resident_ondin_woman_01.png",
+      "assets/avatars/sticker_warrior_ondin_man_01.png",
+      "assets/avatars/sticker_warrior_ondin_man_02.png",
+      "assets/avatars/sticker_warrior_ondin_woman_01_A.png",
+      "assets/avatars/sticker_warrior_ondin_woman_01_B.png",
+      "assets/avatars/sticker_warrior_ondin_woman_01_C.png",
+      "assets/avatars/sticker_warrior_ondin_woman_02.png",
+      "assets/avatars/sticker_jobless_ondin_woman_01.png",
+      "assets/avatars/sticker_demon_human_woman_01.png"
+    ]
+  },
+  {
+    "nombre": "Myridian",
+    "definicion": "Los Myridian son seres insectoides definidos por la unión entre el instinto y una férrea disciplina. Cubiertos de quitina brillante y deslumbrantes patrones bioluminiscentes, habitan en comunidades donde la cooperación y la sinergia lo son todo. Su cultura honra la interdependencia y el deber compartido, operando como un único organismo coordinado nacidos para proteger, construir y prosperar en grupo.",
+    "pasiva": "Tu último ❤️ debe ser perdido individualmente.",
+    "velocidad": 25,
+    "tamano": "pequeño",
+    "subrazas": [
+      {
+        "nombre": "Myridian",
+        "definicion": "Los Myridian son seres insectoides definidos por la unión entre el instinto y una férrea disciplina. Cubiertos de quitina brillante y deslumbrantes patrones bioluminiscentes, habitan en comunidades donde la cooperación y la sinergia lo son todo. Su cultura honra la interdependencia y el deber compartido, operando como un único organismo coordinado nacidos para proteger, construir y prosperar en grupo.",
+        "pasiva": "Tu último ❤️ debe ser perdido individualmente.",
+        "rasgos": [
+          "+1 CON",
+          "-1 CAR"
+        ]
+      },
+      {
+        "nombre": "Sedarcas",
+        "definicion": "Solitarios arquitectos del bosque que conviven con la flora envolviéndola en hilos de seda orgánica. Adaptados a la vida en las alturas del follaje, crean redes y puentes naturales para desplazarse sin alterar el ecosistema que los rodea.",
+        "pasiva": "Puedes generar hilo de seda para crear cuerdas, trampas o frenar caídas.",
+        "rasgos": [
+          "+1 CAR",
+          "-1 CON"
+        ]
+      }
+    ],
+    "avatares": [
+      "assets/avatars/avatar_wizard_sylvan_boy_01_A.png",
+      "assets/avatars/avatar_wizard_sylvan_boy_01_B.png",
+      "assets/avatars/avatar_wizard_sylvan_boy_01_C.png"
+    ]
+  }
+]

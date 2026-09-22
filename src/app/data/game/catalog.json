@@ -1,0 +1,57 @@
+{
+  "clases": [
+    {
+      "nombre": "Escaramuzador",
+      "esMagica": false
+    },
+    {
+      "nombre": "Controlador",
+      "esMagica": true
+    },
+    {
+      "nombre": "Luchador",
+      "esMagica": false
+    },
+    {
+      "nombre": "Protector",
+      "esMagica": false
+    },
+    {
+      "nombre": "Invocador",
+      "esMagica": true
+    },
+    {
+      "nombre": "Artillero",
+      "esMagica": false
+    },
+    {
+      "nombre": "Velador",
+      "esMagica": true
+    },
+    {
+      "nombre": "Exaltador",
+      "esMagica": true
+    },
+    {
+      "nombre": "Místico",
+      "esMagica": true
+    },
+    {
+      "nombre": "Apotecario",
+      "esMagica": false
+    }
+  ],
+  "razas": [
+    "Humano",
+    "Elfo",
+    "Enano",
+    "Aasimar",
+    "Orco",
+    "Mediano",
+    "Lagarliz",
+    "Bestani",
+    "Omnimek",
+    "Lazuri",
+    "Myridian"
+  ]
+}

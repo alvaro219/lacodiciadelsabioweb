@@ -1,0 +1,444 @@
+{
+  "habilidad": {
+    "melee": {
+      "nombre": "Melée",
+      "corto": "Melée",
+      "descripcion": "Esta habilidad requiere estar en rango cuerpo a cuerpo.",
+      "color": "#D32F2F",
+      "categoria": "Ataque"
+    },
+    "ranged": {
+      "nombre": "Distancia",
+      "corto": "Distancia",
+      "descripcion": "Esta habilidad se usa a distancia.",
+      "color": "#1976D2",
+      "categoria": "Ataque"
+    },
+    "fullAttack": {
+      "nombre": "Ataque Completo",
+      "corto": "Atq. Completo",
+      "descripcion": "Realiza un ataque con todas las armas equipadas.",
+      "color": "#E65100",
+      "categoria": "Ataque"
+    },
+    "mainAttack": {
+      "nombre": "Ataque Principal",
+      "corto": "Atq. Principal",
+      "descripcion": "Realiza un ataque con el arma principal.",
+      "color": "#EF6C00",
+      "categoria": "Ataque"
+    },
+    "secondaryAttack": {
+      "nombre": "Ataque Secundario",
+      "corto": "Atq. Secundario",
+      "descripcion": "Realiza un ataque con el arma secundaria.",
+      "color": "#F57C00",
+      "categoria": "Ataque"
+    },
+    "autoHit": {
+      "nombre": "Acierto Automático",
+      "corto": "Auto-Acierto",
+      "descripcion": "Este ataque acierta automáticamente sin tirada.",
+      "color": "#7B1FA2",
+      "categoria": "Ataque"
+    },
+    "displacement": {
+      "nombre": "Desplazamiento",
+      "corto": "Desplaz.",
+      "descripcion": "Esta habilidad incluye movimiento del usuario.",
+      "color": "#00897B",
+      "categoria": "Movimiento"
+    },
+    "teleport": {
+      "nombre": "Teletransporte",
+      "corto": "Teleport",
+      "descripcion": "Te teletransportas a una posición.",
+      "color": "#6A1B9A",
+      "categoria": "Movimiento"
+    },
+    "charge": {
+      "nombre": "Carga",
+      "corto": "Carga",
+      "descripcion": "Te desplazas hacia un enemigo y atacas.",
+      "color": "#C62828",
+      "categoria": "Movimiento"
+    },
+    "range5": {
+      "nombre": "Rango 5 pies",
+      "corto": "5 pies",
+      "descripcion": "Alcande de 5 pies.",
+      "color": "#8BC34A",
+      "categoria": "Rango"
+    },
+    "range15": {
+      "nombre": "Rango 15 pies",
+      "corto": "15 pies",
+      "descripcion": "Alcance de 15 pies.",
+      "color": "#558B2F",
+      "categoria": "Rango"
+    },
+    "range30": {
+      "nombre": "Rango 30 pies",
+      "corto": "30 pies",
+      "descripcion": "Alcance de 30 pies.",
+      "color": "#33691E",
+      "categoria": "Rango"
+    },
+    "range10": {
+      "nombre": "Rango 10 pies",
+      "corto": "10 pies",
+      "descripcion": "Alcande de 10 pies.",
+      "color": "#43A047",
+      "categoria": "Rango"
+    },
+    "range20": {
+      "nombre": "Rango 20 pies",
+      "corto": "20 pies",
+      "descripcion": "Alcance de 20 pies.",
+      "color": "#33691E",
+      "categoria": "Rango"
+    },
+    "range60": {
+      "nombre": "Rango 60 pies",
+      "corto": "60 pies",
+      "descripcion": "Alcance de 60 pies.",
+      "color": "#1B5E20",
+      "categoria": "Rango"
+    },
+    "cone15": {
+      "nombre": "Cono 15 pies",
+      "corto": "Cono 15",
+      "descripcion": "Afecta un cono de 15 pies.",
+      "color": "#FF6F00",
+      "categoria": "Rango"
+    },
+    "cone30": {
+      "nombre": "Cono 30 pies",
+      "corto": "Cono 30",
+      "descripcion": "Afecta un cono de 30 pies.",
+      "color": "#E65100",
+      "categoria": "Rango"
+    },
+    "area": {
+      "nombre": "Área",
+      "corto": "Área",
+      "descripcion": "Afecta un área de efecto.",
+      "color": "#AD1457",
+      "categoria": "Rango"
+    },
+    "oncePerTurn": {
+      "nombre": "1 Vez por Turno",
+      "corto": "1/Turno",
+      "descripcion": "Solo se puede usar una vez por turno.",
+      "color": "#5D4037",
+      "categoria": "Frecuencia"
+    },
+    "oncePerCombat": {
+      "nombre": "1 Vez por Combate",
+      "corto": "1/Combate",
+      "descripcion": "Solo se puede usar una vez por combate.",
+      "color": "#4E342E",
+      "categoria": "Frecuencia"
+    },
+    "oncePerDay": {
+      "nombre": "1 Vez por Día",
+      "corto": "1/Día",
+      "descripcion": "Solo se puede usar una vez al día.",
+      "color": "#3E2723",
+      "categoria": "Frecuencia"
+    },
+    "targetSelf": {
+      "nombre": "Propio",
+      "corto": "Propio",
+      "descripcion": "Se aplica sobre uno mismo.",
+      "color": "#0277BD",
+      "categoria": "Objetivo"
+    },
+    "targetAlly": {
+      "nombre": "Aliado",
+      "corto": "Aliado",
+      "descripcion": "Se aplica sobre un aliado.",
+      "color": "#2E7D32",
+      "categoria": "Objetivo"
+    },
+    "targetEnemy": {
+      "nombre": "Enemigo",
+      "corto": "Enemigo",
+      "descripcion": "Se aplica sobre un enemigo.",
+      "color": "#C62828",
+      "categoria": "Objetivo"
+    },
+    "targetArea": {
+      "nombre": "Área de Efecto",
+      "corto": "AoE",
+      "descripcion": "Afecta a todos en un área.",
+      "color": "#BF360C",
+      "categoria": "Objetivo"
+    },
+    "targetAll": {
+      "nombre": "Todos",
+      "corto": "Todos",
+      "descripcion": "Afecta a todos los participantes.",
+      "color": "#4A148C",
+      "categoria": "Objetivo"
+    },
+    "reaction": {
+      "nombre": "Reacción",
+      "corto": "Reacción",
+      "descripcion": "Se usa como reacción fuera de tu turno.",
+      "color": "#F9A825",
+      "categoria": "Especial"
+    },
+    "piercing": {
+      "nombre": "Perforante",
+      "corto": "Perforante",
+      "descripcion": "Atraviesa el escudo del objetivo.",
+      "color": "#880E4F",
+      "categoria": "Especial"
+    },
+    "bonus": {
+      "nombre": "Dado Bonus",
+      "corto": "Bonus",
+      "descripcion": "Añade daño adicional a la tirada.",
+      "color": "#FF8F00",
+      "categoria": "Especial"
+    },
+    "heal": {
+      "nombre": "Curación",
+      "corto": "Curación",
+      "descripcion": "Restaura puntos de vida.",
+      "color": "#E91E63",
+      "categoria": "Especial"
+    },
+    "shield": {
+      "nombre": "Escudo",
+      "corto": "Escudo",
+      "descripcion": "Otorga o restaura puntos de escudo.",
+      "color": "#546E7A",
+      "categoria": "Especial"
+    },
+    "usesShield": {
+      "nombre": "Escudo",
+      "corto": "Escudo",
+      "descripcion": "Utiliza 🛡️ como recurso.",
+      "color": "#D32F2F",
+      "categoria": "Especial"
+    },
+    "usesHealth": {
+      "nombre": "Salud",
+      "corto": "Salud",
+      "descripcion": "Utiliza ❤️ como recurso.",
+      "color": "#B71C1C",
+      "categoria": "Especial"
+    },
+    "summon": {
+      "nombre": "Invocación",
+      "corto": "Invocación",
+      "descripcion": "Invoca una criatura o efecto.",
+      "color": "#7E57C2",
+      "categoria": "Especial"
+    },
+    "control": {
+      "nombre": "Control",
+      "corto": "Control",
+      "descripcion": "Controla o restringe al objetivo.",
+      "color": "#5C6BC0",
+      "categoria": "Especial"
+    },
+    "mark": {
+      "nombre": "Marca",
+      "corto": "Marca",
+      "descripcion": "Marca a un objetivo para efectos posteriores.",
+      "color": "#D84315",
+      "categoria": "Especial"
+    },
+    "stance": {
+      "nombre": "Postura",
+      "corto": "Postura",
+      "descripcion": "Adoptas una postura defensiva u ofensiva.",
+      "color": "#00695C",
+      "categoria": "Especial"
+    },
+    "buff": {
+      "nombre": "Mejora",
+      "corto": "Buff",
+      "descripcion": "Mejora las estadísticas o capacidades.",
+      "color": "#388E3C",
+      "categoria": "Especial"
+    },
+    "debuff": {
+      "nombre": "Debilitación",
+      "corto": "Debuff",
+      "descripcion": "Reduce las estadísticas o capacidades del objetivo.",
+      "color": "#6D4C41",
+      "categoria": "Especial"
+    },
+    "ultimate": {
+      "nombre": "Definitiva",
+      "corto": "Definitiva",
+      "descripcion": "Habilidad definitiva que consume todos los recursos.",
+      "color": "#FFD600",
+      "categoria": "Especial"
+    },
+    "channeling": {
+      "nombre": "Canalización",
+      "corto": "Canalización",
+      "descripcion": "Si se interrumpe la habilidad por un desplazamiento, habilidad o condición, se cancela la habilidad.",
+      "color": "#00695C",
+      "categoria": "Especial"
+    },
+    "damage": {
+      "nombre": "Daño",
+      "corto": "Daño",
+      "descripcion": "Esta habilidad inflige daño. Se debe especificar el número de dados y su tipo.",
+      "color": "#D32F2F",
+      "categoria": "Daño"
+    },
+    "damageDie4": {
+      "nombre": "Dado d4",
+      "corto": "d4",
+      "descripcion": "Usa dados de 4 caras para el daño.",
+      "color": "#795548",
+      "categoria": "Daño"
+    },
+    "damageDie6": {
+      "nombre": "Dado d6",
+      "corto": "d6",
+      "descripcion": "Usa dados de 6 caras para el daño.",
+      "color": "#5D4037",
+      "categoria": "Daño"
+    },
+    "damageDie8": {
+      "nombre": "Dado d8",
+      "corto": "d8",
+      "descripcion": "Usa dados de 8 caras para el daño.",
+      "color": "#455A64",
+      "categoria": "Daño"
+    },
+    "damageDie10": {
+      "nombre": "Dado d10",
+      "corto": "d10",
+      "descripcion": "Usa dados de 10 caras para el daño.",
+      "color": "#37474F",
+      "categoria": "Daño"
+    },
+    "damageDie12": {
+      "nombre": "Dado d12",
+      "corto": "d12",
+      "descripcion": "Usa dados de 12 caras para el daño.",
+      "color": "#263238",
+      "categoria": "Daño"
+    },
+    "damageDie20": {
+      "nombre": "Dado d20",
+      "corto": "d20",
+      "descripcion": "Usa dados de 20 caras para el daño.",
+      "color": "#000000",
+      "categoria": "Daño"
+    },
+    "usesStrength": {
+      "nombre": "Fuerza",
+      "corto": "FUE",
+      "descripcion": "Usa el modificador de Fuerza para la tirada de acierto.",
+      "color": "#B71C1C",
+      "categoria": "Ataque"
+    },
+    "usesDexterity": {
+      "nombre": "Destreza",
+      "corto": "DES",
+      "descripcion": "Usa el modificador de Destreza para la tirada de acierto.",
+      "color": "#1565C0",
+      "categoria": "Ataque"
+    },
+    "usesConstitution": {
+      "nombre": "Constitución",
+      "corto": "CON",
+      "descripcion": "Usa el modificador de Constitución para la tirada de acierto.",
+      "color": "#2E7D32",
+      "categoria": "Ataque"
+    },
+    "usesIntelligence": {
+      "nombre": "Inteligencia",
+      "corto": "INT",
+      "descripcion": "Usa el modificador de Inteligencia para la tirada de acierto.",
+      "color": "#6A1B9A",
+      "categoria": "Ataque"
+    },
+    "usesPerception": {
+      "nombre": "Percepción",
+      "corto": "SAB",
+      "descripcion": "Usa el modificador de Percepción para la tirada de acierto.",
+      "color": "#00695C",
+      "categoria": "Ataque"
+    },
+    "usesCharisma": {
+      "nombre": "Carisma",
+      "corto": "CAR",
+      "descripcion": "Usa el modificador de Carisma para la tirada de acierto.",
+      "color": "#E65100",
+      "categoria": "Ataque"
+    }
+  },
+  "arma": {
+    "alcance": {
+      "nombre": "Alcance",
+      "corto": "Alcance",
+      "descripcion": "Puedes atacar desde 5 pies extras.",
+      "color": "#1565C0"
+    },
+    "aDistancia": {
+      "nombre": "A distancia",
+      "corto": "A distancia",
+      "descripcion": "Puedes usar tu arma para atacar objetivos a 30 pies de distancia.",
+      "color": "#0277BD"
+    },
+    "contundente": {
+      "nombre": "Contundente",
+      "corto": "Contundente",
+      "descripcion": "Si haces daño máximo, provocas \"Aturdido\" al objetivo.",
+      "color": "#E65100"
+    },
+    "precisa": {
+      "nombre": "Precisa",
+      "corto": "Precisa",
+      "descripcion": "Si haces daño máximo, provocas \"Inmóvil\" al objetivo.",
+      "color": "#6A1B9A"
+    },
+    "flujo": {
+      "nombre": "Flujo",
+      "corto": "Flujo",
+      "descripcion": "Si haces daño máximo, recuperas 1 ⚡/💧.",
+      "color": "#00838F"
+    },
+    "pesada": {
+      "nombre": "Pesada",
+      "corto": "Pesada",
+      "descripcion": "Realizas la tirada de acierto con desventaja.",
+      "color": "#4E342E"
+    },
+    "encadenante": {
+      "nombre": "Encadenante",
+      "corto": "Encadenante",
+      "descripcion": "Si sobra daño y hay enemigos al alcance, puedes repartir el daño sobrante.",
+      "color": "#558B2F"
+    },
+    "agil": {
+      "nombre": "Ágil",
+      "corto": "Ágil",
+      "descripcion": "Después de atacar, si derrotaste al enemigo, puedes moverte 5 pies.",
+      "color": "#00897B"
+    },
+    "sorpresiva": {
+      "nombre": "Sorpresiva",
+      "corto": "Sorpresiva",
+      "descripcion": "El daño se realiza antes de que el enemigo pueda gastar 🔶.",
+      "color": "#37474F"
+    },
+    "colosal": {
+      "nombre": "Colosal",
+      "corto": "Colosal",
+      "descripcion": "No se pueden realizar críticos con este arma.",
+      "color": "#C62828"
+    }
+  }
+}

@@ -1,39 +1,52 @@
-import { WeaponAbility, Weapon } from '../models/weapon.model';
+// Armas de la web: las de las subclases de la app (game/classes.json), con
+// sus propiedades de arma (game/properties.json) y su dibujo (game/weapons.json).
+// Se actualizan con `npm run sync-app`.
 
-export const WEAPON_ABILITIES: WeaponAbility[] = [
-  { name: 'Alcance', description: 'Puedes atacar desde 5 pies extras.' },
-  { name: 'A distancia', description: 'Puedes usar tu arma para atacar objetivos a 30 pies de distancia.' },
-  { name: 'Contundente', description: 'Si haces daño máximo, provocas "Aturdido" al objetivo.' },
-  { name: 'Precisa', description: 'Si haces daño máximo, provocas "Inmóvil" al objetivo.' },
-  { name: 'Flujo', description: 'Si haces daño máximo, recuperas 1 ⚡/💧.' },
-  { name: 'Pesada', description: 'Realizas la tirada de acierto con desventaja.' },
-  { name: 'Encadenante', description: 'Si sobra daño y hay enemigos al alcance, puedes repartir el daño sobrante.' },
-  { name: 'Ágil', description: 'Después de atacar, si derrotaste al enemigo, puedes moverte 5 pies.' },
-  { name: 'Sorpresiva', description: 'El daño se realiza antes de que el enemigo pueda gastar 🔶.' }
-];
+import appWeaponImages from './game/weapons.json';
+import { Weapon, WeaponAbility } from '../models/weapon.model';
+import { CLASSES } from './classes.data';
+import { WEAPON_PROPERTIES } from './properties.data';
+import { dieLabel, gameImage } from '../utils/game.utils';
 
-export const WEAPONS: Weapon[] = [
-  { name: 'Arco Corto', damage: '1d8', modifier: 'Percepción', hands: 'A dos manos', slot: 'Principal', abilities: ['A distancia'] },
-  { name: 'Daga', damage: '1d6', modifier: 'Destreza', hands: 'A una mano', slot: 'Principal', abilities: ['Precisa', 'Ágil'] },
-  { name: 'Ballesta de Mano', damage: '1d6', modifier: 'Percepción', hands: 'A una mano', slot: 'Principal', abilities: ['A distancia', 'Sorpresiva'] },
-  { name: 'Bastón', damage: '1d6', modifier: 'Inteligencia', hands: 'A dos manos', slot: 'Principal', abilities: ['Contundente', 'Ágil'] },
-  { name: 'Tomo', damage: '1d6', modifier: 'Inteligencia', hands: 'A una mano', slot: 'Principal', abilities: ['Flujo'] },
-  { name: 'Maza', damage: '1d8', modifier: 'Fuerza', hands: 'A una mano', slot: 'Principal', abilities: ['Contundente'] },
-  { name: 'Mandoble', damage: '1d10', modifier: 'Fuerza', hands: 'A dos manos', slot: 'Principal', abilities: [] },
-  { name: 'Nudilleras', damage: '2d4', modifier: 'Fuerza', hands: 'A dos manos', slot: 'Principal', abilities: ['Contundente', 'Ágil', 'Sorpresiva'] },
-  { name: 'Martillo de guerra', damage: '1d8', modifier: 'Fuerza', hands: 'A una mano', slot: 'Principal', abilities: ['Contundente'] },
-  { name: 'Escudo', damage: '1d4', modifier: 'Constitución', hands: 'A una mano', slot: 'Secundario', abilities: [] },
-  { name: 'Lanza', damage: '1d8', modifier: 'Fuerza', hands: 'A dos manos', slot: 'Principal', abilities: ['Alcance'] },
-  { name: 'Rifle', damage: '1d8', modifier: 'Percepción', hands: 'A dos manos', slot: 'Principal', abilities: ['A distancia'] },
-  { name: 'Pistola', damage: '1d6', modifier: 'Percepción', hands: 'A una mano', slot: 'Principal', abilities: ['A distancia', 'Sorpresiva'] },
-  { name: 'Daga', damage: '1d4', modifier: 'Destreza', hands: 'A una mano', slot: 'Secundaria', abilities: [] },
-  { name: 'Guante Arcano', damage: '1d4', modifier: 'Inteligencia', hands: 'A una mano', slot: 'Secundaria', abilities: [] },
-  { name: 'Sable', damage: '1d8', modifier: 'Destreza', hands: 'A una mano', slot: 'Principal', abilities: ['Precisa'] },
-  { name: 'Flautaespada', damage: '1d6', modifier: 'Carisma', hands: 'A una mano', slot: 'Principal', abilities: ['Flujo', 'Ágil'] },
-  { name: 'Rodela', damage: '1d4', modifier: 'Constitución', hands: 'A una mano', slot: 'Secundaria', abilities: [] },
-  { name: 'Espada Corta', damage: '1d6', modifier: 'Destreza', hands: 'A una mano', slot: 'Principal', abilities: ['Precisa', 'Ágil'] },
-  { name: 'Hacha', damage: '1d8', modifier: 'Fuerza', hands: 'A una mano', slot: 'Principal', abilities: ['Precisa'] },
-  { name: 'Tomo', damage: '1d4', modifier: 'Inteligencia', hands: 'A una mano', slot: 'Secundaria', abilities: [] },
-  { name: 'Ballesta de Mano', damage: '1d4', modifier: 'Percepción', hands: 'A una mano', slot: 'Secundaria', abilities: ['A distancia'] },
-  { name: 'Maza', damage: '1d4', modifier: 'Fuerza', hands: 'A una mano', slot: 'Secundaria', abilities: [] }
-];
+const images = appWeaponImages as Record<string, string | null>;
+
+/** Nombre visible de una propiedad de arma a partir de su clave. */
+export function weaponPropertyName(key: string): string {
+  return WEAPON_PROPERTIES[key]?.nombre ?? key;
+}
+
+export const WEAPON_ABILITIES: WeaponAbility[] = Object.values(WEAPON_PROPERTIES).map((p) => ({
+  name: p.nombre,
+  description: p.descripcion,
+}));
+
+function buildWeapons(): Weapon[] {
+  const byKey = new Map<string, Weapon>();
+  for (const cls of CLASSES) {
+    for (const sub of cls.subclasses) {
+      for (const w of sub.weaponList) {
+        const abilities = w.properties.map(weaponPropertyName);
+        // Un mismo arma puede ser distinta como principal o como secundaria.
+        const key = [w.name, w.slot, w.die, w.attacks, w.modifier, abilities.join(',')].join('|');
+        let weapon = byKey.get(key);
+        if (!weapon) {
+          weapon = {
+            name: w.name,
+            damage: dieLabel(w.die, w.attacks),
+            modifier: w.modifier,
+            hands: w.twoHanded ? 'A dos manos' : 'A una mano',
+            slot: w.slot,
+            abilities,
+            usedBy: [],
+            image: gameImage(images[w.type]),
+          };
+          byKey.set(key, weapon);
+        }
+        weapon.usedBy.push({ classId: cls.id, className: cls.name, subclassId: sub.id, subclassName: sub.name });
+      }
+    }
+  }
+  return [...byKey.values()];
+}
+
+export const WEAPONS: Weapon[] = buildWeapons();

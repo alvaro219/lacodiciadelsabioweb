@@ -1,0 +1,199 @@
+[
+  {
+    "id": "hacia_tierras_salvajes",
+    "nombre": "Hacia Tierras Salvajes",
+    "resumen": "Una misión de investigación en el país de los orcos que lleva más de 400 años de reclusión.",
+    "descripcion": "Un grupo de aventureros ha aceptado una misión de investigación en la cual tendrán que entrar en el país de los orcos que lleva más de 400 años de reclusión porque los países vecinos amurallaron por completo el país debido a la cantidad de problemas y conflictos bélicos que creaban estos. La finalidad de la campaña es descubrir qué hay detrás de las murallas.",
+    "jugadores": 4,
+    "sesiones": 3,
+    "premium": false,
+    "temporada": "1ª Temporada - Las Raíces Negras",
+    "temporadaNumero": 1,
+    "estilos": [
+      "Exploración",
+      "Combate"
+    ],
+    "encuentros": 2
+  },
+  {
+    "id": "cripta_olvidada",
+    "nombre": "La Cripta Olvidada",
+    "resumen": "Una antigua cripta profanada. Los muertos se alzan y un oscuro ritual debe ser detenido.",
+    "descripcion": "Una antigua cripta ha sido profanada y los muertos se alzan. Los aventureros deben descubrir qué oscuro ritual está teniendo lugar y detenerlo antes de que sea demasiado tarde. El pueblo de Ravenhollow ofrece una generosa recompensa.",
+    "jugadores": 4,
+    "sesiones": 2,
+    "premium": true,
+    "temporada": "1ª Temporada - Las Raíces Negras",
+    "temporadaNumero": 1,
+    "estilos": [
+      "Exploración"
+    ],
+    "encuentros": 2
+  },
+  {
+    "id": "nido_bandidos",
+    "nombre": "El Nido de Bandidos",
+    "resumen": "Bandidos aterrorizan las rutas comerciales. Infiltrate en su guarida y acaba con su líder.",
+    "descripcion": "Una banda de forajidos ha establecido su base en unas ruinas antiguas y está aterrorizando las rutas comerciales. Los aventureros son contratados para infiltrarse en su guarida y poner fin a las actividades de \"El Cuervo\", su misterioso líder.",
+    "jugadores": 4,
+    "sesiones": 1,
+    "premium": true,
+    "temporada": "1ª Temporada - Las Raíces Negras",
+    "temporadaNumero": 1,
+    "estilos": [
+      "Combate"
+    ],
+    "encuentros": 2
+  },
+  {
+    "id": "asedio_raiz_verde",
+    "nombre": "El Asedio de Raíz Verde",
+    "resumen": "Un pueblo de druidas y seres del bosque está bajo amenaza. Hordas de trasgos, goblins y ogros se acercan para destruirlo.",
+    "descripcion": "El pueblo de Raíz Verde, un asentamiento pacífico de druidas y criaturas del bosque enclavado en el corazón de un bosque ancestral, se enfrenta a una amenaza sin precedentes. Una horda de trasgos, goblins y ogros, liderados por un misterioso chamán goblin, marcha hacia el pueblo con la intención de arrasar el Yggdrasil, fuente de toda la magia del bosque. Los aventureros deberán organizar las defensas del pueblo, reclutar aliados entre los seres del bosque y resistir el asalto.",
+    "jugadores": 4,
+    "sesiones": 2,
+    "premium": true,
+    "temporada": "1ª Temporada - Las Raíces Negras",
+    "temporadaNumero": 1,
+    "estilos": [
+      "Rol"
+    ],
+    "encuentros": 3
+  },
+  {
+    "id": "raices_negras_cap1",
+    "nombre": "Capítulo I - Las raíces negras",
+    "resumen": "Extrañas raíces negras aparecen en lugares recónditos de Magna. El reino de Numa convoca a sus mejores aventureros para investigar.",
+    "descripcion": "Este año en Magna, unas extrañas raíces negras y retorcidas han empezado a aparecer en lugares recónditos del mundo. Parecen inofensivas salvo por su aspecto oscuro, pero al tocarlas provocan un fuerte rechazo energético. Son completamente indestructibles: ni armas, ni materiales, ni magia pueden cortarlas o dañarlas. El reino humano de Numa convoca a entre 150 y 200 aventureros en su capital, Pala-Fica, para una gran misión de investigación liderada por la Archimaga Silica. Los jugadores deberán seguir pistas hasta un antiguo templo de Naturaleza oculto en el interior del gran árbol Yggdrasil, donde un centinela elemental custodia una gema que podría ser clave para entender el misterio. Al final de este capítulo, lo único que se sabrá con certeza es que la vegetación cercana a las raíces empieza a morir lentamente.",
+    "jugadores": 4,
+    "sesiones": 5,
+    "premium": true,
+    "temporada": "1ª Temporada - Las Raíces Negras",
+    "temporadaNumero": 1,
+    "estilos": [
+      "Aventura"
+    ],
+    "encuentros": 4
+  },
+  {
+    "id": "barco_escamafiera",
+    "nombre": "Barco hacia Puerto Escamafiera",
+    "resumen": "Un viaje en barco plagado de imprevistos: monstruos marinos, arrecifes y hambre. Sobrevive hasta llegar a puerto.",
+    "descripcion": "Los jugadores embarcan en un navío mercante con destino a Puerto Escamafiera. Lo que debería ser un viaje tranquilo se convierte en una travesía llena de problemas: monstruos marinos compinchados con un lazuri traidor, un choque contra un arrecife que daña el casco y escasez de alimentos. Si la situación se descontrola, la tripulación puede amotinarse. Un oneshot centrado en el roleo, la toma de decisiones y la gestión de crisis.",
+    "jugadores": 4,
+    "sesiones": 2,
+    "premium": true,
+    "temporada": "2ª Temporada - La Iluminación de Hojacero",
+    "temporadaNumero": 2,
+    "estilos": [
+      "Rol"
+    ],
+    "encuentros": 2
+  },
+  {
+    "id": "torneo_sinemo",
+    "nombre": "Torneo Vetusto de Sinemo",
+    "resumen": "Un torneo de combate legendario con 3 pruebas: golpe de gracia, cacería y duelo final contra el campeón.",
+    "descripcion": "Los jugadores participan en el Torneo Vetusto de Sinemo, una competición legendaria donde 8 grupos se enfrentan en tres pruebas de combate. La primera prueba es dar el golpe de gracia a un monstruo. La segunda, derrotar más monstruos que el equipo rival. La tercera y definitiva, un combate directo contra el grupo finalista. Fama, gloria y un premio sustancioso esperan al vencedor.",
+    "jugadores": 4,
+    "sesiones": 2,
+    "premium": true,
+    "temporada": "2ª Temporada - La Iluminación de Hojacero",
+    "temporadaNumero": 2,
+    "estilos": [
+      "Combate"
+    ],
+    "encuentros": 3
+  },
+  {
+    "id": "carnicero_xantharas",
+    "nombre": "Carnicero en Arenas Xantharas",
+    "resumen": "Un pueblo nómada ha desaparecido en el desierto. Solo queda una anciana superviviente. Descubre la verdad.",
+    "descripcion": "Los jugadores llegan a las Arenas Xantharas siguiendo rumores de un pueblo nómada que ha desaparecido por completo. En el campamento abandonado solo queda una anciana ciega y enferma que dice no saber nada. A medida que investigan, descubrirán que el verdadero asesino es un monstruo de las arenas, una especie de depredador que nada bajo la arena como un tiburón. Y la anciana no es tan inocente como parece: es una druida que controla a la bestia para robar el botín de los nómadas.",
+    "jugadores": 4,
+    "sesiones": 1,
+    "premium": true,
+    "temporada": "2ª Temporada - La Iluminación de Hojacero",
+    "temporadaNumero": 2,
+    "estilos": [
+      "Exploración",
+      "Rol"
+    ],
+    "encuentros": 2
+  },
+  {
+    "id": "iluminacion_hojacero_cap2",
+    "nombre": "Capítulo II - La Iluminación de Hojacero",
+    "resumen": "Enviados por Silica tras obtener la Gema de Naturaleza, los jugadores siguen el rastro del espadachín Hojacero hasta la ciudad celestial de Caelum.",
+    "descripcion": "Tras informar a la Archimaga Silica sobre los templos elementales y la Gema de Naturaleza obtenida en el Yggdrasil, los jugadores reciben su siguiente misión: localizar el Templo del Aire y la gema que custodia. La única pista es Hojacero, un legendario espadachín que desapareció hace 40 años siguiendo el mismo camino. Su rastro conduce a Caelum, la ciudad celestial de los aasimar. Allí descubrirán que Hojacero fue tentado con el perdón por el sumo sacerdote Samael y aceptó adentrarse en el Templo del Aire, donde venció al centinela pero fue traicionado por su propio aprendiz. Ahora sufre un castigo eterno como nuevo guardián. Los jugadores deberán enfrentarse al templo y decidir el destino de Hojacero.",
+    "jugadores": 4,
+    "sesiones": 5,
+    "premium": true,
+    "temporada": "2ª Temporada - La Iluminación de Hojacero",
+    "temporadaNumero": 2,
+    "estilos": [
+      "Aventura"
+    ],
+    "encuentros": 4
+  },
+  {
+    "id": "aliados_inesperados",
+    "nombre": "Aliados Inesperados",
+    "resumen": "Una acampada en el bosque se torna extraña cuando los jugadores despiertan del tamaño de un insecto y deben ayudar a un herborista contra una plaga de termitas.",
+    "descripcion": "Durante un fin de semana de acampada, una tormenta obliga a los jugadores a refugiarse en la cabaña de un extraño herborista. Tras una noche cómoda junto al fuego, despiertan reducidos al tamaño de un insecto. El herborista, responsable de la transformación, les propone un trato: si acaban con la plaga de termitas que está destruyendo su casa —derrotando a la reina o envenenándola— les devolverá su tamaño. Los jugadores deberán adentrarse en el nido, sala a sala, para completar su misión.",
+    "jugadores": 4,
+    "sesiones": 1,
+    "premium": false,
+    "temporada": "3ª Temporada - Incursión en Aguas Turquesas",
+    "temporadaNumero": 3,
+    "estilos": [
+      "Combate"
+    ],
+    "encuentros": 4
+  },
+  {
+    "id": "luz_apagada_punta_escarpada",
+    "nombre": "Luz Apagada en Punta Escarpada",
+    "resumen": "Un faro que no enciende, barcos que desaparecen y un farero que ya no es del todo humano. Un oneshot de horror cósmico y rol.",
+    "descripcion": "Punta Escarpada es una isla modesta en el confín de una costa salvaje, famosa solo por su faro: una torre blanca que desde hace cincuenta años guía barcos a través de un canal traicionero de rocas negras. Durante generaciones, los fareros de Punta Escarpada han sido venerados casi como sacerdotes; sin su luz, ningún barco llega sano a puerto.\n\nHace tres noches, la luz se apagó.\n\nDesde entonces, tres barcos han desaparecido en circunstancias que no tienen sentido: uno fue visto girando en círculos hasta que la marea lo estrelló contra las rocas, otro simplemente no llegó a su destino, y el último envió una única señal —un nombre repetido tres veces: Elias— antes de callarse. Elias Vance, el farero actual, no responde mensajes ni baja a comprar provisiones.\n\nLos jugadores llegan a Punta Escarpada por alguno de estos motivos: un encargo del gremio de navegantes, una carta desesperada de Elias enviada hace semanas, un familiar preocupado, o la simple curiosidad de quienes no creen en maldiciones marinas. Lo que encuentran es un pueblo sumido en un silencio inquietante y un faro intacto pero casi vacío. La amenaza no ataca con garras: corroe la mente, llora desde el fondo del mar, y ofrece una verdad que pocos pueden resistir.\n\nLo que pocos saben es que la criatura de Punta Escarpada no es un monstruo ordinario, ni siquiera una bestia marina corriente. Es un Ascendido del Tiempo: una entidad alterada por haber nacido bajo la influencia de elementos tan raros que desafían las leyes del propio universo. Los Ascendidos de elementos comunes ya son prodigios; los del Tiempo y el Espacio son casi un imposible hecho carne, o lo que queda de ella. Esta criatura sabe que no debería existir. Lleva en su cuerpo recuerdos que no son suyos y retazos de entes más poderosos que ella, fragmentos de realidades que no deberían tocarse. Ha vivido solitaria toda su vida. Sabe que su sola presencia crea horror y tragedia, y por eso se oculta, se aleja, se duele. Pero también sabe que no puede seguir sola. Su canto no es un hechizo de dominación: es un llanto disfrazado de melodía, una súplica para que alguien, solo una vez, la escuche de verdad.",
+    "jugadores": 4,
+    "sesiones": 1,
+    "premium": false,
+    "temporada": "3ª Temporada - Incursión en Aguas Turquesas",
+    "temporadaNumero": 3,
+    "estilos": [
+      "Rol"
+    ],
+    "encuentros": 2
+  },
+  {
+    "id": "insignias_de_valor_claro_amapola",
+    "nombre": "Insignias de Valor en Claro Amapola",
+    "resumen": "Cada jugador recibe cuatro voluntarios sin experiencia, una cueva llena de trampas y un oso que no debería seguir vivo. Un oneshot de sesión 0 para forjar al héroe que sobreviva.",
+    "descripcion": "Claro Amapola es una aldea pequeña, de esas que no aparecen en los mapas hasta que algo va mal. Y algo ha ido mal: desde hace dos semanas, un oso enorme y de mirada extrañamente calculadora ha bajado de las colinas para rondar los graneros, destrozar cercados y llevarse ganado sin dejar rastro más que zarpazos profundos en la madera. El animal se ha instalado en una cueva de la ladera norte, la misma que décadas atrás sirvió de guarida a una banda de bandidos que nunca fue completamente desmantelada, y cuyos pasadizos siguen llenos de fosos, trampas y derrumbes a medio activar.\n\nLa aldea no tiene guardia propia, ni dinero para contratar mercenarios experimentados. Lo único que tiene es un cartel clavado en la plaza y la desesperación suficiente para no preguntar demasiado sobre quién responde a él: \"SE BUSCAN VOLUNTARIOS. RECOMPENSA MODESTA. PELIGRO REAL.\" Dieciséis almas comunes —cuatro por cada aventurero en la mesa, sin entrenamiento, sin magia, sin más que un arma sencilla y muchas ganas de ser recordados— responden a la llamada.\n\nEste oneshot está pensado como una sesión 0 de \"sangre nueva\": cada jugador no controla un solo personaje, sino un grupo de cuatro, que irá usando uno a uno a medida que los anteriores mueran. Son personajes de nivel 0, frágiles hasta el extremo: no tienen habilidades, ni pasivas, ni una reserva de vida que los proteja. Si fallan una tirada de salvación importante, mueren en el acto. La cueva del oso ha sido diseñada para poner esa fragilidad a prueba constantemente, con caídas, fosos y trampas heredadas de sus antiguos ocupantes. Al final de la sesión, con suerte, quedará uno o dos supervivientes en total: esos serán los personajes con los que los jugadores continuarán una campaña más larga, ya subidos a nivel 1 y con una pequeña leyenda personal que contar.",
+    "jugadores": 4,
+    "sesiones": 1,
+    "premium": false,
+    "temporada": "3ª Temporada - Incursión en Aguas Turquesas",
+    "temporadaNumero": 3,
+    "estilos": [
+      "Exploración"
+    ],
+    "encuentros": 3
+  },
+  {
+    "id": "aguas_turquesas_cap3",
+    "nombre": "Capítulo III - Incursión en Aguas Turquesas",
+    "resumen": "Un huracán desvía a los aventureros hasta Aguas Turquesas, donde una meritocracia de cristal oculta corrupción, sacrificios y el Templo del Agua.",
+    "descripcion": "Tras recuperar la Gema del Aire en Caelum, el regreso a Numa termina en naufragio, abordaje y una inesperada alianza con el capitán Draxius Tormefilos. El grupo alcanza Aguas Turquesas, una ciudad lazuri tan hermosa como inquietante, gobernada por el adivinador Razgrand Escamojada. Un rito de maduración convertido en intento de asesinato, un juicio manipulado y la red clandestina de la Orden de Carcamossa conducirán a los aventureros hasta un templo sumergido. Allí deberán dominar sus mareas interiores y descubrir qué precio ha pagado Razgrand para conservar la Gema del Agua.",
+    "jugadores": 4,
+    "sesiones": 6,
+    "premium": true,
+    "temporada": "3ª Temporada - Incursión en Aguas Turquesas",
+    "temporadaNumero": 3,
+    "estilos": [
+      "Aventura"
+    ],
+    "encuentros": 7
+  }
+]

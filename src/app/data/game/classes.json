@@ -1,0 +1,2594 @@
+[
+  {
+    "nombre": "Escaramuzador",
+    "rol": "Escaramuzador",
+    "definicion": "Expertos en iniciar o terminar combates. Estos combatientes están entrenados en ser precisos y contundentes, de forma que puedan realizar todo el daño posible antes de que sus enemigos se conviertan en un problema o en rematar los adversarios que se resisten a sucumbir.",
+    "pv": 3,
+    "escudo": 2,
+    "ph": 5,
+    "pasiva": "El terreno difícil no te afecta.",
+    "hb1": "1 Vez por descanso corto. Buscas información sobre una cosa en concreto ya sea seguir la pista de algo o alguien o conseguir datos sobre algo y consigues 1 dato verdadero y 1 dato falso.",
+    "hb2": "1 Vez por Día. Creas una distracción de forma sencilla que dura 2 turnos.",
+    "hb1Nombre": "Rastrear",
+    "hb2Nombre": "Distracción",
+    "esMagica": false,
+    "subclases": [
+      {
+        "nombre": "Explorador",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Arco Corto",
+            "nombre": "Arco Corto",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Percepción",
+            "dosManos": true,
+            "propiedades": [
+              "aDistancia"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "⚡⚡, 🟢🟢. 1 Vez por Combate. \n\nPreparas tu arco para disparar a cualquier enemigo que sea atacado hasta el comienzo de tu próximo turno.",
+        "hap2": "⚡, 🟢🟢. \n\nApuntas a un enemigo específico, obteniendo ventaja en el próximo ataque que realices contra él. Esto marca a dicho enemigo hasta el comienzo de tu próximo turno.",
+        "hap3": "⚡, 🟢🟢. \n\nDisparas una flecha que provoca \"Envenenamiento\" si hiere.",
+        "hap4": "🔶. Un enemigo que marcaste intenta moverse. \n\nPuedes realizar un ataque de oportunidad a distancia.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nDisparas una flecha que rebota hasta 2 veces contra paredes u objetos, causando daño y atravesando a todos los enemigos en su línea de trayectoria.",
+        "hap1Nombre": "Vigía",
+        "hap2Nombre": "Marcar del Cazador",
+        "hap3Nombre": "Flecha Envenenada",
+        "hap4Nombre": "Disparo de Oportunidad",
+        "hadNombre": "Flecha Perforadora Rebotante",
+        "hap1Mejorada": "⚡⚡, 🟢🟢. \n\nPreparas tu arco para disparar a cualquier enemigo que sea atacado hasta el comienzo de tu próximo turno. Tus flechas infligen 1d6 de daño adicional.",
+        "hap2Mejorada": "⚡, 🟢. \n\nApuntas a un enemigo específico, obteniendo ventaja en el próximo ataque que realices contra él. Esto marca a dicho enemigo hasta que sea derrotado.",
+        "hap3Mejorada": "⚡, 🟢. \n\nDisparas una flecha que provoca \"Envenenamiento\" si hiere y reduce la DA del objetivo en 2.",
+        "hap4Mejorada": "🔶. Un enemigo que marcaste intenta moverse o atacar a un aliado. \n\nPuedes realizar un ataque de oportunidad a distancia.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nDisparas una flecha que rebota hasta 4 veces contra paredes u objetos, causando daño y atravesando a todos los enemigos en su línea de trayectoria.",
+        "hap1Props": [
+          "ranged",
+          "stance",
+          "oncePerCombat",
+          "targetEnemy"
+        ],
+        "hap2Props": [
+          "ranged",
+          "mark",
+          "targetEnemy"
+        ],
+        "hap3Props": [
+          "ranged",
+          "mainAttack",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "ranged",
+          "mainAttack",
+          "targetEnemy"
+        ],
+        "hadProps": [
+          "ranged",
+          "mainAttack",
+          "area",
+          "oncePerDay",
+          "ultimate",
+          "piercing"
+        ],
+        "hadMejoradaProps": [
+          "ranged",
+          "mainAttack",
+          "area",
+          "oncePerCombat",
+          "ultimate",
+          "piercing"
+        ]
+      },
+      {
+        "nombre": "Ladrón",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Daga",
+            "nombre": "Daga",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Destreza",
+            "dosManos": false,
+            "propiedades": [
+              "precisa",
+              "agil"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Ballesta de Mano",
+            "nombre": "Ballesta de Mano",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Percepción",
+            "dosManos": false,
+            "propiedades": [
+              "aDistancia"
+            ]
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "⚡⚡⚡, 🟢🟢. \n\nUna vez por combate. Das un paso sombrío y te camuflas en el entorno obteniendo “Invisibilidad”.",
+        "hap2": "⚡⚡, 🟢🟢. \n\nAsaltas un objetivo por la espalda después de desplazarte 15 pies. Si infliges daño, este recibe “Derribado”.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "⚡⚡, 🟢🟢. \n\nTe preparas tu siguiente acción. La siguiente vez que aciertes una acción ofensiva, realizas el doble de daño.",
+        "has2": "⚡, 🔶. Realizas una acción ofensiva a alguien mientras tienes “Invisibilidad” \n\nLe aplicas “Desprevenido 2” y aciertas directamente.",
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nTe teleportas a un enemigo que puedas ver dentro de 60 pies. Realizas un tajo oscuro que atraviesa el escudo del objetivo. Dicho tajo inflige 1d10 de daño y le aplica \"Parálisis\".",
+        "hap1Nombre": "Paso Sombrío",
+        "hap2Nombre": "Asalto por la Espalda",
+        "has1Nombre": "Golpe Preparado",
+        "has2Nombre": "Golpe Furtivo",
+        "hadNombre": "Tajo del Vacío",
+        "hap1Mejorada": "⚡⚡, 🟢🟢. \n\nDas un paso sombrío y te camuflas en el entorno obteniendo \"Invisibilidad\".",
+        "hap2Mejorada": "⚡, 🟢🟢. \n\nAsaltas un objetivo por la espalda después de desplazarte 15 pies. Si infliges daño, este recibe “Derribado” y tú obtienes ventaja en el siguiente ataque contra él.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "⚡⚡, 🟢. \n\nTe preparas tu siguiente acción. La siguiente vez que aciertes una acción ofensiva, realizas el doble de daño.",
+        "has2Mejorada": "⚡, 🔶. Realizas una acción ofensiva a alguien mientras tienes “Invisibilidad” \n\nLe aplicas “Desprevenido 2” y aciertas directamente. Si derrotas a alguien \"Desprevenido\" de esta forma, recuperas 🔶.",
+        "hadMejorada": "🚫⚡, 🟢🟢🟢. 1 Vez por Combate. \n\nTe teleportas a un enemigo que puedas ver dentro 60 pies. Realizas un tajo oscuro que atraviesa el escudo del objetivo. Dicho tajo inflige 1d10 de daño, le aplica “Parálisis” y te otorga “Invisibilidad”.",
+        "hap1Props": [
+          "targetSelf",
+          "buff",
+          "oncePerCombat"
+        ],
+        "hap2Props": [
+          "melee",
+          "mainAttack",
+          "displacement",
+          "range15",
+          "debuff",
+          "targetEnemy"
+        ],
+        "has1Props": [
+          "targetSelf",
+          "buff"
+        ],
+        "has2Props": [
+          "reaction",
+          "melee",
+          "mainAttack",
+          "autoHit",
+          "debuff"
+        ],
+        "hadProps": [
+          "teleport",
+          "piercing",
+          "range60",
+          "oncePerDay",
+          "ultimate",
+          "debuff",
+          "damage",
+          "usesDexterity",
+          "damageDie10"
+        ]
+      },
+      {
+        "nombre": "Duelista",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Espada Corta",
+            "nombre": "Espada Corta",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Destreza",
+            "dosManos": false,
+            "propiedades": [
+              "precisa",
+              "agil"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Daga",
+            "nombre": "Daga",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Destreza",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "⚡⚡, 🟢🟢. \n\nCargas hasta 15 pies realizando un tajo a destiempo con el que atacas a un enemigo. Si tiene “Provocado”, aciertas automáticamente. Si el enemigo no está “Provocado” y le infliges daño, le aplicas “Provocado”.",
+        "hap2": "⚡, 🟢🟢. \n\nPreparas una defensa sólida contra tus enemigos, provocando que cualquiera que te ataque o realice una habilidad contra ti tenga desventaja y si falla quede “Derribado”.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "⚡⚡, 🟢. 1 Vez por Combate. \n\nTe desplazas hasta 10 pies mientras estudias sutilezas en la defensa de tus enemigos, obteniendo ventaja y aumentas tu dado de daño en 1 en tu siguiente ataque.",
+        "has2": "⚡⚡, 🔶. Un enemigo con “Provocado” te ataca. \n\nRealizas un ataque antes de su ataque que acierta directamente.",
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nRealizas un juego de fintas con el que puedes desplazarte hasta 10 pies y realizar un ataque contra un enemigo. Si dicho ataque acierta, puedes repetir esta habilidad sin pagar su coste.",
+        "hap1Nombre": "Tajo a Destiempo",
+        "hap2Nombre": "Guardia Alta",
+        "has1Nombre": "Estudio de Combate",
+        "has2Nombre": "Riposte",
+        "hadNombre": "Danza de Fintas",
+        "hap1Mejorada": "⚡⚡, 🟢. \n\nCargas hasta 25 pies realizando un tajo a destiempo con el que atacas a un enemigo. Si tiene “Provocado”, aciertas automáticamente. Si el enemigo no está “Provocado” y le infliges daño, le aplicas “Provocado”.",
+        "hap2Mejorada": "⚡, 🟢. \n\nPreparas una defensa sólida contra tus enemigos, provocando que cualquiera que te ataque o realice una habilidad contra ti tenga desventaja y le aplicas “Derribado” cuando termine su acción.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "⚡, 🟢. \n\nTe desplazas hasta 15 pies mientras estudias sutilezas en la defensa de tus enemigos, obteniendo ventaja y aumentas tu dado de daño en 1 en tu siguiente ataque.",
+        "has2Mejorada": "⚡, 🔶. Un enemigo con “Provocado” te ataca. \n\nRealizas un ataque antes de su ataque que acierta directamente.",
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nRealizas un juego de fintas con el que puedes desplazarte hasta 15 pies y realizar un ataque contra un enemigo. Si dicho ataque acierta, puedes repetir esta habilidad sin pagar su coste.",
+        "hap1Props": [
+          "melee",
+          "mainAttack",
+          "charge",
+          "range15",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap2Props": [
+          "targetSelf",
+          "stance",
+          "control"
+        ],
+        "has1Props": [
+          "displacement",
+          "buff",
+          "oncePerCombat",
+          "targetSelf"
+        ],
+        "has2Props": [
+          "reaction",
+          "melee",
+          "mainAttack",
+          "autoHit"
+        ],
+        "hadProps": [
+          "melee",
+          "mainAttack",
+          "displacement",
+          "oncePerDay",
+          "ultimate"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Maestro del Terreno",
+      "descripcion": "Tu dominio del campo de batalla es absoluto. Puedes moverte a través de enemigos sin provocar ataques de oportunidad y obtienes +2 a todas las tiradas de ataque cuando te has movido al menos 15 pies en tu turno."
+    },
+    "preparado": {
+      "nombre": "Yrinde Lunalbaz",
+      "subclase": "Explorador",
+      "raza": "Elfo",
+      "subraza": null,
+      "descripcion": "Una superviviente de tierras salvajes, precisa con el arco y experta en rastrear presas. Domina el campo de tiro marcando objetivos y disparando flechas envenenadas.",
+      "avatar": "assets/avatars/sticker_doctor_sylvan_woman_01.png",
+      "puntosFuertes": [
+        "Ataques a distancia",
+        "Marcado de objetivos",
+        "Terreno difícil ignorado"
+      ]
+    }
+  },
+  {
+    "nombre": "Controlador",
+    "rol": "Controlador",
+    "definicion": "Constantes y meticulosos. Los Controladores son ingeniosos a la hora de realizar constantes cantidades de daño en el tiempo prolongado. Sus objetivos favoritos son tipos grandes con enormes cantidades de vida.",
+    "pv": 3,
+    "escudo": 1,
+    "ph": 5,
+    "pasiva": "Cuando realices un hechizo, tiras un d20 y si sacas 11 o más no gastas PM.",
+    "hb1": "1 Vez por descanso corto. Puedes leer cualquier tipo de texto pero no sabrás si es correcto o no la información que consigas.",
+    "hb2": "1 Vez por descanso largo. Puedes detectar el encantamiento que tiene un objeto o el hechizo que describe un pergamino.",
+    "hb1Nombre": "Lectura Arcana",
+    "hb2Nombre": "Detectar Magia",
+    "esMagica": true,
+    "subclases": [
+      {
+        "nombre": "Mago",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Bastón",
+            "nombre": "Bastón",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": true,
+            "propiedades": [
+              "contundente",
+              "agil"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "💧💧, 🟢🟢. \n\nLanzas 1d4 proyectiles mágicos que impactan automáticamente y que infligen cada uno 1d4 de daño mágico.",
+        "hap2": "💧, 🟢. 1 Vez por Combate. \n\nInvocas una mano mágica a la que puedes darle órdenes básicas y que cuenta con 🟢🟢 para si mismo. Tiene 10 DA y si sufre cualquier cantidad de daño se desconvoca.",
+        "hap3": "💧💧, 🟢🟢. \n\nIntentas encerrar a un objetivo en una cúpula de hielo, el objetivo debe hacer una tirada de salvación de fortaleza contra (CD 10 + Conocimiento). Si falla le provoca \"Parálisis\" y queda atrapado mientras la sufra, sin poder recibir daño.",
+        "hap4": "💧💧, 🔶. Eres objetivo de un hechizo enemigo. \n\nPuedes intentar forzar al objetivo a realizar una salvación de voluntad contra (CD 10 + Conocimiento). Si falla le provocas \"Confusión 2\".",
+        "has1": null,
+        "has2": null,
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nConjuras una bola de fuego a un objetivo o a un lugar, todos los que se encuentran cerca del impacto del hechizo hacen una tirada de salvación de Agilidad contra (CD 10 + Conocimiento). Si consiguen salvarse, reciben 1d4 + 1d4 de daño de fuego por cada 💧 gastado a todos los que se encuentran a 15 pies del impacto del hechizo, si no el hechizo inflige 1d8 + 1d8 de daño de fuego por cada 💧 gastado en su lugar.",
+        "hap1Nombre": "Proyectiles Mágicos",
+        "hap2Nombre": "Mano Mágica",
+        "hap3Nombre": "Prisión de Hielo",
+        "hap4Nombre": "Reflejo Mental",
+        "hadNombre": "Bola de Fuego",
+        "hap1Mejorada": "💧, 🟢. \n\nLanzas 1d4 proyectiles mágicos que impactan automáticamente y que infligen cada uno 1d4 de daño mágico.",
+        "hap2Mejorada": "🟢. 1 Vez por Combate. \n\nInvocas una mano mágica a la que puedes darle órdenes básicas y que cuenta con 🟢🟢🟢 para si mismo. Tiene 12 DA y si sufre cualquier cantidad de daño se desconvoca.",
+        "hap3Mejorada": "💧💧, 🟢. \n\nIntentas encerrar a un objetivo en una cúpula de hielo, el objetivo debe hacer una tirada de salvación de fortaleza contra (CD 10 + Conocimiento). Si falla le provoca “Parálisis” y queda atrapado mientras la sufra, recibiendo la mitad de daño.",
+        "hap4Mejorada": "💧, 🔶. Eres objetivo de un hechizo enemigo. \n\nPuedes intentar forzar al objetivo a realizar una salvación de voluntad contra (CD 10 + Conocimiento). Si falla le provocas \"Confusión 2\" y \"Entumecido 2\".",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nConjuras una bola de fuego a un objetivo o a un lugar, todos los que se encuentran cerca del impacto del hechizo hacen una tirada de salvación de Agilidad contra (CD 10 + Conocimiento). Si consiguen salvarse, reciben 1d6 + 1d6 de daño de fuego por cada 💧 gastado a todos los que se encuentran a 15 pies del impacto del hechizo, si no el hechizo inflige 1d10 + 1d10 de daño de fuego por cada 💧 gastado en su lugar.",
+        "hap1Props": [
+          "ranged",
+          "autoHit",
+          "targetEnemy",
+          "damage",
+          "usesIntelligence",
+          "damageDie4"
+        ],
+        "hap2Props": [
+          "summon",
+          "oncePerCombat"
+        ],
+        "hap3Props": [
+          "ranged",
+          "control",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "control",
+          "debuff"
+        ],
+        "hadProps": [
+          "ranged",
+          "area",
+          "range30",
+          "oncePerDay",
+          "ultimate",
+          "targetEnemy"
+        ]
+      },
+      {
+        "nombre": "Arcanista",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Tomo",
+            "nombre": "Tomo",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": false,
+            "propiedades": [
+              "flujo"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Maza",
+            "nombre": "Maza",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧💧, 🟢🟢. \n\nEnvuelves al objetivo en un sello de rayos que inflige 1d6 de daño de Elemento Rayo al comienzo del turno del objetivo a cualquier criatura hostil que acabe a 5 pies de dicho objetivo hasta el final del combate.",
+        "hap2": "💧, 🟢🟢. 1 Vez por Combate. \n\nCreas un sello en el suelo que se activa al ser pisado. Este emite una explosión que inflige 1d6 de daño de Elemento Hielo y provoca “Mudez” a todos los objetivos hostiles a 5 pies del sello al ser activado.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧💧, 🟢🟢. \n\nGeneras un sello a tus pies que detona al instante y crea una barrera mágica al rededor que inflige 1d6 de daño a toda criatura hostil que lo cruce. La barrera dura hasta el final del combate.",
+        "has2": "🔶. Un sello derrota a un enemigo. \n\nPuedes reubicarlo en la posición u objetivo deseado.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nInscribes un sello en el aire y este se dirige al lugar objetivo dentro 30 pies. Al entrar en contacto con el lugar deseado, se genera un agujero oscuro que absorbe a todos los enemigos dentro de 15 pies alrededor del lugar de contacto y los desplaza a su centro infligiendo 1d10 de daño a todos los enemigos afectados.",
+        "hap1Nombre": "Sello de Rayos",
+        "hap2Nombre": "Sello de Hielo",
+        "has1Nombre": "Barrera Rúnica",
+        "has2Nombre": "Reubicación de Sello",
+        "hadNombre": "Agujero Oscuro",
+        "hap1Mejorada": "💧, 🟢. \n\nEnvuelves al objetivo en un sello de rayos que inflige 1d6 de daño de Elemento Rayo al comienzo del turno del objetivo a cualquier criatura hostil que acabe a 5 pies de dicho objetivo hasta el final del combate.",
+        "hap2Mejorada": "💧, 🟢🟢. \n\nCreas un sello en el suelo que se activa al ser pisado. Este emite una explosión que inflige 1d8 de daño de Elemento Hielo y provoca “Mudez” a todos los objetivos hostiles a 5 pies del sello al ser activado.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢🟢. \n\nGeneras un sello a tus pies que detona al instante y crea una barrera mágica al rededor que inflige 1d8 de daño a toda criatura hostil que lo cruce. La barrera dura hasta el final del combate.",
+        "has2Mejorada": "🔶. Un sello derrota a un enemigo o se activa. \n\nPuedes reubicarlo en la posición u objetivo deseado.",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nInscribes un sello en el aire y este se dirige al lugar objetivo dentro de 30 pies. Al entrar en contacto con el lugar deseado, se genera un agujero oscuro que absorbe a todos los enemigos dentro de 15 pies alrededor del lugar de contacto y los desplaza a su centro infligiendo 1d10 de daño a todos los enemigos afectados. Además, provocas \"Derribado\".",
+        "hap1Props": [
+          "ranged",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap2Props": [
+          "area",
+          "control",
+          "debuff",
+          "oncePerCombat"
+        ],
+        "has1Props": [
+          "targetSelf",
+          "area",
+          "shield"
+        ],
+        "has2Props": [
+          "reaction"
+        ],
+        "hadProps": [
+          "ranged",
+          "area",
+          "range30",
+          "control",
+          "oncePerDay",
+          "ultimate",
+          "targetEnemy",
+          "damage",
+          "usesIntelligence",
+          "damageDie10"
+        ]
+      },
+      {
+        "nombre": "Astrónomo",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Guante Arcano",
+            "nombre": "Guante Arcano",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": false
+          },
+          "armaSecundaria": {
+            "tipo": "Tomo",
+            "nombre": "Tomo",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧💧, 🟢🟢. 1 Vez por Combate. \n\nTe rodeas con 3 rocas grandes que orbitan alrededor tuya, provocando 1d4 de daño por cada roca a todos los enemigos a 20 pies de ti al comienzo de tu turno. Este ataque no falla y las rocas permanecen hasta el final del combate.",
+        "hap2": "💧, 🟢. 1 Vez por Turno. Debes tener al menos 1 roca orbitando alrededor tuya. \n\nCedes 1 roca a un aliado a 20 pies o menos de ti. Este aplica el mismo efecto que tus rocas, pero alrededor suya.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧💧, 🟢. Al menos 1 aliado debe tener 1 roca orbitando alrededor suya. \n\nRegresas una roca violentamente a tu órbita, provocando 1d8 de daño a todos los enemigos que alcance por el camino entre tu y tu aliado.",
+        "has2": "💧, 🔶. Un aliado provoca daños con su roca. \n\nPuedes acercarte a el hasta estar a 20 pies de dicho aliado.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nProvocas una falla que desestabiliza las órbitas de todas las rocas, provocando que colisionen entre ellas e infligiendo 1d8 cada una por cada 20 pies que viajaron desde el núcleo de sus órbitas hasta ti a todos los enemigos a 20 pies de ti.",
+        "hap1Nombre": "Constelación Estelar",
+        "hap2Nombre": "Cambio de Órbita",
+        "has1Nombre": "Cometa",
+        "has2Nombre": "Atracción Gravitacional",
+        "hadNombre": "Super Nova",
+        "hap1Mejorada": "💧💧, 🟢🟢. 1 Vez por Combate. \n\nTe rodeas con 4 rocas grandes que orbitan alrededor tuya, provocando 1d6 de daño por cada roca a todos los enemigos a 20 pies de ti al comienzo de tu turno. Este ataque no falla y las rocas permanecen hasta el final del combate.",
+        "hap2Mejorada": "💧, 🟢. Debes tener al menos 1 roca orbitando alrededor tuya. \n\nCedes 1 roca a un aliado a 30 pies o menos de ti. Este aplica el mismo efecto que tus rocas, pero alrededor suya.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢. Al menos 1 aliado debe tener 1 roca orbitando alrededor suya. \n\nRegresas una roca violentamente a tu órbita, provocando 1d10 de daño a todos los enemigos que alcance por el camino entre tu y tu aliado.",
+        "has2Mejorada": "💧, 🔶. Un aliado provoca daños con su roca \n\nPuedes acercarte a el hasta estar a 30 pies de dicho aliado.",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nProvocas una falla que desestabiliza las órbitas de todas las rocas, provocando que colisionen entre ellas e infligiendo 1d8 cada una por cada 15 pies que viajaron desde el núcleo de sus órbitas hasta ti a todos los enemigos a 20 pies de ti.",
+        "hap1Props": [
+          "targetSelf",
+          "area",
+          "autoHit",
+          "oncePerCombat",
+          "summon",
+          "range20"
+        ],
+        "hap2Props": [
+          "targetAlly",
+          "oncePerTurn",
+          "range20"
+        ],
+        "has1Props": [
+          "ranged",
+          "area",
+          "targetEnemy",
+          "damage",
+          "usesIntelligence",
+          "damageDie8"
+        ],
+        "has2Props": [
+          "reaction",
+          "targetSelf",
+          "displacement",
+          "range20"
+        ],
+        "hadProps": [
+          "area",
+          "oncePerDay",
+          "range20",
+          "ultimate",
+          "damage",
+          "usesIntelligence",
+          "damageDie8"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Maestro Arcano",
+      "descripcion": "Tu conocimiento de la magia es supremo. Cuando lanzas un hechizo, puedes elegir un número de aliados igual a tu Mod. Inteligencia que no serán afectados por efectos de área. Además, tus hechizos ignoran resistencias mágicas."
+    },
+    "preparado": {
+      "nombre": "Emet Escamapétrea",
+      "subclase": "Mago",
+      "raza": "Lagarliz",
+      "subraza": "Dracánido",
+      "descripcion": "Un erudito que domina los hechizos de área. Lanza bolas de fuego, proyectiles mágicos y encierra rivales en cúpulas de hielo.",
+      "avatar": "assets/avatars/sticker_deity_man_01.png",
+      "puntosFuertes": [
+        "Hechizos de área",
+        "Ahorro de PM pasivo",
+        "Control del campo"
+      ]
+    }
+  },
+  {
+    "nombre": "Luchador",
+    "rol": "Luchador",
+    "definicion": "Solitarios y feroces. Los Luchadores son famosos no por sus capacidades de cooperación si no por presentar una amenaza más que importante por sí solos. Tienen recursos para mantenerse con vida o rebajar la amenaza de sus contendientes.",
+    "pv": 3,
+    "escudo": 3,
+    "ph": 5,
+    "pasiva": "La primera vez que derrotes a un enemigo en cada ronda, ganas 🟢 adicional hasta el final de tu turno.",
+    "hb1": "1 Vez por Día. Puedes intentar observar a un ser y obtener algún tipo de información sobre su fisionomía.",
+    "hb2": "1 Vez por Día. Puedes realizar una breve instrucción militar a los objetivos neutrales (si quieren) y aliados que los deja preparados para una batalla y con nociones básicas de combate.",
+    "hb1Nombre": "Analizar",
+    "hb2Nombre": "Instrucción Militar",
+    "esMagica": false,
+    "subclases": [
+      {
+        "nombre": "Guerrero",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Mandoble",
+            "nombre": "Mandoble",
+            "dado": 10,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": true
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "⚡⚡, 🟢🟢. \n\nRealizas un tajo amplio en cono que te permite tirar un dado de ataque con el que impactar a los 3 enemigos a rango que tengas más juntos.",
+        "hap2": "⚡⚡, 🟢🟢🟢. \n\nCargas hacia posiciones enemigas moviéndote hasta 30 pies e intentando empujar a todos los enemigos que te encuentres a tu paso. Si aciertas, sufren 1d4 de daño y les provocas “Derribado”.",
+        "hap3": "⚡⚡⚡, 🟢🟢. \n\nCoges el mandoble por la punta de la hoja y realizas un golpe con en mango. Este ataque realiza el doble de daño al escudo del objetivo si acierta y le provoca “Debilidad 2”.",
+        "hap4": "⚡, 🔶. Un enemigo fuera a golpearte, falla el ataque y está a 5 pies. \n\nRealizas un ataque y puedes ponerte en su espalda con una finta obteniendo ventaja en ese ataque.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nRealizas tantos golpes al objetivo como ⚡ hayas gastado.",
+        "hap1Nombre": "Tajo en Cono",
+        "hap2Nombre": "Carga Brutal",
+        "hap3Nombre": "Golpe Rompeescudos",
+        "hap4Nombre": "Finta Letal",
+        "hadNombre": "Multiataque",
+        "hap1Mejorada": "⚡, 🟢. \n\nRealizas un tajo amplio en cono que te permite tirar un dado de ataque con el que impactar a los 3 enemigos a rango que tengas más juntos.",
+        "hap2Mejorada": "⚡, 🟢🟢. \n\nCargas hacia posiciones enemigas moviéndote hasta 30 pies e intentando empujar a todos los enemigos que te encuentres a tu paso. Si aciertas, sufren 1d4 de daño y les provocas “Derribado”.",
+        "hap3Mejorada": "⚡⚡, 🟢. \n\nCoges el mandoble por la punta de la hoja y realizas un golpe con en mango. Este ataque realiza el doble de daño al escudo del objetivo si acierta y le provoca “Debilidad 2”.",
+        "hap4Mejorada": "🔶. Un enemigo fuera a golpearte y está a 5 pies. \n\nRealizas un ataque y puedes ponerte en su espalda con una finta obteniendo ventaja en ese ataque.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nRealizas tantos golpes al objetivo como ⚡ hayas gastado a todos los enemigos que tengas a 5 pies.",
+        "hap1Props": [
+          "melee",
+          "fullAttack",
+          "area",
+          "targetEnemy"
+        ],
+        "hap2Props": [
+          "melee",
+          "charge",
+          "range30",
+          "debuff",
+          "targetEnemy",
+          "damage",
+          "usesStrength",
+          "damageDie4"
+        ],
+        "hap3Props": [
+          "melee",
+          "mainAttack",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "melee",
+          "mainAttack",
+          "buff"
+        ],
+        "hadProps": [
+          "melee",
+          "fullAttack",
+          "oncePerDay",
+          "ultimate",
+          "targetEnemy"
+        ]
+      },
+      {
+        "nombre": "Artista Marcial",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Nudilleras",
+            "nombre": "Nudilleras",
+            "dado": 4,
+            "ataques": 2,
+            "modificador": "Fuerza",
+            "dosManos": true,
+            "propiedades": [
+              "contundente",
+              "agil",
+              "sorpresiva"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "⚡⚡, 🟢🟢. \n\nMientras estás en “Postura”, realizas un devastador gancho ascendente al objetivo, lo que provoca que si le infliges daño, le aplicas “Derribado”. Si no estás en “Postura”, realizas dos golpes que provocan “Ralentizado 2” al rival al infligirle daño.",
+        "hap2": "⚡⚡, 🟢🟢. \n\nMientras estés en “Postura”, saltas en el aire golpeando a todos los enemigos a 5 pies. Si no estás en “Postura”, atacas con una patada baja a un objetivo. Si este sufre algún tipo de estado alterado y le infliges daño, le aplicas “Derribado”, entras en “Postura 1” y ganas “Impulso”.",
+        "hap3": "⚡⚡, 🟢🟢. \n\nMientras estés en “Postura”, te teleportas a cualquier parte a 5 pies de un objetivo a 30 pies o menos y lo golpeas. Le aplicas “Inmóvil” si le infliges daño. Si no estás en “Postura”, realizas una violenta carga hacia un objetivo a 15 pies y lo golpeas aplicándole “Aturdido 2” si le infliges daño, entras en “Postura 1” y ganas “Impulso”.",
+        "hap4": "⚡⚡⚡, 🔶. Un enemigo intenta desplazarse fuera de tu rango de ataque estando a 5 pies. \n\nLe descargas un golpe súbito que, en caso de hacer daño, no hace daño pero termina instantáneamente la acción que estaba llevando el objetivo, no se desplaza y entras en “Postura 1”.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nDebes estar en “Postura” para usar esta habilidad. Te concentras reuniendo toda la energía alrededor tuya y concentrándola en una pequeña bola de energía titilante. Instantes después descargas todo el torrente hacia una dirección. La descarga de energía impacta a todo lo que se encuentre en una línea recta hacia esa dirección hasta 60 pies. Todos los objetivos impactados sufren 3d6 de daño acertándoles directamente. Recibes “Ralentizado 2”.",
+        "hap1Nombre": "Gancho Ascendente / Golpes Ralentizantes",
+        "hap2Nombre": "Salto Giratorio / Patada Baja",
+        "hap3Nombre": "Desplazamiento Instantáneo / Carga Violenta",
+        "hap4Nombre": "Golpe Interceptor",
+        "hadNombre": "Descarga de Energía Concentrada",
+        "hap1Mejorada": "⚡, 🟢. \n\nMientras estás en “Postura”, realizas un devastador gancho ascendente al objetivo, lo que provoca que si le infliges daño, le aplicas “Derribado”. Si no estás en “Postura”, realizas dos golpes que provocan “Ralentizado 2” al rival al infligirle daño.",
+        "hap2Mejorada": "⚡, 🟢. \n\nMientras estés en “Postura”, saltas en el aire golpeando a todos los enemigos a 5 pies. Si no estás en “Postura”, atacas con una patada baja a un objetivo. Si este sufre algún tipo de estado alterado y le infliges daño, le aplicas “Derribado”, entras en “Postura 1” y ganas “Impulso”.",
+        "hap3Mejorada": "⚡, 🟢. \n\nMientras estés en “Postura”, te teleportas a cualquier parte a 5 pies de un objetivo a 30 pies o menos y lo golpeas. Le aplicas “Inmóvil” si le infliges daño. Si no estás en “Postura”, realizas una violenta carga hacia un objetivo a 15 pies y lo golpeas aplicándole “Aturdido 2” si le infliges daño, entras en “Postura 1” y ganas “Impulso”.",
+        "hap4Mejorada": "⚡⚡, 🔶. Un enemigo intenta desplazarse fuera de tu rango de ataque estando a 5 pies. \n\nLe descargas un golpe súbito que, en caso de hacer daño, no hace daño pero termina instantáneamente la acción que estaba llevando el objetivo, no se desplaza, entras en “Postura 1” y ganas “Impulso”.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nDebes estar en “Postura” para usar esta habilidad. Te concentras reuniendo toda la energía alrededor tuya y concentrándola en una pequeña bola de energía titilante. Instantes después descargas todo el torrente hacia una dirección. La descarga de energía impacta a todo lo que se encuentre en una línea recta hacia esa dirección hasta 60 pies. Todos los objetivos impactados sufren 3d6 de daño acertándoles directamente.",
+        "hap1Props": [
+          "melee",
+          "mainAttack",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap2Props": [
+          "melee",
+          "mainAttack",
+          "area",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap3Props": [
+          "melee",
+          "mainAttack",
+          "teleport",
+          "charge",
+          "range30",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "melee",
+          "mainAttack",
+          "control"
+        ],
+        "hadProps": [
+          "ranged",
+          "area",
+          "range60",
+          "autoHit",
+          "oncePerDay",
+          "ultimate",
+          "damage",
+          "usesStrength",
+          "damageDie6"
+        ]
+      },
+      {
+        "nombre": "Bárbaro",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Matadragones",
+            "nombre": "Matadragones",
+            "dado": 12,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": true,
+            "propiedades": [
+              "pesada",
+              "colosal"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "⚡⚡, 🟢. 1 Vez por Combate. \n\nUna ira homicida recorre tus venas provocándote “Rabia” y “Coraje 2”.",
+        "hap2": "⚡, 🟢🟢. Debes tener “Rabia” para usar esta habilidad. \n\nLevantas en alto tu gran arma cargando un ataque atronador que se realiza al comienzo de tu próximo turno al enemigo objetivo a rango o puedes mantenerte cargándolo durante tus turnos consiguientes. Este ataque acierta automáticamente y provoca 1d20 de daño más 1d12 adicional por cada acción omitida al mantenerlo cargado cada turno hasta 10d12 adicionales.",
+        "hap3": "⚡⚡, 🟢🟢. Debes tener “Rabia” para usar esta habilidad. \n\nRealizas un tajo giratorio con el que puedes impactar a todos los enemigos alrededor tuya. Obtienes 🛡️ por cada enemigo al que hieras de esta forma.",
+        "hap4": "⚡, 🔶. Un enemigo a 15 pies o menos te inflige daño. \n\nRealizas un movimiento rápido para quedarte a melé de dicho enemigo en la trayectoria más cercana.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. Debes tener “Rabia” para usar esta habilidad. \n\nArremetes contra el suelo en una casilla a hasta 15 pies de distancia provocando 1d12 de daño a los enemigos en area a 20 pies alrededor de la zona impactada, provocando “Derribado” a cualquier enemigo al que le inflijas daño y convirtiendo el terreno afectado en terreno dificil.",
+        "hap1Nombre": "Ira Descontrolada",
+        "hap2Nombre": "Azote Indómito",
+        "hap3Nombre": "Barrido Atroz",
+        "hap4Nombre": "Sin Escapatoria",
+        "hadNombre": "Atardecer Quebrantador",
+        "hap1Mejorada": "⚡⚡, 🟢. \n\nUna ira homicida recorre tus venas provocándote “Rabia” y “Coraje 3”.",
+        "hap2Mejorada": "⚡, 🟢. Debes tener “Rabia” para usar esta habilidad. \n\nLevantas en alto tu gran arma cargando un ataque atronador que se realiza al comienzo de tu próximo turno al enemigo objetivo a rango o puedes mantenerte cargándolo durante tus turnos consiguientes. Este ataque acierta automáticamente y provoca 1d20 de daño más 1d12 adicional por cada acción omitida al mantenerlo cargado cada turno hasta 10d12 adicionales. Si hieres de esta forma, provocas “Derribado” al objetivo.",
+        "hap3Mejorada": "⚡⚡, 🟢. Debes tener “Rabia” para usar esta habilidad. \n\nRealizas un tajo giratorio con el que puedes impactar a todos los enemigos alrededor tuya. Obtienes 🛡️ por cada enemigo al que hieras de esta forma.",
+        "hap4Mejorada": "⚡, 🔶. Un enemigo a 20 pies o menos te inflige daño. \n\nRealizas un movimiento rápido para quedarte a melé de dicho enemigo en la trayectoria más cercana y realizas un ataque contra él.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. Debes tener “Rabia” para usar esta habilidad. \n\nArremetes contra el suelo en una casilla a hasta 20 pies de distancia provocando 1d20 de daño a los enemigos en area a 20 pies alrededor de la zona impactada, provocando “Derribado” a cualquier enemigo al que le inflijas daño y convirtiendo el terreno afectado en terreno dificil.",
+        "hap1Props": [
+          "targetSelf",
+          "debuff",
+          "buff",
+          "oncePerCombat"
+        ],
+        "hap2Props": [
+          "melee",
+          "targetEnemy",
+          "channeling",
+          "autoHit"
+        ],
+        "hap3Props": [
+          "melee",
+          "fullAttack",
+          "area",
+          "shield"
+        ],
+        "hap4Props": [
+          "reaction",
+          "melee",
+          "displacement",
+          "range15"
+        ],
+        "hadProps": [
+          "melee",
+          "mainAttack",
+          "area",
+          "range15",
+          "targetEnemy",
+          "displacement",
+          "control",
+          "autoHit",
+          "oncePerDay",
+          "ultimate"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Furia Imparable",
+      "descripcion": "Tu determinación en combate es legendaria. Cuando tu vida cae por debajo del 50%, obtienes +1d6 de daño adicional en todos tus ataques y Resistencia 1 a todo tipo de daño hasta que recuperes más del 50% de tu vida."
+    },
+    "preparado": {
+      "nombre": "Draxius Tormefilos",
+      "subclase": "Guerrero",
+      "raza": "Lazuri",
+      "subraza": null,
+      "descripcion": "Un combatiente implacable que aplasta a sus enemigos con un mandoble de dos manos. Carga, barres y golpea escudos con fuerza bruta.",
+      "avatar": "assets/avatars/sticker_warrior_ondin_man_01.png",
+      "puntosFuertes": [
+        "Independiente",
+        "Alta resistencia",
+        "Atacante imponente"
+      ]
+    }
+  },
+  {
+    "nombre": "Protector",
+    "rol": "Protector",
+    "definicion": "Resistentes y contundentes. Estos increíbles aliados cuentan con excelentes formas de mantener al equipo a salvo de los enemigos ya sea con sus escudos o con su propio cuerpo. En cualquier caso, cuando se acerque un ataque masivo a tu grupo, los Protectores son tus mejores compañeros.",
+    "pv": 3,
+    "escudo": 3,
+    "ph": 5,
+    "pasiva": "Sumas tu Mod. Carisma a tu Fortaleza y Voluntad.",
+    "hb1": "1 Vez por descanso corto. Intentas detectar alguna fuente de maldad, como una criatura malvada o un conjuro con fines oscuros.",
+    "hb2": "1 Vez por Día. Exaltas a quienes te rodean armándolos de coraje durante 2 turnos.",
+    "hb1Nombre": "Detectar Maldad",
+    "hb2Nombre": "Exaltar",
+    "esMagica": false,
+    "subclases": [
+      {
+        "nombre": "Paladín",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Martillo de Guerra",
+            "nombre": "Martillo de Guerra",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": false,
+            "propiedades": [
+              "contundente"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Escudo",
+            "nombre": "Escudo",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Constitución",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "⚡⚡⚡, 🟢🟢. \n\nTe desplazas 15 pies y realizas un ataque al final del movimiento que causa “Aturdido 2” si impacta.",
+        "hap2": "⚡⚡, 🟢🟢. \n\nDeclaras a un enemigo y le acusas. Debe realizar una tirada de salvación de Voluntad contra una tirada tuya de Liderazgo. Si supera, obtiene un penalizador equivalente a tu Mod. Carisma a las tiradas de ataque contra cualquier objetivo que no seas tu hasta el comienzo de tu turno. Si no supera, queda “Provocado” contra ti.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "⚡⚡, 🟢. \n\nImbuyes de luz bendita tu escudo provocando 1d6 de daño sagrado si recibes un ataque hasta el comienzo de tu siguiente turno.",
+        "has2": "⚡, 🔶. Un aliado va a recibir un impacto y se encuentra a menos de 15 pies. \n\nAntes de que se sepa el valor del daño recibido te desplazas hacia el y recibes el impacto en su lugar.",
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nConvocas un ataque descargando toda la justicia divina sobre un objetivo. Realizas un ataque al que sumas tu Mod. Carisma a la tirada de ataque y, si impactas, tiras un dado extra equivalente a tu dado de daño que inflige daño sagrado al objetivo y a los enemigos a 10 pies alrededor.",
+        "hap1Nombre": "Carga Justiciera",
+        "hap2Nombre": "Acusación",
+        "has1Nombre": "Escudo Bendito",
+        "has2Nombre": "Protección",
+        "hadNombre": "Castigo Divino",
+        "hap1Mejorada": "⚡⚡, 🟢. \n\nTe desplazas 15 pies y realizas un ataque al final del movimiento que causa “Aturdido 2” si impacta.",
+        "hap2Mejorada": "⚡, 🟢. \n\nDeclaras a un enemigo y le acusas. Debe realizar una tirada de salvación de Voluntad contra una tirada tuya de Liderazgo. Si supera, obtiene un penalizador equivalente a tu Mod. Carisma a las tiradas de ataque contra cualquier objetivo que no seas tu hasta el comienzo de tu turno. Si no supera, queda “Provocado” contra ti.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "⚡, 🟢. \n\nImbuyes de luz bendita tu escudo provocando 1d8 de daño sagrado si recibes un ataque hasta el comienzo de tu siguiente turno.",
+        "has2Mejorada": "🔶. Un aliado va a recibir un impacto y se encuentra a menos de 15 pies. \n\nAntes de que se sepa el valor del daño recibido obtienes 🛡️, te desplazas hacia el y recibes el impacto en su lugar.",
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nConvocas un ataque descargando toda la justicia divina sobre un objetivo. Realizas un ataque al que sumas tu Mod. Carisma a la tirada de ataque y, si impactas, tiras un dado extra equivalente a tu dado de daño que inflige daño sagrado al objetivo y a los enemigos a 15 pies alrededor. Les causas \"Provocado\".",
+        "hap1Props": [
+          "melee",
+          "mainAttack",
+          "displacement",
+          "range15",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap2Props": [
+          "ranged",
+          "control",
+          "mark",
+          "targetEnemy"
+        ],
+        "has1Props": [
+          "targetSelf",
+          "shield"
+        ],
+        "has2Props": [
+          "reaction",
+          "displacement",
+          "range15",
+          "targetAlly"
+        ],
+        "hadProps": [
+          "melee",
+          "mainAttack",
+          "area",
+          "oncePerDay",
+          "ultimate"
+        ]
+      },
+      {
+        "nombre": "Cruzado",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Mandoble",
+            "nombre": "Mandoble",
+            "dado": 10,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": true
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "⚡⚡, 🟢🟢. \n\nCedes todo tu 🛡️ a un aliado hasta el comienzo de tu siguiente turno. Después, vuelve el 🛡️ restante del aliado a ti.",
+        "hap2": "⚡, 🟢🟢. 1 Vez por Combate. \n\nRealizas un llamamiento castigador en el campo de batalla, haciendo que caiga una lanza con bandera blanca en el campo de batalla. Tu Mod. Carisma se suma a las tiradas de ataque tuyas y de cualquier aliado hasta el final del siguiente turno.",
+        "hap3": "⚡⚡, 🟢🟢. \n\nGolpeas con contundencia al enemigo y le aplicas “Derribado” si le infliges daño.",
+        "hap4": "⚡⚡⚡, 🔶. Un enemigo va a infligirte daño. \n\nObtienes “Égida”.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nAsciendes a los cielos desplegando unas alas y un halo. Ganas “Volar 2”, tu halo ilumina tus alrededores y disipa la oscuridad mágica y tus ataques infligen 1d6 de daño sagrado extra.",
+        "hap1Nombre": "Égida Heroica",
+        "hap2Nombre": "Asalto Justiciero",
+        "hap3Nombre": "Golpe Contundente",
+        "hap4Nombre": "Mediación",
+        "hadNombre": "Ascensión",
+        "hap1Mejorada": "⚡, 🟢. \n\nCedes todo tu 🛡️ a un aliado hasta el comienzo de tu siguiente turno. Después, vuelve el 🛡️ restante del aliado a ti.",
+        "hap2Mejorada": "🟢. 1 Vez por Combate. \n\nRealizas un llamamiento castigador en el campo de batalla, haciendo que caiga una lanza con bandera blanca en el campo de batalla. Tu Mod. Carisma se suma a las tiradas de ataque tuyas y de cualquier aliado hasta el final del siguiente turno.",
+        "hap3Mejorada": "⚡, 🟢. \n\nGolpeas con contundencia al enemigo y le aplicas “Derribado” si le infliges daño.",
+        "hap4Mejorada": "⚡⚡, 🔶. Un enemigo va a infligirte daño. \n\nObtienes “Égida”.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nAsciendes a los cielos desplegando unas alas y un halo. Ganas “Volar 3”, tu halo ilumina tus alrededores y disipa la oscuridad mágica y tus ataques infligen 1d6 de daño sagrado extra.",
+        "hap1Props": [
+          "targetAlly",
+          "shield"
+        ],
+        "hap2Props": [
+          "targetAll",
+          "buff",
+          "oncePerCombat"
+        ],
+        "hap3Props": [
+          "melee",
+          "mainAttack",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "targetSelf",
+          "shield"
+        ],
+        "hadProps": [
+          "targetSelf",
+          "buff",
+          "oncePerDay",
+          "ultimate"
+        ]
+      },
+      {
+        "nombre": "Penitente",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Lanza",
+            "nombre": "Lanza",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": true,
+            "propiedades": [
+              "alcance"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "⚡⚡⚡, 🟢. \n\nSacrificas 🛡️🛡️ para obtener “Coraje 1” e infligir “Miedo 2” con tus ataques mientras tengas “Coraje”.",
+        "hap2": "⚡⚡, 🟢. \n\nSacrificas 🛡️ para infligirte “Mudez” y “Frágil 3”. Además, no realizas tiradas de salvación contra “Mudez”.",
+        "hap3": "⚡⚡, 🟢🟢. \n\nGanas 🛡️ por cada condición Restrictiva o Debilitante que sufras e inflige esas mismas condiciones a los enemigos a 10 pies de ti.",
+        "hap4": "⚡, 🔶. Un aliado a 20 pies o menos de ti va a sufrir una condición Restrictiva o Debilitante. \n\nPuedes sacrificar 🛡️ para absorberla tu y sufrirla en su lugar.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nAbsorbes todas las condiciones que no sean Potenciadoras de los aliados a 20 pies de ti, aplicas “Miedo 2” a todos los enemigos a 20 pies y les infliges 1d8 de daño por cada condición que hayas absorbido de los aliados.",
+        "hap1Nombre": "Penitencia",
+        "hap2Nombre": "Ascesis y Mortificación",
+        "hap3Nombre": "Confesión",
+        "hap4Nombre": "Absolución",
+        "hadNombre": "Ecumenismo del Martir",
+        "hap1Mejorada": "⚡⚡, 🟢. \n\nSacrificas 🛡️🛡️ para obtener “Coraje 2” e infligir “Miedo 2” con tus ataques mientras tengas “Coraje”.",
+        "hap2Mejorada": "⚡, 🟢. \n\nSacrificas 🛡️ para infligirte “Mudez”, “Frágil 2” y “Debilidad 2”. Además, no realizas tiradas de salvación contra “Mudez”.",
+        "hap3Mejorada": "⚡, 🟢🟢. \n\nGanas 🛡️ por cada condición Restrictiva o Debilitante que sufras e inflige esas mismas condiciones a los enemigos a 15 pies de ti.",
+        "hap4Mejorada": "⚡, 🔶. Un aliado a 30 pies o menos de ti va a sufrir una condición Restrictiva o Debilitante. \n\nPuedes sacrificar 🛡️ para absorberla tu y sufrirla en su lugar.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nAbsorbes todas las condiciones que no sean Potenciadoras de los aliados a 30 pies de ti, aplicas “Miedo 3” a todos los enemigos a 30 pies y les infliges 1d10 de daño por cada condición que hayas absorbido de los aliados.",
+        "hap1Props": [
+          "targetSelf",
+          "buff",
+          "debuff"
+        ],
+        "hap2Props": [
+          "targetSelf",
+          "debuff"
+        ],
+        "hap3Props": [
+          "targetSelf",
+          "shield",
+          "area",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "range20",
+          "targetAlly",
+          "shield"
+        ],
+        "hadProps": [
+          "area",
+          "range20",
+          "debuff",
+          "control",
+          "oncePerDay",
+          "ultimate",
+          "targetEnemy",
+          "damage",
+          "usesCharisma",
+          "damageDie8"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Guardián Inquebrantable",
+      "descripcion": "Tu presencia protege a tus aliados. Todos los aliados dentro de 30 pies obtienen +2 a DA y puedes usar tu reacción para otorgar \"Égida\" a un aliado que vaya a recibir daño."
+    },
+    "preparado": {
+      "nombre": "Ariel Juramaneceres",
+      "subclase": "Paladín",
+      "raza": "Aasimar",
+      "subraza": null,
+      "descripcion": "Una justiciera devota que empuña espada y escudo. Detecta el mal, protege aliados y reparte justicia con golpes sagrados.",
+      "avatar": "assets/avatars/sticker_warrior_elve_woman_01.png",
+      "puntosFuertes": [
+        "Gran resistencia",
+        "Protección a aliados",
+        "Salvaciones mejoradas"
+      ]
+    }
+  },
+  {
+    "nombre": "Invocador",
+    "rol": "Invocador",
+    "definicion": "Equilibrados y variados. Los Invocadores son famosos por sus poderosos aliados. Invocaciones con inmensas y diversas capacidades para ayudar al grupo ya sea aportando daño, apoyo al equipo o simple supervivencia.",
+    "pv": 3,
+    "escudo": 2,
+    "ph": 5,
+    "pasiva": "Puedes hablar fluidamente con plantas y animales.",
+    "hb1": "1 Vez por descanso corto. Puedes llevar a cabo un ritual para cambiar la climatología.",
+    "hb2": "1 Vez por Día. Haces que una o muchas plantas que te rodean crezcan mucho más rápido.",
+    "hb1Nombre": "Ritual Climático",
+    "hb2Nombre": "Crecimiento Vegetal",
+    "esMagica": true,
+    "subclases": [
+      {
+        "nombre": "Druida",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Lanza",
+            "nombre": "Lanza",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": true,
+            "propiedades": [
+              "alcance"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "💧💧, 🟢🟢. \n\nInvocas un oso como compañero animal con ❤️❤️, 1d6 dado de daño y 11 DA. Puedes darle órdenes básicas a esta criatura. El oso se irá al finalizar el combate. El oso obtiene \"Armonía\".",
+        "hap2": "💧💧💧, 🟢. \n\nCreas una muralla delante tuya con ❤️. Dicha muralla mide 15 pies y solo puede crecer a 15 pies de distancia.",
+        "hap3": "💧, 🟢🟢. \n\nTransmutas tus piernas a las de un conejo enorme. Das un brinco saltando hasta 20 pies, pudiendo moverte 30 pies y en la zona de aterrizaje puedes intentar un ataque en caída con tu dado de ataque al objetivo junto con 1d4 de dado de daño a objetivos a 5 pies.",
+        "hap4": "🔶. Tu compañero animal va a sufrir un ataque y estás a rango de ataque. \n\nRealizas un ataque antes de que tu compañero sufra dicho ataque. Si vas a sufrir un ataque y tu compañero animal está a rango de ataque, realiza un ataque antes de que tu sufras dicho ataque. Solo uno de los dos puede atacar.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nRealizas un cántico gutural que provoca vibraciones en el suelo y hace al objetivo crecer hasta 3 veces su tamaño original, duplicando su vida máxima y aumentando en 2 su dado de ataque hasta el comienzo de tu siguiente turno. El objetivo obtiene \"Armonía\".",
+        "hap1Nombre": "Compañero Oso",
+        "hap2Nombre": "Muralla de Zarzas",
+        "hap3Nombre": "Salto Bestial",
+        "hap4Nombre": "Vínculo Protector",
+        "hadNombre": "Sobrecrecimiento",
+        "hap1Mejorada": "💧, 🟢🟢. \n\nInvocas un oso como compañero animal con ❤️❤️❤️, 1d6 dado de daño y 12 DA. Puedes darle órdenes básicas a esta criatura. El oso se irá al finalizar el combate. El oso obtiene \"Armonía\".",
+        "hap2Mejorada": "💧💧💧, 🟢. \n\nCreas una muralla delante tuya con ❤️❤️. Dicha muralla mide 30 pies y puede crecer a 30 pies de distancia.",
+        "hap3Mejorada": "💧, 🟢. \n\nTransmutas tus piernas a las de un conejo enorme. Das un brinco saltando hasta 35 pies, pudiendo moverte 30 pies y en la zona de aterrizaje puedes intentar un ataque en caída con tu dado de ataque al objetivo junto con 1d6 de dado de daño a objetivos a 5 pies.",
+        "hap4Mejorada": "🔶. Tu compañero animal va a sufrir un ataque y estás a rango de ataque. \n\nRealizas un ataque con ventaja antes de que tu compañero sufra dicho ataque. Si vas a sufrir un ataque y tu compañero animal está a rango de ataque, realiza un ataque con ventaja antes de que tu sufras dicho ataque. Los dos podeis realizar la reacción en momentos separados.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nRealizas un cántico gutural que provoca vibraciones en el suelo y hace al objetivo crecer hasta 3 veces su tamaño original, duplicando su vida máxima y aumentando en 2 su dado de ataque hasta el comienzo de tu siguiente turno. El objetivo obtiene “Armonía”. También puedes, en su lugar, hacer que el objetivo se reduzca 2 veces su tamaño original, reduciendo su vida máxima en 2 y su tirada de ataque en 1 hasta el comienzo de tu siguiente turno.",
+        "hap1Props": [
+          "summon"
+        ],
+        "hap2Props": [
+          "summon",
+          "shield",
+          "range15"
+        ],
+        "hap3Props": [
+          "melee",
+          "mainAttack",
+          "displacement",
+          "area",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "melee",
+          "mainAttack"
+        ],
+        "hadProps": [
+          "targetAlly",
+          "buff",
+          "oncePerDay",
+          "ultimate"
+        ]
+      },
+      {
+        "nombre": "Monje",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Nudilleras",
+            "nombre": "Nudilleras",
+            "dado": 4,
+            "ataques": 2,
+            "modificador": "Fuerza",
+            "dosManos": true,
+            "propiedades": [
+              "contundente",
+              "agil",
+              "sorpresiva"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "💧, 🟢. \n\n1 vez por Combate. Adoptas una de las 4 posturas Salvajes: \n- Postura del Oso: Ganas “Regeneración 1”.\n- Postura del Tigre: Tu DA aumenta en 2.\n- Postura del Dragón: Añade 2 a tus tiradas de daño.\n- Postura del Cisne: Tu rango de movimiento aumenta en 15.",
+        "hap2": "💧, 🟢🟢. \n\nSobrepasas los límites físicos del cuerpo realizando un sorprendente despliegue de movimiento que acaba en un ligero golpe. Te mueves hasta 60 pies y realizas un golpe que no hace daño pero provoca “Frágil 2”.",
+        "hap3": "💧💧, 🟢🟢. \n\nDescargas toda la energía vital en un oponente infligiéndole 1d10 de daño a el y 1d4 de daño alrededor suya a todos los enemigos dentro de 15 pies.",
+        "hap4": "💧, 🔶. Llevas a cabo de forma exitosa una habilidad. \n\nPuedes cambiar de postura. Obtienes “Kiai”.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nAdoptas la postura del Rey Mono y ganas todos los beneficios de todas las posturas durante 2 turnos. Además, realizas un dado de daño extra cuando atacas. Obtienes \"Kiai\".",
+        "hap1Nombre": "Posturas Salvajes",
+        "hap2Nombre": "Movimiento Exhaustivo",
+        "hap3Nombre": "Descarga Vital",
+        "hap4Nombre": "Cambio de Postura",
+        "hadNombre": "Postura del Rey Mono",
+        "hap1Mejorada": "🟢. \n\n1 vez por Combate. Adoptas una de las 4 posturas Salvajes: \n- Postura del Oso: Ganas 🛡️🛡️ al comienzo de tu turno y dura hasta el comienzo del siguiente turno.\n- Postura del Tigre: Tu DA aumenta en 3.\n- Postura del Dragón: Añade 3 a tus tiradas de daño.\n- Postura del Cisne: Tu rango de movimiento aumenta en 20.",
+        "hap2Mejorada": "💧, 🟢. \n\nSobrepasas los límites físicos del cuerpo realizando un sorprendente despliegue de movimiento que acaba en un ligero golpe. Te mueves hasta 60 pies y realizas un golpe que hace daño y provoca \"Frágil 2\".",
+        "hap3Mejorada": "💧, 🟢. \n\nDescargas toda la energía vital en un oponente infligiéndole 1d10 de daño a el y 1d6 de daño alrededor suya a todos los enemigos dentro 30 pies.",
+        "hap4Mejorada": "🔶. Llevas a cabo una habilidad. \n\nPuedes cambiar de postura. Si la habilidad resulta exitosa, recuperas 🔶. Obtienes \"Kiai\".",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nAdoptas la postura del Rey Mono y ganas todos los beneficios de todas las posturas durante 3 turnos. Además, realizas dos dados de daño extra cuando atacas. Obtienes \"Kiai\".",
+        "hap1Props": [
+          "targetSelf",
+          "stance",
+          "oncePerCombat"
+        ],
+        "hap2Props": [
+          "melee",
+          "displacement",
+          "range60",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap3Props": [
+          "melee",
+          "area",
+          "cone15",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "targetSelf",
+          "buff"
+        ],
+        "hadProps": [
+          "targetSelf",
+          "buff",
+          "oncePerDay",
+          "ultimate"
+        ]
+      },
+      {
+        "nombre": "Chamán",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Maza",
+            "nombre": "Maza",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": false,
+            "propiedades": [
+              "contundente"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Escudo",
+            "nombre": "Escudo",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧, 🟢. \n\nNo debes de controlar ningún Tótem del Sol o de la Luna para poder usar esta habilidad. Invocas un Tótem con ❤️❤️ y 10 DA dentro de 20 pies de distancia. Elige si es Tótem del Sol ó Tótem de la Luna. El Tótem del Sol inflige \"Quemadura\" al enemigo más cercano a 20 pies al final de tu turno. El Tótem de la Luna aplica \"Regeneración 1\" al aliado más cercano a 20 pies al final de tu turno.",
+        "hap2": "💧💧, 🟢🟢. \n\nActiva el poder de tu Tótem, provocando 1d6 de daño a los enemigos a 20 pies tuya y del Tótem si controlas al Tótem del Sol ó otorgando 🛡️ a los aliados a 20 pies tuya y del Tótem si controlas al Tótem de la Luna.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧💧, 🟢🟢. \n\nMediante un corto ritual, el poder del Tótem activo cambia, detonando el poder del nuevo Tótem y encadenandose al aliado o enemigo más cercano al primer objetivo a 30 pies o menos.",
+        "has2": "💧, 🔶. Un enemigo realiza un ataque o habilidad a 20 pies o menos del Tótem. \n\nProvocas la ruptura del Tótem violentamente, provocando al enemigo \"Derribado\" y cortándo su acción.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. Debes tener un Tótem activo para poder usar esta habilidad. \n\nCanalizas el advenimiento de un rayo en el Tótem. Esto provoca que se convierta en el Tótem del Eclipse, obteniendo el efecto de ambos Tótems a la vez hasta ser destruido y aumentando su vida en ❤️❤️. Además, el Rayo provoca 1d8 de daño a 20 pies alrededor del Tótem y tuya a todos los enemigos automáticamente.",
+        "hap1Nombre": "Tótems Convergentes",
+        "hap2Nombre": "Poder Telúrico",
+        "has1Nombre": "Despertar Ceremonial",
+        "has2Nombre": "Rescate de la Naturaleza",
+        "hadNombre": "Eclipse Atronador",
+        "hap1Mejorada": "💧, 🟢. \n\nNo debes de controlar ningún Tótem del Sol o de la Luna para poder usar esta habilidad. Invocas un Tótem con ❤️❤️❤️ y 12 DA dentro de 30 pies de distancia. Elige si es Tótem del Sol ó Tótem de la Luna. El Tótem del Sol inflige \"Quemadura\" a los enemigos a 30 pies al final de tu turno. El Tótem de la Luna aplica \"Regeneración 2\" a los aliados a 30 pies al final de tu turno.",
+        "hap2Mejorada": "💧💧, 🟢. \n\nActiva el poder de tu Tótem, provocando 1d8 de daño a los enemigos a 30 pies tuya y del Tótem si controlas al Tótem del Sol ó otorgando 🛡️🛡️ a los aliados a 30 pies tuya y del Tótem si controlas al Tótem de la Luna.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢🟢. \n\nMediante un corto ritual, el poder del Tótem activo cambia, detonando el poder del nuevo Tótem y encadenándose a hasta 2 aliados o enemigos más cercanos al primer objetivo a 30 pies o menos.",
+        "has2Mejorada": "💧, 🔶. Un enemigo realiza un ataque o habilidad a 30 pies o menos del Tótem. \n\nProvocas la ruptura del Tótem violentamente, provocando al enemigo \"Derribado\" y \"Aturdido 1\" y cortando su acción.",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. Debes tener un Tótem activo para poder usar esta habilidad. \n\nCanalizas el advenimiento de un rayo en el Tótem. Esto provoca que se convierta en el Tótem del Eclipse, obteniendo el efecto de ambos Tótems a la vez hasta ser destruido y aumentando su vida en ❤️❤️❤️. Además, el Rayo provoca 1d10 de daño a 30 pies alrededor del Tótem y tuya a todos los enemigos automáticamente.",
+        "hap1Props": [
+          "summon",
+          "range20"
+        ],
+        "hap2Props": [
+          "area",
+          "range20",
+          "targetEnemy",
+          "shield"
+        ],
+        "has1Props": [
+          "control",
+          "area"
+        ],
+        "has2Props": [
+          "reaction",
+          "control",
+          "debuff",
+          "range20"
+        ],
+        "hadProps": [
+          "summon",
+          "area",
+          "range20",
+          "oncePerDay",
+          "ultimate",
+          "damage",
+          "usesCharisma",
+          "damageDie8"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Vínculo Primordial",
+      "descripcion": "Tu conexión con la naturaleza alcanza su cénit. Tus invocaciones obtienen +2 a todas sus estadísticas y puedes tener hasta 2 invocaciones activas simultáneamente. Además, puedes compartir sentidos con tus invocaciones."
+    },
+    "preparado": {
+      "nombre": "Bolgar Garratroz",
+      "subclase": "Druida",
+      "raza": "Bestani",
+      "subraza": "Kenku",
+      "descripcion": "Un naturalista que convoca aliados de la naturaleza y criaturas mágicas. Sus invocaciones actúan de forma independiente aumentando la presión.",
+      "avatar": "assets/avatars/sticker_warrior_avian_man_01_A.png",
+      "puntosFuertes": [
+        "Invocaciones poderosas",
+        "Presión conjunta",
+        "Versatilidad"
+      ]
+    }
+  },
+  {
+    "nombre": "Artillero",
+    "rol": "Artillero",
+    "definicion": "Los Artilleros son unos increíbles visionarios que construyen maravillas futurísticas avanzadas a su tiempo. Podría decirse que un Artillero lo suficientemente ingenioso solo trabaja un tercio de su vida… Si ha hecho bien su trabajo.",
+    "pv": 3,
+    "escudo": 2,
+    "ph": 5,
+    "pasiva": "Llevas siempre contigo un robot ayudante que puede levitar a la altura de tu cabeza.",
+    "hb1": "1 Vez por descanso corto. Puedes hacer que tu robot proyecte una imagen.",
+    "hb2": "1 Vez por Día. Puedes programar a tu ayudante para que realice hasta 2 acciones sencillas.",
+    "hb1Nombre": "Holograma",
+    "hb2Nombre": "Programar Robot",
+    "esMagica": false,
+    "subclases": [
+      {
+        "nombre": "Ingeniero",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Rifle",
+            "nombre": "Rifle",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Percepción",
+            "dosManos": true,
+            "propiedades": [
+              "aDistancia"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "⚡⚡⚡, 🟢🟢. \n\nDespliegas una torreta automática estática con ❤️, 1d6 dado de daño y 10 DA. Esta atacará 2 veces al enemigo más cercano dentro de 30 pies alrededor suya en su turno. La torreta se desmontará al finalizar el combate.",
+        "hap2": "⚡⚡⚡, 🟢. \n\nDespliegas un campo que dura 2 turnos cuyo rango es 15 pies. Dicho campo provocará una tirada de salvación CD 10(contra Agilidad) a cualquier enemigo que entre dentro de su rango. Si no superan les provocará “Inmóvil”. Si superan sufren “Ralentizado 1” hasta que salgan de su rango.",
+        "hap3": "⚡⚡, 🟢🟢. \n\nSobrecargas tu rifle, realizando un disparo que atraviesa a los enemigos alcanzados y que provocará “Aturdido 2” a los enemigos que inflijas daño.",
+        "hap4": "⚡, 🔶. Algún enemigo intenta atacarte y falla. \n\nPuedes hacer que tu robot ayudante te desplace 15 pies. Este movimiento se considera con la condición de “Volar”.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nDespliegas un campo energizado que duplica la vida, duración y ataques que realizan tus torretas y campos. También generas una torreta cañón afectado por tu campo con ❤️❤️, 1d10 de daño y 14 DA. Este cañón atacará 1 vez al enemigo con más vida. Los ataques del cañón afectan también a los objetivos a 10 pies alrededor.",
+        "hap1Nombre": "Torreta Automática",
+        "hap2Nombre": "Campo Repulsor",
+        "hap3Nombre": "Disparo Sobrecargado",
+        "hap4Nombre": "Evasión Asistida",
+        "hadNombre": "Protocolo de Sobrecarga Total",
+        "hap1Mejorada": "⚡, 🟢🟢. \n\nDespliegas una torreta automática estática con ❤️❤️, 1d8 dado de daño y 11 DA. Esta atacará 2 veces al enemigo más cercano dentro de 30 pies alrededor suya en su turno. La torreta se desmontará al finalizar el combate.",
+        "hap2Mejorada": "⚡⚡, 🟢. \n\nDespliegas un campo que dura hasta el final del combate cuyo rango es 15 pies. Dicho campo provocará una tirada de salvación CD 11(contra Agilidad) a cualquier enemigo que entre dentro de su rango. Si no superan les provocará “Inmóvil”. Si superan sufren “Ralentizado 2” hasta que salgan de su rango.",
+        "hap3Mejorada": "⚡, 🟢. \n\nSobrecargas tu rifle, realizando un disparo que atriviesa a los enemigos alcanzados y que provocará “Aturdido 2” a los enemigos que inflijas daño.",
+        "hap4Mejorada": "🔶. Algún enemigo intenta atacarte o realiza una habilidad y falla. \n\nPuedes hacer que tu robot ayudante te desplace 15 pies. Este movimiento se considera con la condición de “Volar”.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nDespliegas un campo energizado que duplica la vida, duración y ataques que realizan tus torretas y campos. También generas una torreta cañón afectado por tu campo con ❤️❤️❤️, 1d12 de daño y 15 DA. Este cañón atacará 2 veces al enemigo con más vida. Los ataques del cañón afectan también a los objetivos a 10 pies alrededor.",
+        "hap1Props": [
+          "summon",
+          "ranged",
+          "range30"
+        ],
+        "hap2Props": [
+          "summon",
+          "area",
+          "control",
+          "debuff",
+          "range15"
+        ],
+        "hap3Props": [
+          "ranged",
+          "mainAttack",
+          "piercing",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hap4Props": [
+          "reaction",
+          "displacement",
+          "range15"
+        ],
+        "hadProps": [
+          "summon",
+          "buff",
+          "oncePerDay",
+          "ultimate"
+        ]
+      },
+      {
+        "nombre": "Maquinista",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Pistola",
+            "nombre": "Pistola",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Percepción",
+            "dosManos": false,
+            "propiedades": [
+              "aDistancia",
+              "sorpresiva"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Daga",
+            "nombre": "Daga",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Destreza",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "⚡, 🟢. 1 Vez por Combate. \n\nConviertes a tu alegre acompañante en un robot mecanizado de combate táctico con ❤️❤️❤️, 1d10 y 10 DA listo para ser dirigido desde el interior o mediante órdenes. El robot es inmune a “Envenenamiento” y “Derribado”.",
+        "hap2": "⚡, 🟢🟢. \n\nEstablece un perímetro de seguridad con un sensor que provoca 1d4 de daño si un enemigo entra dentro de el. Tu robot realiza un ataque gratis a dicho enemigo si está dentro del perímetro y al menos a 15 pies.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "⚡⚡, 🟢🟢. \n\nSobrecargas a tu robot, sacrificando ❤️ suyo para que inflija 1d10 extra en sus ataques hasta el final del siguiente turno.",
+        "has2": "⚡, 🔶. Tu robot está a 15 pies y realiza una acción. \n\nPuedes entrar en el robot.",
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nPresionas el botón rojo, poniendo un contador de 1 turno en tu robot y provocando que este explote al comienzo de tu próximo turno infligiendo 2d20 que alcanza 30 pies a su alrededor y que no puede fallar, pero dicho daño también es infligido a ti y a tus aliados si os alcanza.",
+        "hap1Nombre": "Robot de Combate",
+        "hap2Nombre": "Perímetro de Seguridad",
+        "has1Nombre": "Sobrecarga del Núcleo",
+        "has2Nombre": "Acceso al Robot",
+        "hadNombre": "Botón?? Rojo?!?!?",
+        "hap1Mejorada": "⚡, 🟢. 1 Vez por Combate. \n\nConviertes a tu alegre acompañante en un robot mecanizado de combate táctico con ❤️❤️❤️❤️, realiza ataques con 1d12 y 12 DA listo para ser dirigido desde el interior o mediante órdenes. El robot es inmune a “Envenenamiento” y “Derribado”.",
+        "hap2Mejorada": "⚡, 🟢. \n\nEstablece un perímetro de seguridad con un sensor que provoca 1d8 de daño si un enemigo entra dentro de el o sale. Tu robot realiza un ataque gratis a dicho enemigo si está dentro del perímetro y al menos a 15 pies.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "⚡⚡, 🟢. \n\nSobrecargas a tu robot, sacrificando ❤️ suyo para que inflija 1d12 extra en sus ataques hasta el final del siguiente turno.",
+        "has2Mejorada": "🔶. Tu robot está a 15 pies y realiza una acción. \n\nPuedes entrar en el robot o salir de el.",
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nPresionas el botón rojo, poniendo un contador de 1 turno en tu robot y provocando que este explote al comienzo de tu próximo turno infligiendo 2d20 que alcanza 30 pies a su alrededor y que no puede fallar, pero dicho daño no es infligido a ti y a tus aliados si os alcanza.",
+        "hap1Props": [
+          "summon",
+          "oncePerCombat"
+        ],
+        "hap2Props": [
+          "summon",
+          "area",
+          "range15",
+          "targetEnemy"
+        ],
+        "has1Props": [
+          "buff",
+          "targetAlly"
+        ],
+        "has2Props": [
+          "reaction",
+          "displacement",
+          "range15"
+        ],
+        "hadProps": [
+          "area",
+          "range30",
+          "autoHit",
+          "oncePerDay",
+          "ultimate"
+        ]
+      },
+      {
+        "nombre": "Operador",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Ballesta de Mano",
+            "nombre": "Ballesta de Mano",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Percepción",
+            "dosManos": false,
+            "propiedades": [
+              "aDistancia",
+              "sorpresiva"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Maza",
+            "nombre": "Maza",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "⚡⚡⚡, 🟢🟢. \n\nInvocas un Robot Soldado con ❤️, 11 de DA y que inflige 1d4 de daño al atacar y repetirá todos tus movimientos y acciones, ocupando la casilla adyacente tuya siempre. Es inmune a “Envenenamiento”.",
+        "hap2": "⚡⚡, 🟢. \n\nDebes controlar al menos a un Robot Soldado para usar esta habilidad. Sobrecargas un Robot Soldado, haciendo que este aumente su daño a 1d6 y su DA a 12. Al final de tu turno, pierde ❤️.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "⚡⚡, 🟢. \n\nEnlazas a cada uno de tus Robots Soldado a un objetivo de forma independiente a 20 pies o menos de ti. Ahora cuando realices una acción ofensiva, estos la replicarán hacia dichos objetivos.",
+        "has2": "⚡, 🔶. Un Robot Soldado es derrotado. \n\nPuedes provocar un cortocircuito en el Robot Soldado para que explote provocando 1d6 de daño a todo lo que esté a 5 pies de el.",
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nActivas la secuencia de ataque de tus Robots, provocando que los Robots Soldado actuales realicen todas sus acciones ofensivas dos veces hasta que sean derrotados o termine el combate y otorgándoles ❤️ extra.",
+        "hap1Nombre": "Robot Soldado",
+        "hap2Nombre": "Orden de Ataque",
+        "has1Nombre": "Entrelazamiento",
+        "has2Nombre": "Cortocircuito",
+        "hadNombre": "Actualización de Software",
+        "hap1Mejorada": "⚡⚡, 🟢🟢. \n\nInvocas un Robot Soldado con ❤️, 12 de DA y que inflige 1d6 de daño al atacar y repetirá todos tus movimientos y acciones, ocupando la casilla adyacente tuya siempre. Es inmune a “Envenenamiento”.",
+        "hap2Mejorada": "⚡, 🟢. \n\nDebes controlar al menos a un Robot Soldado para usar esta habilidad. Sobrecargas un Robot Soldado, haciendo que este aumente su daño a 1d8 y su DA a 14. Al final de tu turno, pierde ❤️.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "⚡, 🟢. \n\nEnlazas a cada uno de tus Robots Soldado a un objetivo de forma independiente a 30 pies o menos de ti. Ahora cuando realices una acción ofensiva, estos la replicarán hacia dichos objetivos.",
+        "has2Mejorada": "⚡, 🔶. Un Robot Soldado es derrotado. \n\nPuedes provocar un cortocircuito en el Robot Soldado para que explote provocando 1d8 de daño a todo lo que esté a 10 pies de el.",
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nActivas la secuencia de ataque de tus Robots, provocando que los Robots Soldado actuales realicen todas sus acciones ofensivas tres veces hasta que sean derrotados o termine el combate y otorgándoles ❤️❤️ extra.",
+        "hap1Props": [
+          "summon"
+        ],
+        "hap2Props": [
+          "summon",
+          "targetSelf",
+          "buff"
+        ],
+        "has1Props": [
+          "debuff",
+          "targetEnemy",
+          "range20"
+        ],
+        "has2Props": [
+          "reaction",
+          "range5",
+          "damage",
+          "usesIntelligence",
+          "damageDie6"
+        ],
+        "hadProps": [
+          "area",
+          "range30",
+          "autoHit",
+          "oncePerDay",
+          "ultimate"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Genio Tecnológico",
+      "descripcion": "Tus creaciones alcanzan la perfección. Tus torretas y construcciones tienen el doble de vida. Además, puedes tener hasta 3 torretas activas simultáneamente."
+    },
+    "preparado": {
+      "nombre": "Vivien Barbabrava",
+      "subclase": "Ingeniero",
+      "raza": "Enano",
+      "subraza": null,
+      "descripcion": "Una estratega que construye torretas y campos energizados. Sus artefactos trabajan solos mientras ella mantiene la distancia.",
+      "avatar": "assets/avatars/sticker_warrior_human_girl_01_alt.png",
+      "puntosFuertes": [
+        "Torretas automáticas",
+        "Campos de daño",
+        "Robot ayudante"
+      ]
+    }
+  },
+  {
+    "nombre": "Velador",
+    "rol": "Velador",
+    "definicion": "Vitales y persistentes. Cuando todas las medidas de seguridad fallen y tu equipo esté a las puertas de la muerte, allí estarán estos excelentes aliados listos para daros una segunda oportunidad, o las que hagan falta.",
+    "pv": 3,
+    "escudo": 3,
+    "ph": 5,
+    "pasiva": "1 vez al día, al comienzo de este, tira 1d10. Puedes sumar dicho dado a cualquier tirada hasta el comienzo del próximo día.",
+    "hb1": "1 Vez por descanso corto. Puedes detectar las creencias de un objetivo así como sus motivaciones y preocupaciones.",
+    "hb2": "1 Vez por descanso largo. Creas un espacio santificado alrededor tuya durante un minuto en el que las criaturas se apaciguan y pierden las ganas de combatir.",
+    "hb1Nombre": "Intuir Creencias",
+    "hb2Nombre": "Santificar",
+    "esMagica": true,
+    "subclases": [
+      {
+        "nombre": "Clérigo",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Sable",
+            "nombre": "Sable",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Destreza",
+            "dosManos": false,
+            "propiedades": [
+              "precisa"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Tomo",
+            "nombre": "Tomo",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧💧, 🟢🟢. \n\nCanalizas una ayuda divina en área alrededor tuya que otorga 🛡️ a todos tus aliados dentro de 30 pies.",
+        "hap2": "💧, 🟢🟢. \n\nBendices a un aliado dentro de 30 pies a tu alrededor con poder divino y le otorgas 🛡️🛡️.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧, 🟢. \n\nConjuras todo el poder celestial en un chorro de luz sagrada pura hacia delante hasta 15 pies que inflige 1d6 de daño a todos los enemigos y otorga 🛡️ a los aliados acertados.",
+        "has2": "🔶. Un aliado dentro de 30 pies a tu alrededor sufre un ataque y el atacante falla. \n\nPuedes realizar una plegaria que le provoca \"Cegar 1\" al atacante.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nOras a los cielos rogando una salvación y haces a ti y a todos tus aliados dentro de 30 pies que os restaura todos vuestros ❤️ y os otorga \"Invulnerable 1\". Además, al comienzo de tu siguiente turno ganas 🛡️ equivalente a los puntos de 💧 gastados por esta habilidad.",
+        "hap1Nombre": "Canalización",
+        "hap2Nombre": "Bendición",
+        "has1Nombre": "Rayo Celestial",
+        "has2Nombre": "Favor Cegador",
+        "hadNombre": "Intervención",
+        "hap1Mejorada": "💧, 🟢. \n\nCanalizas una ayuda divina en área alrededor tuya que otorga 🛡️🛡️ a todos tus aliados dentro de 30 pies.",
+        "hap2Mejorada": "🟢. \n\nBendices a un aliado dentro de 30 pies a tu alrededor con poder divino y le otorgas 🛡️🛡️🛡️.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢. \n\nConjuras todo el poder celestial en un chorro de luz sagrada pura hacia delante hasta 15 pies que inflige 1d10 de daño a todos los enemigos y otorga 🛡️🛡️ a los aliados acertados.",
+        "has2Mejorada": "🔶. Un aliado dentro de 30 pies a tu alrededor fuera a sufrir un ataque. \n\nPuedes realizar una plegaria que le provoca \"Cegar 2\" al atacante.",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nOras a los cielos rogando una salvación y haces a ti y a todos tus aliados dentro de 30 pies que os restaura todos vuestros ❤️ y os otorga \"Invulnerable 1\". Además, al comienzo de tu siguiente turno ganas 🛡️ equivalente a los puntos de 💧 gastados por esta habilidad.",
+        "hap1Props": [
+          "area",
+          "range30",
+          "shield",
+          "targetAll"
+        ],
+        "hap2Props": [
+          "ranged",
+          "range30",
+          "shield",
+          "targetAlly"
+        ],
+        "has1Props": [
+          "ranged",
+          "area",
+          "range15",
+          "shield",
+          "targetEnemy",
+          "damage",
+          "usesCharisma",
+          "damageDie6"
+        ],
+        "has2Props": [
+          "reaction",
+          "ranged",
+          "range30",
+          "debuff"
+        ],
+        "hadProps": [
+          "area",
+          "range30",
+          "shield",
+          "buff",
+          "oncePerDay",
+          "ultimate",
+          "targetAll"
+        ]
+      },
+      {
+        "nombre": "Oráculo",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Lanza",
+            "nombre": "Lanza",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": true,
+            "propiedades": [
+              "alcance"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "💧💧, 🟢🟢. \n\nLanzas un corrosivo haz de luz a un enemigo que inflige 1d8 de daño si aciertas. Todo el daño infligido se otorga a ti y a los aliados en forma de 🛡️.",
+        "hap2": "💧, 🟢. \n\nSacrifica 🛡️ para infligir 1d6 a todos los enemigos a 10 pies alrededor tuya.",
+        "hap3": "💧💧, 🟢. \n\nSacrifica ❤️ para ganar 🛡️🛡️.",
+        "hap4": "💧💧, 🔶. Un aliado dentro de 30 pies fuera a recibir daño. \n\nPuedes sacrificar 🛡️ para anular la misma cantidad de daño que fuera a sufrir. El aliado queda “Vigorizado 2”.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nSacrificas todo tu 🛡️ restante e infliges esa misma cantidad de daño a todos los enemigos dentro de 30 pies. Esta habilidad no se puede fallar.",
+        "hap1Nombre": "Haz Corrosivo Redentor",
+        "hap2Nombre": "Sacrificio Deflagrante",
+        "hap3Nombre": "Ofrenda",
+        "hap4Nombre": "Intercambio Profético",
+        "hadNombre": "Juicio del Sacrificio",
+        "hap1Mejorada": "💧, 🟢. \n\nLanzas un corrosivo haz de luz a un enemigo que inflige 1d8 de daño si aciertas. Todo el daño infligido se otorga a ti y a los aliados en forma de 🛡️.",
+        "hap2Mejorada": "💧, 🟢. \n\nSacrifica 🛡️ para infligir 1d10 a todos los enemigos a 10 pies alrededor tuya.",
+        "hap3Mejorada": "💧, 🟢. \n\nSacrifica ❤️ para ganar 🛡️🛡️🛡️.",
+        "hap4Mejorada": "💧, 🔶. Un aliado dentro de 30 pies fuera a recibir daño. \n\nPuedes sacrificar 🛡️ para anular la misma cantidad de daño que fuera a sufrir. El aliado queda “Vigorizado 2” y gana la misma cantidad de 🛡️ sacrificado.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nSacrificas la mitad de tu 🛡️ restante (redondeando hacia arriba) e infliges el doble de esa cantidad de daño a todos los enemigos dentro de 30 pies. Esta habilidad no se puede fallar.",
+        "hap1Props": [
+          "ranged",
+          "shield",
+          "targetEnemy",
+          "damage",
+          "usesCharisma",
+          "damageDie8"
+        ],
+        "hap2Props": [
+          "melee",
+          "area",
+          "usesShield",
+          "targetEnemy",
+          "damage",
+          "usesCharisma",
+          "damageDie6"
+        ],
+        "hap3Props": [
+          "targetSelf",
+          "shield",
+          "usesHealth"
+        ],
+        "hap4Props": [
+          "reaction",
+          "ranged",
+          "range30",
+          "usesShield",
+          "shield",
+          "targetAlly"
+        ],
+        "hadProps": [
+          "area",
+          "range30",
+          "autoHit",
+          "usesShield",
+          "oncePerDay",
+          "ultimate"
+        ]
+      },
+      {
+        "nombre": "Restaurador",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Maza",
+            "nombre": "Maza",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": false,
+            "propiedades": [
+              "contundente"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Escudo",
+            "nombre": "Escudo",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Constitución",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧💧, 🟢🟢. \n\nExaltas el espíritu de un aliado a 20 pies tuya, dejando preparada su alma para que, en caso de ser derribado, vuelva al combate con ❤️.",
+        "hap2": "💧, 🟢🟢. \n\nExpías los pecados de un aliado a 20 pies tuya, otorgándole 🛡️ por cada condición que esté sufriendo.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧💧, 🟢. \n\nCanalizas el sufrimiento que un aliado a 20 pies ha aguantado el último turno, otorgándo 🛡️ a los aliados a 10 pies de ti por cada 🛡️ que perdió debido a un enemigo este aliado. El aliado objetivo no recupera 🛡️ mediante esta habilidad.",
+        "has2": "💧, 🔶. Un aliado a 30 pies tuya va a realizar un ataque. \n\nPuedes gastar 🛡️ para darle ventaja en la tirada de impacto.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nEstableces un momentáneo contacto con el alma de un aliado tuyo de hace 1 turno y lo arrastras al cuerpo de tu aliado actual a 20 pies, sustituyendo sus puntos de vida, escudo, condiciones y recursos con los que tenía hace un turno.",
+        "hap1Nombre": "A las Puertas del Cielo",
+        "hap2Nombre": "Sacrificio",
+        "has1Nombre": "Sufrimiento Ejemplar",
+        "has2Nombre": "Plegaria",
+        "hadNombre": "Resurrección",
+        "hap1Mejorada": "💧💧, 🟢. \n\nExaltas el espíritu de un aliado a 30 pies tuya, dejando preparada su alma para que, en caso de ser derribado, vuelva al combate con ❤️❤️.",
+        "hap2Mejorada": "💧, 🟢. \n\nExpías los pecados de un aliado a 30 pies tuya, otorgándole 🛡️🛡️ por cada condición que esté sufriendo.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢. \n\nCanalizas el sufrimiento que un aliado a 20 pies ha aguantado el último turno, otorgándo 🛡️ a los aliados a 15 pies de ti por cada 🛡️ que perdió debido a un enemigo este aliado. El aliado objetivo no recupera 🛡️ mediante esta habilidad.",
+        "has2Mejorada": "💧, 🔶. Un aliado a 30 pies tuya va a realizar un ataque. \n\nPuedes gastar 🛡️ para darle ventaja en la tirada de impacto y +1 a su tirada de daño.",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nEstableces un momentáneo contacto con el alma de un aliado tuyo de hace 1 turno y lo arrastras al cuerpo de tu aliado actual a 30 pies, sustituyendo sus puntos de vida, escudo, condiciones y recursos con los que tenía hace un turno. Le otorgas ❤️, 🛡️, 💧/⚡ y +1 turno a sus Condiciones Potenciadoras.",
+        "hap1Props": [
+          "ranged",
+          "range20",
+          "shield",
+          "targetAlly"
+        ],
+        "hap2Props": [
+          "ranged",
+          "range20",
+          "shield",
+          "targetAlly"
+        ],
+        "has1Props": [
+          "ranged",
+          "area",
+          "range20",
+          "shield",
+          "targetAlly"
+        ],
+        "has2Props": [
+          "reaction",
+          "ranged",
+          "range30",
+          "buff",
+          "usesShield"
+        ],
+        "hadProps": [
+          "area",
+          "range20",
+          "shield",
+          "buff",
+          "oncePerDay",
+          "ultimate",
+          "targetAll"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Gracia Divina",
+      "descripcion": "Tu conexión con lo divino es absoluta. Una vez por combate, cuando un aliado (incluido tú) caería a 0 de vida, automáticamente recupera la mitad de su vida máxima."
+    },
+    "preparado": {
+      "nombre": "F0-RT-UN-0",
+      "subclase": "Clérigo",
+      "raza": "Omnimek",
+      "subraza": null,
+      "descripcion": "Un sacerdote que canaliza luz divina. Otorga escudos en área, bendice aliados y en el momento crítico invoca una intervención divina total.",
+      "avatar": "assets/avatars/sticker_noble_unknow_man_01.png",
+      "puntosFuertes": [
+        "Recuperación de vida",
+        "Escudos en área",
+        "Invulnerabilidad grupal"
+      ]
+    }
+  },
+  {
+    "nombre": "Exaltador",
+    "rol": "Exaltador",
+    "definicion": "Peligrosos e inspiradores. Aunque los Exaltadores pueden llegar a provocar algunos resultados no deseados, suelen ser grandes fuentes de apoyo para el equipo. Si bien no siempre controlan todo su potencial, pueden ser la diferencia entre la vida y la muerte de la forma más literal posible.",
+    "pv": 3,
+    "escudo": 1,
+    "ph": 5,
+    "pasiva": "Tus aliados pueden sumar un 1d4 a sus tiradas sociales siempre que estén dentro de 30 pies.",
+    "hb1": "1 Vez por descanso corto. Puedes empezar a entonar una melodía que potenciara una emoción en concreto a los que estén dentro de 15 pies.",
+    "hb2": "1 Vez por descanso largo. Te adaptas al entorno disfrazándote y pasando desapercibido por 1 hora.",
+    "hb1Nombre": "Melodía Emotiva",
+    "hb2Nombre": "Disfraz",
+    "esMagica": true,
+    "subclases": [
+      {
+        "nombre": "Bardo",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Flautaespada",
+            "nombre": "Flautaespada",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Carisma",
+            "dosManos": false,
+            "propiedades": [
+              "flujo",
+              "agil"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Rodela",
+            "nombre": "Rodela",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Constitución",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧, 🟢🟢. \n\nEntonas una melodía armoniosa que exalta a tus aliados y a ti dentro de 30 pies confiriéndoles “Acelerado 2”.",
+        "hap2": "💧, 🟢🟢. \n\nMarcas el ritmo de la batalla a tus aliados y a ti dentro de 15 pies haciendo que aumente su nivel de dado de daño en 1 hasta el comienzo de tu siguiente turno.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧, 🟢. \n\nConviertes tu pequeño escudo en un arma encantada que se enlaza al objetivo dentro de 30 pies confiriéndole un 1d4 extra de daño cada vez que intente un ataque hasta el final de tu turno.",
+        "has2": "🔶. Sufres un ataque y lo esquivas. \n\nPuedes realizar una habilidad distinta a esta y a la definitiva gratis.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nInfundes de determinación los corazones de tus aliados y el tuyo, obteniendo \"Acelerado 2\". Si estabais sufriendo alguna condición perjudicial, cesa inmediatamente.",
+        "hap1Nombre": "Melodía de Celeridad",
+        "hap2Nombre": "Ritmo de Batalla",
+        "has1Nombre": "Escudo Encantado",
+        "has2Nombre": "Improvisación",
+        "hadNombre": "Himno de Determinación",
+        "hap1Mejorada": "💧, 🟢. \n\nEntonas una melodía armoniosa que exalta a tus aliados y a ti dentro de 30 pies confiriéndoles “Acelerado 2”.",
+        "hap2Mejorada": "💧, 🟢. \n\nMarcas el ritmo de la batalla a tus aliados y a ti dentro de 15 pies haciendo que aumente su nivel de dado de daño en 1 hasta el final de tu siguiente turno.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢. \n\nConviertes tu pequeño escudo en un arma encantada que se enlaza al objetivo dentro de 30 pies confiriéndole un 1d6 extra de daño cada vez que intente un ataque hasta el final de tu turno.",
+        "has2Mejorada": "🔶. Sufres un ataque y lo esquivas. \n\nPuedes realizar una habilidad distinta a esta y a la definitiva gratis. Si dicha habilidad afecta a un aliado, recuperas 🔶",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nInfundes de determinación los corazones de tus aliados y el tuyo, obteniendo “Acelerado 2”. Si estabais sufriendo alguna condición perjudicial, cesa inmediatamente y tus aliados afectados actuan inmediatamente después de terminar tu turno en respectivo orden aunque hayan actuado.",
+        "hap1Props": [
+          "area",
+          "range30",
+          "buff",
+          "targetAll"
+        ],
+        "hap2Props": [
+          "area",
+          "range15",
+          "buff",
+          "targetAll"
+        ],
+        "has1Props": [
+          "ranged",
+          "range30",
+          "buff",
+          "targetAlly"
+        ],
+        "has2Props": [
+          "reaction",
+          "targetSelf"
+        ],
+        "hadProps": [
+          "area",
+          "buff",
+          "oncePerDay",
+          "ultimate",
+          "targetAll"
+        ]
+      },
+      {
+        "nombre": "Cartomante",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Bastón",
+            "nombre": "Bastón de madera",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": true,
+            "propiedades": [
+              "contundente",
+              "agil"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Guante Arcano",
+            "nombre": "Guante Arcano",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "🟢. 1 Vez por Combate. \n\nRobas 3 cartas de tu mazo. - El efecto de las cartas se mantiene hasta el final del combate.\n(El mazo está compuesto de 10 cartas. 2 Azules, 2 Rojas, 2 Verdes y 4 Amarillas: \n Las Amarillas no hacen nada.\n Las Verdes suman +1 objetivo. \nLas Azules aumentan +1 turno el efecto. \nLas rojas restan -1 y reducen -1 turno el efecto.)",
+        "hap2": "💧, 🟢🟢. \n\nInvoca el poder del Juez confiriendo a 1 aliado dentro de 30 pies “Coraje 2”.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧, 🟢🟢. \n\nInvoca el poder de la Templanza convirtiendo 1 condición debilitante en potenciadora de 1 aliado a 20 pies.",
+        "has2": "💧, 🔶. Un aliado dentro de 30 pies recibe un estado perjudicial. \n\nPuedes Invocar el poder del Necio, descartar una carta a elección y robar una carta.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nInvocas el poder de la Emperatriz convirtiendo cualquier estado perjudicial de todos los aliados dentro de 30 pies en beneficioso y aumentando el tiempo que dura dichos efectos en 1 turno.",
+        "hap1Nombre": "Robo del Destino",
+        "hap2Nombre": "El Juez",
+        "has1Nombre": "La Templanza",
+        "has2Nombre": "El Necio",
+        "hadNombre": "La Emperatriz",
+        "hap1Mejorada": "🟢. 1 Vez por Turno. \n\nRobas 3 cartas de tu mazo. - El efecto de las cartas se mantiene hasta el final del combate.\n(El mazo está compuesto de 10 cartas. 2 Azules, 2 Rojas, 2 Verdes y 4 Amarillas: \n Las Amarillas no hacen nada.\n Las Verdes suman +2 objetivo. \nLas Azules aumentan +2 turno el efecto. \nLas rojas restan -1 y reducen -1 turno el efecto.)",
+        "hap2Mejorada": "💧, 🟢. \n\nInvoca el poder del Juez confiriendo a 2 aliados dentro de 30 pies “Coraje 2”.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢. \n\nInvoca el poder de la Templanza convirtiendo 2 efectos perjudiciales en beneficiosos a 1 aliado a 20 pies.",
+        "has2Mejorada": "💧, 🔶. Un aliado dentro de 30 pies recibe un estado perjudicial ó beneficioso. \n\nPuedes Invocar el poder del Necio, descartar una carta a elección y robar una carta. Si robas una carta Azul, Roja ó Verde, recibes 🔶.",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nInvocas el poder de la Emperatriz convirtiendo cualquier estado perjudicial de todos los aliados dentro de 30 pies en beneficioso y aumentando el tiempo que dura dichos efectos en 2 turnos junto con los efectos beneficiosos que ya estuvieran sufriendo.",
+        "hap1Props": [
+          "targetSelf",
+          "oncePerCombat"
+        ],
+        "hap2Props": [
+          "ranged",
+          "range30",
+          "buff",
+          "targetAlly"
+        ],
+        "has1Props": [
+          "ranged",
+          "range20",
+          "buff",
+          "targetAlly"
+        ],
+        "has2Props": [
+          "reaction",
+          "ranged",
+          "range30",
+          "targetAlly"
+        ],
+        "hadProps": [
+          "area",
+          "range30",
+          "buff",
+          "oncePerDay",
+          "ultimate",
+          "targetAll"
+        ]
+      },
+      {
+        "nombre": "Bailarín",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Nudilleras",
+            "nombre": "Nudilleras",
+            "dado": 4,
+            "ataques": 2,
+            "modificador": "Fuerza",
+            "dosManos": true,
+            "propiedades": [
+              "contundente",
+              "agil",
+              "sorpresiva"
+            ]
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "💧, 🟢. 1 vez por Turno. \n\nAdoptas uno de los Estilos de Baile: \n- Ginga: Siempre que uses una habilidad en esta postura, otorgas “Vigorizado 1” a ti y a los aliados a 15 pies de ti. Obtienes “Postura”.\n- Tribal: Siempre que uses una habilidad en esta postura, otorgas “Coraje 1” a ti y a los aliados a 15 pies de ti. Obtienes “Postura”.",
+        "hap2": "💧💧, 🟢. \n\nDependiendo del Estilo de Baile: \n- Ginga: Descargas una poderosa patada a mele hacia delante que le inflige “Derribado” si aciertas y daño completo. En postura empuja al objetivo 10 pies. \n- Tribal: Realizas un grácil ataque al objetivo a mele y después te desplazas 10 pies. En postura, obtienes \"Impulso\".",
+        "hap3": "💧💧, 🟢. \n\nDependiendo del Estilo de Baile: \n- Ginga: Trazas un arco completo alrededor tuya que daña a todos los enemigos alrededor tuya. En postura aumenta el nivel del dado de daño en 1. \n- Tribal: Compenetras unos pasos complejos e hipnotizadores que terminan en un golpe en el suelo que daña a todos los enemigos a mele. En postura, infliges \"Entumecido 2\".",
+        "hap4": "💧💧, 🔶. Infliges daño con una habilidad. \n\nPuedes cambiar de postura. Obtienes “Acelerado 1”.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nAnimas el valor de tus aliados con tus pasos de baile, otorgando a todos tus aliados a 20 pies y a ti “Acelerado 2” y “Impulso” e infligiendo a tus enemigos a 20 pies 1d8 de daño.",
+        "hap1Nombre": "Artista Elevado",
+        "hap2Nombre": "Martelo/Flor",
+        "hap3Nombre": "Media Luna/Atardecer",
+        "hap4Nombre": "Contrapaso",
+        "hadNombre": "Carnaval de Media Noche",
+        "hap1Mejorada": "🟢. 1 vez por Turno. \n\nAdoptas uno de los Estilos de Baile: \n- Ginga: Siempre que uses una habilidad en esta postura, otorgas “Vigorizado 2” a ti y a los aliados a 20 pies de ti. Obtienes “Postura”.\n- Tribal: Siempre que uses una habilidad en esta postura, otorgas “Coraje 2” a ti y a los aliados a 20 pies de ti. Obtienes “Postura”.",
+        "hap2Mejorada": "💧, 🟢. \n\nDependiendo del Estilo de Baile: \n- Ginga: Descargas una poderosa patada a mele hacia delante que le inflige “Derribado” si aciertas y daño completo. En postura empuja al objetivo 15 pies. \n- Tribal: Realizas un grácil ataque al objetivo a mele y después te desplazas 15 pies. En postura, obtienes \"Impulso\".",
+        "hap3Mejorada": "💧💧, 🟢. \n\nDependiendo del Estilo de Baile: \n- Ginga: Trazas un arco completo alrededor tuya que daña a todos los enemigos alrededor tuya. En postura aumenta el nivel del dado de daño en 2. \n- Tribal: Compenetras unos pasos complejos e hipnotizadores que terminan en un golpe en el suelo que daña a todos los enemigos a mele. En postura, infliges \"Entumecido 3\".",
+        "hap4Mejorada": "💧💧, 🔶. Infliges daño con una habilidad. \n\nPuedes cambiar de postura. Obtienes “Acelerado 2”.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nAnimas el valor de tus aliados con tus pasos de baile, otorgando a todos tus aliados a 30 pies y a ti “Acelerado 2” y “Impulso” e infligiendo a tus enemigos a 30 pies 1d10 de daño.",
+        "hap1Props": [
+          "targetSelf",
+          "stance",
+          "oncePerTurn",
+          "buff"
+        ],
+        "hap2Props": [
+          "melee",
+          "displacement",
+          "targetEnemy",
+          "control"
+        ],
+        "hap3Props": [
+          "melee",
+          "area",
+          "targetEnemy",
+          "debuff"
+        ],
+        "hap4Props": [
+          "reaction",
+          "targetSelf",
+          "stance",
+          "buff"
+        ],
+        "hadProps": [
+          "targetSelf",
+          "targetArea",
+          "buff",
+          "oncePerDay",
+          "ultimate",
+          "damage",
+          "usesCharisma",
+          "damageDie8"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Inspiración Suprema",
+      "descripcion": "Tu presencia eleva a tus aliados a nuevas alturas. Todos los aliados dentro de 30 pies pueden volver a tirar un dado fallido una vez por turno y obtienen ventaja en salvaciones de Voluntad."
+    },
+    "preparado": {
+      "nombre": "Boblin Cuerdarrota",
+      "subclase": "Bardo",
+      "raza": "Orco",
+      "subraza": "Goblin",
+      "descripcion": "Un artista carismático que acelera a aliados, marca el ritmo de batalla y en el último momento infunde determinación para seguir luchando.",
+      "avatar": "assets/avatars/sticker_wizard_goblin_woman_01.png",
+      "puntosFuertes": [
+        "Aceleración grupal",
+        "Mejora de daño aliado",
+        "Limpia condiciones"
+      ]
+    }
+  },
+  {
+    "nombre": "Místico",
+    "rol": "Místico",
+    "definicion": "Absolutos y manipuladores. Los Místicos prefieren destacar su potencial de formas abruptas. No existen términos medios con ellos, es todo o nada. Son la representación más viva del azar y pueden convertir algunos combates en simples trivialidades.",
+    "pv": 3,
+    "escudo": 1,
+    "ph": 5,
+    "pasiva": "Puedes hablar con los no-muertos y con los cadáveres recientes.",
+    "hb1": "1 Vez por descanso corto. Puedes generar un sonido fantasmal con la voz de alguien que conozcas o conociste dentro de 30 pies. El sonido se disipa al minuto.",
+    "hb2": "1 Vez por descanso largo. Pierdes la corporeidad volviéndote una mera sombra que puede desplazarse por cualquier superficie. Vuelves a la normalidad cuando lo desees hasta un máximo de 10 minutos, después vuelves a ser tangible forzadamente.",
+    "hb1Nombre": "Voz Fantasmal",
+    "hb2Nombre": "Forma de Sombra",
+    "esMagica": true,
+    "subclases": [
+      {
+        "nombre": "Brujo",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Espada Corta",
+            "nombre": "Espada Corta",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Destreza",
+            "dosManos": false,
+            "propiedades": [
+              "precisa",
+              "agil"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Guante Arcano",
+            "nombre": "Guante Arcano",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧💧, 🟢. \n\nCalumnias tu espada provocando en tu siguiente ataque “Parálisis” al siguiente objetivo del ataque que aciertes.",
+        "hap2": "💧💧, 🟢🟢. \n\nLanzas tu espada con un toque impuro a un objetivo dentro de 30 pies, provocándole \"Aturdido 2\" si aciertas.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧💧💧, 🟢🟢. \n\nQuebrantas el tiempo provocando \"Ralentizado 2\" a todos los enemigos dentro de 30 pies.",
+        "has2": "💧💧, 🔶. Un enemigo dentro de 30 pies fuera a conjurar un hechizo o a lanzar una habilidad. \n\nPuedes lanzarle un chorro de energía oscura. Tiene que hacer una tirada de salvación de voluntad contra CD(10+Mod.Percepción). Si supera lanza su hechizo con normalidad, si no, lo falla directamente.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nAuguras el final de tus rivales empoderando tu espada y descargando toda tu ira a través de su punta. Todos los enemigos dentro de 30 pies sufren \"Inmóvil\" y \"Aturdido 2\".",
+        "hap1Nombre": "Espada Maldita",
+        "hap2Nombre": "Lanzamiento Impuro",
+        "has1Nombre": "Quiebre Temporal",
+        "has2Nombre": "Interrupción Oscura",
+        "hadNombre": "Augurio Final",
+        "hap1Mejorada": "💧, 🟢. \n\nCalumnias tu espada provocando en tu siguiente ataque \"Parálisis\" al siguiente objetivo del ataque que realices.",
+        "hap2Mejorada": "💧, 🟢. \n\nLanzas tu espada con un toque impuro a un objetivo dentro de 30 pies, provocándole \"Aturdido 2\" si aciertas.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢🟢. \n\nQuebrantas el tiempo provocando “Ralentizado 2” a todos los enemigos dentro de 30 pies.",
+        "has2Mejorada": "💧, 🔶. Un enemigo dentro de 30 pies fuera a conjurar un hechizo o a lanzar una habilidad. \n\nPuedes lanzarle un chorro de energía oscura. Tiene que hacer una tirada de salvación de voluntad contra CD(11+Mod.Percepción). Si supera lanza su hechizo con normalidad, si no, lo falla directamente. En caso de fallar la salvación, recuperas 🔶.",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nAuguras el final de tus rivales empoderando tu espada y descargando toda tu ira a través de su punta. Todos los enemigos dentro de 30 pies sufren “Inmóvil”, “Aturdido 2” y sufren 1d4 de daño de elemento \"Oscuridad\" al comienzo de su turno hasta el final del Combate por cada condición perjudicial que estén sufriendo.",
+        "hap1Props": [
+          "targetSelf",
+          "buff",
+          "debuff"
+        ],
+        "hap2Props": [
+          "ranged",
+          "mainAttack",
+          "range30",
+          "debuff",
+          "targetEnemy"
+        ],
+        "has1Props": [
+          "area",
+          "range30",
+          "debuff",
+          "control",
+          "targetEnemy"
+        ],
+        "has2Props": [
+          "reaction",
+          "ranged",
+          "range30",
+          "control",
+          "targetEnemy"
+        ],
+        "hadProps": [
+          "area",
+          "range30",
+          "debuff",
+          "control",
+          "oncePerDay",
+          "ultimate",
+          "targetEnemy"
+        ]
+      },
+      {
+        "nombre": "Arúspice",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Hacha",
+            "nombre": "Hacha",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": false,
+            "propiedades": [
+              "precisa"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Tomo",
+            "nombre": "Tomo",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧, 🟢. \n\nAclamas un rito oscuro y te provocas “Frágil 2”. Si ya sufres un estado perjudicial, te aplicas también “Debilidad 2”.",
+        "hap2": "💧💧, 🟢. 1 Vez por Turno. \n\nTodos los enemigos dentro de 30 pies que sufrían una condición perjudicial deben de superar una tirada de salvación de Voluntad (CD 13) y si fallan reciben “Miedo 2”. Si ya sufrían “Miedo”, les infliges 1d6 de daño.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧💧, 🟢🟢. \n\nRealizas un llamamiento al mal que esparce todos tus estados perjudiciales o los de un enemigo a 10 pies a todos los enemigos hasta 15 pies de ti.",
+        "has2": "💧💧, 🔶. Un enemigo con un estado perjudicial realiza a cabo una acción a 20 pies o menos de ti. \n\nAumentas la duración de todos los estados que sufre dicho enemigo en 1 turno.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nExplotas las debilidades de todos los enemigos alrededor tuya que sufran un estado perjudicial dentro de 30 pies. Pierden todo su 🛡️.",
+        "hap1Nombre": "Rito Oscuro",
+        "hap2Nombre": "Aura del Terror",
+        "has1Nombre": "Esparcir Aflicción",
+        "has2Nombre": "Extender el Sufrimiento",
+        "hadNombre": "Llamada de la Parca",
+        "hap1Mejorada": "💧, 🟢. \n\nAclamas un rito oscuro y te provocas “Frágil 2” y “Debilidad 2”.",
+        "hap2Mejorada": "💧, 🟢. \n\nTodos los enemigos dentro de 30 pies que sufrían una condición perjudicial deben de superar una tirada de salvación de Voluntad (CD 13) y si fallan reciben “Miedo 2”. Si ya sufrían “Miedo”, les infliges 1d6 de daño.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢🟢. \n\nRealizas un llamamiento al mal que esparce todos tus estados perjudiciales o los de un enemigo a 10 pies a todos los enemigos hasta 30 pies de ti.",
+        "has2Mejorada": "💧, 🔶. Un enemigo con un estado perjudicial realiza a cabo una acción a 30 pies o menos de ti. \n\nAumentas la duración de todos los estados que sufre dicho enemigo en 2 turnos.",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nExplotas las debilidades de todos los enemigos alrededor tuya que sufran un estado perjudicial dentro de 30 pies. Pierden todo su 🛡️ y sufren “Incapacitar”.",
+        "hap1Props": [
+          "targetSelf",
+          "debuff"
+        ],
+        "hap2Props": [
+          "area",
+          "range30",
+          "debuff",
+          "targetEnemy",
+          "oncePerTurn",
+          "damage",
+          "usesIntelligence",
+          "damageDie6"
+        ],
+        "has1Props": [
+          "area",
+          "range15",
+          "debuff",
+          "targetEnemy"
+        ],
+        "has2Props": [
+          "reaction",
+          "ranged",
+          "range20",
+          "debuff",
+          "targetEnemy"
+        ],
+        "hadProps": [
+          "area",
+          "range30",
+          "control",
+          "oncePerDay",
+          "ultimate",
+          "targetEnemy"
+        ]
+      },
+      {
+        "nombre": "Arlequín",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Pistola",
+            "nombre": "Pistola",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Percepción",
+            "dosManos": false,
+            "propiedades": [
+              "aDistancia",
+              "sorpresiva"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Daga",
+            "nombre": "Daga",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Destreza",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "💧, 🟢. 1 Vez por Turno. \n\nGeneras un clon intangíble pero visible de tí que se mueve a hasta 10 pies y tiene ❤️ y 10 DA. Este clon repite tus movimientos y habilidades sin sus efectos. Cuando un enemigo te haga objetivo, debe tirar un dado para determinar si te elige a ti o a uno de tus clones.",
+        "hap2": "💧💧, 🟢. \n\nCedes todas tus condiciones que no sean potenciadoras a los clones y estos esparcen sus condiciones a todos los enemigos a 15 pies de ellos. Quien ya sufriese de alguna condición que no sea potenciadora, sufre 1d6 de daño por cada condición.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "💧💧, 🟢🟢. \n\nTe infliges “Incapacitar 2” y “Frágil 2”. Si ya sufrías alguna condición que no sea potenciadora, además obtienes “Invisibilidad”.",
+        "has2": "💧, 🔶. Un enemigo hace objetivo a un clon. \n\nLe infliges “Confusión 2” y “Provocado 1”.",
+        "had": "🚫💧, 🟢🟢🟢. 1 Vez por Día. \n\nTras una macabra risa, todos tus clones empiezan a explotar, infligiendo “Miedo 1” y 1d6 de daño a todos los enemigos a 15 pies por cada condición que sufran. Además, aumenta en 1 la duración de sus condiciones que no sean potenciadoras.",
+        "hap1Nombre": "Don Comedia",
+        "hap2Nombre": "Falso Llanto",
+        "has1Nombre": "¡Telón abajo!",
+        "has2Nombre": "Cajita de Sorpresas",
+        "hadNombre": "Risa Amarga",
+        "hap1Mejorada": "💧, 🟢. 1 Vez por Turno. \n\nGeneras 2 clones intangibles pero visibles que se mueven a hasta 15 pies y tienen ❤️ y 12 DA. Estos clones repiten tus movimientos y habilidades sin sus efectos. Cuando un enemigo te haga objetivo, debe tirar un dado para determinar si te elige a ti o a uno de tus clones.",
+        "hap2Mejorada": "💧, 🟢. \n\nCedes todas tus condiciones que no sean potenciadoras a los clones y estos esparcen sus condiciones a todos los enemigos a 20 pies de ellos. Quien ya sufriese de alguna condición que no sea potenciadora, sufre 1d8 de daño por cada condición.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "💧, 🟢🟢. \n\nTe infliges \"Incapacitar 2\" y \"Frágil 2\". Si ya sufrías alguna condición que no sea potenciadora, además obtienes \"Invisibilidad 2\".",
+        "has2Mejorada": "💧, 🔶. Un enemigo hace objetivo a un clon. \n\nLe infliges \"Confusión 2\", \"Provocado 1\" y \"Aturdido 1\". ",
+        "hadMejorada": "🚫💧, 🟢🟢. 1 Vez por Combate. \n\nTras una macabra risa, todos tus clones empiezan a explotar, infligiendo \"Miedo 2\" y 1d8 de daño a todos los enemigos a 20 pies por cada condición que sufran. Además, aumenta en 2 la duración de sus condiciones que no sean potenciadoras.",
+        "hap1Props": [
+          "targetSelf",
+          "summon",
+          "oncePerTurn",
+          "buff"
+        ],
+        "hap2Props": [
+          "area",
+          "range15",
+          "debuff",
+          "damage",
+          "usesIntelligence"
+        ],
+        "has1Props": [
+          "targetSelf",
+          "debuff",
+          "buff"
+        ],
+        "has2Props": [
+          "reaction",
+          "debuff",
+          "targetEnemy",
+          "control"
+        ],
+        "hadProps": [
+          "area",
+          "range15",
+          "debuff",
+          "oncePerDay",
+          "ultimate",
+          "targetEnemy",
+          "damage",
+          "usesIntelligence"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Señor de las Sombras",
+      "descripcion": "Dominas las artes oscuras completamente. Tus hechizos que infligen estados perjudiciales tienen CD +2 y duran 1 turno adicional. Además, eres inmune a \"Miedo\", \"Confusión\" y \"Parálisis\"."
+    },
+    "preparado": {
+      "nombre": "Amapola Espinatorcida",
+      "subclase": "Brujo",
+      "raza": "Mediano",
+      "subraza": "Hada",
+      "descripcion": "Una hechicera sombría que paraliza, aturde y quiebra el tiempo. Sus maldiciones y control mental dominan el ritmo de cualquier combate.",
+      "avatar": "assets/avatars/sticker_noble_elve_woman_01.png",
+      "puntosFuertes": [
+        "CC masivo",
+        "Parálisis y aturdimiento",
+        "Interrupción de hechizos"
+      ]
+    }
+  },
+  {
+    "nombre": "Apotecario",
+    "rol": "Apotecario",
+    "definicion": "Astutos y adaptativos. Los Apotecarios se amoldan según la necesidad del combate y de su grupo. Su capacidad para potenciar y debilitar es muy amplia pero viene a costa de una organizada preparación de sus recursos y sus famosos viales que contienen todo cuanto una imaginación pueda crear.",
+    "pv": 3,
+    "escudo": 1,
+    "ph": 5,
+    "pasiva": "Llevas 1 Vial preparado que se regenera al final de cada combate y al principio de cada día o descanso.",
+    "hb1": "1 Vez por descanso corto. Puedes realizar un estudio de campo sencillo para obtener información sobre el ecosistema en el que te encuentras.",
+    "hb2": "1 Vez por descanso largo. Puedes estabilizar a cualquiera que esté sufriendo una aflicción así como emponzoñar un alimento o bebida.",
+    "hb1Nombre": "Estudio de Campo",
+    "hb2Nombre": "Acto de Confluencia",
+    "esMagica": false,
+    "subclases": [
+      {
+        "nombre": "Alquimista",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Tomo",
+            "nombre": "Tomo",
+            "dado": 6,
+            "ataques": 1,
+            "modificador": "Inteligencia",
+            "dosManos": false,
+            "propiedades": [
+              "flujo"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Ballesta de Mano",
+            "nombre": "Ballesta de Mano",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Percepción",
+            "dosManos": false,
+            "propiedades": [
+              "aDistancia"
+            ]
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "⚡⚡, 🟢. 1 Vez por Combate. Solo se puede usar en caso de tener Viales disponibles. \n\nPreparas tu siguiente invención, lanzando 2d6 para determinar el efecto positivo y el negativo de tu pócima. Esto otorgará un +1 ó -1 a las tiradas relacionadas con dicho atributo hasta el final del combate. El primer resultado determina el efecto positivo y el segundo, el negativo:\n\n1. Fuerza | 2. Destreza | 3. Constitución | 4. Inteligencia | 5. Percepción | 6. Carisma\n\nEn caso de empate, eliges si la pócima no tiene efecto positivo ó negativo. Los efectos de las invenciones no son acumulables.",
+        "hap2": "⚡⚡⚡, 🟢🟢. Solo se puede usar si has preparado la invención. \n\nLanzas tu vial hacia la zona objetivo a 20 pies o menos de ti, explotando el Vial contra el suelo y provocando automáticamente a todos los objetivos a 5 pies de la zona que sufran los efectos de la pócima.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "⚡⚡, 🟢🟢. Solo se puede usar si has preparado la invención. \n\nAplicas los efectos de la pócima en el arma de algún aliado a 5 pies tuya para que sus ataques, en caso de herir, apliquen los efectos.",
+        "has2": "⚡⚡, 🔶. Cuando hayas realizado una invención. \n\nPuedes dejar registrado dicho resultado con un nombre y usarlo en futuras invenciones en lugar de realizar la tirada para determinar el resultado, pero la fórmula se pierde al usarla.",
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nSi has preparado la invención, las bombas tendrán sus efectos también. Alcanzas tu locura máxima desatando una lluvia de mini frascos bomba en una zona hasta 20 pies de ti que afecta a todos los objetivos a 15 pies del impacto. Lanzas 1d6+(Mod.Inteligencia) mini frascos que infligen 1d4 de daño cada uno.",
+        "hap1Nombre": "Intercambio Equivalente",
+        "hap2Nombre": "Reparto Creativo",
+        "has1Nombre": "Untura Minuciosa",
+        "has2Nombre": "Patente",
+        "hadNombre": "Lluvia de Ideas",
+        "hap1Mejorada": "⚡, 🟢. 1 Vez por Combate. Solo se puede usar en caso de tener Viales disponibles. \n\nPreparas tu siguiente invención, lanzando 2d6 para determinar el efecto positivo y el negativo de tu pócima. Esto otorgará un +2 ó -1 a las tiradas relacionadas con dicho atributo hasta el final del combate. El primer resultado determina el efecto positivo y el segundo, el negativo:\n\n1. Fuerza | 2. Destreza | 3. Constitución | 4. Inteligencia | 5. Percepción | 6. Carisma\n\nEn caso de empate, eliges si la pócima no tiene efecto positivo ó negativo. Los efectos de las invenciones no son acumulables.",
+        "hap2Mejorada": "⚡⚡, 🟢🟢. Solo se puede usar si has preparado la invención. \n\nLanzas tu vial hacia la zona objetivo a 20 pies o menos de ti, explotando el Vial contra el suelo y provocando automáticamente a todos los objetivos a 10 pies de la zona que sufran los efectos de la pócima.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "⚡⚡, 🟢. Solo se puede usar si has preparado la invención. \n\nAplicas los efectos de la pócima en el arma de hasta 2 aliados a 10 pies tuya para que sus ataques, en caso de herir, apliquen los efectos.",
+        "has2Mejorada": "⚡, 🔶. Cuando hayas realizado una invención. \n\nPuedes dejar registrado dicho resultado con un nombre y usarlo en futuras invenciones en lugar de realizar la tirada para determinar el resultado. Puedes usar hasta 2 veces las fórmulas registradas y antes de que se pierdan.",
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nSi has preparado la invención, las bombas tendrán sus efectos también. Alcanzas tu locura máxima desatando una lluvia de mini frascos bomba en una zona hasta 20 pies de ti que afecta a todos los objetivos a 15 pies del impacto. Lanzas 1d6+(Mod.Inteligencia) mini frascos que infligen 1d6 de daño cada uno.",
+        "hap1Props": [
+          "buff",
+          "debuff",
+          "oncePerCombat"
+        ],
+        "hap2Props": [
+          "buff",
+          "debuff",
+          "ranged",
+          "targetArea",
+          "range20",
+          "area",
+          "autoHit"
+        ],
+        "has1Props": [
+          "buff",
+          "debuff",
+          "targetAlly",
+          "range5"
+        ],
+        "has2Props": [
+          "reaction"
+        ],
+        "hadProps": [
+          "ultimate",
+          "oncePerDay",
+          "damage",
+          "usesIntelligence",
+          "targetArea",
+          "range20",
+          "range15",
+          "damageDie4"
+        ]
+      },
+      {
+        "nombre": "Genetista",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Mandoble",
+            "nombre": "Mandoble",
+            "dado": 10,
+            "ataques": 1,
+            "modificador": "Fuerza",
+            "dosManos": true
+          },
+          "armaSecundaria": null,
+          "dosManos": true
+        },
+        "usaDosManos": true,
+        "hap1": "⚡⚡, 🟢🟢. 1 Vez por Turno. \n\nRealizas un tajo desgarrador. En caso de herir al objetivo, absorbes su principal fuente de poder en tu Vial, generando un Aura alrededor tuya a 10 pies que otorga +1 a tiradas aliadas y tuyas del Atributo con mayor valor del enemigo objetivo durante el resto del combate. Si el enemigo tiene más de 1 valor posible, elige el valor. Solo puedes tener un Aura activa y el primer valor obtenido se mantiene para posteriores Auras durante el resto del combate en el Vial. El Aura se desvanece si pierdes todo tu 🛡️. ",
+        "hap2": "⚡⚡⚡, 🟢. \n\nAclamas el poder de un enemigo, realizándole un embate que os otorga a ti y a tus aliados afectados por tu Aura 🛡️ equivalente a la mitad del daño realizado por esta habilidad redondeado hacia arriba.",
+        "hap3": "⚡⚡, 🟢. \n\nConsumes parte de tu fuerza perdiendo 🛡️ y dándoles a tus aliados ventaja en su próxima tirada con el atributo de tu Aura.",
+        "hap4": "⚡⚡, 🔶. 1 Vez por Combate. Un aliado dentro de tu Aura va a recibir daño. \n\nLe otorgas “Invulnerable 1”. Cuando pierda la condición, sufre el doble del daño negado de esta forma.",
+        "has1": null,
+        "has2": null,
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. \n\nLleno de una ira preocupante, provocas “Quemadura” y “Frágil 2” a los enemigos dentro de tu Aura al final de tu turno y “Regeneración 2” a los aliados dentro de tu Aura y a ti al final de tu turno. Además, obtienes “Rabia” y aumentas tu dado de daño en 1. Todos estos efectos se mantienen mientras tengas “Rabia”.",
+        "hap1Nombre": "Genoma Proliferante",
+        "hap2Nombre": "Intersección",
+        "hap3Nombre": "Transplante",
+        "hap4Nombre": "Estimulante",
+        "hadNombre": "Catarsis",
+        "hap1Mejorada": "⚡⚡, 🟢. 1 Vez por Turno. \n\nRealizas un tajo desgarrador. En caso de herir al objetivo, absorbes su principal fuente de poder en tu Vial, generando un Aura alrededor tuya a 15 pies que otorga +1 a tiradas aliadas y tuyas del Atributo con mayor valor del enemigo objetivo durante el resto del combate. Si el enemigo tiene más de 1 valor posible, elige el valor. Solo puedes tener un Aura activa y el primer valor obtenido se mantiene para posteriores Auras durante el resto del combate en el Vial.",
+        "hap2Mejorada": "⚡⚡, 🟢. \n\nAclamas el poder de un enemigo, realizándole un embate que os otorga a ti y a tus aliados afectados por tu Aura 🛡️ equivalente al daño realizado por esta habilidad.",
+        "hap3Mejorada": "⚡, 🟢. \n\nConsumes parte de tu fuerza perdiendo 🛡️ y dándoles a tus aliados ventaja en tiradas con el atributo de tu Aura hasta el final de su próximo turno.",
+        "hap4Mejorada": "⚡, 🔶. 1 Vez por Combate. Un aliado dentro de tu Aura va a recibir daño. \n\nLe otorgas “Invulnerable 1”. Cuando pierda la condición, sufre el daño negado +1 de esta forma.",
+        "has1Mejorada": null,
+        "has2Mejorada": null,
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. \n\nLleno de una ira preocupante, provocas “Quemadura” y “Frágil 3” a los enemigos dentro de tu Aura al final de tu turno y “Regeneración 3” a los aliados dentro de tu Aura y a ti al final de tu turno. Además, obtienes “Rabia” y aumentas tu dado de daño en 1. Todos estos efectos se mantienen mientras tengas “Rabia”.",
+        "hap1Props": [
+          "oncePerTurn",
+          "buff",
+          "damage",
+          "area",
+          "targetEnemy",
+          "fullAttack",
+          "melee",
+          "usesStrength"
+        ],
+        "hap2Props": [
+          "damage",
+          "melee",
+          "targetEnemy",
+          "fullAttack",
+          "shield",
+          "usesStrength",
+          "range10"
+        ],
+        "hap3Props": [
+          "buff",
+          "targetSelf",
+          "range10",
+          "usesShield"
+        ],
+        "hap4Props": [
+          "buff",
+          "targetAlly",
+          "range10",
+          "oncePerCombat"
+        ],
+        "hadProps": [
+          "ultimate",
+          "oncePerDay",
+          "buff",
+          "debuff",
+          "range10"
+        ]
+      },
+      {
+        "nombre": "Hematurgo",
+        "armas": {
+          "armaPrincipal": {
+            "tipo": "Sable",
+            "nombre": "Sable",
+            "dado": 8,
+            "ataques": 1,
+            "modificador": "Destreza",
+            "dosManos": false,
+            "propiedades": [
+              "precisa"
+            ]
+          },
+          "armaSecundaria": {
+            "tipo": "Escudo",
+            "nombre": "Escudo",
+            "dado": 4,
+            "ataques": 1,
+            "modificador": "Constitución",
+            "dosManos": false
+          },
+          "dosManos": false
+        },
+        "usaDosManos": false,
+        "hap1": "⚡⚡, 🟢. 1 Vez por Combate. Solo se puede usar en caso de tener Viales disponibles. \n\nCargas en el Vial parte de tu esencia, aplicándote un penalizador -1 a un Atributo principal a elección durante el resto del combate. Obtienes “Regeneración 2”.",
+        "hap2": "⚡⚡⚡, 🟢🟢. 1 Vez por Turno. Solo se puede usar en caso de tener “Regeneración”. \n\nArrastras la esencia vital de cualquier enemigo a 10 pies de ti, infligiendo 1d6 de daño. Si hieres obtienen “Debilidad 2” y les aplicas el mismo penalizador que tu estés sufriendo. Obtienes “Regeneración 1”.",
+        "hap3": null,
+        "hap4": null,
+        "has1": "⚡⚡, 🟢. Solo se puede usar en caso de tener “Regeneración”. \n\nCanalizas tu esencia en tus aliados a 10 pies de ti, otorgando el mismo valor de 🛡️ para tus aliados que la mitad de tu valor total de ❤️ redondeado hacia arriba. Pierdes ❤️ y ganas “Regeneración 1”.",
+        "has2": "⚡, 🔶. Un aliado a 10 pies o menos de ti sufre daño. \n\nPuedes sacrificar 🛡️ para otorgarle “Regeneración 2”.",
+        "had": "🚫⚡, 🟢🟢🟢. 1 Vez por Día. Solo se puede usar en caso de tener “Regeneración”. \n\nRealizas un estallido vital que lanza minúsculas estacas rojizas a todos los enemigos a 15 pies de ti. Realizas 3d6 de daño a cada enemigo al alcance. Por cada punto de daño realizado por esta habilidad, recuperas esa misma cantidad de ❤️ y tus aliados a 15 pies 🛡️ en su lugar. Además, por cada enemigo herido, obtienes “Regeneración 1”.",
+        "hap1Nombre": "Flebotomía",
+        "hap2Nombre": "Drenaje",
+        "has1Nombre": "Aspersión Tisular",
+        "has2Nombre": "Transfusión",
+        "hadNombre": "Estallido Carmesí",
+        "hap1Mejorada": "⚡, 🟢. 1 Vez por Combate. Solo se puede usar en caso de tener Viales disponibles. \n\nCargas en el Vial parte de tu esencia, aplicándote un penalizador -1 a un Atributo principal a elección durante el resto del combate. Obtienes “Regeneración 3”.",
+        "hap2Mejorada": "⚡⚡, 🟢🟢. 1 Vez por Turno. Solo se puede usar en caso de tener “Regeneración”. \n\nArrastras la esencia vital de cualquier enemigo a 10 pies de ti, infligiendo 1d8 de daño. Si hieres obtienen “Debilidad 2” y les aplicas el mismo penalizador que tu estés sufriendo. Obtienes “Regeneración 1”.",
+        "hap3Mejorada": null,
+        "hap4Mejorada": null,
+        "has1Mejorada": "⚡, 🟢. Solo se puede usar en caso de tener “Regeneración”. \n\nCanalizas tu esencia en tus aliados a 15 pies de ti, otorgando el mismo valor de 🛡️ para tus aliados que la mitad de tu valor total de ❤️ redondeado hacia arriba. Pierdes ❤️ y ganas “Regeneración 2”.",
+        "has2Mejorada": "⚡, 🔶. Un aliado a 15 pies o menos de ti sufre daño. \n\nPuedes sacrificar 🛡️ para otorgarle “Regeneración 3”.",
+        "hadMejorada": "🚫⚡, 🟢🟢. 1 Vez por Combate. Solo se puede usar en caso de tener “Regeneración”. \n\nRealizas un estallido vital que lanza minúsculas estacas rojizas a todos los enemigos a 20 pies de ti. Realizas 4d6 de daño a cada enemigo al alcance. Por cada punto de daño realizado por esta habilidad, recuperas esa misma cantidad de ❤️ y tus aliados a 20 pies 🛡️ en su lugar. Además, por cada enemigo herido, obtienes “Regeneración 1”.",
+        "hap1Props": [
+          "oncePerCombat",
+          "targetSelf",
+          "debuff",
+          "buff"
+        ],
+        "hap2Props": [
+          "oncePerTurn",
+          "targetEnemy",
+          "area",
+          "range10",
+          "damage",
+          "damageDie6",
+          "debuff",
+          "buff",
+          "usesConstitution"
+        ],
+        "has1Props": [
+          "range10",
+          "shield",
+          "buff",
+          "area",
+          "usesHealth"
+        ],
+        "has2Props": [
+          "reaction",
+          "targetAlly",
+          "usesShield",
+          "buff"
+        ],
+        "hadProps": [
+          "ultimate",
+          "oncePerDay",
+          "area",
+          "range15",
+          "damage",
+          "heal",
+          "shield",
+          "buff",
+          "damageDie6",
+          "usesConstitution"
+        ]
+      }
+    ],
+    "maestria": {
+      "nombre": "Maestro de la Confluencia",
+      "descripcion": "Tus preparativos alcanzan la perfección. Comienzas cada combate con 2 viales preparados y tus viales otorgan un +1 y un -1 adicional."
+    },
+    "preparado": {
+      "nombre": "Mirna de Hoja Verde",
+      "subclase": "Alquimista",
+      "raza": "Humano",
+      "subraza": null,
+      "descripcion": "Una adepta con fármacos cuyos resultados otorgan beneficios y perjuicios por igual. Sus frascos pueden tener un amplio abaníco de usos para aliados y enemigos por igual.",
+      "avatar": "assets/avatars/sticker_warrior_darkelve_woman_02_B.png",
+      "puntosFuertes": [
+        "Adaptabilidad en combate",
+        "Efectos variables",
+        "Uso de frascos"
+      ]
+    }
+  }
+]

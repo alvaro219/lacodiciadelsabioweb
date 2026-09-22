@@ -1,0 +1,81 @@
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero__art" style="background-image: url(assets/game/wallpaper.webp)"></div>
+  <div class="container">
+    <a routerLink="/" class="page-hero__back">← Volver al inicio</a>
+    <div class="page-hero__header">
+      <span class="page-hero__icon">🗺️</span>
+      <div>
+        <h1 class="page-hero__title">Campañas</h1>
+        <p class="page-hero__subtitle">
+          Aventuras listas para jugar desde la app, con su historia por secciones, encuentros, PNJs y varios finales. Cada temporada
+          trae un capítulo nuevo de la campaña larga, «La Codicia del Sabio», y varios oneshots.
+        </p>
+      </div>
+    </div>
+    <div class="page-hero__stats">
+      <span><strong>{{ total }}</strong>campañas</span>
+      <span><strong>{{ seasons.length }}</strong>temporadas</span>
+      <span><strong>{{ free }}</strong>gratuitas</span>
+    </div>
+  </div>
+</section>
+
+@for (season of seasons; track season.number; let first = $first) {
+  <section class="season section" [class.season--latest]="first">
+    <div class="container">
+      <div class="season__header">
+        @if (first) {
+          <span class="season__new">Nueva temporada</span>
+        }
+        <h2>{{ season.name }}</h2>
+      </div>
+
+      <div class="campaign-grid">
+        @for (c of season.campaigns; track c.id) {
+          <article class="campaign-card" [class.campaign-card--chapter]="c.chapter">
+            <div class="campaign-card__top">
+              <span class="campaign-card__kind">{{ c.chapter ? 'Capítulo de la campaña larga' : 'Oneshot' }}</span>
+              @if (c.premium) {
+                <span class="premium-badge">Premium</span>
+              } @else {
+                <span class="tag" style="--tag-color: #4ade80">Gratis</span>
+              }
+            </div>
+            <h3 class="campaign-card__name">{{ c.name }}</h3>
+            <p class="campaign-card__summary">{{ c.summary }}</p>
+            @if (expanded().has(c.id)) {
+              <p class="campaign-card__description pre-line">{{ c.description }}</p>
+            }
+            <button class="campaign-card__more" (click)="toggle(c.id)">
+              {{ expanded().has(c.id) ? 'Ver menos' : 'Leer la presentación' }}
+            </button>
+            <div class="campaign-card__meta">
+              <span title="Jugadores recomendados">👥 {{ c.players }} jugadores</span>
+              <span title="Sesiones estimadas">⏱️ {{ c.sessions }} {{ c.sessions === 1 ? 'sesión' : 'sesiones' }}</span>
+              <span title="Encuentros">⚔️ {{ c.encounters }} encuentros</span>
+            </div>
+            <div class="campaign-card__styles">
+              @for (s of c.styles; track s) {
+                <span class="tag">{{ s }}</span>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+<section class="campaigns-cta section">
+  <div class="container">
+    <p>Las campañas se juegan desde la app: el Máster tiene la historia, los encuentros listos para el combate y el glosario de PNJs.</p>
+    <a
+      href="https://play.google.com/store/apps/details?id=com.lacodiciadelabio.gestorderol"
+      target="_blank"
+      rel="noopener"
+      class="btn btn--primary"
+      >📱 Descargar en Google Play</a
+    >
+  </div>
+</section>

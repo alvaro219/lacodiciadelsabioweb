@@ -1,0 +1,4433 @@
+[
+  {
+    "nombre": "Goblin",
+    "tipo": "Goblin",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 11,
+      "inteligencia": 8,
+      "percepcion": 12,
+      "constitucion": 8,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Bajo",
+        "descripcion": "Intentas desestabilizar al enemigo. Si aciertas, el objetivo tiene desventaja en su próximo ataque.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Ligereza",
+        "descripcion": "Tu movimiento aumenta en 5 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Daga Oxidada",
+      "tipo": "Ligeras",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": "assets/enemies/goblin/goblin_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Murciélago Vampírico",
+    "tipo": "Murciélago Vampírico",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 12,
+      "inteligencia": 9,
+      "percepcion": 11,
+      "constitucion": 8,
+      "carisma": 7
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Rápido",
+        "descripcion": "Realizas un ataque rápido con ventaja que inflige daño normal.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Visión Nocturna",
+        "descripcion": "Puedes ver en la oscuridad como si fuera luz tenue.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Colmillos Menores",
+      "tipo": "Naturales",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": "assets/enemies/bat_vampiric/bat_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Naturaleza"
+    ]
+  },
+  {
+    "nombre": "Iniciado",
+    "tipo": "Iniciado",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 8,
+      "inteligencia": 11,
+      "percepcion": 10,
+      "constitucion": 9,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Defensa",
+        "descripcion": "Ganas 🛡️.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Sangre Fría",
+        "descripcion": "Eres inmune al estado \"Miedo\".",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Tomo Desgastado",
+      "tipo": "Mágicas",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": "assets/enemies/initiate/initiate_1.png",
+    "soloPremium": false,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Alborotador",
+    "tipo": "Alborotador",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 11,
+      "inteligencia": 8,
+      "percepcion": 12,
+      "constitucion": 8,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Preciso",
+        "descripcion": "Realizas un ataque sin modificadores negativos.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Reflejos Rápidos",
+        "descripcion": "Tienes ventaja en las tiradas de iniciativa.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Tirachinas",
+      "tipo": "A distancia",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Percepción",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": "assets/enemies/rioter/rioter_1.png",
+    "soloPremium": false,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Rata Gigante",
+    "tipo": "Rata Gigante",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 10,
+      "inteligencia": 9,
+      "percepcion": 10,
+      "constitucion": 9,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Esquiva",
+        "descripcion": "Obtienes ventaja en tu próxima tirada de defensa.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Olfato Agudo",
+        "descripcion": "Tienes ventaja para detectar criaturas ocultas o invisibles.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garras",
+      "tipo": "Naturales",
+      "dado": 4,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": "assets/enemies/giant_rat/giant_rat_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Naturaleza"
+    ]
+  },
+  {
+    "nombre": "Iniciado Humano",
+    "tipo": "Humano",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 9,
+      "inteligencia": 11,
+      "percepcion": 9,
+      "constitucion": 9,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Defensa",
+        "descripcion": "Ganas 🛡️.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [],
+    "arma": {
+      "nombre": "Bastón",
+      "tipo": "Ligeras",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Lobo de Caza",
+    "tipo": "Bestia",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 9,
+      "destreza": 11,
+      "inteligencia": 7,
+      "percepcion": 11,
+      "constitucion": 9,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Derribo",
+        "descripcion": "Intentas derribar al enemigo. Si aciertas, el objetivo cae al suelo.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Olfato Agudo",
+        "descripcion": "Tienes ventaja en pruebas de percepción basadas en olfato.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mordisco",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Goblin Explorador",
+    "tipo": "goblin",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 9,
+      "destreza": 11,
+      "inteligencia": 8,
+      "percepcion": 10,
+      "constitucion": 9,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Ataque preciso",
+        "descripcion": "Realizas un ataque con ventaja.",
+        "tipo": "tirador",
+        "coste": "⚡⚡⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Experiencia Silvana",
+        "descripcion": "Tienes ventaja en pruebas de sigilo en terreno natural.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Daga oxidada",
+      "tipo": "Arma",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Esqueleto",
+    "tipo": "Esqueleto",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 10,
+      "inteligencia": 11,
+      "percepcion": 9,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Contundente",
+        "descripcion": "Golpeas con contundencia al enemigo y le aplicas \"Derribado\" si le infliges daño.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Sangre Fría",
+        "descripcion": "Eres inmune al estado \"Miedo\".",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Resistencia Natural",
+        "descripcion": "Tienes ventaja en las tiradas contra \"Envenenamiento\".",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada Corta",
+      "tipo": "Ligeras",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": "assets/enemies/skeleton/skeleton_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Lobo",
+    "tipo": "Lobo",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 12,
+      "inteligencia": 9,
+      "percepcion": 11,
+      "constitucion": 9,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Mordisco Feroz",
+        "descripcion": "Muerdes al objetivo infligiendo 1d6 de daño extra si aciertas.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Olfato Agudo",
+        "descripcion": "Tienes ventaja para detectar criaturas ocultas o invisibles.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Ligereza",
+        "descripcion": "Tu movimiento aumenta en 5 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Colmillos",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 2,
+    "escudo": 1,
+    "image": "assets/enemies/wolf/wolf_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Naturaleza"
+    ]
+  },
+  {
+    "nombre": "Oso de la Guarida",
+    "tipo": "Bestia",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 1,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 14,
+      "destreza": 10,
+      "inteligencia": 6,
+      "percepcion": 12,
+      "constitucion": 12,
+      "carisma": 6
+    },
+    "habilidades": [
+      {
+        "nombre": "Zarpazo Feroz",
+        "descripcion": "Golpeas con ambas garras a la vez. Si aciertas, el objetivo sufre \"Derribado\".",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Rugido Salvaje",
+        "descripcion": "Haces que todos los enemigos a 10 pies hagan una tirada de Salvación de Voluntad o reciban \"Miedo 2\".",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Pelaje Grueso",
+        "descripcion": "Tienes ventaja en las tiradas de Salvación de Agilidad.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garras del Oso",
+      "tipo": "Naturales",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 2,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Bandido",
+    "tipo": "Bandido",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 10,
+      "inteligencia": 10,
+      "percepcion": 10,
+      "constitucion": 10,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Bajo",
+        "descripcion": "Intentas desestabilizar al enemigo. Si aciertas, el objetivo tiene desventaja en su próximo ataque.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Defensa",
+        "descripcion": "Ganas 🛡️.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Reflejos Rápidos",
+        "descripcion": "Tienes ventaja en las tiradas de iniciativa.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Piel Gruesa",
+        "descripcion": "Reduces el daño recibido en 1.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada Corta",
+      "tipo": "Ligeras",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": "assets/enemies/bandit/bandit_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Cazador",
+    "tipo": "Humano",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 12,
+      "inteligencia": 10,
+      "percepcion": 11,
+      "constitucion": 9,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Disparo Preciso",
+        "descripcion": "Realizas dos ataques a distancia con ventaja.",
+        "tipo": "Tirador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Reflejos Rápidos",
+        "descripcion": "Tienes ventaja en las tiradas de iniciativa.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Visión Nocturna",
+        "descripcion": "Puedes ver en la oscuridad como si fuera luz tenue.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Arco Corto",
+      "tipo": "A distancia",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Percepción",
+      "nivel": 2
+    },
+    "pv": 2,
+    "escudo": 1,
+    "image": "assets/enemies/hunter/hunter_1.png",
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Soldado Renegado",
+    "tipo": "Soldado Renegado",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 9,
+      "inteligencia": 8,
+      "percepcion": 10,
+      "constitucion": 12,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Carga Brutal",
+        "descripcion": "Te desplazas 15 pies y realizas un ataque que causa \"Aturdido\" si impacta.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Piel Gruesa",
+        "descripcion": "Reduces el daño recibido en 1.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Sangre Fría",
+        "descripcion": "Eres inmune al estado \"Miedo\".",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garrote",
+      "tipo": "Pesadas",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 1
+    },
+    "pv": 4,
+    "escudo": 2,
+    "image": "assets/enemies/renegade_soldier/renegade_soldier_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Orden",
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Zombi",
+    "tipo": "Zombi",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 8,
+      "inteligencia": 7,
+      "percepcion": 14,
+      "constitucion": 12,
+      "carisma": 7
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Contundente",
+        "descripcion": "Golpeas con contundencia al enemigo y le aplicas \"Derribado\" si le infliges daño.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Resistencia Natural",
+        "descripcion": "Tienes ventaja en las tiradas contra \"Envenenamiento\".",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Piel Gruesa",
+        "descripcion": "Reduces el daño recibido en 1.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garras",
+      "tipo": "Naturales",
+      "dado": 4,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 1
+    },
+    "pv": 5,
+    "escudo": 1,
+    "image": "assets/enemies/zombie/zombie_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Kobold",
+    "tipo": "Kobold",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 11,
+      "destreza": 11,
+      "inteligencia": 10,
+      "percepcion": 10,
+      "constitucion": 10,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Amenaza",
+        "descripcion": "Infliges \"Provocado\" al objetivo a 10 pies o menos de ti.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Visión Nocturna",
+        "descripcion": "Puedes ver en la oscuridad como si fuera luz tenue.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Ligereza",
+        "descripcion": "Tu movimiento aumenta en 5 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Daga Oxidada",
+      "tipo": "Ligeras",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 1
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": "assets/enemies/kobold/kobold_1.png",
+    "soloPremium": false,
+    "facciones": [
+      "Naturaleza"
+    ]
+  },
+  {
+    "nombre": "Chamán",
+    "tipo": "Chamán",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 10,
+      "inteligencia": 11,
+      "percepcion": 12,
+      "constitucion": 9,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Aullido Coordinado",
+        "descripcion": "Tú y tus aliados cercanos obtenéis +1 a las tiradas de ataque hasta tu siguiente turno.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Resistencia Natural",
+        "descripcion": "Tienes ventaja en las tiradas contra \"Envenenamiento\".",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Sangre Fría",
+        "descripcion": "Eres inmune al estado \"Miedo\".",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Tomo de Huesos",
+      "tipo": "Mágicas",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 2
+    },
+    "pv": 2,
+    "escudo": 1,
+    "image": "assets/enemies/shaman/shaman_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Naturaleza"
+    ]
+  },
+  {
+    "nombre": "Guardia del Consulado",
+    "tipo": "Humano",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 11,
+      "destreza": 11,
+      "inteligencia": 9,
+      "percepcion": 9,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Bloqueo con Escudo",
+        "descripcion": "Usas tu escudo para bloquear. Ganas +2 DA hasta tu próximo turno.",
+        "tipo": "Disruptor",
+        "coste": "💧, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Golpe de Escudo",
+        "descripcion": "Golpeas con tu escudo. Si aciertas, el objetivo es empujado 5 pies.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Entrenamiento Militar",
+        "descripcion": "Tienes ventaja en salvaciones contra miedo.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Formación de Escudo",
+        "descripcion": "Cuando estás junto a un aliado, ambos ganan +1 DA.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada y Escudo",
+      "tipo": "Medias",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 4,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Domador",
+    "tipo": "Humano",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 3,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 11,
+      "inteligencia": 9,
+      "percepcion": 11,
+      "constitucion": 10,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Marcar",
+        "descripcion": "Puedes marcar a un enemigo para obtener ventaja en tu próximo ataque contra él tu y tu lobo.",
+        "tipo": "Explorador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Trampa",
+        "descripcion": "Colocas una trampa. La próxima criatura que pase por ella queda inmovilizada.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Sigilo en Bosque",
+        "descripcion": "Tienes ventaja en pruebas de sigilo en terreno natural.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Ataque Coordinado",
+        "descripcion": "Tus ataques a distancia tienen +1 al daño si tu lobo ataca al mismo objetivo.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Arco Corto",
+      "tipo": "A distancia",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Percepción",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Cultista",
+    "tipo": "humano",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 9,
+      "inteligencia": 12,
+      "percepcion": 11,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Fragmentación",
+        "descripcion": "Destruyes un aliado para provocar 1d6 de daño alrededor del objetivo a todos los enemigos a 10 pies.",
+        "tipo": "disruptor",
+        "coste": "💧, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Maldición ralentizante",
+        "descripcion": "Ataca a un aliado para provocar ralentizado a todos los enemigos a 10 pies del objetivo.",
+        "tipo": "disruptor",
+        "coste": "💧, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Fervor",
+        "descripcion": "Tienes ventaja en pruebas de resistencia contra efectos de control mental.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada Corta",
+      "tipo": "Arma",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Trasgo",
+    "tipo": "trasgo",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 11,
+      "destreza": 12,
+      "inteligencia": 8,
+      "percepcion": 11,
+      "constitucion": 10,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Ataque poderoso",
+        "descripcion": "Realizas un ataque que provoca \"tumbado\" si realiza daño.",
+        "tipo": "luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Emboscada",
+        "descripcion": "Si atacas a un enemigo que no te ha atacado, infliges 1d8 de daño extra.",
+        "tipo": "luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Disciplina salvaje",
+        "descripcion": "Tienes ventaja en pruebas de resistencia contra efectos de control mental.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Reflejos rápidos",
+        "descripcion": "Tienes ventaja en las tiradas de iniciativa.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Hacha de hueso",
+      "tipo": "Arma",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 1
+    },
+    "pv": 2,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Herborista",
+    "tipo": "humano",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 8,
+      "inteligencia": 12,
+      "percepcion": 9,
+      "constitucion": 11,
+      "carisma": 12
+    },
+    "habilidades": [
+      {
+        "nombre": "Pócima Inestable",
+        "descripcion": "Infliges daño a todos los enemigos a 10 pies con un d8 de daño.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Poción de Transmutación",
+        "descripcion": "Empequeñeces a un enemigo durante 1 ronda. Mientras esté reducido tiene desventaja en ataques y su DA aumenta en 2.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Fervor",
+        "descripcion": "Tienes ventaja en pruebas de resistencia contra efectos de control mental.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Daga",
+      "tipo": "Arma",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 1
+    },
+    "pv": 4,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Orco",
+    "tipo": "Orco",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 14,
+      "destreza": 9,
+      "inteligencia": 9,
+      "percepcion": 10,
+      "constitucion": 14,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Carga Brutal",
+        "descripcion": "Te desplazas 15 pies y realizas un ataque que causa \"Aturdido\" si impacta.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Golpe Rápido",
+        "descripcion": "Realizas un ataque rápido con ventaja que inflige daño normal.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Furia Sangrienta",
+        "descripcion": "Cuando tu vida está por debajo de la mitad, infliges 1d4 de daño extra.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Piel Gruesa",
+        "descripcion": "Reduces el daño recibido en 1.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandoble",
+      "tipo": "Pesadas",
+      "dado": 10,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 7,
+    "escudo": 2,
+    "image": "assets/enemies/orc/orc_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Naturaleza"
+    ]
+  },
+  {
+    "nombre": "Araña Gigante",
+    "tipo": "Araña Gigante",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 11,
+      "destreza": 12,
+      "inteligencia": 9,
+      "percepcion": 12,
+      "constitucion": 13,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Mordida Tóxica",
+        "descripcion": "Realizas un ataque natural que aplica \"Envenenamiento\" si impacta.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Visión Nocturna",
+        "descripcion": "Puedes ver en la oscuridad como si fuera luz tenue.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Contraataque",
+        "descripcion": "Cuando un enemigo falla un ataque contra ti, puedes realizar un ataque de oportunidad.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garra Mejorada",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 2,
+      "modificador": "Destreza",
+      "nivel": 3
+    },
+    "pv": 6,
+    "escudo": 2,
+    "image": "assets/enemies/giant_spider/giant_spider_1.png",
+    "soloPremium": false,
+    "facciones": [
+      "Naturaleza"
+    ]
+  },
+  {
+    "nombre": "Bandido Veterano",
+    "tipo": "Bandido Veterano",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 11,
+      "inteligencia": 10,
+      "percepcion": 11,
+      "constitucion": 11,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Tajo Profundo",
+        "descripcion": "Realizas un ataque que causa 1d4 de sangrado por 2 turnos si impacta.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Defensa",
+        "descripcion": "Ganas 🛡️.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Contraataque",
+        "descripcion": "Cuando un enemigo falla un ataque contra ti, puedes realizar un ataque de oportunidad.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Reflejos Rápidos",
+        "descripcion": "Tienes ventaja en las tiradas de iniciativa.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada Larga",
+      "tipo": "Medianas",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 3
+    },
+    "pv": 4,
+    "escudo": 3,
+    "image": "assets/enemies/veteran_bandit/veteran_bandit_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Nigromante",
+    "tipo": "Nigromante",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 3,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 9,
+      "destreza": 9,
+      "inteligencia": 13,
+      "percepcion": 13,
+      "constitucion": 10,
+      "carisma": 11
+    },
+    "habilidades": [
+      {
+        "nombre": "Conjuro Oscuro",
+        "descripcion": "Lanzas un hechizo que inflige 2d6 de daño mágico y aplica \"Frágil\".",
+        "tipo": "Hechicero",
+        "coste": "💧💧, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Resistencia Mágica",
+        "descripcion": "Tienes ventaja en las tiradas de salvación contra hechizos.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Tomo Maldito",
+      "tipo": "Mágicas",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 3
+    },
+    "pv": 3,
+    "escudo": 2,
+    "image": "assets/enemies/necromancer/necromancer_1.png",
+    "soloPremium": false,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Caballero Caído",
+    "tipo": "Caballero Caído",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 13,
+      "destreza": 11,
+      "inteligencia": 9,
+      "percepcion": 9,
+      "constitucion": 13,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Ataque Giratorio",
+        "descripcion": "Atacas a todos los enemigos a tu alrededor en un radio de 5 pies.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Estabilidad",
+        "descripcion": "Tienes ventaja en las tiradas contra \"Derribado\" e \"Inmóvil\".",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Piel Gruesa",
+        "descripcion": "Reduces el daño recibido en 1.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandoble",
+      "tipo": "Pesadas",
+      "dado": 10,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 6,
+    "escudo": 3,
+    "image": "assets/enemies/fallen_knight/fallen_knight_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Orden",
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Sicario",
+    "tipo": "Sicario",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 14,
+      "inteligencia": 10,
+      "percepcion": 12,
+      "constitucion": 10,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Sombra Deslizante",
+        "descripcion": "Te vuelves difícil de ver. Los ataques contra ti tienen desventaja hasta tu próximo turno.",
+        "tipo": "Disruptor",
+        "coste": "💧💧, 🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Instinto Depredador",
+        "descripcion": "Puedes repetir una tirada de ataque fallida por combate.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Reflejos Rápidos",
+        "descripcion": "Tienes ventaja en las tiradas de iniciativa.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Dagas Gemelas",
+      "tipo": "Ligeras",
+      "dado": 6,
+      "ataques": 3,
+      "modificador": "Destreza",
+      "nivel": 4
+    },
+    "pv": 4,
+    "escudo": 2,
+    "image": "assets/enemies/assassin/assassin_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Caos"
+    ]
+  },
+  {
+    "nombre": "Trasgo de Élite",
+    "tipo": "trasgo",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 7,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 3,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 11,
+      "inteligencia": 11,
+      "percepcion": 11,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Marca de sangre",
+        "descripcion": "Si el objetivo es atacado, le infliges 1d6 de daño.",
+        "tipo": "disruptor",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Ataque poderoso",
+        "descripcion": "Realizas un ataque que provoca \"tumbado\" si realiza daño.",
+        "tipo": "disruptor",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Presencia protectora",
+        "descripcion": "Puedes sufrir el daño sufrido por aliados a 10 pies de ti en su lugar.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada dentada",
+      "tipo": "Arma",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 4,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Chamán Goblin",
+    "tipo": "goblin",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 7,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 2,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 11,
+      "inteligencia": 12,
+      "percepcion": 12,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Maldición incesante",
+        "descripcion": "Provocas una maldición que provoca \"tumbado\" a todos los enemigos a 10 pies.",
+        "tipo": "disruptor",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Crecimiento incontrolado",
+        "descripcion": "Provocas un crecimiento incontrolado a un aliado que le aumenta su nivel de dado de ataque y le inflige 1d6 de daño.",
+        "tipo": "disruptor",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Presencia inspiradora",
+        "descripcion": "Los aliados a 5 pies de ti son inmunes a los efectos de control mental.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Bastón corrupto",
+      "tipo": "Arma",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 3
+    },
+    "pv": 4,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Asesino",
+    "tipo": "humano",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 12,
+      "inteligencia": 12,
+      "percepcion": 10,
+      "constitucion": 11,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Ataque Doble",
+        "descripcion": "Realizas dos ataques consecutivos con ventaja.",
+        "tipo": "luchador",
+        "coste": "⚡⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Cuchillada Sorpresa",
+        "descripcion": "Atacas con una cuchilla oculta, infligiendo 1d6 de daño adicional si el objetivo está desprevenido.",
+        "tipo": "luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Paso trapero",
+        "descripcion": "Puedes evitar activar trampas.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Dagas envenenadas",
+        "descripcion": "Tus ataques críticos envenenan al objetivo si inflijes daño.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Dagas gemelas",
+      "tipo": "Arma",
+      "dado": 6,
+      "ataques": 2,
+      "modificador": "Destreza",
+      "nivel": 3
+    },
+    "pv": 4,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Teniente Élfico",
+    "tipo": "Élfico",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 2,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 11,
+      "inteligencia": 11,
+      "percepcion": 11,
+      "constitucion": 11,
+      "carisma": 11
+    },
+    "habilidades": [
+      {
+        "nombre": "Ataque Doble",
+        "descripcion": "Realizas un ataque con ventaja para impactar.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Esquiva Élfica",
+        "descripcion": "Usas tu agilidad para esquivar. Los ataques a melée contra ti tienen desventaja hasta tu próximo turno.",
+        "tipo": "Hechicero",
+        "coste": "💧, 🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Visión en la Oscuridad",
+        "descripcion": "Puedes ver en la oscuridad como si fuera luz tenue.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Gracia Élfica",
+        "descripcion": "Tienes ventaja en salvaciones contra ser hechizado.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada Élfica",
+      "tipo": "Medias",
+      "dado": 8,
+      "ataques": 2,
+      "modificador": "Destreza",
+      "nivel": 3
+    },
+    "pv": 4,
+    "escudo": 3,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Dragón",
+    "tipo": "Dragon",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 4,
+    "puntosArmas": 6,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 10,
+      "inteligencia": 13,
+      "percepcion": 12,
+      "constitucion": 13,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Embestida Devastadora",
+        "descripcion": "Cargas en línea recta hasta 30 pies, golpeando a todos los enemigos en tu camino.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Grito de Guerra",
+        "descripcion": "Todos los enemigos cercanos deben realizar una prueba de Salvación contra Voluntad (CD 13). Si fallan, Provocas \"Miedo\".",
+        "tipo": "Disruptor",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Armadura Natural",
+        "descripcion": "Tu DA aumenta en 2.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Aura de Miedo",
+        "descripcion": "Los enemigos que comiencen su turno cerca de ti deben hacer una tirada de salvación de Voluntad (CD 13) o reciben \"Miedo\".",
+        "nivel": 3,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandíbula Desgarradora",
+      "tipo": "Naturales",
+      "dado": 8,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 6,
+    "escudo": 3,
+    "image": "assets/enemies/dragon/dragon_1.png",
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Astaroth",
+    "tipo": "Demonio",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 3,
+    "puntosHabilidades": 7,
+    "puntosPasivas": 6,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 11,
+      "inteligencia": 14,
+      "percepcion": 11,
+      "constitucion": 11,
+      "carisma": 13
+    },
+    "habilidades": [
+      {
+        "nombre": "Llamarada Infernal",
+        "descripcion": "Lanzas una bola de fuego a hasta 15 pies que causa 2d8 de daño a todos los enemigos en un área de 10 pies.",
+        "tipo": "Hechicero",
+        "coste": "💧💧💧, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Maldición de la Muerte",
+        "descripcion": "El objetivo a hasta 20 piesdebe realizar una prueba de Salvación contra Voluntad (CD 13). Si falla, recibe \"Cegar 2\" y \"Entumecido 2\", además de 1d6 de daño por cada condición que no sea potenciadora que tenga.",
+        "tipo": "Hechicero",
+        "coste": "💧💧, 🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Resistencia Mental",
+        "descripcion": "Tienes ventaja en pruebas de salvación de Voluntad.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Aura de Maldición",
+        "descripcion": "Los enemigos que comiencen su turno cerca de ti deben hacer una tirada de salvación de Voluntad (CD 13) o reciben \"Aturdido 2\".",
+        "nivel": 3,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Cetro Demoníaco",
+      "tipo": "Mágicas",
+      "dado": 10,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 4
+    },
+    "pv": 6,
+    "escudo": 3,
+    "image": "assets/enemies/astaroth/astaroth_1.png",
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Ogro",
+    "tipo": "Ogro",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 4,
+    "puntosArmas": 6,
+    "stats": {
+      "fuerza": 15,
+      "destreza": 8,
+      "inteligencia": 9,
+      "percepcion": 13,
+      "constitucion": 17,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Salto Aplastante",
+        "descripcion": "Saltas hacia un objetivo y lo golpeas, causando \"Derribado\" y 1d8 de daño extra.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Golpe Terremoto",
+        "descripcion": "Golpeas el suelo, obligando a los enemigos cercanos a superar una tirada o caer \"Derribado\".",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Tenacidad Brutal",
+        "descripcion": "Si llegarías a 0 PV, tiras 1d20. Con 15+ te quedas a 1 PV.",
+        "nivel": 4,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Piel Gruesa",
+        "descripcion": "Reduces el daño recibido en 1.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandoble",
+      "tipo": "Pesadas",
+      "dado": 10,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 10,
+    "escudo": 2,
+    "image": "assets/enemies/ogre/ogre_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Naturaleza"
+    ]
+  },
+  {
+    "nombre": "Gárgola",
+    "tipo": "Gárgola",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 4,
+    "puntosArmas": 6,
+    "stats": {
+      "fuerza": 11,
+      "destreza": 13,
+      "inteligencia": 13,
+      "percepcion": 13,
+      "constitucion": 12,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Disparo Preciso",
+        "descripcion": "Realizas dos ataques a distancia con ventaja.",
+        "tipo": "Tirador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Sombra Deslizante",
+        "descripcion": "Te vuelves difícil de ver. Los ataques contra ti tienen desventaja hasta tu próximo turno.",
+        "tipo": "Disruptor",
+        "coste": "💧💧, 🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Piel de Piedra",
+        "descripcion": "Tu DA aumenta en 3.",
+        "nivel": 4,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Ligereza",
+        "descripcion": "Tu movimiento aumenta en 5 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Arco Largo",
+      "tipo": "A distancia",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Percepción",
+      "nivel": 4
+    },
+    "pv": 7,
+    "escudo": 3,
+    "image": "assets/enemies/gargoyle/gargoyle_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Orden"
+    ]
+  },
+  {
+    "nombre": "Guardián de Piedra",
+    "tipo": "Golem",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 15,
+      "destreza": 10,
+      "inteligencia": 7,
+      "percepcion": 12,
+      "constitucion": 18,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Devastador",
+        "descripcion": "Realizas un ataque cuerpo a cuerpo con ventaja.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Escudo de Rocas",
+        "descripcion": "Te vuelves resistente a ataques físicos.",
+        "tipo": "Disruptor",
+        "coste": "💧💧, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Reconstrucción",
+        "descripcion": "1 Vez por Combate. Construyes a un Constructo Antiguo para que luche a tu lado durante 3 turnos.",
+        "tipo": "Apoyo",
+        "coste": "💧💧, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Piel de Piedra",
+        "descripcion": "El daño que recibes se reduce en 1 hasta un mínimo de 1.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Impermutable",
+        "descripcion": "No puedes ser derribado por ataques.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Puños de Piedra",
+      "tipo": "Pesadas",
+      "dado": 6,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 10,
+    "escudo": 4,
+    "image": "assets/enemies/gargoyle/gargoyle_1.png",
+    "soloPremium": true,
+    "facciones": [
+      "Orden"
+    ]
+  },
+  {
+    "nombre": "Constructo Antiguo",
+    "tipo": "Constructo",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 7,
+    "puntosPasivas": 5,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 14,
+      "destreza": 10,
+      "inteligencia": 8,
+      "percepcion": 14,
+      "constitucion": 16,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Tajo Rompepiedras",
+        "descripcion": "Realizas un ataque cuerpo a cuerpo que también puede provocar \"Confusión 2\".",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Postura de Defensa",
+        "descripcion": "Cambias tu postura a una mucho más defensiva y cauta. Los ataques contra ti tienen desventaja hasta tu próximo turno.",
+        "tipo": "Disruptor",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Desprender la Corrupción",
+        "descripcion": "Sacrificas ❤️ para liberarte de una condición inmediatamente.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Ira En Crisis",
+        "descripcion": "Cuando tu salud esté al 50% o menos, tu próximo ataque causa 1d4 adicional.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Fuerza Latente",
+        "descripcion": "Tus ataques a melée empujan 5 pies y provocan \"Derribado\" si causan daño.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandoble",
+      "tipo": "Pesadas",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 3
+    },
+    "pv": 9,
+    "escudo": 3,
+    "image": "assets/enemies/gargoyle/gargoyle_1.png",
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Capitán Élfico",
+    "tipo": "Élfico",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 6,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 12,
+      "inteligencia": 12,
+      "percepcion": 10,
+      "constitucion": 12,
+      "carisma": 12
+    },
+    "habilidades": [
+      {
+        "nombre": "Disparo Preciso",
+        "descripcion": "Realizas un ataque a distancia con ventaja que inflige daño doble.",
+        "tipo": "Tirador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Ataque Doble",
+        "descripcion": "Realizas dos ataques consecutivos.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Comandar Tropas",
+        "descripcion": "Todos los aliados a 30 pies ganan ventaja en su próximo ataque.",
+        "tipo": "Apoyo",
+        "coste": "💧, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Líder Nato",
+        "descripcion": "Los aliados a 30 pies tienen +1 a sus tiradas de ataque.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Puntería Élfica",
+        "descripcion": "Tus ataques a distancia ignoran cobertura parcial.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Visión en la Oscuridad",
+        "descripcion": "Puedes ver en la oscuridad como si fuera luz tenue.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Arco Largo Élfico",
+      "tipo": "A distancia",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 4
+    },
+    "pv": 6,
+    "escudo": 3,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Serpiente de Arrecife",
+    "tipo": "Bestia Marina",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 11,
+      "inteligencia": 8,
+      "percepcion": 10,
+      "constitucion": 9,
+      "carisma": 7
+    },
+    "habilidades": [
+      {
+        "nombre": "Constricción",
+        "descripcion": "Te enroscas alrededor del objetivo. Si aciertas, queda \"Inmóvil\" hasta el final de tu siguiente turno.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Respiración Acuática",
+        "descripcion": "Puedes respirar bajo el agua y tienes ventaja en ataques mientras estés sumergido.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Colmillos Venenosos",
+      "tipo": "Naturales",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Bestia Marina",
+    "tipo": "Bestia Marina",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 11,
+      "destreza": 10,
+      "inteligencia": 9,
+      "percepcion": 10,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Embestida Acuática",
+        "descripcion": "Cargas desde el agua hacia la cubierta del barco, golpeando al objetivo y aplicando \"Derribado\" si impacta.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Respiración Acuática",
+        "descripcion": "Puedes respirar bajo el agua y tienes ventaja en ataques mientras estés sumergido.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Piel Gruesa",
+        "descripcion": "Reduces el daño recibido en 1.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garras Escamosas",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 4,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Marinero Amotinado",
+    "tipo": "Humano",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 9,
+      "inteligencia": 8,
+      "percepcion": 10,
+      "constitucion": 10,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Desesperado",
+        "descripcion": "Realizas un ataque con ventaja motivado por la desesperación.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Pies de Mar",
+        "descripcion": "Tienes ventaja en tiradas para mantener el equilibrio en superficies inestables.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garfio Improvisado",
+      "tipo": "Ligeras",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Naeris el Traidor",
+    "tipo": "Lazuri",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 3,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 9,
+      "destreza": 12,
+      "inteligencia": 11,
+      "percepcion": 12,
+      "constitucion": 10,
+      "carisma": 11
+    },
+    "habilidades": [
+      {
+        "nombre": "Llamada de las Profundidades",
+        "descripcion": "Invocas a una Serpiente de Arrecife para que luche a tu lado durante 2 turnos.",
+        "tipo": "Apoyo",
+        "coste": "💧💧, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Corriente Traicionera",
+        "descripcion": "Canalizas el agua para empujar a un objetivo 10 pies y aplicar \"Derribado\".",
+        "tipo": "Disruptor",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Respiración Acuática",
+        "descripcion": "Puedes respirar bajo el agua y tienes ventaja en ataques mientras estés sumergido.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Escamas Lazuri",
+        "descripcion": "Tu DA aumenta en 1 de forma natural.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Tridente Lazuri",
+      "tipo": "Medianas",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 3
+    },
+    "pv": 3,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Devorador de Arena",
+    "tipo": "Bestia",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 14,
+      "destreza": 12,
+      "inteligencia": 8,
+      "percepcion": 15,
+      "constitucion": 13,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Embestida Subterránea",
+        "descripcion": "Emerges de la arena bajo un objetivo. Si impacta, inflige 2d6 de daño y aplica \"Derribado\".",
+        "tipo": "Luchador",
+        "coste": "⚡⚡⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Arrastrar Bajo la Arena",
+        "descripcion": "Intentas agarrar a un objetivo y arrastrarlo bajo la arena. Si aciertas, queda \"Inmóvil\" y sufre 1d6 de daño por turno hasta liberarse.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Nado en Arena",
+        "descripcion": "Puedes sumergirte bajo la arena y moverte libremente. Mientras estés sumergido, los ataques a melée contra ti fallan automáticamente.",
+        "nivel": 4,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Sentido Sísmico",
+        "descripcion": "Detectas todas las criaturas en contacto con la arena en un radio de 60 pies, incluso si están invisibles.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandíbulas de Arena",
+      "tipo": "Naturales",
+      "dado": 10,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 6,
+    "escudo": 3,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Zahara la Druida",
+    "tipo": "Humano",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 3,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 9,
+      "inteligencia": 13,
+      "percepcion": 13,
+      "constitucion": 10,
+      "carisma": 12
+    },
+    "habilidades": [
+      {
+        "nombre": "Tormenta de Arena",
+        "descripcion": "Invocas una tormenta localizada. Todos los enemigos a 15 pies sufren 1d6 de daño y tienen desventaja en ataques hasta tu siguiente turno.",
+        "tipo": "Hechicero",
+        "coste": "💧💧, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Orden al Devorador",
+        "descripcion": "Ordenas al Devorador de Arena que ataque a un objetivo específico. Su próximo ataque tiene ventaja.",
+        "tipo": "Apoyo",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Vínculo Bestial",
+        "descripcion": "Mientras estés consciente, el Devorador de Arena tiene +1 al ataque y no ataca erráticamente.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Resistencia Mágica",
+        "descripcion": "Tienes ventaja en las tiradas de salvación contra hechizos.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Bastón de Espinas",
+      "tipo": "Mágicas",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 3
+    },
+    "pv": 3,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Elemental de Aire",
+    "tipo": "Elemental",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 13,
+      "inteligencia": 8,
+      "percepcion": 11,
+      "constitucion": 10,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Ráfaga de Viento",
+        "descripcion": "Lanzas una ráfaga que empuja al objetivo 10 pies y aplica \"Derribado\" si falla una tirada de Fuerza.",
+        "tipo": "Disruptor",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Forma Etérea",
+        "descripcion": "Los ataques a distancia físicos tienen desventaja contra ti.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Ligereza",
+        "descripcion": "Tu movimiento aumenta en 5 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garras de Viento",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 2,
+      "modificador": "Destreza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Centinela de Viento",
+    "tipo": "Elemental",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 3,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 13,
+      "inteligencia": 10,
+      "percepcion": 12,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Ciclón",
+        "descripcion": "Generas un torbellino que ataca a todos los enemigos a 10 pies, infligiendo 1d8 de daño y aplicando \"Derribado\".",
+        "tipo": "Luchador",
+        "coste": "⚡⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Descarga Eléctrica",
+        "descripcion": "Canalizas un relámpago hacia un objetivo. Inflige 2d6 de daño eléctrico.",
+        "tipo": "Hechicero",
+        "coste": "💧💧, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Forma Etérea",
+        "descripcion": "Los ataques a distancia físicos tienen desventaja contra ti.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Contraataque",
+        "descripcion": "Cuando un enemigo falla un ataque contra ti, puedes realizar un ataque de oportunidad.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Lanza de Relámpago",
+      "tipo": "Medianas",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 3
+    },
+    "pv": 3,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Kaelen",
+    "tipo": "Humano",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 4,
+    "puntosPasivas": 3,
+    "puntosArmas": 3,
+    "stats": {
+      "fuerza": 9,
+      "destreza": 11,
+      "inteligencia": 13,
+      "percepcion": 12,
+      "constitucion": 10,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Barrera de Viento",
+        "descripcion": "Creas un escudo de aire comprimido. Los ataques contra ti tienen desventaja y reflejan 1d4 de daño al atacante hasta tu siguiente turno.",
+        "tipo": "Hechicero",
+        "coste": "💧💧, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Cuchillas de Aire",
+        "descripcion": "Lanzas fragmentos de aire cortante a todos los enemigos a 15 pies, infligiendo 1d8 de daño.",
+        "tipo": "Hechicero",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Poder de la Gema",
+        "descripcion": "Tus ataques mágicos infligen 1d4 de daño extra de aire.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Paranoia del Ermitaño",
+        "descripcion": "No puedes ser sorprendido y tienes ventaja en tiradas de iniciativa.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Bastón de Viento",
+      "tipo": "Mágicas",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 3
+    },
+    "pv": 4,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Hojacero",
+    "tipo": "No-Muerto",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 13,
+      "destreza": 13,
+      "inteligencia": 11,
+      "percepcion": 11,
+      "constitucion": 12,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Corte del Viento",
+        "descripcion": "Realizas un tajo con tu espada de aire comprimido que golpea a todos los enemigos en línea recta hasta 20 pies.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Danza de la Espada",
+        "descripcion": "Realizas 3 ataques consecutivos con tu espada etérea. Cada golpe que impacta inflige daño normal.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Fusión con el Viento",
+        "descripcion": "Tu forma semi-etérea te permite esquivar un ataque por ronda automáticamente.",
+        "nivel": 4,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Lamento del Centinela",
+        "descripcion": "Al inicio de cada ronda, todos los enemigos a 15 pies deben superar Voluntad (CD 12) o sufren \"Miedo 1\".",
+        "nivel": 3,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada de Aire Comprimido",
+      "tipo": "Medianas",
+      "dado": 10,
+      "ataques": 2,
+      "modificador": "Destreza",
+      "nivel": 4
+    },
+    "pv": 5,
+    "escudo": 3,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Acólito de Caelum",
+    "tipo": "Aasimar",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 9,
+      "destreza": 10,
+      "inteligencia": 11,
+      "percepcion": 11,
+      "constitucion": 8,
+      "carisma": 11
+    },
+    "habilidades": [
+      {
+        "nombre": "Destello Sagrado",
+        "descripcion": "Lanzas un rayo de luz divina que inflige 1d6 de daño radiante y aplica \"Cegado 1\" si el objetivo falla Agilidad (CD 10).",
+        "tipo": "Hechicero",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Fe Inquebrantable",
+        "descripcion": "Eres inmune a \"Miedo\" mientras Samael esté consciente.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Escudo Humano",
+        "descripcion": "Puedes interceptar un ataque dirigido a un aliado adyacente, recibiendo el daño en su lugar.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Cetro de Luz",
+      "tipo": "Mágicas",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 2
+    },
+    "pv": 1,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Samael",
+    "tipo": "Aasimar",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 9,
+      "destreza": 10,
+      "inteligencia": 14,
+      "percepcion": 11,
+      "constitucion": 12,
+      "carisma": 14
+    },
+    "habilidades": [
+      {
+        "nombre": "Palabra de Sometimiento",
+        "descripcion": "Ordenas a un objetivo que se rinda. Debe superar Voluntad (CD 13) o queda \"Aturdido 1\".",
+        "tipo": "Disruptor",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Columna de Luz",
+        "descripcion": "Invocas una columna de energía divina sobre un área de 10 pies. Todos los enemigos en ella sufren 2d8 de daño radiante.",
+        "tipo": "Hechicero",
+        "coste": "💧💧💧, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Aura de Autoridad",
+        "descripcion": "Los enemigos que comiencen su turno a 15 pies deben superar Carisma (CD 12) o tienen desventaja en su próximo ataque.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Portal de Escape",
+        "descripcion": "Cuando tu vida llega a 1 PV, puedes intentar huir abriendo un portal de luz (el Master decide si los jugadores pueden impedirlo).",
+        "nivel": 4,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Báculo del Sumo Sacerdote",
+      "tipo": "Mágicas",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Inteligencia",
+      "nivel": 4
+    },
+    "pv": 5,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Termita Obrera",
+    "tipo": "Insecto",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 9,
+      "inteligencia": 9,
+      "percepcion": 10,
+      "constitucion": 9,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Alarma de Feromonas",
+        "descripcion": "Liberas feromonas de alarma. Todas las Termitas Soldado a 30 pies ganan ventaja en su próximo ataque.",
+        "tipo": "Apoyo",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Instinto de Colonia",
+        "descripcion": "Mientras haya otra termita a 10 pies, tienes ventaja en tiradas de resistencia contra miedo.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandíbulas Pequeñas",
+      "tipo": "Naturales",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Termita Soldado",
+    "tipo": "Insecto",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 9,
+      "inteligencia": 8,
+      "percepcion": 11,
+      "constitucion": 12,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Mordisco Cizallante",
+        "descripcion": "Realizas un ataque con tus mandíbulas. Si aciertas, aumenta tu dado de daño y aplicas \"Derribado\".",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Formación de Túnel",
+        "descripcion": "Ganas 🛡️ y bloqueas el paso a un aliado que se encuentre detrás de ti.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Caparazón Quitinoso",
+        "descripcion": "Reduces el daño recibido en 1 cuando usas \"Formación de Túnel\" hasta tu siguiente turno.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Sentido de Vibración",
+        "descripcion": "No sufres desventaja por combatir en la oscuridad total dentro del nido.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandíbulas de Soldado",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Termita Soldado de Élite",
+    "tipo": "Insecto",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 14,
+      "destreza": 10,
+      "inteligencia": 7,
+      "percepcion": 12,
+      "constitucion": 13,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Embestida de Mandíbulas",
+        "descripcion": "Cargas contra un objetivo. Si aciertas, inflige 2d6 de daño y aplica \"Derribado\".",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Guardia de la Antesala",
+        "descripcion": "Ganas 🛡️🛡️ y ningún aliado a 10 pies puede ser \"Desprevenido\" hasta tu próximo turno.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Caparazón Reforzado",
+        "descripcion": "Reduces el daño recibido en 1 de aliados a 5 pies de ti.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Sentido de Vibración",
+        "descripcion": "No sufres desventaja por combatir en la oscuridad total dentro del nido.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandíbulas Serradas",
+      "tipo": "Naturales",
+      "dado": 8,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 3
+    },
+    "pv": 5,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Reina Termita",
+    "tipo": "Insecto",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 13,
+      "destreza": 8,
+      "inteligencia": 9,
+      "percepcion": 13,
+      "constitucion": 16,
+      "carisma": 11
+    },
+    "habilidades": [
+      {
+        "nombre": "Llamada de la Colonia",
+        "descripcion": "Invocas a 1d2 Termitas Obreras que aparecen adyacentes a ti (el Master decide si quedan disponibles según el encuentro).",
+        "tipo": "Apoyo",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Aguijonazo Ponzoñoso",
+        "descripcion": "Realizas un ataque con tu aguijón. Si impacta, aplica \"Envenenamiento\".",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Estruendo Real",
+        "descripcion": "Golpeas el suelo con violencia. Todos los enemigos a 15 pies sufren 1d8 de daño y tienen desventaja en su próxima tirada de ataque.",
+        "tipo": "Disruptor",
+        "coste": "⚡⚡⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Corpulencia Real",
+        "descripcion": "No puedes sufrir más de 2 de daño en un solo golpe. No puedes ser derribada.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Vulnerabilidad al Veneno del Guisante",
+        "descripcion": "Si consume el guisante envenenado del Herborista (mezclado en su alimento), sufre \"Envenenamiento\" y queda incapacitada tras 1d4 turnos.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Aguijón y Mandíbulas Reales",
+      "tipo": "Naturales",
+      "dado": 10,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 6,
+    "escudo": 3,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Falsa Hidra",
+    "tipo": "Ascendido del Tiempo y el Espacio",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 14,
+      "destreza": 9,
+      "inteligencia": 8,
+      "percepcion": 15,
+      "constitucion": 16,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Llanto de la Soledad",
+        "descripcion": "Emites el llanto que llevas dentro, una melodía que suena como muchas voces cantando al unísono. Todos los enemigos a 30 pies deben superar una tirada de Salvación de Voluntad (CD 13) o recibir \"Miedo 2\".",
+        "tipo": "Hechicero",
+        "coste": "⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Devoradora de Memorias",
+        "descripcion": "Atacas a un objetivo que tenga una Condición que no sea Potenciadora. Si impacta, infliges 2d8 de daño de elemento Tiempo.",
+        "tipo": "Hechicero",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Embestida de Cabezas",
+        "descripcion": "Atacas con todas tus cabezas a la vez. Realizas 3 ataques separados contra enemigos a tu alcance.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Resistencia Arcana",
+        "descripcion": "El daño mágico recibido se divide por la mitad antes de aplicar cualquier otro modificador.",
+        "nivel": 4,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Piel Corrugada",
+        "descripcion": "El daño físico recibido se reduce en 1, hasta un mínimo de 1 de daño.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Mente Incomprensible",
+        "descripcion": "Eres inmune a Mudez, Confusión y Miedo.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Presencia de la Marea",
+        "descripcion": "Mientras estés en contacto con agua o a 10 pies del mar, regeneras ❤️ al comienzo de tu turno.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandíbulas Múltiples",
+      "tipo": "Naturales",
+      "dado": 8,
+      "ataques": 3,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 8,
+    "escudo": 3,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Grumete",
+    "tipo": "Humanoide",
+    "tier": "minion",
+    "puntosAsignados": 5,
+    "puntosEstadisticas": 2,
+    "puntosHabilidades": 1,
+    "puntosPasivas": 1,
+    "puntosArmas": 1,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 11,
+      "inteligencia": 8,
+      "percepcion": 10,
+      "constitucion": 9,
+      "carisma": 7
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Desesperado",
+        "descripcion": "Realizas un ataque con ventaja, pero si fallas, hasta tu próximo turno cualquiera que intente atacarte obtiene ventaja contra ti.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Hecho en la mar",
+        "descripcion": "Aumenta tu movilidad en el agua en 10 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Sable Oxidado",
+      "tipo": "Medianas",
+      "dado": 4,
+      "ataques": 1,
+      "modificador": "Destreza",
+      "nivel": 1
+    },
+    "pv": 1,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Capataz Corsario",
+    "tipo": "Humanoide",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 11,
+      "destreza": 10,
+      "inteligencia": 11,
+      "percepcion": 8,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Orden de Abordaje",
+        "descripcion": "Todos los aliados a 15 pies ganan +2 al daño en su próximo ataque.",
+        "tipo": "Apoyo",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Golpe de Garfio",
+        "descripcion": "Impactas con un garfio de abordaje. Si aciertas, el objetivo queda Derribado.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Hecho en la mar",
+        "descripcion": "Aumenta tu movilidad en el agua en 10 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Veterano del Abordaje",
+        "descripcion": "Tienes ventaja en las tiradas de iniciativa cuando el combate ocurre en un barco.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Sable Corto",
+      "tipo": "Medianas",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Bucanero",
+    "tipo": "Humanoide",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 10,
+      "inteligencia": 8,
+      "percepcion": 10,
+      "constitucion": 12,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Carga Brutal",
+        "descripcion": "Cargas contra un enemigo a 15 pies. Si infliges daño, lo empujas 5 pies.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Defensa",
+        "descripcion": "Ganas 🛡️.",
+        "tipo": "Defensor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Piel Gruesa",
+        "descripcion": "El primer ataque que recibes cada combate inflige 1 de daño menos.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Hecho en la mar",
+        "descripcion": "Aumenta tu movilidad en el agua en 10 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Hacha de Abordaje",
+      "tipo": "Medianas",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 4,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Capitán de la Bandera Pálida",
+    "tipo": "Humanoide",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 13,
+      "destreza": 11,
+      "inteligencia": 10,
+      "percepcion": 8,
+      "constitucion": 12,
+      "carisma": 11
+    },
+    "habilidades": [
+      {
+        "nombre": "Estocada del Capitán",
+        "descripcion": "Realizas un ataque preciso que inflige daño doble a 🛡️. Si aciertas, infliges daño completo + 1d4.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Grito de Guerra",
+        "descripcion": "Todos los aliados a 20 pies recuperan 🛡️ y ganan ventaja en su próximo ataque.",
+        "tipo": "Apoyo",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Líder Pirata",
+        "descripcion": "Mientras estés consciente, los aliados a 15 pies son inmunes a \"Miedo\".",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Contraataque",
+        "descripcion": "Una vez por ronda, cuando un enemigo falla un ataque cuerpo a cuerpo contra ti, puedes realizar un ataque de oportunidad.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Espada del Capitán",
+      "tipo": "Medianas",
+      "dado": 8,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 3
+    },
+    "pv": 5,
+    "escudo": 2,
+    "image": null,
+    "soloPremium": false,
+    "facciones": []
+  },
+  {
+    "nombre": "Tiburón de Arrecife",
+    "tipo": "Bestia acuática",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 11,
+      "destreza": 11,
+      "inteligencia": 8,
+      "percepcion": 12,
+      "constitucion": 10,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Mordisco Feroz",
+        "descripcion": "Muerdes con fuerza. Si infliges daño, le aplicas Desprevenido 2 al objetivo.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Embestida Acuática",
+        "descripcion": "Cargas desde el agua y embistes a un objetivo en la superficie. Si impactas, le aplicas Derribado.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Respiración Acuática",
+        "descripcion": "Respiras bajo el agua y te mueves sin penalizadores en entornos acuáticos.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Olfato de Sangre",
+        "descripcion": "Tienes ventaja en ataques contra objetivos que estén por debajo de la mitad de su vida.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandíbulas de Tiburón",
+      "tipo": "Naturales",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Matón del Capitolio",
+    "tipo": "Lazuri",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 10,
+      "inteligencia": 8,
+      "percepcion": 11,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe Intimidante",
+        "descripcion": "Golpeas con fuerza. Si aciertas, el objetivo debe superar Voluntad (CD 11) o recibe \"Miedo 2\".",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Amenaza",
+        "descripcion": "Intimidas a un objetivo a 10 pies. Debe superar Voluntad (CD 11S) o tiene desventaja en su próximo ataque.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Matón Callejero",
+        "descripcion": "Tienes ventaja en ataques contra objetivos que estén solos (sin aliados a 10 pies).",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Puño de Hierro",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Guardia Turquesa Leal",
+    "tipo": "Lazuri",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 10,
+      "destreza": 9,
+      "inteligencia": 9,
+      "percepcion": 12,
+      "constitucion": 12,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Bloqueo con Escudo",
+        "descripcion": "Levantas tu escudo de escamas. Ganas 🛡️🛡️.",
+        "tipo": "Defensor",
+        "coste": "⚡⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Golpe de Lanza",
+        "descripcion": "Atacas con tu lanza de coral. Si infliges daño a un objetivo a 10 pies, el objetivo queda Derribado.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Formación de Escudo",
+        "descripcion": "Mientras un aliado esté a 5 pies, ambos obtienen +1 a su DA.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Lealtad a Razgrand",
+        "descripcion": "Eres inmune a \"Miedo\" mientras Razgrand o el Campeón de la Marea estén conscientes.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Lanza de Coral",
+      "tipo": "Físicas",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 2,
+    "escudo": 3,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Campeón de la Marea",
+    "tipo": "Lazuri",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 10,
+      "inteligencia": 10,
+      "percepcion": 11,
+      "constitucion": 12,
+      "carisma": 10
+    },
+    "habilidades": [
+      {
+        "nombre": "Tajo de Marea",
+        "descripcion": "Realizas un tajo amplio con tu alabarda. Golpeas a todos los enemigos a 10 pies en un arco frontal.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Muro de Agua",
+        "descripcion": "Invocas un muro de agua a 15 pies que bloquea proyectiles y da cobertura a los aliados detrás.",
+        "tipo": "Defensor",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Presencia de Mando",
+        "descripcion": "Los aliados a 15 pies obtienen +1 al daño de sus ataques.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Piel de Escamas",
+        "descripcion": "El daño físico recibido se reduce en 1, hasta un mínimo de 1 de daño.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Alabarda de Nácar",
+      "tipo": "Físicas",
+      "dado": 8,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 3
+    },
+    "pv": 4,
+    "escudo": 4,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Custodio de Coral",
+    "tipo": "Constructo acuático",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 13,
+      "destreza": 7,
+      "inteligencia": 7,
+      "percepcion": 12,
+      "constitucion": 14,
+      "carisma": 7
+    },
+    "habilidades": [
+      {
+        "nombre": "Estallido Coralino",
+        "descripcion": "Fragmentos de coral golpean un cono de 10 pies e infligen 1d6 de daño.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Anclaje",
+        "descripcion": "Te fijas al suelo, ganas 🛡️ y Coraje 1.",
+        "tipo": "Defensor",
+        "coste": "⚡, 🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Cuerpo Poroso",
+        "descripcion": "Respiras bajo el agua y tienes resistencia al elemento Agua.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Puños de Coral",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 1,
+    "escudo": 5,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Elemental de Agua",
+    "tipo": "Elemental",
+    "tier": "miniBoss",
+    "puntosAsignados": 15,
+    "puntosEstadisticas": 5,
+    "puntosHabilidades": 3,
+    "puntosPasivas": 3,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 12,
+      "inteligencia": 9,
+      "percepcion": 12,
+      "constitucion": 12,
+      "carisma": 8
+    },
+    "habilidades": [
+      {
+        "nombre": "Ola de Presión",
+        "descripcion": "Una ola en cono de 15 pies causa 2d6 de daño y empuja 10 pies.",
+        "tipo": "Disruptor",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Prisión de Agua",
+        "descripcion": "Un objetivo a 10 pies debe superar Fortaleza (CD 12) o recibe Inmóvil.",
+        "tipo": "Hechicero",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Cuerpo Líquido",
+        "descripcion": "El primer ataque físico recibido cada ronda inflige 1 de daño menos hasta un mínimo de 1.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Marea Creciente",
+        "descripcion": "Obtienes ventaja en ataques mientras tu cuerpo esté parcialmente o completamente sumergido.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Naturaleza Acuosa",
+        "descripcion": "Tienes resistencia al elemento Fuego y debilidad al elemento Naturaleza y Rayo. Además, absorbes el elemento Agua.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Látigo de Agua",
+      "tipo": "Mágicas",
+      "dado": 6,
+      "ataques": 2,
+      "modificador": "Constitución",
+      "nivel": 3
+    },
+    "pv": 5,
+    "escudo": 3,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Anémona Abisal",
+    "tipo": "Bestia acuática",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 8,
+      "inteligencia": 9,
+      "percepcion": 11,
+      "constitucion": 11,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Tentáculo de Arrastre",
+        "descripcion": "Arrastras 10 pies hacia ti a un objetivo a 15 pies y le infliges daño. Si supera Agilidad (CD 11) no es arrastrado.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Esporas Urticantes",
+        "descripcion": "Quien esté a 10 pies debe superar Fortaleza (CD 11) o queda Envenenado 1.",
+        "tipo": "Hechicero",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Enraizada",
+        "descripcion": "No puedes desplazarte ni ser empujada, pero detectas criaturas en contacto con el agua a 20 pies.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Tentáculos Urticantes",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 1,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Enjambre de Peces Abisales",
+    "tipo": "Enjambre acuático",
+    "tier": "normal",
+    "puntosAsignados": 10,
+    "puntosEstadisticas": 4,
+    "puntosHabilidades": 2,
+    "puntosPasivas": 2,
+    "puntosArmas": 2,
+    "stats": {
+      "fuerza": 8,
+      "destreza": 12,
+      "inteligencia": 10,
+      "percepcion": 11,
+      "constitucion": 10,
+      "carisma": 9
+    },
+    "habilidades": [
+      {
+        "nombre": "Frenesí de Mordiscos",
+        "descripcion": "El enjambre rodea a un objetivo. Inflige 2d4 de daño que aciertan automáticamente.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Nube Oscura",
+        "descripcion": "El enjambre oscurece el agua en un radio de 10 pies. Los objetivos dentro tienen desventaja en ataques hasta el comienzo de tu próximo turno.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Enjambre",
+        "descripcion": "Solo recibes daño completo de ataques en área o efectos que afecten a múltiples criaturas. Cualquier otro tipo de ataque solo hace 1 de daño como máximo.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Respiración Acuática",
+        "descripcion": "Respiras bajo el agua y te mueves sin penalizadores en entornos acuáticos.",
+        "nivel": 1,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mordiscos del Enjambre",
+      "tipo": "Naturales",
+      "dado": 4,
+      "ataques": 3,
+      "modificador": "Destreza",
+      "nivel": 2
+    },
+    "pv": 3,
+    "escudo": 0,
+    "image": null,
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Draxius Tormefilos",
+    "tipo": "Lazuri",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 12,
+      "destreza": 11,
+      "inteligencia": 11,
+      "percepcion": 11,
+      "constitucion": 12,
+      "carisma": 13
+    },
+    "habilidades": [
+      {
+        "nombre": "Golpe de Marea",
+        "descripcion": "Un golpe poderoso que inflige 2d6 de daño.",
+        "tipo": "Luchador",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 1,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "¡Fuego!",
+        "descripcion": "Se dispara un cañonazo a un objetivo a 20 pies o menos de distancia, infligiendo 2d8 de daño.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢🟢",
+        "nivel": 2,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Escudo de Marea",
+        "descripcion": "Se crea un escudo de agua que te otorga \"Égida\" a tí o a un objetivo aliado a hasta 10 pies de distancia.",
+        "tipo": "Disruptor",
+        "coste": "⚡, 🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Capitán de barco",
+        "descripcion": "Mientras te encuentres en un barco ó a 60 pies o menos del mar, obtienes ventaja en las tiradas para impactar.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Ajusticiar",
+        "descripcion": "Cuando un enemigo te ataca a melée y falla, realizas un ataque de oportunidad.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Mandoble Rompequillas",
+      "tipo": "Arma",
+      "dado": 10,
+      "ataques": 1,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 5,
+    "escudo": 4,
+    "image": "assets/avatars/sticker_warrior_ondin_man_02.png",
+    "soloPremium": true,
+    "facciones": []
+  },
+  {
+    "nombre": "Nahla, Centinela del Agua",
+    "tipo": "Aberración elemental",
+    "tier": "boss",
+    "puntosAsignados": 20,
+    "puntosEstadisticas": 6,
+    "puntosHabilidades": 5,
+    "puntosPasivas": 5,
+    "puntosArmas": 4,
+    "stats": {
+      "fuerza": 14,
+      "destreza": 12,
+      "inteligencia": 8,
+      "percepcion": 14,
+      "constitucion": 15,
+      "carisma": 7
+    },
+    "habilidades": [
+      {
+        "nombre": "Tentáculo de Marea",
+        "descripcion": "Lanzas un tentáculo de agua a un objetivo a 20 pies. Si impactas, infliges 1d8 de daño y lo arrastras 10 pies hacia ti.",
+        "tipo": "Luchador",
+        "coste": "⚡⚡, 🟢🟢",
+        "nivel": 3,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      },
+      {
+        "nombre": "Lamento del Abismo",
+        "descripcion": "Emites un grito devastador. Todos los enemigos a 15 pies deben superar Voluntad (CD 13) o reciben Aturdido 2. Recuperas 1d6 ❤️ al absorber el agua circundante.",
+        "tipo": "Disruptor",
+        "coste": "⚡⚡⚡, 🟢🟢🟢",
+        "nivel": 4,
+        "actionCost": 1,
+        "reactionCost": 0,
+        "restriction": "none"
+      }
+    ],
+    "pasivas": [
+      {
+        "nombre": "Forma Abisal",
+        "descripcion": "Te mueves por paredes, techos y a través del agua sin penalizadores. Los ataques a distancia contra ti tienen desventaja.",
+        "nivel": 3,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Regeneración Acuática",
+        "descripcion": "Al inicio de tu turno, si estás en contacto con agua, recuperas 1d6 ❤️.",
+        "nivel": 2,
+        "tipo": "Luchador"
+      },
+      {
+        "nombre": "Vínculo con la Gema",
+        "descripcion": "No puedes perder tu último ❤️ mientras la Gema del Agua permanezca en su pedestal (te quedas en ❤️). La gema debe ser arrancada o Nahla debe ser sometida.",
+        "nivel": 4,
+        "tipo": "Luchador"
+      }
+    ],
+    "arma": {
+      "nombre": "Garras de Coral Vivo",
+      "tipo": "Naturales",
+      "dado": 6,
+      "ataques": 2,
+      "modificador": "Fuerza",
+      "nivel": 4
+    },
+    "pv": 7,
+    "escudo": 3,
+    "image": "assets/avatars/sticker_demon_human_woman_01.png",
+    "soloPremium": true,
+    "facciones": []
+  }
+]

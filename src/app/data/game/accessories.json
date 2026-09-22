@@ -1,0 +1,401 @@
+[
+  {
+    "nombre": "Silbato de Explorador",
+    "descripcion": "+1 a la iniciativa.",
+    "rareza": "comun",
+    "precio": 15,
+    "imagen": "assets/accessories/random_loot_07.png"
+  },
+  {
+    "nombre": "Bolsa de Semillas",
+    "descripcion": "+1 a tiradas de Naturaleza.",
+    "rareza": "comun",
+    "precio": 10,
+    "imagen": "assets/accessories/black_luggage_01.png"
+  },
+  {
+    "nombre": "Anillo de Hierro",
+    "descripcion": "+1 a tiradas de Intimidación.",
+    "rareza": "comun",
+    "precio": 12,
+    "imagen": "assets/accessories/iron_ring_base_06.png"
+  },
+  {
+    "nombre": "Capa Oscura",
+    "descripcion": "+1 a tiradas de Sigilo.",
+    "rareza": "comun",
+    "precio": 15,
+    "imagen": "assets/accessories/cape_01.png"
+  },
+  {
+    "nombre": "Botines Flexibles",
+    "descripcion": "+1 a tiradas de Acrobacias.",
+    "rareza": "comun",
+    "precio": 12,
+    "imagen": "assets/accessories/footgear_03.png"
+  },
+  {
+    "nombre": "Faja de Trabajo",
+    "descripcion": "+1 a tiradas de Atletismo.",
+    "rareza": "comun",
+    "precio": 10,
+    "imagen": "assets/accessories/chestgear_01.png"
+  },
+  {
+    "nombre": "Cuaderno de Notas",
+    "descripcion": "+1 a tiradas de Conocimiento.",
+    "rareza": "comun",
+    "precio": 8,
+    "imagen": "assets/accessories/document_02.png"
+  },
+  {
+    "nombre": "Perneras Reforzadas",
+    "descripcion": "+1 a tiradas de Empuje.",
+    "rareza": "comun",
+    "precio": 12,
+    "imagen": "assets/accessories/footgear_07.png"
+  },
+  {
+    "nombre": "Máscara Teatral",
+    "descripcion": "+1 a tiradas de Interpretación.",
+    "rareza": "comun",
+    "precio": 10,
+    "imagen": "assets/accessories/facemask_01.png"
+  },
+  {
+    "nombre": "Catalejo de Investigador",
+    "descripcion": "+1 a tiradas de Investigación.",
+    "rareza": "comun",
+    "precio": 8,
+    "imagen": "assets/accessories/free_tool_78.png"
+  },
+  {
+    "nombre": "Guantes de Lanzador",
+    "descripcion": "+1 a tiradas de Lanzamiento.",
+    "rareza": "comun",
+    "precio": 10,
+    "imagen": "assets/accessories/wristgear_06.png"
+  },
+  {
+    "nombre": "Bastón de Mando",
+    "descripcion": "+1 a tiradas de Liderazgo.",
+    "rareza": "comun",
+    "precio": 14,
+    "imagen": "assets/accessories/staff_cropless_09.png"
+  },
+  {
+    "nombre": "Broche Diplomático",
+    "descripcion": "+1 a tiradas de Persuasión.",
+    "rareza": "comun",
+    "precio": 12,
+    "imagen": "assets/accessories/gold_loot_06.png"
+  },
+  {
+    "nombre": "Rodillera Reforzada",
+    "descripcion": "+1 a tiradas de Resistencia.",
+    "rareza": "comun",
+    "precio": 10,
+    "imagen": "assets/accessories/reforced_kneegear_01.png"
+  },
+  {
+    "nombre": "Cantimplora de Viaje",
+    "descripcion": "+1 a tiradas de Supervivencia.",
+    "rareza": "comun",
+    "precio": 8,
+    "imagen": "assets/accessories/free_tool_97.png"
+  },
+  {
+    "nombre": "Dados Trucados",
+    "descripcion": "+1 a tiradas de Trucos.",
+    "rareza": "comun",
+    "precio": 10,
+    "imagen": "assets/accessories/gold_loot_46.png"
+  },
+  {
+    "nombre": "Talismán de Robustez",
+    "descripcion": "+1 a tiradas de salvación de Fortaleza.",
+    "rareza": "comun",
+    "precio": 18,
+    "imagen": "assets/accessories/beltgear_10.png"
+  },
+  {
+    "nombre": "Brazalete de Rapidez",
+    "descripcion": "+1 a tiradas de salvación de Agilidad.",
+    "rareza": "comun",
+    "precio": 18,
+    "imagen": "assets/accessories/random_loot_03.png"
+  },
+  {
+    "nombre": "Medallón de Valentía",
+    "descripcion": "+1 a tiradas de salvación de Voluntad.",
+    "rareza": "comun",
+    "precio": 18,
+    "imagen": "assets/accessories/beltgear_01.png"
+  },
+  {
+    "nombre": "Brazalete Gélido",
+    "descripcion": "Obtienes resistencia al elemento Fuego.",
+    "rareza": "raro",
+    "precio": 50,
+    "imagen": "assets/accessories/gemstone_diamond_39.png"
+  },
+  {
+    "nombre": "Colgante Incandescente",
+    "descripcion": "Obtienes resistencia al elemento Agua.",
+    "rareza": "raro",
+    "precio": 50,
+    "imagen": "assets/accessories/gemstone_ruby_45.png"
+  },
+  {
+    "nombre": "Amuleto de Cerámica",
+    "descripcion": "Obtienes resistencia al elemento Rayo.",
+    "rareza": "raro",
+    "precio": 50,
+    "imagen": "assets/accessories/random_loot_06.png"
+  },
+  {
+    "nombre": "Brújula Hidráulica",
+    "descripcion": "Obtienes resistencia al elemento Viento.",
+    "rareza": "raro",
+    "precio": 50,
+    "imagen": "assets/accessories/free_tool_77.png"
+  },
+  {
+    "nombre": "Cinturón de Cuero",
+    "descripcion": "Obtienes resistencia al elemento Natural.",
+    "rareza": "raro",
+    "precio": 50,
+    "imagen": "assets/accessories/beltgear_06.png"
+  },
+  {
+    "nombre": "Guantes de Piel",
+    "descripcion": "Obtienes resistencia al elemento Artificial.",
+    "rareza": "raro",
+    "precio": 50,
+    "imagen": "assets/accessories/wristgear_07.png"
+  },
+  {
+    "nombre": "Medalla de Autoridad",
+    "descripcion": "Obtienes resistencia al elemento Luz.",
+    "rareza": "raro",
+    "precio": 50,
+    "imagen": "assets/accessories/gold_loot_04.png"
+  },
+  {
+    "nombre": "Insignia de Honor",
+    "descripcion": "Obtienes resistencia al elemento Oscuridad.",
+    "rareza": "raro",
+    "precio": 50,
+    "imagen": "assets/accessories/gold_loot_05.png"
+  },
+  {
+    "nombre": "Mitones de Herrero",
+    "descripcion": "+1 a tiradas de Fuerza.",
+    "rareza": "raro",
+    "precio": 60,
+    "imagen": "assets/accessories/wristgear_01.png"
+  },
+  {
+    "nombre": "Botas Ligeras",
+    "descripcion": "+1 a tiradas de Destreza.",
+    "rareza": "raro",
+    "precio": 60,
+    "imagen": "assets/accessories/footgear_06.png"
+  },
+  {
+    "nombre": "Arnés de Vigilancia",
+    "descripcion": "+1 a tiradas de Constitución.",
+    "rareza": "raro",
+    "precio": 60,
+    "imagen": "assets/accessories/chestgear_06.png"
+  },
+  {
+    "nombre": "Libro Prohibido",
+    "descripcion": "+1 a tiradas de Inteligencia.",
+    "rareza": "raro",
+    "precio": 55,
+    "imagen": "assets/accessories/book_01_color_a.png"
+  },
+  {
+    "nombre": "Gorra de Viajero",
+    "descripcion": "+1 a tiradas de Percepción.",
+    "rareza": "raro",
+    "precio": 55,
+    "imagen": "assets/accessories/headgear_01.png"
+  },
+  {
+    "nombre": "Bolsa de Seda",
+    "descripcion": "+1 a tiradas de Carisma.",
+    "rareza": "raro",
+    "precio": 55,
+    "imagen": "assets/accessories/big_purse_green.png"
+  },
+  {
+    "nombre": "Reloj de Bolsillo",
+    "descripcion": "+3 a la iniciativa.",
+    "rareza": "raro",
+    "precio": 70,
+    "imagen": "assets/accessories/free_tool_92.png"
+  },
+  {
+    "nombre": "Pendientes de Rubí",
+    "descripcion": "Obtienes resistencia a Fuego y Oscuridad.",
+    "rareza": "epico",
+    "precio": 150,
+    "imagen": "assets/accessories/silver_ring_01_red_gemstone_01.png"
+  },
+  {
+    "nombre": "Pendientes de Topacio",
+    "descripcion": "Obtienes resistencia a Viento y Artificial.",
+    "rareza": "epico",
+    "precio": 150,
+    "imagen": "assets/accessories/silver_ring_01_yellow_gemstone_05.png"
+  },
+  {
+    "nombre": "Pendientes de Esmeralda",
+    "descripcion": "Obtienes resistencia a Natural y Rayo.",
+    "rareza": "epico",
+    "precio": 150,
+    "imagen": "assets/accessories/silver_ring_01_green_gemstone_02.png"
+  },
+  {
+    "nombre": "Pendientes de Aguamarina",
+    "descripcion": "Obtienes resistencia a Luz y Agua.",
+    "rareza": "epico",
+    "precio": 150,
+    "imagen": "assets/accessories/silver_ring_01_blue_light_gemstone_04.png"
+  },
+  {
+    "nombre": "Anillo de Zafiro",
+    "descripcion": "+1 a tiradas de Fuerza e Inteligencia.",
+    "rareza": "epico",
+    "precio": 175,
+    "imagen": "assets/accessories/gold_ring_03_blue_gemstone_01.png"
+  },
+  {
+    "nombre": "Anillo de Amatista",
+    "descripcion": "+1 a tiradas de Destreza y Carisma.",
+    "rareza": "epico",
+    "precio": 175,
+    "imagen": "assets/accessories/gold_ring_03_magenta_gemstone_03.png"
+  },
+  {
+    "nombre": "Anillo de Jade",
+    "descripcion": "+1 a tiradas de Constitución y Percepción.",
+    "rareza": "epico",
+    "precio": 175,
+    "imagen": "assets/accessories/gold_ring_03_green_light_gemstone_02.png"
+  },
+  {
+    "nombre": "Capa de Asalto",
+    "descripcion": "+2 a la iniciativa. No provocas ataques de oportunidad al retirarte.",
+    "rareza": "epico",
+    "precio": 200,
+    "imagen": "assets/accessories/beltgear_03.png"
+  },
+  {
+    "nombre": "Protector de Emergencia",
+    "descripcion": "🔶. 1 Vez por Combate. Reduces el daño recibido en 1.",
+    "rareza": "epico",
+    "precio": 180,
+    "imagen": "assets/accessories/shield_27.png"
+  },
+  {
+    "nombre": "Sello de Caridad",
+    "descripcion": "1 Vez por Turno. Cuando otorgues 🛡️ a un aliado, obtienes 🛡️ tú también.",
+    "rareza": "epico",
+    "precio": 200,
+    "imagen": "assets/accessories/random_loot_01.png"
+  },
+  {
+    "nombre": "Cinto Belicoso",
+    "descripcion": "Tus ataques cuerpo a cuerpo pueden empujar 5 pies.",
+    "rareza": "epico",
+    "precio": 160,
+    "imagen": "assets/accessories/beltgear_07.png"
+  },
+  {
+    "nombre": "Amuleto de Madera",
+    "descripcion": "🔶. 1 Vez por Combate. Puedes volverte invisible hasta tu siguiente turno.",
+    "rareza": "epico",
+    "precio": 220,
+    "imagen": "assets/accessories/bronze_ring_base_05.png"
+  },
+  {
+    "nombre": "Espada Espiritual de Hojacero",
+    "descripcion": "+1 a tiradas de ataque cuerpo a cuerpo. Cuando impactas a un enemigo, inflige 1d4 de daño adicional de tipo Viento.",
+    "rareza": "epico",
+    "precio": 250,
+    "imagen": "assets/accessories/sword_27.png"
+  },
+  {
+    "nombre": "Esparcedor de Ruina",
+    "descripcion": "Cuando derrotas a un enemigo, provocas una explosión que inflige 1d6 a enemigos adyacentes.",
+    "rareza": "legendario",
+    "precio": 500,
+    "imagen": "assets/accessories/mace_27.png"
+  },
+  {
+    "nombre": "Plegaria Redentora",
+    "descripcion": "🔶. 1 Vez por Combate. puedes otorgar a todos los aliados alrededor tuya a 10 pies 1d3 🛡️.",
+    "rareza": "legendario",
+    "precio": 450,
+    "imagen": "assets/accessories/wristgear_08.png"
+  },
+  {
+    "nombre": "Castigo del Gigante",
+    "descripcion": "Elige un enemigo al inicio del combate: tus tiradas de daño contra dicho objetivo obtienen +2.",
+    "rareza": "legendario",
+    "precio": 500,
+    "imagen": "assets/accessories/bow_20.png"
+  },
+  {
+    "nombre": "Inmutabilidad Perfecta",
+    "descripcion": "🔶. 1 Vez por Combate. No puedes gastar 🟢 ni 🔶 y recibes “Invulnerable” y “Coraje” hasta el comienzo de tu siguiente turno.",
+    "rareza": "legendario",
+    "precio": 550,
+    "imagen": "assets/accessories/scroll_05_light_blue.png"
+  },
+  {
+    "nombre": "Juramento del Guía",
+    "descripcion": "Los aliados dentro de 10 pies de distancia obtienen +1 a todas sus tiradas para impactar. No se acumula con otro portador.",
+    "rareza": "legendario",
+    "precio": 600,
+    "imagen": "assets/accessories/footgear_08.png"
+  },
+  {
+    "nombre": "Renovación Eterna",
+    "descripcion": "Al inicio de cada turno, regeneras 🛡️ si no sufriste daño el turno anterior.",
+    "rareza": "legendario",
+    "precio": 475,
+    "imagen": "assets/accessories/headgear_08.png"
+  },
+  {
+    "nombre": "Filo del Amante",
+    "descripcion": "La primera vez que inflijas daño a cualquier enemigo durante el combate inflige 1d6 de daño extra.",
+    "rareza": "legendario",
+    "precio": 500,
+    "imagen": "assets/accessories/dagger_23.png"
+  },
+  {
+    "nombre": "Doppelganger",
+    "descripcion": "🔶. 1 Vez por Combate. puedes copiar la última habilidad (que no cueste más de 🟢🟢) usada por un aliado o enemigo gastando el mismo coste de 🟢 original de la habilidad copiada.",
+    "rareza": "legendario",
+    "precio": 550,
+    "imagen": "assets/accessories/headgear_09.png"
+  },
+  {
+    "nombre": "Fulgor Radiante",
+    "descripcion": "1 Vez por Combate. Cuando uses una definitiva, otorgas \"Regeneración 2\" a ti y a tus aliados dentro de 15 pies de distancia.",
+    "rareza": "legendario",
+    "precio": 600,
+    "imagen": "assets/accessories/chestgear_08.png"
+  },
+  {
+    "nombre": "Sello de Devoción",
+    "descripcion": "Los aliados a los que otorgues 🛡️ ó una condición Potenciadora suman +2 en su próxima tirada de daño.",
+    "rareza": "legendario",
+    "precio": 550,
+    "imagen": "assets/accessories/beltgear_08.png"
+  }
+]

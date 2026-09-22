@@ -24,5 +24,7 @@ export interface Race {
   lore: string;
   icon: string;
   color: string;
-  subraces?: Subrace[];
+  /** Avatares de la raza en la app (rutas de la web). */
+  avatars: string[];
+  subraces: Subrace[];
 }

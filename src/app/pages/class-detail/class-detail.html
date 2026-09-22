@@ -4,57 +4,76 @@
     <div class="class-hero__bg"></div>
     <div class="class-hero__content container">
       <a routerLink="/" class="class-hero__back">← Volver al inicio</a>
-      <div class="class-hero__header">
-        <span class="class-hero__icon">{{ cls.icon }}</span>
-        <div>
-          <span class="class-hero__type" [class.martial]="cls.type === 'martial'" [class.magic]="cls.type === 'magic'">
-            {{ cls.resourceIcon }} {{ cls.type === 'martial' ? 'Clase Marcial' : 'Clase Mágica' }}
-          </span>
-          <h1 class="class-hero__title">{{ cls.name }}</h1>
-          <p class="class-hero__role">{{ cls.role }}</p>
+
+      <div class="class-hero__layout">
+        <div class="class-hero__text">
+          <div class="class-hero__header">
+            <span class="class-hero__icon">{{ cls.icon }}</span>
+            <div>
+              <span class="class-hero__type" [class.martial]="cls.type === 'martial'" [class.magic]="cls.type === 'magic'">
+                {{ cls.resourceIcon }} {{ cls.type === 'martial' ? 'Clase Marcial' : 'Clase Mágica' }}
+              </span>
+              <h1 class="class-hero__title">{{ cls.name }}</h1>
+              <p class="class-hero__role">{{ cls.role }}</p>
+            </div>
+          </div>
+          <p class="class-hero__desc">{{ cls.description }}</p>
+
+          <div class="class-hero__stats">
+            <div class="stat-badge">
+              <span class="stat-badge__label">Vida base</span>
+              <span class="stat-badge__value">❤️ {{ cls.pv }}</span>
+            </div>
+            <div class="stat-badge">
+              <span class="stat-badge__label">Escudo base</span>
+              <span class="stat-badge__value">🛡️ {{ cls.shieldBase }}</span>
+            </div>
+            <div class="stat-badge">
+              <span class="stat-badge__label">{{ cls.resource }}</span>
+              <span class="stat-badge__value">{{ cls.resourceIcon }} {{ cls.ph }}</span>
+            </div>
+            <div class="stat-badge">
+              <span class="stat-badge__label">Subclases</span>
+              <span class="stat-badge__value">{{ cls.subclasses.length }}</span>
+            </div>
+          </div>
+          <p class="class-hero__resource-note">
+            @if (cls.type === 'martial') {
+              ⚡ La Energía empieza cada combate al máximo y recupera 1 al comienzo de cada turno.
+            } @else {
+              💧 El Maná empieza cada combate a 0 y recupera 2 al comienzo de cada turno.
+            }
+          </p>
         </div>
-      </div>
-      <p class="class-hero__desc">{{ cls.description }}</p>
-      <div class="class-hero__stats">
-        <div class="stat-badge">
-          <span class="stat-badge__label">Escudo Base</span>
-          <span class="stat-badge__value">🛡️ {{ cls.shieldBase }}</span>
-        </div>
-        <div class="stat-badge">
-          <span class="stat-badge__label">Recurso</span>
-          <span class="stat-badge__value">{{ cls.resourceIcon }} {{ cls.resource }}</span>
-        </div>
-        <div class="stat-badge">
-          <span class="stat-badge__label">Subclases</span>
-          <span class="stat-badge__value">{{ cls.subclasses.length }}</span>
-        </div>
+
+        @if (cls.preset; as preset) {
+          <aside class="preset-card">
+            <div class="avatar-frame preset-card__avatar" [style.--ring-color]="cls.color">
+              <img [src]="preset.avatar" [alt]="preset.name" width="220" height="220" />
+            </div>
+            <span class="preset-card__label">Personaje preparado</span>
+            <h2 class="preset-card__name">{{ preset.name }}</h2>
+            <span class="preset-card__meta">{{ preset.race }} · {{ preset.subclass }}</span>
+            <p class="preset-card__desc">{{ preset.description }}</p>
+            @if (preset.strengths.length) {
+              <div class="preset-card__tags">
+                @for (s of preset.strengths; track s) {
+                  <span class="tag" [style.--tag-color]="cls.color">{{ s }}</span>
+                }
+              </div>
+            }
+          </aside>
+        }
       </div>
     </div>
   </section>
 
-  <!-- LORE -->
-  <!-- <section class="class-lore section">
-    <div class="container">
-      <div class="class-lore__card card">
-        <h2>Historia y Trasfondo</h2>
-        <div class="ornament">
-          <span class="ornament__line"></span>
-          <span class="ornament__symbol">📖</span>
-          <span class="ornament__line"></span>
-        </div>
-        <p class="class-lore__text">{{ cls.lore }}</p>
-      </div>
-    </div>
-  </section> -->
-
   <!-- CLASS ABILITIES -->
   <section class="class-abilities section">
     <div class="container">
-      <h2>Habilidades de Clase</h2>
-      <div class="ornament">
-        <span class="ornament__line"></span>
-        <span class="ornament__symbol">⚜️</span>
-        <span class="ornament__line"></span>
+      <div class="section-header">
+        <h2>Habilidades de <span class="gradient-text">Clase</span></h2>
+        <p>Las comparten todas sus subclases.</p>
       </div>
 
       <div class="abilities-grid">
@@ -64,18 +83,18 @@
           <p>{{ cls.passive }}</p>
         </div>
         <div class="ability-card card">
-          <span class="ability-card__tag mastery">Maestría (Nv. 12)</span>
+          <span class="ability-card__tag mastery">Maestría · Nivel 12</span>
           <h3>{{ cls.masteryPassiveName }}</h3>
           <p>{{ cls.masteryPassive }}</p>
         </div>
         <div class="ability-card card">
-          <span class="ability-card__tag exploration">Exploración</span>
-          <h3>HB1</h3>
+          <span class="ability-card__tag exploration">Habilidad básica</span>
+          <h3>{{ cls.hb1Name }}</h3>
           <p>{{ cls.hb1 }}</p>
         </div>
         <div class="ability-card card">
-          <span class="ability-card__tag exploration">Exploración</span>
-          <h3>HB2</h3>
+          <span class="ability-card__tag exploration">Habilidad básica</span>
+          <h3>{{ cls.hb2Name }}</h3>
           <p>{{ cls.hb2 }}</p>
         </div>
       </div>
@@ -83,24 +102,21 @@
   </section>
 
   <!-- SUBCLASSES -->
-  <section class="subclasses section">
+  <section class="subclasses section" [style.--class-color]="cls.color">
     <div class="container">
-      <h2>Subclases</h2>
-      <p class="subclasses__intro">Cada subclase ofrece un estilo de juego diferente con habilidades únicas.</p>
-      <div class="ornament">
-        <span class="ornament__line"></span>
-        <span class="ornament__symbol">⚔️</span>
-        <span class="ornament__line"></span>
+      <div class="section-header">
+        <h2><span class="gradient-text">Subclases</span></h2>
+        <p>La subclase la decide el arma que llevas. Cambiar de arma en combate cambia de subclase, pero termina tu turno.</p>
       </div>
 
-      <!-- Subclass Tabs -->
-      <div class="subclasses__tabs">
+      <div class="subclasses__tabs" role="tablist">
         @for (sub of cls.subclasses; track sub.id; let i = $index) {
           <button
             class="subclasses__tab"
+            role="tab"
+            [attr.aria-selected]="activeSubclass() === i"
             [class.active]="activeSubclass() === i"
-            (click)="setActiveSubclass(i)"
-            [style.--class-color]="cls.color"
+            (click)="activeSubclass.set(i)"
           >
             <span class="subclasses__tab-icon">{{ sub.icon }}</span>
             <span class="subclasses__tab-name">{{ sub.name }}</span>
@@ -108,27 +124,79 @@
         }
       </div>
 
-      <!-- Active Subclass Content -->
       @if (cls.subclasses[activeSubclass()]; as sub) {
         <div class="subclass-detail animate-fade-in">
           <div class="subclass-detail__header">
             <span class="subclass-detail__icon">{{ sub.icon }}</span>
             <div>
               <h3>{{ sub.name }}</h3>
-              <span class="subclass-detail__weapons">🗡️ {{ sub.weapons }}</span>
+              <span class="subclass-detail__hands">{{ sub.weaponType === '2-manos' ? 'Arma a dos manos: 4 habilidades principales' : 'Dos armas a una mano: principales y secundarias' }}</span>
             </div>
           </div>
           <p class="subclass-detail__desc">{{ sub.description }}</p>
 
-          <h4 class="subclass-detail__abilities-title">Habilidades</h4>
-          <div class="subclass-detail__abilities">
-            @for (ability of getAbilityEntries(sub.abilities); track ability.key) {
-              <div class="ability-row" [class.ultimate]="ability.key === 'had'" [class.reaction]="ability.key === 'hap4' || ability.key === 'has2'">
-                <span class="ability-row__label">{{ ability.label }}</span>
-                <p class="ability-row__desc">{{ ability.value }}</p>
+          <div class="weapons-row">
+            @for (w of sub.weaponList; track w.slot) {
+              <div class="weapon-chip">
+                <span class="weapon-chip__slot">{{ w.slot }}</span>
+                <span class="weapon-chip__name">{{ w.name }}</span>
+                <span class="weapon-chip__die">{{ dieLabel(w.die, w.attacks) }}</span>
+                <span class="weapon-chip__mod">{{ w.modifier }}</span>
+                @for (p of weaponProperties(w.properties); track p.nombre) {
+                  <span class="tag" [style.--tag-color]="p.color" [title]="p.descripcion">{{ p.nombre }}</span>
+                }
               </div>
             }
           </div>
+
+          <div class="subclass-detail__toolbar">
+            <h4>Habilidades</h4>
+            <div class="version-toggle" role="group" aria-label="Versión de las habilidades">
+              <button [class.active]="!improved()" (click)="improved.set(false)">Base</button>
+              <button [class.active]="improved()" (click)="improved.set(true)">✦ Mejoradas</button>
+            </div>
+          </div>
+          @if (improved()) {
+            <p class="subclass-detail__hint">Así quedan al mejorarlas subiendo de nivel en la clase.</p>
+          }
+
+          <div class="abilities-list">
+            @for (ab of sub.abilities; track ab.key) {
+              @let v = version(ab);
+              <article class="ability {{ abilityClass(ab) }}">
+                <header class="ability__header">
+                  <span class="ability__slot">{{ ab.slot }}</span>
+                  <span class="ability__kind">{{ ab.kind }}</span>
+                  @if (improved() && ab.improved) {
+                    <span class="ability__improved">✦ Mejorada</span>
+                  }
+                </header>
+                <h5 class="ability__name">{{ ab.name }}</h5>
+                @if (v.cost || v.notes) {
+                  <div class="ability__cost">
+                    @if (v.cost) {
+                      <span class="ability__cost-icons">{{ v.cost }}</span>
+                    }
+                    @if (v.notes) {
+                      <span class="ability__notes">{{ v.notes }}</span>
+                    }
+                  </div>
+                }
+                <p class="ability__body pre-line">{{ v.body }}</p>
+                @if (properties(ab).length) {
+                  <div class="ability__props">
+                    @for (p of properties(ab); track p.nombre) {
+                      <span class="tag" [style.--tag-color]="p.color" [title]="p.descripcion">{{ p.corto }}</span>
+                    }
+                  </div>
+                }
+              </article>
+            }
+          </div>
+          <p class="cost-legend">
+            <span>⚡ Energía</span><span>💧 Maná</span><span>🟢 Acción</span><span>🔶 Reacción</span
+            ><span>🚫⚡/🚫💧 Gasta todo tu recurso</span>
+          </p>
         </div>
       }
     </div>
@@ -137,17 +205,20 @@
   <!-- OTHER CLASSES -->
   <section class="other-classes section">
     <div class="container">
-      <h2>Otras Clases</h2>
-      <div class="ornament">
-        <span class="ornament__line"></span>
-        <span class="ornament__symbol">📜</span>
-        <span class="ornament__line"></span>
+      <div class="section-header">
+        <h2>Otras <span class="gradient-text">Clases</span></h2>
       </div>
       <div class="other-classes__grid">
         @for (otherCls of allClasses; track otherCls.id) {
           @if (otherCls.id !== cls.id) {
-            <a [routerLink]="'/clases/' + otherCls.id" class="other-class-card card">
-              <span class="other-class-card__icon">{{ otherCls.icon }}</span>
+            <a [routerLink]="'/clases/' + otherCls.id" class="other-class-card card" [style.--class-color]="otherCls.color">
+              @if (otherCls.preset) {
+                <span class="avatar-frame other-class-card__avatar" [style.--ring-color]="otherCls.color">
+                  <img [src]="otherCls.preset.avatar" alt="" loading="lazy" width="72" height="72" />
+                </span>
+              } @else {
+                <span class="other-class-card__icon">{{ otherCls.icon }}</span>
+              }
               <span class="other-class-card__name">{{ otherCls.name }}</span>
             </a>
           }
@@ -157,7 +228,7 @@
   </section>
 } @else {
   <section class="not-found section">
-    <div class="container" style="text-align: center; padding-top: calc(var(--navbar-height) + 4rem);">
+    <div class="container" style="text-align: center; padding-top: calc(var(--navbar-height) + 4rem)">
       <h1>Clase no encontrada</h1>
       <p>La clase que buscas no existe.</p>
       <a routerLink="/" class="btn btn--primary">Volver al inicio</a>

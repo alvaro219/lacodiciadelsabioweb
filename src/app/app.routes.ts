@@ -32,6 +32,26 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/mechanics/mechanics').then(m => m.Mechanics)
   },
   {
+    path: 'bestiario',
+    title: 'Bestiario — La Codicia del Sabio',
+    loadComponent: () => import('./pages/bestiary/bestiary').then(m => m.Bestiary)
+  },
+  {
+    path: 'accesorios',
+    title: 'Accesorios — La Codicia del Sabio',
+    loadComponent: () => import('./pages/accessories/accessories').then(m => m.Accessories)
+  },
+  {
+    path: 'campanas',
+    title: 'Campañas — La Codicia del Sabio',
+    loadComponent: () => import('./pages/campaigns/campaigns').then(m => m.Campaigns)
+  },
+  {
+    path: 'mundo',
+    title: 'El mundo de Magna — La Codicia del Sabio',
+    loadComponent: () => import('./pages/world/world').then(m => m.World)
+  },
+  {
     path: 'manuales',
     title: 'Manuales — La Codicia del Sabio',
     loadComponent: () => import('./pages/guides/guides').then(m => m.Guides)

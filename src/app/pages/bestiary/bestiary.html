@@ -1,0 +1,161 @@
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero__art" style="background-image: url(assets/game/battlegrounds/game_background_3.webp)"></div>
+  <div class="container">
+    <a routerLink="/" class="page-hero__back">← Volver al inicio</a>
+    <div class="page-hero__header">
+      <span class="page-hero__icon">👹</span>
+      <div>
+        <h1 class="page-hero__title">Bestiario</h1>
+        <p class="page-hero__subtitle">
+          Los enemigos pregenerados del Generador de Enemigos de la app, listos para cualquier encuentro. Cuanto más alto su tier,
+          más cuesta en el presupuesto del encuentro.
+        </p>
+      </div>
+    </div>
+    <div class="page-hero__stats">
+      <span><strong>{{ total }}</strong>enemigos</span>
+      @for (t of tiers; track t.id) {
+        <span><strong>{{ countFor(t.id) }}</strong>{{ t.label }}</span>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filters">
+      <button class="filter-chip" [class.active]="tier() === 'todos'" (click)="tier.set('todos')">Todos</button>
+      @for (t of tiers; track t.id) {
+        <button class="filter-chip" [style.--chip-color]="t.color" [class.active]="tier() === t.id" (click)="tier.set(t.id)">
+          {{ t.label }}
+        </button>
+      }
+    </div>
+    <div class="bestiary-search">
+      <input class="search-input" type="search" placeholder="Buscar enemigo…" aria-label="Buscar enemigo" (input)="onSearch($event)" />
+    </div>
+
+    <div class="enemy-grid">
+      @for (e of enemies(); track e.id) {
+        <button class="enemy-card" [style.--tier-color]="tierInfo(e.tier).color" (click)="selected.set(e)">
+          <div class="enemy-card__art">
+            @if (e.image) {
+              <img [src]="e.image" [alt]="e.name" loading="lazy" width="160" height="160" />
+            } @else {
+              <span class="enemy-card__placeholder">{{ e.name.charAt(0) }}</span>
+            }
+            <span class="enemy-card__tier">{{ tierInfo(e.tier).label }}</span>
+            @if (e.premium) {
+              <span class="premium-badge enemy-card__premium">Premium</span>
+            }
+          </div>
+          <div class="enemy-card__body">
+            <h3 class="enemy-card__name">{{ e.name }}</h3>
+            @if (!e.premium) {
+              <div class="enemy-card__stats">
+                <span title="Vida">❤️ {{ e.pv }}</span>
+                <span title="Escudo">🛡️ {{ e.shield }}</span>
+                <span title="Dificultad de Acierto">🎯 {{ e.da }}</span>
+                <span title="Daño del arma">⚔️ {{ e.weapon.damage }}</span>
+              </div>
+            } @else {
+              <p class="enemy-card__locked">Aparece en campañas premium</p>
+            }
+          </div>
+        </button>
+      } @empty {
+        <p class="bestiary-empty">No hay ningún enemigo con ese nombre.</p>
+      }
+    </div>
+
+    <p class="bestiary-note">
+      De {{ total }} enemigos, {{ freeCount }} aparecen en contenido gratuito. El resto sale en las campañas premium: aquí se muestran
+      sin sus estadísticas, que están en la app.
+    </p>
+  </div>
+</section>
+
+<!-- DETALLE -->
+@if (selected(); as e) {
+  <div class="enemy-modal" (click)="close()">
+    <article
+      class="enemy-modal__panel"
+      [style.--tier-color]="tierInfo(e.tier).color"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="e.name"
+      (click)="$event.stopPropagation()"
+    >
+      <button class="enemy-modal__close" aria-label="Cerrar" (click)="close()">✕</button>
+      <header class="enemy-modal__header">
+        @if (e.image) {
+          <img class="enemy-modal__art" [src]="e.image" [alt]="e.name" width="120" height="120" />
+        }
+        <div>
+          <span class="enemy-modal__tier">{{ tierInfo(e.tier).label }}</span>
+          <h2>{{ e.name }}</h2>
+          <div class="enemy-modal__tags">
+            @for (f of e.factions; track f) {
+              <span class="tag">{{ f }}</span>
+            }
+            @if (e.premium) {
+              <span class="premium-badge">Premium</span>
+            }
+          </div>
+        </div>
+      </header>
+
+      @if (e.premium) {
+        <p class="enemy-modal__locked">
+          Este enemigo aparece en las campañas premium. Sus estadísticas, habilidades y pasivas están en el Bestiario de la app para
+          los usuarios Premium.
+        </p>
+      } @else {
+        <div class="enemy-modal__vitals">
+          <div><span>Vida</span><strong>❤️ {{ e.pv }}</strong></div>
+          <div><span>Escudo</span><strong>🛡️ {{ e.shield }}</strong></div>
+          <div><span>DA</span><strong>🎯 {{ e.da }}</strong></div>
+        </div>
+
+        <div class="enemy-modal__attrs">
+          @for (s of e.stats; track s.label) {
+            <div>
+              <span>{{ s.label }}</span>
+              <strong>{{ s.value }}</strong>
+              <small>{{ signed(s.mod) }}</small>
+            </div>
+          }
+        </div>
+
+        <h3>Arma</h3>
+        <p class="enemy-modal__weapon">
+          <strong>{{ e.weapon.name }}</strong> · {{ e.weapon.damage }} · {{ e.weapon.modifier }}
+        </p>
+
+        @if (e.abilities.length) {
+          <h3>Habilidades</h3>
+          <ul class="enemy-modal__list">
+            @for (a of e.abilities; track a.name) {
+              <li>
+                <strong>{{ a.name }}</strong> <span class="enemy-modal__cost">{{ a.cost }}</span>
+                <p>{{ a.description }}</p>
+              </li>
+            }
+          </ul>
+        }
+        @if (e.passives.length) {
+          <h3>Pasivas</h3>
+          <ul class="enemy-modal__list">
+            @for (p of e.passives; track p.name) {
+              <li>
+                <strong>{{ p.name }}</strong>
+                <p>{{ p.description }}</p>
+              </li>
+            }
+          </ul>
+        }
+      }
+    </article>
+  </div>
+}

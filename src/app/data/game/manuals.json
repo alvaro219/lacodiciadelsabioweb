@@ -1,0 +1,1834 @@
+{
+  "manual-del-jugador": [
+    {
+      "id": "creacion-de-personaje",
+      "title": "1. Creación de Personaje",
+      "icon": "🧙",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Crear un personaje se resume en 3 decisiones clave:"
+        },
+        {
+          "type": "ordered-list",
+          "items": [
+            "<strong>Elige una Raza</strong>: Tu raza define tu pasiva racial, velocidad y tamaño. Tu subraza aporta los rasgos: un bono (+1) y una penalización (−1) a dos estadísticas. <em>(Humano, Elfo, Enano, Aasimar, Orco, Mediano, Lagarliz, Bestani, Omnimek, Lazuri…)</em>",
+            "<strong>Elige una Clase</strong>: La clase define tu rol en el grupo: cómo luchas, qué recursos usas y qué pasiva de clase tienes. También determina tus PV base, Escudo base y Puntos de Habilidad (PH). <em>(Escaramuzador, Controlador, Luchador, Protector, Invocador, Artillero, Velador, Exaltador, Místico, Apotecario…)</em>",
+            "<strong>Elige una Subclase (Arma)</strong>: La subclase viene determinada por el arma que equipas. Cada subclase tiene sus propias habilidades activas y una habilidad definitiva. Cambiar de arma = cambiar de subclase en cualquier momento."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "estadisticas",
+      "title": "2. Estadísticas",
+      "icon": "📊",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Hay 6 estadísticas principales. Cada una tiene un valor base (normalmente entre 8 y 12) y un modificador que se calcula como (Valor − 10)."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Atributo",
+            "Nombre",
+            "Para qué sirve"
+          ],
+          "rows": [
+            [
+              "FUE",
+              "Fuerza",
+              "Daño cuerpo a cuerpo, atletismo, cargar peso."
+            ],
+            [
+              "DES",
+              "Destreza",
+              "Agilidad, reflejos, sigilo, Capacidad de Esquiva."
+            ],
+            [
+              "CON",
+              "Constitución",
+              "Resistencia, aguante, PV extra."
+            ],
+            [
+              "INT",
+              "Inteligencia",
+              "Conocimiento, hechizos, investigación."
+            ],
+            [
+              "PER",
+              "Percepción",
+              "Sentidos, puntería, detectar trampas."
+            ],
+            [
+              "CAR",
+              "Carisma",
+              "Liderazgo, persuasión, presencia."
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Modificador.</strong> El modificador de una estadística es (Valor − 10). Un valor de 12 da +2, un valor de 8 da −2. Este modificador se suma a tiradas relevantes."
+        }
+      ]
+    },
+    {
+      "id": "estadisticas-derivadas",
+      "title": "3. Estadísticas Derivadas",
+      "icon": "🛡️",
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Estadística",
+            "Cómo funciona"
+          ],
+          "rows": [
+            [
+              "❤️ Puntos de Vida (PV)",
+              "Tu salud. Al llegar a 0, caes inconsciente. Se calcula: PV base de clase + Mod. Constitución."
+            ],
+            [
+              "🛡️ Escudo",
+              "Puntos temporales que absorben daño antes que tu vida. Se calcula: Escudo base de clase."
+            ],
+            [
+              "🎯 DA (Dificultad de Acierto)",
+              "Lo difícil que eres de golpear. Se calcula: 10 + Mod. Destreza. Los enemigos deben igualar ó superar tu DA para acertarte."
+            ],
+            [
+              "⚡ Energía (PE)",
+              "Recurso marcial. Comienzas con el máximo (PH de clase) y regeneras +1 por turno."
+            ],
+            [
+              "💧 Maná (PM)",
+              "Recurso mágico. Comienzas en 0 y regeneras +2 por turno."
+            ],
+            [
+              "🏃 Iniciativa",
+              "Determina el orden de turno. Se calcula: 10 + Mod. Destreza (modificada por armadura). Al empezar el combate, cada participante tira 1d20 + (Iniciativa − 10) y se actúa de mayor a menor."
+            ],
+            [
+              "👟 Velocidad",
+              "Distancia que puedes recorrer por turno (en pies). Depende de tu raza."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tu-turno-de-combate",
+      "title": "4. Tu Turno de Combate",
+      "icon": "⏱️",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Cada turno dispones de los siguientes recursos de acción:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Recurso",
+            "Descripción"
+          ],
+          "rows": [
+            [
+              "🟢🟢🟢 Puntos de Acción",
+              "Tienes 3 por turno. Cada acción cuesta uno o más 🟢. Puedes moverte, atacar, usar habilidades, interactuar con objetos, etc."
+            ],
+            [
+              "🔶 Reacción",
+              "Tienes 1 reacción fuera de tu turno. Se recupera al inicio de tu turno. Sirve para contraataques, bloqueos y habilidades reactivas."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Ejemplos de acciones y su coste:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Acción",
+            "Coste"
+          ],
+          "rows": [
+            [
+              "Moverse",
+              "🟢"
+            ],
+            [
+              "Atacar (cuerpo a cuerpo / distancia)",
+              "🟢"
+            ],
+            [
+              "Usar una habilidad",
+              "🟢 a 🟢🟢🟢 (varía)"
+            ],
+            [
+              "Interactuar con un objeto",
+              "🟢"
+            ],
+            [
+              "Levantarse si estás derribado",
+              "🟢"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "como-atacar",
+      "title": "5. Cómo Atacar",
+      "icon": "🎯",
+      "content": [
+        {
+          "type": "ordered-list",
+          "items": [
+            "<strong>Tirada de Acierto</strong>: Tira 1d20 + modificador del arma (FUE, DES, INT o PER según el arma).<br><br>• Si igualas o superas el DA del enemigo → aciertas.<br>• Si sacas 20 natural → crítico automático.",
+            "<strong>Tirada de Daño</strong>: Si aciertas, tiras tu dado de daño del arma:<br><br>• Desarmado → 1d4<br>• Arma ligera (daga, etc.) → 1d6<br>• Arma intermedia (arco, espada, etc.) → 1d8<br>• Arma pesada (mandoble, etc.) → 1d10<br><br>En crítico, subes un nivel de dado (ej: 1d8 → 1d10).",
+            "<strong>Umbral de Daño</strong>: El resultado de tu tirada de daño determina cuántos puntos de daño infliges:<br><br>• 4+ → 1 punto de daño<br>• 8+ → 2 puntos de daño<br>• 12+ → 3 puntos de daño"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Escudo primero.</strong> El daño reduce primero el Escudo 🛡️ del objetivo. Cuando el escudo llega a 0, el daño restante se aplica a los PV ❤️."
+        },
+        {
+          "type": "note",
+          "text": "<strong>Ataque de oportunidad.</strong> Es un ataque completo que se realiza fuera del turno. Normalmente se dispara cuando un enemigo sale de tu zona de amenaza (tu alcance cuerpo a cuerpo), aunque algunas habilidades lo disparan con otras condiciones. No es una acción genérica: solo puede usarlo quien tenga una pasiva o habilidad que lo permita."
+        }
+      ]
+    },
+    {
+      "id": "recursos-de-habilidad-ph",
+      "title": "6. Recursos de Habilidad (PH)",
+      "icon": "⚡",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Cada clase usa uno de estos dos recursos para activar sus habilidades:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Recurso",
+            "Clases",
+            "Regeneración"
+          ],
+          "rows": [
+            [
+              "⚡ Energía (PE)",
+              "Clases marciales (Escaramuzador, Luchador, Protector…)",
+              "Comienzas con el máximo. Regeneras +1 al inicio de cada turno."
+            ],
+            [
+              "💧 Maná (PM)",
+              "Clases mágicas (Controlador, Invocador…)",
+              "Comienzas en 0. Regeneras +2 al inicio de cada turno."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Las habilidades tienen un coste de recurso (ej: ⚡⚡) y un coste de acción (ej: 🟢🟢). Debes pagar ambos para usar la habilidad."
+        },
+        {
+          "type": "note",
+          "text": "<strong>Habilidad Definitiva.</strong> Marcada con 🚫⚡ o 🚫💧, la HAD cuesta todos los ⚡/💧 que tengas (mínimo 1) y normalmente 3 acciones (🟢🟢🟢). Suele ser \"1 Vez por Día\" o \"1 Vez por Combate\"."
+        }
+      ]
+    },
+    {
+      "id": "tipos-de-habilidades",
+      "title": "7. Tipos de Habilidades",
+      "icon": "✨",
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Tipo",
+            "Descripción"
+          ],
+          "rows": [
+            [
+              "HAP (Habilidad Activa Principal)",
+              "Habilidades ligadas a tu arma principal. Puedes tener hasta 4 (HAP1-HAP4). Si tu arma es a dos manos, tienes acceso a las 4."
+            ],
+            [
+              "HAS (Habilidad Activa Secundaria)",
+              "Habilidades ligadas a tu arma secundaria (solo si usas una mano). Puedes tener hasta 2 (HAS1-HAS2)."
+            ],
+            [
+              "HB (Habilidad Base)",
+              "Habilidades fuera de combate que vienen con tu clase. Suelen ser de exploración o sociales."
+            ],
+            [
+              "HAD (Habilidad Definitiva)",
+              "Tu habilidad más poderosa. Limitada a 1 Vez por Día o 1 Vez por Combate. Cuesta todos tus recursos disponibles (⚡/💧)."
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Habilidades mejoradas.</strong> Al subir de nivel, tus habilidades pueden mejorar: costar menos recursos, hacer más daño o tener efectos adicionales."
+        }
+      ]
+    },
+    {
+      "id": "defensa-y-armadura",
+      "title": "8. Defensa y Armadura",
+      "icon": "🧿",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Tu defensa se compone de:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Armadura",
+            "Descripción"
+          ],
+          "rows": [
+            [
+              "DA (Dificultad de Acierto)",
+              "10 + Mod. Destreza. Los atacantes deben igualar ó superar este valor con su tirada de acierto."
+            ],
+            [
+              "Escudo 🛡️",
+              "Puntos temporales que absorben daño. Cuando el escudo se agota, el daño pasa a los PV."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Tipos de armadura:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Armadura",
+            "Escudo",
+            "Iniciativa"
+          ],
+          "rows": [
+            [
+              "Armadura Ligera",
+              "🛡️",
+              "Sin penalización a iniciativa."
+            ],
+            [
+              "Armadura Media",
+              "🛡️🛡️",
+              "−3 a Iniciativa."
+            ],
+            [
+              "Armadura Pesada",
+              "🛡️🛡️🛡️",
+              "−6 a Iniciativa."
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Sobreescudo.</strong> El sobreescudo es lo que se obtiene al tener escudo por encima del límite de escudo máximo. Este puede llegar a cualquier cantidad pero desaparece al comenzar el turno."
+        }
+      ]
+    },
+    {
+      "id": "tiradas-de-salvacion",
+      "title": "9. Tiradas de Salvación",
+      "icon": "🎲",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Cuando recibes un efecto adverso, el DM puede pedirte una tirada de salvación. Tiras 1d20 + el modificador relevante y debes igualar o superar la CD (Clase de Dificultad) del efecto."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Salvación",
+            "Resiste"
+          ],
+          "rows": [
+            [
+              "Fortaleza (CON)",
+              "Resiste venenos, enfermedades, efectos físicos."
+            ],
+            [
+              "Agilidad (DES)",
+              "Esquiva explosiones, trampas, efectos de área."
+            ],
+            [
+              "Voluntad (INT)",
+              "Resiste control mental, miedo, ilusiones."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "condiciones",
+      "title": "10. Condiciones",
+      "icon": "⚠️",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Las condiciones son estados alterados que afectan a los personajes. Se clasifican por tipo y duración."
+        },
+        {
+          "type": "subheading",
+          "text": "Tipos de condición"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Tipo",
+            "Efecto",
+            "Condiciones"
+          ],
+          "rows": [
+            [
+              "Restricción",
+              "Limitan tu movimiento o acciones.",
+              "Derribado, Inmóvil, Incapacitar, Miedo, Mudez, Provocar, Confusión."
+            ],
+            [
+              "Debilitación",
+              "Reducen tus capacidades.",
+              "Desprevenido, Parálisis, Entumecido, Aturdido, Cegar, Frágil, Ralentizado, Debilidad."
+            ],
+            [
+              "Potenciación",
+              "Te otorgan ventajas.",
+              "Montar, Invisibilidad, Impulso, Égida, Invulnerable, Vigorizado, Acelerado, Coraje."
+            ],
+            [
+              "Dañinas",
+              "Causan daño continuo.",
+              "Envenenamiento, Quemadura."
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Duración de las condiciones"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Duración",
+            "Descripción"
+          ],
+          "rows": [
+            [
+              "Momentánea",
+              "Efecto instantáneo que se resuelve al aplicarse."
+            ],
+            [
+              "Temporal",
+              "Dura un número de turnos (1-3). Se reduce 1 por turno al inicio de tu turno."
+            ],
+            [
+              "Persistente",
+              "Permanece hasta que se cumpla su condición de salida (salvación, acción, etc.)."
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Salvaciones de condición"
+        },
+        {
+          "type": "paragraph",
+          "text": "Muchas condiciones requieren una tirada de salvación al ser aplicadas. Tiras 1d20 + tu modificador de salvación y comparas con la CD del atacante."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Salvación",
+            "Resiste"
+          ],
+          "rows": [
+            [
+              "Fortaleza (CON)",
+              "Resiste efectos físicos: inmovilización, mudez, venenos."
+            ],
+            [
+              "Agilidad (DES)",
+              "Esquiva efectos de área, explosiones, trampas."
+            ],
+            [
+              "Voluntad (INT)",
+              "Resiste control mental, miedo, provocaciones, confusión."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "• Si la igualas o superas: la condición no se aplica.<br>• Si fallas: la condición se aplica (temporal: indicando turnos; persistente: hasta superar la salvación al inicio de un turno posterior)."
+        },
+        {
+          "type": "subheading",
+          "text": "Notación \"Condición X\""
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando una habilidad indica \"Condición X\" (ej: \"Inmóvil 2\"), significa que aplica la condición X con la duración y salvación indicadas en su definición. El número indica los turnos si es temporal."
+        },
+        {
+          "type": "note",
+          "text": "<strong>Consulta el Compendium.</strong> Puedes ver las 27 condiciones con sus descripciones completas, duración, salvación y condición de salida en la guía \"Condiciones\" del Compendium."
+        }
+      ]
+    },
+    {
+      "id": "descansos",
+      "title": "11. Descansos",
+      "icon": "🛏️",
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Descanso",
+            "Efecto"
+          ],
+          "rows": [
+            [
+              "Descanso Corto",
+              "~1 hora de reposo.<br>• Recuperas la mitad de PV (redondeando hacia abajo) y todo tu escudo.<br>• Algunas habilidades HB se recargan."
+            ],
+            [
+              "Descanso Largo",
+              "~8 horas de sueño.<br>• Recuperas todos tus PV y escudo.<br>• Todas las habilidades se recargan.<br>• Las habilidades \"1 Vez por Día\" se recargan."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ventaja-y-desventaja",
+      "title": "12. Ventaja y Desventaja",
+      "icon": "🔀",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Algunas situaciones te dan ventaja o desventaja en tus tiradas:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Situación",
+            "Efecto"
+          ],
+          "rows": [
+            [
+              "Ventaja",
+              "Tiras 2d20 y te quedas con el resultado más ALTO."
+            ],
+            [
+              "Desventaja",
+              "Tiras 2d20 y te quedas con el resultado más BAJO."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Si tienes ventaja y desventaja a la vez, se cancelan mutuamente y tiras 1d20 normal."
+        }
+      ]
+    },
+    {
+      "id": "clases-y-subclases",
+      "title": "13. Clases y Subclases",
+      "icon": "👥",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Cada clase tiene un rol, una pasiva, habilidades base (HB) y subclases definidas por el arma:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Clase",
+            "Rol",
+            "Recurso"
+          ],
+          "rows": [
+            [
+              "Escaramuzador",
+              "Daño rápido y movilidad. Inicia o remata combates.",
+              "⚡ Energía"
+            ],
+            [
+              "Controlador",
+              "Daño constante y control del campo.",
+              "💧 Maná"
+            ],
+            [
+              "Luchador",
+              "Fuerte en solitario, autosuficiente.",
+              "⚡ Energía"
+            ],
+            [
+              "Protector",
+              "Tanque, protege aliados.",
+              "⚡ Energía"
+            ],
+            [
+              "Invocador",
+              "Invoca criaturas aliadas.",
+              "💧 Maná"
+            ],
+            [
+              "Artillero",
+              "Daño a distancia especializado.",
+              "⚡ Energía"
+            ],
+            [
+              "Velador",
+              "Sanador y apoyo.",
+              "💧 Maná"
+            ],
+            [
+              "Exaltador",
+              "Bufos positivos al grupo.",
+              "💧 Maná"
+            ],
+            [
+              "Místico",
+              "Debufos negativos a los enemigos.",
+              "💧 Maná"
+            ],
+            [
+              "Apotecario",
+              "Preparación de viales, bufos y debufos adaptativos.",
+              "⚡ Energía"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Explora las clases.</strong> Puedes consultar todas las clases con sus subclases y habilidades completas en la guía \"Clases y Subclases\" del Compendium."
+        }
+      ]
+    },
+    {
+      "id": "razas",
+      "title": "14. Razas",
+      "icon": "🌍",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Cada raza otorga una pasiva única, un bono de +1 a una estadística, un −1 a otra, y características especiales como velocidad y tamaño."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Raza",
+            "Rasgos",
+            "Movimiento y tamaño"
+          ],
+          "rows": [
+            [
+              "Humano",
+              "Los críticos inspiran: ventaja en la siguiente tirada.",
+              "30 pies, mediano"
+            ],
+            [
+              "Elfo",
+              "Visión en la oscuridad. +1 INT, −1 FUE.",
+              "30 pies, mediano"
+            ],
+            [
+              "Enano",
+              "Resistente al fuego, digiere minerales. +1 CON, −1 DES.",
+              "25 pies, mediano"
+            ],
+            [
+              "Aasimar",
+              "Resplandece, resistente a la luz. +1 CAR, −1 PER.",
+              "30 pies, mediano"
+            ],
+            [
+              "Orco",
+              "Si llega a 0 PV, recupera ❤️ (1/día). +1 FUE, −1 CAR.",
+              "35 pies, grande"
+            ],
+            [
+              "Mediano",
+              "Ve convergencias mágicas. +1 INT, −1 CON.",
+              "25 pies, pequeño"
+            ],
+            [
+              "Lagarliz",
+              "Se adapta al entorno, resistente al veneno. +1 PER, −1 FUE.",
+              "30 pies, mediano"
+            ],
+            [
+              "Bestani",
+              "Huele sangre, puede correr a 4 patas. +1 PER, −1 INT.",
+              "30 pies, mediano"
+            ],
+            [
+              "Omnimek",
+              "No necesita comer ni respirar. +1 CON, −1 CAR.",
+              "30 pies, mediano"
+            ],
+            [
+              "Lazuri",
+              "Respira bajo el agua, sin penalización acuática. +1 PER, −1 CON.",
+              "30 pies, mediano"
+            ],
+            [
+              "Myridian",
+              "Tu último ❤️ debe ser perdido individualmente. +1 CON, −1 CAR.",
+              "25 pies, pequeño"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accesorios",
+      "title": "15. Accesorios",
+      "icon": "💎",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Puedes equipar hasta 2 accesorios a la vez. No puedes repetir el mismo accesorio en ambos slots. Solo pueden cambiarse fuera de combate."
+        },
+        {
+          "type": "paragraph",
+          "text": "Los accesorios añaden pequeños bonos o efectos tácticos, pero tu clase y habilidades siempre son lo que define a tu personaje."
+        },
+        {
+          "type": "paragraph",
+          "text": "Hay 4 niveles de rareza:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Rareza",
+            "Efectos",
+            "Dónde se consigue"
+          ],
+          "rows": [
+            [
+              "🟢 Común",
+              "Bonos simples (+1 a tiradas). Fáciles de conseguir.",
+              "Tiendas, campamentos, mercaderes."
+            ],
+            [
+              "🔵 Raro",
+              "Resistencias elementales o bonos a estadísticas principales.",
+              "Misiones, jefes menores, recompensas."
+            ],
+            [
+              "🟣 Épico",
+              "Efectos potentes, normalmente limitados a 1 vez por turno o combate.",
+              "Mazmorras, arcos narrativos importantes."
+            ],
+            [
+              "🟡 Legendario",
+              "Efectos únicos que cambian la dinámica del combate. Muy escasos.",
+              "Decisión directa del Director de Juego."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Cada accesorio tiene un precio. Puedes comprarlo con tu dinero o recibirlo gratis si el Director de Juego lo otorga como recompensa."
+        },
+        {
+          "type": "note",
+          "text": "<strong>Solo 2 slots.</strong> Cada elección cuenta. Prueba combinaciones, pero ten en cuenta que los accesorios complementan tu build, no la definen."
+        }
+      ]
+    },
+    {
+      "id": "progresion-y-multiclaseo",
+      "title": "16. Progresión y Multiclaseo",
+      "icon": "📈",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Cada vez que subes de nivel, obtienes mejoras que dependen de la clase en la que estés progresando. Puedes elegir entre especializarte en una sola clase o multiclasear para aprender de varias."
+        },
+        {
+          "type": "subheading",
+          "text": "Especialización"
+        },
+        {
+          "type": "paragraph",
+          "text": "<em>El dominio total de una única clase.</em>"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando subes niveles siempre en la misma clase:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<strong>Habilidades:</strong> Las habilidades, pasivas y hechizos de tu clase mejoran progresivamente (menor coste, más daño, mayor duración, nuevos efectos…).",
+            "<strong>Recursos:</strong> Aumentas tu reserva máxima de ⚡ o 💧 en +1 cada dos niveles.",
+            "<strong>Pasiva de Maestría:</strong> Al alcanzar el nivel 12, desbloqueas una Pasiva de Maestría exclusiva de tu clase."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Tabla de Progresión (Especialización)"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Nivel",
+            "Mejora",
+            "Recurso"
+          ],
+          "rows": [
+            [
+              "1",
+              "+1 Estadística Principal",
+              ""
+            ],
+            [
+              "2",
+              "Mejora HAP1",
+              "+1 Recurso"
+            ],
+            [
+              "3",
+              "+2 Estadística Secundaria",
+              ""
+            ],
+            [
+              "4",
+              "Mejora HAP2",
+              "+1 Recurso"
+            ],
+            [
+              "5",
+              "+1 Estadística Principal",
+              ""
+            ],
+            [
+              "6",
+              "Mejora HAP3",
+              "+1 Recurso"
+            ],
+            [
+              "7",
+              "+2 Estadística Secundaria",
+              ""
+            ],
+            [
+              "8",
+              "Mejora de la Reacción",
+              "+1 Recurso"
+            ],
+            [
+              "9",
+              "+1 Estadística Principal",
+              ""
+            ],
+            [
+              "10",
+              "Mejora de la Definitiva",
+              "+1 Recurso"
+            ],
+            [
+              "11",
+              "+2 Estadística Secundaria",
+              ""
+            ],
+            [
+              "12",
+              "Nueva Pasiva de Maestría",
+              "+1 Recurso"
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Multiclaseo"
+        },
+        {
+          "type": "paragraph",
+          "text": "<em>Versatilidad y experimentación con distintas disciplinas.</em>"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando eliges subir de nivel en una clase distinta:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<strong>Subclases:</strong> Puedes usar las subclases de todas tus clases. La pasiva y las habilidades base son las de la clase de la subclase activa.",
+            "<strong>Estadísticas:</strong> Ganas las estadísticas asociadas a esa clase al subir niveles.",
+            "<strong>Mejoras por clase:</strong> Cada clase mejora sus habilidades según tu nivel en ella, con la tabla de especialización: nivel 2 mejora la HAP1, nivel 4 la HAP2, nivel 6 la HAP3/HAS1, nivel 8 la reacción y nivel 10 la definitiva.",
+            "<strong>Sin maestría:</strong> La Pasiva de Maestría solo se obtiene especializándote hasta el nivel 12."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Reglas de recursos"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<strong>Mismo recurso:</strong> Si multiclaseas entre clases que usan el mismo tipo de recurso (⚡ o 💧), tu reserva se mantiene y sigue aumentando normalmente.",
+            "<strong>Recurso distinto:</strong> La primera vez que multiclaseas a una clase con el otro tipo de recurso, ambos recursos se reducen a la mitad (redondeando hacia arriba). Este ajuste solo ocurre una vez."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Tabla de Progresión (Multiclaseo)"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Nivel",
+            "Mejora",
+            "Recurso"
+          ],
+          "rows": [
+            [
+              "1",
+              "+1 Estadística Principal",
+              ""
+            ],
+            [
+              "2",
+              "",
+              "+1 Recurso"
+            ],
+            [
+              "3",
+              "+2 Estadística Secundaria",
+              ""
+            ],
+            [
+              "4",
+              "",
+              "+1 Recurso"
+            ],
+            [
+              "5",
+              "+1 Estadística Principal",
+              ""
+            ],
+            [
+              "6",
+              "",
+              "+1 Recurso"
+            ],
+            [
+              "7",
+              "+2 Estadística Secundaria",
+              ""
+            ],
+            [
+              "8",
+              "",
+              "+1 Recurso"
+            ],
+            [
+              "9",
+              "+1 Estadística Principal",
+              ""
+            ],
+            [
+              "10",
+              "",
+              "+1 Recurso"
+            ],
+            [
+              "11",
+              "+2 Estadística Secundaria",
+              ""
+            ],
+            [
+              "12",
+              "",
+              "+1 Recurso"
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Diferencias entre caminos"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Aspecto",
+            "Especialización",
+            "Multiclaseo"
+          ],
+          "rows": [
+            [
+              "Mejora de habilidades",
+              "✔",
+              "✔"
+            ],
+            [
+              "Subclases de varias clases",
+              "—",
+              "✔"
+            ],
+            [
+              "Pasiva final (nivel 12)",
+              "✔",
+              "—"
+            ],
+            [
+              "Estadísticas por nivel",
+              "✔",
+              "✔"
+            ],
+            [
+              "Aumento de recursos (⚡/💧)",
+              "✔",
+              "✔"
+            ],
+            [
+              "División de recursos",
+              "—",
+              "✔"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>En resumen.</strong> Especializarte te convierte en un maestro de tu clase: tus habilidades crecen contigo y alcanzas su máximo potencial. Multiclasear te permite experimentar y adaptarte, combinando estilos y tácticas, pero sin alcanzar la maestría completa.<br><br>Ambos caminos son válidos: el primero premia la profundidad, el segundo la flexibilidad."
+        }
+      ]
+    },
+    {
+      "id": "referencia-rapida",
+      "title": "17. Referencia Rápida",
+      "icon": "📋",
+      "content": [
+        {
+          "type": "subheading",
+          "text": "Umbrales de daño"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concepto",
+            "Valor"
+          ],
+          "rows": [
+            [
+              "4+",
+              "1 punto de daño"
+            ],
+            [
+              "8+",
+              "2 puntos de daño"
+            ],
+            [
+              "12+",
+              "3 puntos de daño"
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Dados de arma"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concepto",
+            "Valor"
+          ],
+          "rows": [
+            [
+              "Desarmado",
+              "1d4"
+            ],
+            [
+              "Arma ligera",
+              "1d6"
+            ],
+            [
+              "Arma intermedia",
+              "1d8"
+            ],
+            [
+              "Arma pesada",
+              "1d10"
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Recursos por turno"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concepto",
+            "Valor"
+          ],
+          "rows": [
+            [
+              "Acciones",
+              "🟢🟢🟢 (3)"
+            ],
+            [
+              "Reacción",
+              "🔶 (1)"
+            ],
+            [
+              "Energía (regen)",
+              "+1 ⚡/turno"
+            ],
+            [
+              "Maná (regen)",
+              "+2 💧/turno"
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Dificultades (CD)"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concepto",
+            "Valor"
+          ],
+          "rows": [
+            [
+              "Muy Fácil",
+              "CD 5"
+            ],
+            [
+              "Fácil",
+              "CD 8"
+            ],
+            [
+              "Normal",
+              "CD 10"
+            ],
+            [
+              "Difícil",
+              "CD 13"
+            ],
+            [
+              "Muy Difícil",
+              "CD 15"
+            ],
+            [
+              "Casi Imposible",
+              "CD 18"
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Salvaciones"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concepto",
+            "Valor"
+          ],
+          "rows": [
+            [
+              "Fortaleza",
+              "1d20 + Mod. CON"
+            ],
+            [
+              "Agilidad",
+              "1d20 + Mod. DES"
+            ],
+            [
+              "Voluntad",
+              "1d20 + Mod. INT"
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Descansos"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concepto",
+            "Valor"
+          ],
+          "rows": [
+            [
+              "Corto (~1h)",
+              "½ PV + todo escudo"
+            ],
+            [
+              "Largo (~8h)",
+              "Todo PV + escudo + habilidades"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "manual-del-master": [
+    {
+      "id": "el-rol-del-dungeon-master",
+      "title": "1. El Rol del Dungeon Master",
+      "icon": "🎭",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "El Dungeon Master (DM) es el narrador y árbitro del juego. Tu trabajo es:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Narrar la historia y describir el mundo.",
+            "Controlar a los NPCs (personajes no jugadores) y enemigos.",
+            "Arbitrar las reglas y resolver conflictos.",
+            "Diseñar encuentros, mazmorras y aventuras.",
+            "Reaccionar a las decisiones de los jugadores e improvisar."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Regla de oro.</strong> El objetivo del DM no es ganar contra los jugadores, sino crear una experiencia divertida y memorables para todos. Las reglas son una guía, no una prisión y si una regla hace que el juego deje de ser divertido para la mesa, obvia la regla."
+        }
+      ]
+    },
+    {
+      "id": "estructura-de-una-sesion",
+      "title": "2. Estructura de una Sesión",
+      "icon": "🗓️",
+      "content": [
+        {
+          "type": "ordered-list",
+          "items": [
+            "<strong>Resumen</strong>: Recuerda brevemente lo que pasó en la sesión anterior. Deja que los jugadores añadan lo que recuerden.",
+            "<strong>Exploración</strong>: Los jugadores interactúan con el mundo: hablan con NPCs, investigan, viajan. Aquí usas tiradas de habilidad para resolver situaciones.",
+            "<strong>Combate</strong>: Cuando la acción lo requiere, entras en modo combate con turnos, iniciativa y acciones tácticas.",
+            "<strong>Desenlace</strong>: Tras el combate o evento principal, da espacio para roleplay, recompensas y preparación para la siguiente sesión."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cuando-y-como-pedir-tiradas",
+      "title": "3. Cuándo y Cómo Pedir Tiradas",
+      "icon": "🎲",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Pide una tirada cuando el resultado es incierto y las consecuencias importan. No pidas tiradas para acciones triviales."
+        },
+        {
+          "type": "subheading",
+          "text": "Tiradas de Habilidad"
+        },
+        {
+          "type": "paragraph",
+          "text": "El jugador tira 1d20 + modificador relevante contra una CD (Clase de Dificultad) que tú decides:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Dificultad",
+            "CD"
+          ],
+          "rows": [
+            [
+              "Muy Fácil",
+              "5"
+            ],
+            [
+              "Fácil",
+              "8"
+            ],
+            [
+              "Normal",
+              "10"
+            ],
+            [
+              "Difícil",
+              "13"
+            ],
+            [
+              "Muy Difícil",
+              "15"
+            ],
+            [
+              "Casi Imposible",
+              "18"
+            ],
+            [
+              "Imposible",
+              "20+"
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Tiradas de Salvación"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando un efecto fuerza al personaje a resistirlo. El jugador tira 1d20 + modificador contra la CD del efecto."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Salvación",
+            "Resiste"
+          ],
+          "rows": [
+            [
+              "Fortaleza (CON)",
+              "Venenos, enfermedades, efectos físicos."
+            ],
+            [
+              "Agilidad (DES)",
+              "Trampas, explosiones, efectos de área."
+            ],
+            [
+              "Voluntad (INT)",
+              "Control mental, miedo, ilusiones."
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Grados de éxito.</strong> Si un jugador falla por poco (1-2), puedes dar un éxito parcial. Si supera la CD por 5+, dale un éxito excepcional con beneficios extra."
+        }
+      ]
+    },
+    {
+      "id": "dirigir-el-combate",
+      "title": "4. Dirigir el Combate",
+      "icon": "⚔️",
+      "content": [
+        {
+          "type": "subheading",
+          "text": "Inicio del combate"
+        },
+        {
+          "type": "ordered-list",
+          "items": [
+            "<strong>Iniciativa</strong>: Todos los participantes (jugadores y enemigos) tiran iniciativa: 1d20 + Mod. Destreza (menos penalización por armadura). El orden va de mayor a menor.",
+            "<strong>Posicionamiento</strong>: Coloca a los enemigos y deja que los jugadores se posicionen en caso de que no estén ya a melée. Describe el escenario y las distancias."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Flujo del turno"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cada participante, en orden de iniciativa, tiene:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Recurso",
+            "Descripción"
+          ],
+          "rows": [
+            [
+              "🟢🟢🟢 Puntos de Acción",
+              "Moverse, atacar, usar habilidades, interactuar…"
+            ],
+            [
+              "🔶 Reacción",
+              "Fuera de turno: contraataques, bloqueos, habilidades reactivas."
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Resolver un ataque"
+        },
+        {
+          "type": "ordered-list",
+          "items": [
+            "<strong>Tirada de acierto</strong>: Atacante tira 1d20 + mod. del arma. Si iguala o supera el DA del defensor → acierta. 20 natural → crítico.",
+            "<strong>Tirada de daño</strong>: Dado del arma: d4 (desarmado/ligera), d6 (ligera), d8 (intermedia), d10 (pesada). En crítico sube un dado.",
+            "<strong>Umbral de daño</strong>: 4+ = 1 daño, 8+ = 2 daño, 12+ = 3 daño. El daño reduce primero escudo, luego PV."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Consejo de combate.</strong> Intenta que los combates duren entre 3-6 rondas. Si se alargan demasiado, ajusta la vida de los enemigos sobre la marcha. Si son demasiado fáciles, añade refuerzos."
+        }
+      ]
+    },
+    {
+      "id": "condiciones-en-combate",
+      "title": "5. Condiciones en Combate",
+      "icon": "⚠️",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Las condiciones son estados alterados que afectan a los participantes del combate. Como DM, debes gestionar las condiciones de los enemigos."
+        },
+        {
+          "type": "subheading",
+          "text": "Tipos de duración"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Momentánea: efecto instantáneo al aplicarse (ej: Derribado). No requiere seguimiento.",
+            "Temporal: dura 1-3 turnos. Al inicio del turno del afectado, se reduce 1. Al llegar a 0, desaparece.",
+            "Persistente: permanece hasta que se cumpla su condición de salida (normalmente una salvación al inicio del turno)."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Tiradas de salvación"
+        },
+        {
+          "type": "paragraph",
+          "text": "Al aplicar una condición con salvación, el objetivo tira 1d20 + su modificador de salvación y debe igualar o superar la CD del atacante."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Salvación",
+            "Resiste"
+          ],
+          "rows": [
+            [
+              "Fortaleza (CON)",
+              "Resiste efectos físicos: inmovilización, mudez, venenos."
+            ],
+            [
+              "Agilidad (DES)",
+              "Esquiva explosiones, trampas, efectos de área."
+            ],
+            [
+              "Voluntad (INT)",
+              "Resiste control mental, miedo, provocación, confusión."
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Gestión de condiciones de enemigos"
+        },
+        {
+          "type": "paragraph",
+          "text": "La herramienta de Campañas automatiza las condiciones de los enemigos:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Al aplicar una condición con salvación a un enemigo, la app tira automáticamente 1d20 + el modificador del enemigo. Tú decides si supera o no la CD.",
+            "Las condiciones temporales se descuentan automáticamente al pasar turno.",
+            "Las condiciones persistentes con salvación se tiran automáticamente al inicio del turno del enemigo. Puedes marcar cada una como \"Superada\" o \"Fallida\".",
+            "Los jugadores gestionan sus propias condiciones desde su ficha de personaje."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "CD de las condiciones"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando un jugador aplica una condición a un enemigo, la CD la indica cada habilidad. No hay una fórmula general:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Algunas habilidades tienen una CD fija (por ejemplo, CD 13).",
+            "Otras la calculan con un atributo o atributo secundario (por ejemplo, 10 + Conocimiento)."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Consejo.</strong> No sobrecargues a los enemigos con condiciones. 2-3 condiciones simultáneas ya son mucho. Si un enemigo tiene demasiadas, el combate pierde dinamismo."
+        }
+      ]
+    },
+    {
+      "id": "disenar-encuentros",
+      "title": "6. Diseñar Encuentros",
+      "icon": "🗺️",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Un buen encuentro tiene variedad y no solo consiste en \"matar enemigos\". Considera:"
+        },
+        {
+          "type": "subheading",
+          "text": "Composición del grupo enemigo"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Mezcla tiers: un mini-jefe con varios minions es más interesante que 5 enemigos iguales.",
+            "Roles enemigos: incluye luchadores, tiradores, disruptores y hechiceros para crear dinámicas.",
+            "Diferencia los enemigos: cada tipo tiene sus propias habilidades, pasivas y armas."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Tiers de enemigos"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Tier",
+            "Descripción"
+          ],
+          "rows": [
+            [
+              "Minion",
+              "Débiles, mueren fácil. Buenos en grupo para abrumar."
+            ],
+            [
+              "Normal",
+              "El estándar. Estadísticas equilibradas."
+            ],
+            [
+              "Mini Boss",
+              "Potentes. Habilidades peligrosas. Necesitan estrategia."
+            ],
+            [
+              "Boss",
+              "Amenaza máxima. Múltiples habilidades, mucha vida."
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Dificultad orientativa"
+        },
+        {
+          "type": "paragraph",
+          "text": "Para un grupo de 4 jugadores:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Dificultad",
+            "Composición"
+          ],
+          "rows": [
+            [
+              "Fácil",
+              "4-6 Minions o 2-3 Normales."
+            ],
+            [
+              "Normal",
+              "3-4 Normales o 1 Mini Boss + 2 Minions."
+            ],
+            [
+              "Difícil",
+              "1 Mini Boss + 2-3 Normales o 2 Mini Bosses."
+            ],
+            [
+              "Letal",
+              "1 Boss + Minions de apoyo, o 2 Mini Bosses + Normales."
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "El entorno importa"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Terreno difícil: cuesta moverse el doble",
+            "Cobertura: da ventaja o desventaja según la situación.",
+            "Altura y caídas: ventaja al atacar desde arriba y 1d4 de daño por cada 10 pies de caída.",
+            "Peligros ambientales: fuego, ácido, trampas que dañen a ambos bandos."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "manejar-enemigos",
+      "title": "7. Manejar Enemigos",
+      "icon": "🧪",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Cada enemigo tiene:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Estadística",
+            "Descripción"
+          ],
+          "rows": [
+            [
+              "Estadísticas",
+              "FUE, DES, INT, PER, CON, CAR — funcionan igual que las de los jugadores."
+            ],
+            [
+              "PV y Escudo",
+              "Vida y escudo del enemigo. Según su tier, tendrá más o menos."
+            ],
+            [
+              "DA",
+              "10 + Mod. Destreza. Los jugadores deben igualar ó superar esto para acertar."
+            ],
+            [
+              "Arma",
+              "Define el dado de daño y nº de ataques. Los enemigos también atacan con 1d20 + mod."
+            ],
+            [
+              "Habilidades",
+              "Habilidades especiales que gastan recursos (🟢). Definen el peligro táctico."
+            ],
+            [
+              "Pasivas",
+              "Efectos permanentes: regeneración, auras, resistencias…"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Generador de Enemigos.</strong> Usa el Generador de Enemigos de la app para crear enemigos rápidamente. Puedes generar automáticamente, manualmente con puntos, o usar los pregenerados editables."
+        }
+      ]
+    },
+    {
+      "id": "npcs-y-roleplay",
+      "title": "8. NPCs y Roleplay",
+      "icon": "🗣️",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Los NPCs dan vida al mundo. No todos necesitan estadísticas de combate."
+        },
+        {
+          "type": "subheading",
+          "text": "Crear un NPC rápido"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Nombre y apariencia: algo memorable.",
+            "Motivación: ¿qué quiere? ¿qué le preocupa?",
+            "Personalidad: un rasgo dominante (nervioso, arrogante, amable…).",
+            "Utilidad: ¿qué ofrece a los jugadores? (información, misiones, comercio)."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Interacciones sociales"
+        },
+        {
+          "type": "paragraph",
+          "text": "Las tiradas sociales usan principalmente Carisma (CAR):"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Persuasión: convencer con lógica y encanto.",
+            "Intimidación: forzar mediante amenazas (CAR y FUE).",
+            "Engaño: mentir convincentemente.",
+            "Perspicacia (PER): detectar mentiras o intenciones ocultas."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exploracion-y-descansos",
+      "title": "9. Exploración y Descansos",
+      "icon": "🧭",
+      "content": [
+        {
+          "type": "subheading",
+          "text": "Exploración"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Pide tiradas de Percepción (PER) para detectar trampas, puertas ocultas o emboscadas.",
+            "Pide tiradas de Inteligencia (INT) para recordar conocimiento, descifrar textos o identificar objetos.",
+            "Pide tiradas de Destreza (DES) para abrir cerraduras, desactivar trampas o moverse sigilosamente."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Descansos"
+        },
+        {
+          "type": "note",
+          "text": "<strong>Descanso Corto (~1 hora).</strong> • Recuperas la mitad de PV (redondeando hacia abajo) y todo tu escudo.<br>• Se recargan habilidades HB marcadas \"1 Vez por descanso corto\"."
+        },
+        {
+          "type": "note",
+          "text": "<strong>Descanso Largo (~8 horas).</strong> • Recuperación total de PV y escudo.<br>• Se recargan todas las habilidades.<br>• Las habilidades \"1 Vez por Día\" se recargan."
+        },
+        {
+          "type": "note",
+          "text": "<strong>Controla los descansos.</strong> Controlar cuándo y dónde pueden descansar los jugadores es clave para la dificultad. Interrumpe descansos con emboscadas si abusan."
+        }
+      ]
+    },
+    {
+      "id": "recompensas-y-progresion",
+      "title": "10. Recompensas y Progresión",
+      "icon": "🏆",
+      "content": [
+        {
+          "type": "subheading",
+          "text": "Tipos de recompensa"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Oro y objetos: equipamiento, pociones, materiales.",
+            "Información: pistas para la trama, mapas, secretos.",
+            "Aliados: NPCs que se unen o ayudan en el futuro.",
+            "Mejora de habilidades: al subir de nivel, las habilidades de los jugadores mejoran."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Subida de nivel"
+        },
+        {
+          "type": "paragraph",
+          "text": "Los jugadores suben de nivel cuando tú lo consideres apropiado: tras un arco narrativo, una batalla importante, o un hito en la campaña. Al subir pueden obtener dependiendo del nivel:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "+1 a una estadística (a elección del jugador).",
+            "+2 a una subestadística (a elección del jugador).",
+            "Acceso a habilidades mejoradas de su subclase."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "usar-la-herramienta-de-campanas",
+      "title": "11. Usar la Herramienta de Campañas",
+      "icon": "📣",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "La app incluye una herramienta de Campañas que te permite gestionar combates en tiempo real:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Añade personajes de jugadores y enemigos a la campaña.",
+            "Tira iniciativa para todos con un botón.",
+            "Reordena los turnos manteniendo pulsada una tarjeta.",
+            "Controla la vida, escudo y condiciones de cada participante.",
+            "Usa el botón de ataque en enemigos para tirar su ataque automáticamente.",
+            "Consulta los detalles de cada enemigo desde la vista de combate."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Enemigos pregenerados.</strong> Puedes añadir enemigos pregenerados directamente desde la pestaña \"Enemigo\" en la campaña. Están listos para usar con todas sus estadísticas, habilidades y pasivas."
+        }
+      ]
+    },
+    {
+      "id": "accesorios-y-recompensas",
+      "title": "12. Accesorios y Recompensas",
+      "icon": "💎",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Los jugadores pueden equipar hasta 2 accesorios. No pueden repetir el mismo en ambos slots. Tú decides qué accesorios aparecen en tu campaña: si algo no encaja, no lo incluyas."
+        },
+        {
+          "type": "subheading",
+          "text": "Rarezas y cuándo entregarlas"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Tier",
+            "Descripción"
+          ],
+          "rows": [
+            [
+              "Común",
+              "Bonos simples (+1). Disponibles en tiendas desde el inicio. Precio: 8-18."
+            ],
+            [
+              "Raro",
+              "Resistencias o bonos a estadísticas. Recompensa de misiones o jefes menores. Precio: 50-70."
+            ],
+            [
+              "Épico",
+              "Efectos fuertes (limitados por turno o combate). Tras mazmorras o arcos importantes. Precio: 150-220."
+            ],
+            [
+              "Legendario",
+              "Efectos únicos. Solo por decisión narrativa directa. Precio: 450-600."
+            ]
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Cómo los obtienen"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Comprándolos en tiendas o mercaderes con su dinero.",
+            "Gratis, como recompensa: botín, regalo de un NPC, hallazgo en una mazmorra, etc."
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Balance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Los accesorios no dan acciones extra ni alteran la economía de turnos. La clase y las habilidades siempre deben ser el núcleo del personaje. Vigila los accesorios que otorgan daño para no romper la experiencia."
+        },
+        {
+          "type": "note",
+          "text": "<strong>Dosifica los accesorios.</strong> Entrégalos poco a poco. Si cada objeto aparece en un momento especial de la historia, los jugadores lo valorarán más. Los épicos y legendarios funcionan mejor como recompensas de hitos narrativos."
+        }
+      ]
+    },
+    {
+      "id": "consejos-para-el-dm",
+      "title": "13. Consejos para el DM",
+      "icon": "💡",
+      "content": [
+        {
+          "type": "list",
+          "items": [
+            "<strong>Sé flexible:</strong> Los jugadores siempre harán algo que no esperabas. Improvisa y adapta.",
+            "<strong>Di \"sí, pero…\":</strong> En lugar de negar ideas creativas, añade consecuencias o complicaciones.",
+            "<strong>Haz que las decisiones importen:</strong> Las elecciones deben tener consecuencias, buenas o malas.",
+            "<strong>Varía el ritmo:</strong> Alterna combate, exploración y roleplay para mantener el interés según las preferencias de la mesa.",
+            "<strong>Describe con los sentidos:</strong> No solo lo que ven: olores, sonidos, texturas, temperatura…",
+            "<strong>No tengas miedo de equivocarte:</strong> Si te equivocas en una regla, corrígelo después. No pares el juego.",
+            "<strong>Escucha a los jugadores:</strong> Presta atención a lo que disfrutan y adapta la campaña a ello."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "<strong>Diviértete.</strong> El DM es el guía de la aventura. Todos tenemos la misma meta: pasar una buena noche jugando."
+        }
+      ]
+    }
+  ]
+}

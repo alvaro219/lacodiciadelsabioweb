@@ -1,0 +1,121 @@
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero__art" style="background-image: url('assets/game/backgrounds/background 13.webp')"></div>
+  <div class="container">
+    <a routerLink="/" class="page-hero__back">← Volver al inicio</a>
+    <div class="page-hero__header">
+      <span class="page-hero__icon">🌍</span>
+      <div>
+        <h1 class="page-hero__title">El mundo de Magna</h1>
+        <p class="page-hero__subtitle">
+          Cinco islas, {{ world.paises.length }} países y siglos de historia. Pulsa un país del mapa para conocerlo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section class="world-map section">
+  <div class="container">
+    <div class="world-map__layout">
+      <div class="world-map__canvas">
+        <svg [attr.viewBox]="'0 0 ' + world.ancho + ' ' + world.alto" role="img" aria-label="Mapamundi de Magna">
+          <defs>
+            <radialGradient id="sea" cx="50%" cy="45%" r="75%">
+              <stop offset="0%" stop-color="#1d3450" />
+              <stop offset="100%" stop-color="#0c1526" />
+            </radialGradient>
+          </defs>
+          <rect [attr.width]="world.ancho" [attr.height]="world.alto" fill="url(#sea)" />
+          @for (c of countries; track c.id) {
+            <path
+              class="country"
+              [class.country--selected]="selectedId() === c.id"
+              [attr.d]="c.path"
+              [attr.fill]="c.color"
+              tabindex="0"
+              role="button"
+              [attr.aria-label]="c.nombre"
+              (click)="select(c.id)"
+              (keydown.enter)="select(c.id)"
+            >
+              <title>{{ c.nombre }}</title>
+            </path>
+          }
+          @for (c of countries; track c.id) {
+            <text
+              class="country-label"
+              [class.country-label--selected]="selectedId() === c.id"
+              [attr.x]="c.etiqueta[0]"
+              [attr.y]="c.etiqueta[1]"
+              text-anchor="middle"
+            >
+              {{ c.nombre }}
+            </text>
+          }
+        </svg>
+      </div>
+
+      <aside class="country-panel">
+        @if (selected(); as c) {
+          <span class="country-panel__island" [style.color]="c.color">{{ c.isla }}</span>
+          <h2>{{ c.nombre }}</h2>
+          <p>{{ c.descripcion }}</p>
+          @if (selectedLore().length) {
+            <h3>Relatos de {{ c.nombre }}</h3>
+            @for (e of selectedLore(); track e.id) {
+              <button class="country-panel__lore" (click)="read(e)">📜 {{ e.titulo }}</button>
+            }
+          }
+          <button class="country-panel__close" (click)="selectedId.set(null)">Ver todas las islas</button>
+        } @else {
+          <h2>Las islas de Magna</h2>
+          @for (island of islands; track island.nombre) {
+            <div class="island">
+              <h3 [style.color]="island.color">{{ island.nombre }}</h3>
+              <div class="island__countries">
+                @for (c of island.countries; track c.id) {
+                  <button (click)="select(c.id)" [style.--country-color]="c.color">{{ c.nombre }}</button>
+                }
+              </div>
+            </div>
+          }
+        }
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- LORE -->
+<section class="lore section">
+  <div class="container">
+    <div class="section-header">
+      <h2>El <span class="gradient-text">Lore</span> de Magna</h2>
+      <p>Relatos, trasfondo y las misteriosas Cartas del Sabio. Los mismos que encontrarás en el Compendium de la app.</p>
+    </div>
+    <div class="lore-grid">
+      @for (e of lore; track e.id) {
+        <button class="lore-card" (click)="read(e)">
+          <span class="lore-card__type">{{ e.tipo }} · {{ e.lugar }}</span>
+          <h3>{{ e.titulo }}</h3>
+          <p>{{ e.subtitulo }}</p>
+          <span class="lore-card__read">Leer →</span>
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- LECTURA -->
+@if (reading(); as e) {
+  <div class="lore-modal" (click)="closeReading()">
+    <article class="lore-modal__panel" role="dialog" aria-modal="true" [attr.aria-label]="e.titulo" (click)="$event.stopPropagation()">
+      <button class="lore-modal__close" aria-label="Cerrar" (click)="closeReading()">✕</button>
+      <span class="lore-card__type">{{ e.tipo }} · {{ e.lugar }}</span>
+      <h2>{{ e.titulo }}</h2>
+      <p class="lore-modal__subtitle">{{ e.subtitulo }}</p>
+      <div class="lore-modal__text pre-line">{{ e.contenido }}</div>
+    </article>
+  </div>
+}

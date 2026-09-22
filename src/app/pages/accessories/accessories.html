@@ -1,0 +1,71 @@
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <a routerLink="/" class="page-hero__back">← Volver al inicio</a>
+    <div class="page-hero__header">
+      <span class="page-hero__icon">💎</span>
+      <div>
+        <h1 class="page-hero__title">Accesorios</h1>
+        <p class="page-hero__subtitle">
+          Cada personaje puede llevar hasta dos accesorios distintos, que solo se cambian fuera de combate. Complementan tu build:
+          nunca la definen.
+        </p>
+      </div>
+    </div>
+    <div class="page-hero__stats">
+      <span><strong>{{ total }}</strong>accesorios</span>
+      @for (r of rarities; track r.id) {
+        <span><strong>{{ countFor(r.id) }}</strong>{{ r.label }}</span>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filters">
+      <button class="filter-chip" [class.active]="rarity() === 'todas'" (click)="rarity.set('todas')">Todas</button>
+      @for (r of rarities; track r.id) {
+        <button class="filter-chip" [style.--chip-color]="r.color" [class.active]="rarity() === r.id" (click)="rarity.set(r.id)">
+          {{ r.label }}
+        </button>
+      }
+    </div>
+    <div class="acc-search">
+      <input
+        class="search-input"
+        type="search"
+        placeholder="Buscar por nombre o efecto…"
+        aria-label="Buscar accesorio"
+        (input)="onSearch($event)"
+      />
+    </div>
+
+    @for (group of groups(); track group.id) {
+      <div class="acc-group" [style.--rarity-color]="group.color">
+        <header class="acc-group__header">
+          <h2>{{ group.label }}</h2>
+          <p>{{ group.description }}</p>
+        </header>
+        <div class="acc-grid">
+          @for (a of group.items; track a.id) {
+            <article class="acc-card">
+              <div class="acc-card__art">
+                @if (a.image) {
+                  <img [src]="a.image" [alt]="a.name" loading="lazy" width="80" height="80" />
+                }
+              </div>
+              <div class="acc-card__body">
+                <h3 class="acc-card__name">{{ a.name }}</h3>
+                <p class="acc-card__desc">{{ a.description }}</p>
+                <span class="acc-card__price">🪙 {{ a.price }}</span>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    } @empty {
+      <p class="acc-empty">No hay ningún accesorio que coincida.</p>
+    }
+  </div>
+</section>

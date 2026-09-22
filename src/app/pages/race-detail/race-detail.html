@@ -4,27 +4,41 @@
     <div class="race-hero__bg"></div>
     <div class="race-hero__content container">
       <a routerLink="/" class="race-hero__back">← Volver al inicio</a>
-      <div class="race-hero__header">
-        <span class="race-hero__icon">{{ r.icon }}</span>
+      <div class="race-hero__layout">
         <div>
-          <h1 class="race-hero__title">{{ r.name }}</h1>
-          <p class="race-hero__subtitle">{{ r.description }}</p>
-        </div>
-      </div>
+          <div class="race-hero__header">
+            <span class="race-hero__icon">{{ r.icon }}</span>
+            <div>
+              <h1 class="race-hero__title">{{ r.name }}</h1>
+              <p class="race-hero__subtitle">{{ r.description }}</p>
+            </div>
+          </div>
 
-      <div class="race-hero__stats">
-        <div class="stat-badge">
-          <span class="stat-badge__label">Tamaño base</span>
-          <span class="stat-badge__value">📏 {{ r.size }}</span>
+          <div class="race-hero__passive">
+            <span class="race-hero__passive-label">Pasiva racial · {{ r.passiveName }}</span>
+            <p>{{ r.passive }}</p>
+          </div>
+
+          <div class="race-hero__stats">
+            <div class="stat-badge">
+              <span class="stat-badge__label">Tamaño base</span>
+              <span class="stat-badge__value">📏 {{ r.size }}</span>
+            </div>
+            <div class="stat-badge">
+              <span class="stat-badge__label">Velocidad base</span>
+              <span class="stat-badge__value">👣 {{ r.speed }} pies</span>
+            </div>
+            @if (r.subraces.length > 0) {
+              <div class="stat-badge">
+                <span class="stat-badge__label">Subrazas</span>
+                <span class="stat-badge__value">🧬 {{ r.subraces.length }}</span>
+              </div>
+            }
+          </div>
         </div>
-        <div class="stat-badge">
-          <span class="stat-badge__label">Velocidad base</span>
-          <span class="stat-badge__value">👣 {{ r.speed }} pies</span>
-        </div>
-        @if (r.subraces && r.subraces.length > 0) {
-          <div class="stat-badge">
-            <span class="stat-badge__label">Subrazas</span>
-            <span class="stat-badge__value">🧬 {{ r.subraces.length }}</span>
+        @if (r.avatars.length) {
+          <div class="avatar-frame race-hero__avatar" [style.--ring-color]="r.color">
+            <img [src]="r.avatars[0]" [alt]="r.name" width="240" height="240" />
           </div>
         }
       </div>
@@ -88,6 +102,25 @@
     </section>
   }
 
+  <!-- AVATARES -->
+  @if (r.avatars.length > 1) {
+    <section class="race-avatars section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Avatares de <span class="gradient-text">{{ r.name }}</span></h2>
+          <p>Algunos de los retratos que puedes elegir para tu personaje en la app.</p>
+        </div>
+        <div class="race-avatars__grid">
+          @for (a of r.avatars; track a) {
+            <div class="avatar-frame" [style.--ring-color]="r.color">
+              <img [src]="a" alt="" loading="lazy" width="140" height="140" />
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
   <!-- OTHER RACES -->
   <section class="other-races section">
     <div class="container">
@@ -101,7 +134,13 @@
         @for (otherRace of allRaces; track otherRace.id) {
           @if (otherRace.id !== r.id) {
             <a [routerLink]="'/razas/' + otherRace.id" class="other-race-card card">
-              <span class="other-race-card__icon">{{ otherRace.icon }}</span>
+              @if (otherRace.avatars.length) {
+                <span class="avatar-frame other-race-card__avatar" [style.--ring-color]="otherRace.color">
+                  <img [src]="otherRace.avatars[0]" alt="" loading="lazy" width="64" height="64" />
+                </span>
+              } @else {
+                <span class="other-race-card__icon">{{ otherRace.icon }}</span>
+              }
               <span class="other-race-card__name">{{ otherRace.name }}</span>
             </a>
           }

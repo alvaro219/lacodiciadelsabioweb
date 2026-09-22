@@ -1,0 +1,276 @@
+// ===== MAPA =====
+.world-map__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--space-xl);
+  align-items: start;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.world-map__canvas {
+  border: 1px solid rgba(240, 192, 64, 0.25);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.country {
+  stroke: #3b2a1a;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition:
+    filter var(--transition-fast),
+    stroke var(--transition-fast);
+
+  &:hover,
+  &:focus-visible {
+    filter: brightness(1.15);
+    outline: none;
+  }
+
+  &--selected {
+    stroke: var(--color-gold);
+    stroke-width: 3;
+    filter: brightness(1.2) drop-shadow(0 0 6px rgba(240, 192, 64, 0.8));
+  }
+}
+
+.country-label {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  fill: #2b1d10;
+  paint-order: stroke;
+  stroke: rgba(255, 245, 220, 0.75);
+  stroke-width: 3px;
+  pointer-events: none;
+
+  &--selected {
+    font-size: 16px;
+    fill: #1a1006;
+  }
+
+  // En pantallas pequeñas solo se lee el nombre del país elegido.
+  @media (max-width: 600px) {
+    display: none;
+
+    &--selected {
+      display: inline;
+      font-size: 26px;
+    }
+  }
+}
+
+.country-panel {
+  padding: var(--space-xl);
+  background: var(--color-bg-card);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: var(--radius-xl);
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    margin: var(--space-lg) 0 var(--space-sm);
+  }
+
+  p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+  }
+
+  &__island {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__lore,
+  &__close {
+    display: block;
+    width: 100%;
+    margin-top: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-align: left;
+    color: var(--color-text-primary);
+    background: var(--color-bg-medium);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--color-gold);
+    }
+  }
+
+  &__close {
+    margin-top: var(--space-lg);
+    text-align: center;
+    color: var(--color-text-secondary);
+  }
+}
+
+.island {
+  margin-top: var(--space-md);
+
+  h3 {
+    margin: 0 0 var(--space-xs);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  &__countries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+
+    button {
+      --country-color: var(--color-gold);
+      padding: 0.2rem 0.6rem;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+      background: color-mix(in srgb, var(--country-color) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--country-color) 40%, transparent);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-text-primary);
+        border-color: var(--country-color);
+      }
+    }
+  }
+}
+
+// ===== LORE =====
+.lore {
+  background: var(--color-bg-medium);
+}
+
+.lore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.lore-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-xl);
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast);
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-3px);
+    border-color: var(--color-gold);
+    outline: none;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    margin: 0;
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+
+  &__type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  &__read {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-purple-light);
+  }
+}
+
+.lore-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: var(--space-md);
+  background: rgba(5, 4, 12, 0.8);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.15s ease;
+
+  &__panel {
+    position: relative;
+    width: min(720px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: var(--space-2xl) var(--space-xl);
+    background: linear-gradient(180deg, #1f1a33, var(--color-bg-medium));
+    border: 1px solid rgba(240, 192, 64, 0.3);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+
+    h2 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      margin: var(--space-xs) 0;
+      padding-right: var(--space-xl);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    width: 36px;
+    height: 36px;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-card);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &__subtitle {
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  &__text {
+    margin-top: var(--space-lg);
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--color-text-primary);
+  }
+}
