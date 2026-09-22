@@ -298,10 +298,13 @@ export class SocialService {
       raza: 'races', subraza: 'subrazas', accesorio: 'accessories'
     };
 
+    // Mismo formato que la app (SocialService.buildDownloadPayload): la campaña
+    // va como un único objeto y el resto de creaciones en una lista.
+    const isCampaign = post.creation_type === 'campana';
     const payload = {
-      type: TYPE_MAP[post.creation_type] ?? post.creation_type,
+      type: isCampaign ? 'campaign' : TYPE_MAP[post.creation_type] ?? post.creation_type,
       version: '1.0',
-      data: [{ ...post.data, nombre: post.title }],
+      data: isCampaign ? { ...post.data, name: post.title } : [{ ...post.data, nombre: post.title }],
       metadata: {
         source: 'web_social',
         author: post.username,

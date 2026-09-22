@@ -55,7 +55,7 @@
             @if (novedad()!.tags && novedad()!.tags!.length > 0) {
               <div class="nov-card__tags">
                 @for (tag of novedad()!.tags!; track tag) {
-                  <span class="nov-tag">{{ tag }}</span>
+                  <a class="nov-tag" routerLink="/novedades" [queryParams]="{ etiqueta: slug(tag) }" title="Ver las novedades con esta etiqueta">{{ tag }}</a>
                 }
               </div>
             }

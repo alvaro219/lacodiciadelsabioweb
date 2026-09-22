@@ -1193,7 +1193,7 @@
             "nombre": "Escudo",
             "dado": 4,
             "ataques": 1,
-            "modificador": "Fuerza",
+            "modificador": "Constitución",
             "dosManos": false
           },
           "dosManos": false

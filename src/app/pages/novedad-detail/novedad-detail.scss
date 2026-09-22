@@ -200,6 +200,12 @@
   background: rgba(139, 92, 246, 0.15);
   color: #c4b5fd;
   border: 1px solid rgba(139, 92, 246, 0.3);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+
+  &:is(a):hover {
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+  }
 }
 
 // ===== CARD FOOTER =====

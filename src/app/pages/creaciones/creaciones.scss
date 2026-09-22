@@ -245,6 +245,7 @@
     &[data-type="raza"] { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
     &[data-type="subraza"] { background: rgba(240, 192, 64, 0.15); color: var(--color-gold); }
     &[data-type="accesorio"] { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
+    &[data-type="campana"] { background: rgba(212, 163, 115, 0.15); color: #e0b48a; }
   }
 
   &__date {
@@ -681,10 +682,19 @@
 
   &__actions {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: var(--space-md);
     padding-top: var(--space-md);
     border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  &__hint {
+    flex-basis: 100%;
+    margin: 0;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--color-text-muted);
   }
 }
 
@@ -743,6 +753,17 @@
     color: var(--color-text-muted);
     font-weight: 600;
   }
+}
+
+.detail-list {
+  margin: 0 0 0 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.detail-muted {
+  color: var(--color-text-muted);
 }
 
 .detail-chips {

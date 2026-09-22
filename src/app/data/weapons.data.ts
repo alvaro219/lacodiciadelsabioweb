@@ -26,8 +26,9 @@ function buildWeapons(): Weapon[] {
     for (const sub of cls.subclasses) {
       for (const w of sub.weaponList) {
         const abilities = w.properties.map(weaponPropertyName);
-        // Un mismo arma puede ser distinta como principal o como secundaria.
-        const key = [w.name, w.slot, w.die, w.attacks, w.modifier, abilities.join(',')].join('|');
+        // Un mismo arma puede ser distinta como principal o como secundaria. Si
+        // solo cambia el atributo que suma, es la misma arma (ver usersByModifier).
+        const key = [w.name, w.slot, w.die, w.attacks, abilities.join(',')].join('|');
         let weapon = byKey.get(key);
         if (!weapon) {
           weapon = {
@@ -38,15 +39,22 @@ function buildWeapons(): Weapon[] {
             slot: w.slot,
             abilities,
             usedBy: [],
+            usersByModifier: [],
             image: gameImage(images[w.type]),
           };
           byKey.set(key, weapon);
         }
-        weapon.usedBy.push({ classId: cls.id, className: cls.name, subclassId: sub.id, subclassName: sub.name });
+        const user = { classId: cls.id, className: cls.name, subclassId: sub.id, subclassName: sub.name, modifier: w.modifier };
+        weapon.usedBy.push(user);
+        const group = weapon.usersByModifier.find((g) => g.modifier === w.modifier);
+        if (group) group.users.push(user);
+        else weapon.usersByModifier.push({ modifier: w.modifier, users: [user] });
       }
     }
   }
-  return [...byKey.values()];
+  const weapons = [...byKey.values()];
+  for (const weapon of weapons) weapon.modifier = weapon.usersByModifier.map((g) => g.modifier).join(' o ');
+  return weapons;
 }
 
 export const WEAPONS: Weapon[] = buildWeapons();

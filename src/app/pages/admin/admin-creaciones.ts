@@ -6,7 +6,7 @@ import { SupabaseService } from '../../services/supabase.service';
 import { SocialPost } from '../../models/social.model';
 
 const TYPE_LABELS: Record<string, string> = {
-  clase: 'Clase', subclase: 'Subclase', raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio'
+  clase: 'Clase', subclase: 'Subclase', raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio', campana: 'Campaña'
 };
 
 @Component({

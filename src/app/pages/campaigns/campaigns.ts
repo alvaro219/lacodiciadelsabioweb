@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CAMPAIGN_SEASONS } from '../../data/campaigns.data';
+import { CAMPAIGN_SEASONS, Campaign } from '../../data/campaigns.data';
 import { SeoService } from '../../services/seo.service';
 
 @Component({
@@ -13,8 +13,8 @@ export class Campaigns {
   protected readonly seasons = CAMPAIGN_SEASONS;
   protected readonly total = CAMPAIGN_SEASONS.reduce((n, s) => n + s.campaigns.length, 0);
   protected readonly free = CAMPAIGN_SEASONS.reduce((n, s) => n + s.campaigns.filter((c) => !c.premium).length, 0);
-  /** Campañas con la descripción completa desplegada. */
-  protected readonly expanded = signal(new Set<string>());
+  /** Campaña cuya presentación se está leyendo. */
+  protected readonly reading = signal<Campaign | null>(null);
 
   constructor(seo: SeoService) {
     seo.setPage({
@@ -24,10 +24,8 @@ export class Campaigns {
     });
   }
 
-  protected toggle(id: string) {
-    const next = new Set(this.expanded());
-    if (next.has(id)) next.delete(id);
-    else next.add(id);
-    this.expanded.set(next);
+  @HostListener('document:keydown.escape')
+  protected closeReading() {
+    this.reading.set(null);
   }
 }

@@ -5,7 +5,7 @@ import { SocialPost } from '../../models/social.model';
 import { CreacionForm } from '../../components/creacion-form/creacion-form';
 
 const TYPE_LABELS: Record<string, string> = {
-  clase: 'Clase', subclase: 'Subclase', raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio'
+  clase: 'Clase', subclase: 'Subclase', raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio', campana: 'Campaña'
 };
 
 @Component({

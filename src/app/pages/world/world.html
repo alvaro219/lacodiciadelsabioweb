@@ -109,13 +109,13 @@
 
 <!-- LECTURA -->
 @if (reading(); as e) {
-  <div class="lore-modal" (click)="closeReading()">
-    <article class="lore-modal__panel" role="dialog" aria-modal="true" [attr.aria-label]="e.titulo" (click)="$event.stopPropagation()">
-      <button class="lore-modal__close" aria-label="Cerrar" (click)="closeReading()">✕</button>
+  <div class="reading-modal" (click)="closeReading()">
+    <article class="reading-modal__panel" role="dialog" aria-modal="true" [attr.aria-label]="e.titulo" (click)="$event.stopPropagation()">
+      <button class="reading-modal__close" aria-label="Cerrar" (click)="closeReading()">✕</button>
       <span class="lore-card__type">{{ e.tipo }} · {{ e.lugar }}</span>
       <h2>{{ e.titulo }}</h2>
-      <p class="lore-modal__subtitle">{{ e.subtitulo }}</p>
-      <div class="lore-modal__text pre-line">{{ e.contenido }}</div>
+      <p class="reading-modal__subtitle">{{ e.subtitulo }}</p>
+      <div class="reading-modal__text pre-line">{{ e.contenido }}</div>
     </article>
   </div>
 }

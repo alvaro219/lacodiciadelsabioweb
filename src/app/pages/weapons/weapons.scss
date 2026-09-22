@@ -137,5 +137,13 @@
         color: var(--color-gold);
       }
     }
+
+    & + & {
+      margin-top: var(--space-xs);
+    }
+  }
+
+  &__users-label {
+    color: var(--color-text-muted);
   }
 }

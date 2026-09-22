@@ -35,8 +35,10 @@ const PLACEHOLDER_COPIES = 3;
 const EXTRA = [
   'assets/wallpaper.png',
   'assets/battlegrounds/game_background_3.png',
+  // Moneda de los precios (la web no usa el emoji 🪙: Windows 10 no lo dibuja).
+  'assets/accessories/gold_loot_04.png',
   // Pixel art pequeño (576×324): se guarda sin pérdida y la web lo escala con image-rendering: pixelated.
-  ...[6, 7, 12, 13, 18, 76].map((n) => `assets/backgrounds/background ${n}.png`),
+  ...[6, 7, 12, 13, 18, 58, 76].map((n) => `assets/backgrounds/background ${n}.png`),
 ];
 
 const images = new Set(EXTRA);

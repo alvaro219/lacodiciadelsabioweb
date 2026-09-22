@@ -71,7 +71,8 @@ export class Creaciones implements OnInit {
     { value: 'subclase',  icon: '⚡',  label: 'Subclases' },
     { value: 'raza',      icon: '🌍', label: 'Razas' },
     { value: 'subraza',   icon: '🧬', label: 'Subrazas' },
-    { value: 'accesorio', icon: '💍', label: 'Accesorios' }
+    { value: 'accesorio', icon: '💍', label: 'Accesorios' },
+    { value: 'campana',   icon: '📜', label: 'Campañas' }
   ];
 
   private authResolved = false;
@@ -259,7 +260,7 @@ export class Creaciones implements OnInit {
   getTypeIcon(type: string): string {
     const icons: Record<string, string> = {
       clase: '🎯', subclase: '⚡',
-      raza: '🌍', subraza: '🧬', accesorio: '💍'
+      raza: '🌍', subraza: '🧬', accesorio: '💍', campana: '📜'
     };
     return icons[type] ?? '📜';
   }
@@ -267,7 +268,7 @@ export class Creaciones implements OnInit {
   getTypeLabel(type: string): string {
     const labels: Record<string, string> = {
       clase: 'Clase', subclase: 'Subclase',
-      raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio'
+      raza: 'Raza', subraza: 'Subraza', accesorio: 'Accesorio', campana: 'Campaña'
     };
     return labels[type] ?? type;
   }

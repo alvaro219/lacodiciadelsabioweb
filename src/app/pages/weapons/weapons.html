@@ -71,11 +71,16 @@
                   }
                 </div>
               }
-              <div class="weapon-card__users">
-                @for (u of weapon.usedBy; track u.subclassId) {
-                  <a [routerLink]="'/clases/' + u.classId">{{ u.subclassName }}</a>
-                }
-              </div>
+              @for (group of weapon.usersByModifier; track group.modifier) {
+                <div class="weapon-card__users">
+                  @if (weapon.usersByModifier.length > 1) {
+                    <span class="weapon-card__users-label">Con {{ group.modifier }}:</span>
+                  }
+                  @for (u of group.users; track u.subclassId) {
+                    <a [routerLink]="'/clases/' + u.classId">{{ u.subclassName }}</a>
+                  }
+                </div>
+              }
             </div>
           </article>
         }

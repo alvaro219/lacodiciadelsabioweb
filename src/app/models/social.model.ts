@@ -1,4 +1,4 @@
-export type CreationType = 'clase' | 'subclase' | 'raza' | 'subraza' | 'accesorio';
+export type CreationType = 'clase' | 'subclase' | 'raza' | 'subraza' | 'accesorio' | 'campana';
 
 export interface SocialPost {
   id: string;

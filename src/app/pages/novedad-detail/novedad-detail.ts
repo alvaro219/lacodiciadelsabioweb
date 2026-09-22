@@ -7,6 +7,7 @@ import { NovedadService } from '../../services/novedad.service';
 import { SocialService } from '../../services/social.service';
 import { SeoService } from '../../services/seo.service';
 import { Novedad, NovComment } from '../../models/novedad.model';
+import { slugify } from '../../utils/game.utils';
 
 @Component({
   selector: 'app-novedad-detail',
@@ -18,6 +19,7 @@ export class NovedadDetail implements OnInit {
   protected readonly novedad = signal<Novedad | null>(null);
   protected readonly loading = signal(true);
   protected readonly notFound = signal(false);
+  protected readonly slug = slugify;
 
   protected readonly currentUser = computed(() => this.social.currentUser());
   protected readonly isAdmin = computed(() => this.social.isAdmin());

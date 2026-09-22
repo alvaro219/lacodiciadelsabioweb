@@ -1,15 +1,21 @@
 <!-- HERO -->
-<section class="nov-hero">
-  <div class="nov-hero__bg"></div>
-  <div class="nov-hero__content container">
-    <a routerLink="/" class="nov-hero__back">← Volver al inicio</a>
-    <div class="nov-hero__header">
-      <span class="nov-hero__icon">📣</span>
+<section class="page-hero">
+  <div class="page-hero__art pixel-art" style="background-image: url('assets/game/backgrounds/background 58.webp')"></div>
+  <div class="container">
+    <a routerLink="/" class="page-hero__back">← Volver al inicio</a>
+    <div class="page-hero__header">
+      <span class="page-hero__icon">📣</span>
       <div>
-        <h1 class="nov-hero__title">Novedades</h1>
-        <p class="nov-hero__subtitle">Últimas noticias, actualizaciones y anuncios sobre La Codicia del Sabio</p>
+        <h1 class="page-hero__title">Novedades</h1>
+        <p class="page-hero__subtitle">Últimas noticias, actualizaciones y anuncios sobre La Codicia del Sabio</p>
       </div>
     </div>
+    @if (novedades().length) {
+      <div class="page-hero__stats">
+        <span><strong>{{ novedades().length }}</strong>publicaciones</span>
+        <span><strong>{{ tagOptions().length }}</strong>etiquetas</span>
+      </div>
+    }
   </div>
 </section>
 
@@ -31,8 +37,54 @@
         <p>Pronto publicaremos actualizaciones sobre el juego y la aplicación. ¡Vuelve pronto!</p>
       </div>
     } @else {
+      <div class="nov-filters">
+        <input
+          class="search-input"
+          type="search"
+          placeholder="Buscar novedad…"
+          aria-label="Buscar novedad"
+          [value]="query()"
+          (input)="onSearch($event)"
+        />
+        <div class="filters nov-filters__tags" role="group" aria-label="Filtrar por etiqueta">
+          <button class="filter-chip" [class.active]="!selectedTag()" (click)="selectTag('')">
+            Todas <span class="filter-chip__count">{{ novedades().length }}</span>
+          </button>
+          @for (t of mainTags(); track t.slug) {
+            <button class="filter-chip" [class.active]="selectedTag() === t.slug" [attr.aria-pressed]="selectedTag() === t.slug" (click)="selectTag(t.slug)">
+              {{ t.label }} <span class="filter-chip__count">{{ t.count }}</span>
+            </button>
+          }
+          @if (showAllTags()) {
+            @for (t of extraTags(); track t.slug) {
+              <button class="filter-chip" [class.active]="selectedTag() === t.slug" [attr.aria-pressed]="selectedTag() === t.slug" (click)="selectTag(t.slug)">
+                {{ t.label }}
+              </button>
+            }
+          }
+          @if (extraTags().length) {
+            <button class="nov-filters__more" (click)="showAllTags.set(!showAllTags())">
+              {{ showAllTags() ? 'Menos etiquetas' : '+ ' + extraTags().length + ' etiquetas más' }}
+            </button>
+          }
+        </div>
+        @if (selectedTag() || query().trim()) {
+          <p class="nov-filters__summary">
+            {{ filtered().length }} de {{ novedades().length }} novedades
+            <button class="nov-filters__clear" (click)="clearFilters()">Quitar filtros</button>
+          </p>
+        }
+      </div>
+
+      @if (filtered().length === 0) {
+        <div class="nov-empty card">
+          <span class="nov-empty__icon">🔍</span>
+          <h3>Ninguna novedad coincide</h3>
+          <button class="btn btn--outline btn--sm" (click)="clearFilters()">Ver todas</button>
+        </div>
+      }
       <div class="nov-index">
-        @for (nov of novedades(); track nov.id) {
+        @for (nov of filtered(); track nov.id) {
           <a class="nov-index-item" [class.nov-index-item--pinned]="nov.pinned" [routerLink]="['/novedades', buildSlug(nov.title, nov.id!)]">
             <div class="nov-index-item__thumb">
               @if (nov.image_url) {
@@ -52,7 +104,7 @@
                 @if (nov.tags && nov.tags.length > 0) {
                   <div class="nov-card__tags">
                     @for (tag of nov.tags; track tag) {
-                      <span class="nov-tag">{{ tag }}</span>
+                      <span class="nov-tag" [class.nov-tag--active]="selectedTag() && selectedTag() === slug(tag)">{{ tag }}</span>
                     }
                   </div>
                 }

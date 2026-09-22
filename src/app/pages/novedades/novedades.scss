@@ -1,64 +1,53 @@
-// ===== HERO =====
-.nov-hero {
-  position: relative;
-  padding: calc(var(--navbar-height) + var(--space-2xl)) 0 var(--space-2xl);
-  overflow: hidden;
+// ===== FILTROS =====
+.nov-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
 
-  &__bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 20% 50%, rgba(240, 192, 64, 0.10) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+  &__tags {
+    margin-bottom: 0;
   }
 
-  &__content {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__back--btn {
-    background: none;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: var(--radius-full);
-    cursor: pointer;
+  &__more {
+    padding: 0.45rem 0.6rem;
+    font-family: var(--font-body);
     font-size: 0.85rem;
-    padding: 0.3rem 0.9rem;
-    transition: color var(--transition-fast), border-color var(--transition-fast);
+    font-weight: 700;
+    color: var(--color-purple-light);
+    background: none;
+    border: none;
+    cursor: pointer;
 
     &:hover {
       color: var(--color-gold);
-      border-color: var(--color-gold);
     }
   }
 
-  &__back {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-xl);
-    transition: color var(--transition-fast);
-    &:hover { color: var(--color-gold); }
-  }
-
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xl);
-  }
-
-  &__icon { font-size: 4rem; flex-shrink: 0; }
-
-  &__title {
-    font-size: clamp(1.75rem, 6vw, 4rem);
-    margin-bottom: var(--space-xs);
-  }
-
-  &__subtitle {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
+  &__summary {
     margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
   }
+
+  &__clear {
+    margin-left: var(--space-sm);
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.filter-chip__count {
+  margin-left: 0.25em;
+  font-size: 0.75rem;
+  opacity: 0.7;
 }
 
 // ===== LIST =====
@@ -335,6 +324,12 @@
   background: rgba(139, 92, 246, 0.15);
   color: #c4b5fd;
   border: 1px solid rgba(139, 92, 246, 0.3);
+
+  &--active {
+    color: var(--color-bg-dark);
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+  }
 }
 
 // ===== CARD FOOTER =====

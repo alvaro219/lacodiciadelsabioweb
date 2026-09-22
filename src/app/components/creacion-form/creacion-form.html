@@ -61,7 +61,7 @@
             <div class="cf-radio-group">
               @for (t of TAMANYOS; track t) {
                 <button class="cf-radio-btn" [class.active]="rTamanyo() === t" (click)="rTamanyo.set(t)">
-                  {{ t === 'pequeño' ? '👶 Pequeño' : t === 'mediano' ? '🧍 Mediano' : '🦣 Grande' }}
+                  {{ t === 'pequeño' ? '👶 Pequeño' : t === 'mediano' ? '🧍 Mediano' : '🐘 Grande' }}
                 </button>
               }
             </div>
@@ -441,6 +441,152 @@
             <p>{{ acDescripcion() }}</p>
             <p><strong>Precio:</strong> {{ acPrecio() }} monedas</p>
           </div>
+        }
+      }
+
+      <!-- ══════ CAMPAÑA ══════ -->
+      @if (tipo() === 'campana') {
+        @if (paso() === 0) {
+          <div class="cf-field"><label>Nombre *</label>
+            <input type="text" maxlength="80" placeholder="Ej: La Cripta del Rey Olvidado"
+              [ngModel]="caNombre()" (ngModelChange)="caNombre.set($event)"/>
+          </div>
+          <div class="cf-field"><label>Resumen *</label>
+            <textarea rows="2" maxlength="300" placeholder="Una o dos frases que enganchen a los jugadores"
+              [ngModel]="caResumen()" (ngModelChange)="caResumen.set($event)"></textarea>
+            <span class="cf-field__hint">{{ caResumen().length }}/300</span>
+          </div>
+          <div class="cf-row">
+            <div class="cf-field"><label>Jugadores recomendados</label>
+              <input type="number" min="1" max="10" [ngModel]="caJugadores()" (ngModelChange)="caJugadores.set(+$event)"/>
+            </div>
+            <div class="cf-field"><label>Sesiones estimadas</label>
+              <input type="number" min="1" max="100" [ngModel]="caSesiones()" (ngModelChange)="caSesiones.set(+$event)"/>
+            </div>
+          </div>
+        }
+        @if (paso() === 1) {
+          <div class="cf-field"><label>Presentación <span class="cf-hint-inline">Opcional — lo que se lee al empezar la campaña</span></label>
+            <textarea rows="6" maxlength="5000"
+              [ngModel]="caSinopsis()" (ngModelChange)="caSinopsis.set($event)"></textarea>
+          </div>
+          <div class="cf-field"><label>Mundo y ambientación <span class="cf-hint-inline">Opcional</span></label>
+            <textarea rows="3" maxlength="3000" placeholder="Dónde y cuándo ocurre"
+              [ngModel]="caAmbientacion()" (ngModelChange)="caAmbientacion.set($event)"></textarea>
+          </div>
+          <div class="cf-field"><label>Tono y estilo <span class="cf-hint-inline">Opcional</span></label>
+            <input type="text" maxlength="120" placeholder="Ej: Terror, misterio, humor…"
+              [ngModel]="caTono()" (ngModelChange)="caTono.set($event)"/>
+          </div>
+          <div class="cf-field"><label>Notas para el máster <span class="cf-hint-inline">Opcional — consejos para dirigirla</span></label>
+            <textarea rows="3" maxlength="3000"
+              [ngModel]="caNotas()" (ngModelChange)="caNotas.set($event)"></textarea>
+          </div>
+        }
+        @if (paso() === 2) {
+          <p class="cf-step-intro">La historia, dividida en capítulos, actos o sesiones, en el orden en que se juegan.</p>
+          @for (sec of caSecciones(); track sec.id; let i = $index) {
+            <div class="cf-ability-block">
+              <div class="cf-list-item__head">
+                <span class="cf-ability-block__title">Sección {{ i + 1 }}</span>
+                <span class="cf-list-item__tools">
+                  @if (i > 0) { <button type="button" title="Subir" (click)="moveUp(caSecciones, i)">↑</button> }
+                  <button type="button" title="Quitar" (click)="removeAt(caSecciones, i)">✕</button>
+                </span>
+              </div>
+              <div class="cf-field"><label>Título *</label>
+                <input type="text" maxlength="120" placeholder="Ej: Capítulo 1 — El pueblo de Brisaclara" [(ngModel)]="sec.title"/>
+              </div>
+              <div class="cf-field"><label>Contenido</label>
+                <textarea rows="5" maxlength="10000" [(ngModel)]="sec.content"></textarea>
+              </div>
+            </div>
+          }
+          <button type="button" class="cf-add-btn" (click)="addSeccion()">+ Añadir sección</button>
+        }
+        @if (paso() === 3) {
+          <p class="cf-step-intro">Opcional. Los combates y retos de la campaña, en orden.</p>
+          @for (enc of caEncuentros(); track enc.id; let i = $index) {
+            <div class="cf-ability-block">
+              <div class="cf-list-item__head">
+                <span class="cf-ability-block__title">Encuentro {{ i + 1 }}</span>
+                <span class="cf-list-item__tools">
+                  @if (i > 0) { <button type="button" title="Subir" (click)="moveUp(caEncuentros, i)">↑</button> }
+                  <button type="button" title="Quitar" (click)="removeAt(caEncuentros, i)">✕</button>
+                </span>
+              </div>
+              <div class="cf-row">
+                <div class="cf-field"><label>Nombre *</label><input type="text" maxlength="80" [(ngModel)]="enc.name"/></div>
+                <div class="cf-field"><label>Lugar</label><input type="text" maxlength="80" [(ngModel)]="enc.location"/></div>
+              </div>
+              <div class="cf-field"><label>Descripción</label><textarea rows="3" maxlength="3000" [(ngModel)]="enc.description"></textarea></div>
+              <div class="cf-row">
+                <div class="cf-field"><label>Objetivos</label><textarea rows="2" maxlength="1000" [(ngModel)]="enc.objectives"></textarea></div>
+                <div class="cf-field"><label>Recompensas</label><textarea rows="2" maxlength="1000" [(ngModel)]="enc.rewards"></textarea></div>
+              </div>
+              <div class="cf-row">
+                <div class="cf-field"><label>Enemigos <span class="cf-hint-inline">separados por comas</span></label>
+                  <input type="text" maxlength="500" placeholder="Ej: Goblin, Goblin, Chamán Goblin" [(ngModel)]="enc.enemies"/>
+                </div>
+                <div class="cf-field"><label>Aliados <span class="cf-hint-inline">separados por comas</span></label>
+                  <input type="text" maxlength="500" [(ngModel)]="enc.allies"/>
+                </div>
+              </div>
+            </div>
+          }
+          <button type="button" class="cf-add-btn" (click)="addEncuentro()">+ Añadir encuentro</button>
+        }
+        @if (paso() === 4) {
+          <p class="cf-step-intro">Opcional. Los personajes que el máster interpreta y cómo puede acabar la aventura.</p>
+          @for (npc of caPnjs(); track npc.id; let i = $index) {
+            <div class="cf-ability-block">
+              <div class="cf-list-item__head">
+                <span class="cf-ability-block__title">PNJ {{ i + 1 }}</span>
+                <span class="cf-list-item__tools">
+                  <button type="button" title="Quitar" (click)="removeAt(caPnjs, i)">✕</button>
+                </span>
+              </div>
+              <div class="cf-row">
+                <div class="cf-field"><label>Nombre *</label><input type="text" maxlength="80" [(ngModel)]="npc.name"/></div>
+                <div class="cf-field"><label>Papel</label><input type="text" maxlength="60" placeholder="Villano, aliado, neutral…" [(ngModel)]="npc.role"/></div>
+              </div>
+              <div class="cf-field"><label>Descripción</label><textarea rows="2" maxlength="2000" [(ngModel)]="npc.description"></textarea></div>
+              <div class="cf-field"><label>Notas</label><textarea rows="2" maxlength="2000" [(ngModel)]="npc.notes"></textarea></div>
+            </div>
+          }
+          <button type="button" class="cf-add-btn" (click)="addPnj()">+ Añadir PNJ</button>
+
+          <div class="cf-field cf-endings">
+            <label>Finales posibles</label>
+            @for (fin of caFinales(); track fin.id; let i = $index) {
+              <div class="cf-ending">
+                <textarea rows="2" maxlength="2000" [placeholder]="'Final ' + (i + 1)" [(ngModel)]="fin.text"></textarea>
+                <button type="button" class="cf-ending__remove" title="Quitar" (click)="removeAt(caFinales, i)">✕</button>
+              </div>
+            }
+            <button type="button" class="cf-add-btn" (click)="addFinal()">+ Añadir final</button>
+          </div>
+        }
+        @if (isPreview) {
+          <div class="cf-preview-card">
+            <div class="cf-preview-card__header">📜 Campaña — {{ caNombre() }}</div>
+            <p>{{ caResumen() }}</p>
+            <p><strong>Jugadores:</strong> {{ caJugadores() }} | <strong>Sesiones:</strong> {{ caSesiones() }}</p>
+            @if (caTono().trim()) { <p><strong>Tono:</strong> {{ caTono() }}</p> }
+            <p>
+              <strong>Contenido:</strong>
+              {{ secciones().length }} {{ secciones().length === 1 ? 'sección' : 'secciones' }} ·
+              {{ encuentros().length }} {{ encuentros().length === 1 ? 'encuentro' : 'encuentros' }} ·
+              {{ pnjs().length }} PNJ ·
+              {{ finales().length }} {{ finales().length === 1 ? 'final' : 'finales' }}
+            </p>
+            @if (secciones().length) {
+              <ol class="cf-preview-list">
+                @for (sec of secciones(); track sec.id) { <li>{{ sec.title }}</li> }
+              </ol>
+            }
+          </div>
+          <p class="cf-step-intro">Una vez publicada, cualquiera podrá descargarla desde la Comunidad de la app para jugarla.</p>
         }
       }
 

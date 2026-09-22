@@ -290,6 +290,7 @@ input#cf-img-input { display: none; }
   &[data-type='raza']      { background: rgba(99,222,74,0.15);   color: #86efac; border: 1px solid rgba(99,222,74,0.3); }
   &[data-type='subraza']   { background: rgba(99,222,74,0.10);   color: #6ee7b7; border: 1px solid rgba(99,222,74,0.2); }
   &[data-type='accesorio'] { background: rgba(240,192,64,0.15);  color: var(--color-gold); border: 1px solid rgba(240,192,64,0.3); }
+  &[data-type='campana']   { background: rgba(212,163,115,0.15); color: #e0b48a; border: 1px solid rgba(212,163,115,0.3); }
 }
 
 // ===== RADIO GROUP (tamaño, velocidad, recurso, manos) =====
@@ -430,6 +431,100 @@ input#cf-img-input { display: none; }
 }
 
 // ===== HINT INLINE =====
+// --- Campaña: listas de secciones, encuentros, PNJs y finales ---
+.cf-step-intro {
+  margin: 0 0 var(--space-md);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.cf-list-item__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-xs);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+
+  .cf-ability-block__title {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
+.cf-list-item__tools {
+  display: flex;
+  gap: var(--space-xs);
+
+  button {
+    width: 28px;
+    height: 28px;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-dark);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-gold);
+      border-color: var(--color-gold);
+    }
+  }
+}
+
+.cf-add-btn {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: var(--space-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-purple-light);
+  background: transparent;
+  border: 1px dashed rgba(139, 92, 246, 0.45);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+  }
+}
+
+.cf-endings {
+  margin-top: var(--space-lg);
+}
+
+.cf-ending {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+
+  textarea {
+    flex: 1;
+  }
+
+  &__remove {
+    align-self: flex-start;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-dark);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+.cf-preview-list {
+  margin: var(--space-sm) 0 0 1.2rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
 .cf-hint-inline {
   font-size: 0.75rem;
   font-weight: 400;

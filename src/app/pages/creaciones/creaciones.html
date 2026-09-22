@@ -4,7 +4,7 @@
   <div class="crea-hero__content container">
     <a routerLink="/" class="crea-hero__back">← Volver al inicio</a>
     <h1 class="crea-hero__title">Galería de <span class="gradient-text">Creaciones</span></h1>
-    <p class="crea-hero__subtitle">Descubre y comparte creaciones de la comunidad: clases, razas, subclases, accesorios y más.</p>
+    <p class="crea-hero__subtitle">Descubre y comparte creaciones de la comunidad: clases, razas, subclases, accesorios y campañas.</p>
     <div class="crea-hero__actions">
       <a routerLink="/eventos" class="btn btn--outline btn--lg">Ver Eventos</a>
       @if (currentUser()) {
@@ -542,10 +542,78 @@
                 @if (d('precio')) {
                   <div class="detail-field">
                     <span class="detail-label">Precio</span>
-                    <span class="detail-value">{{ d('precio') }} 🪙</span>
+                    <span class="detail-value">{{ d('precio') }} <img class="coin" src="assets/game/accessories/gold_loot_04.webp" alt="monedas" width="16" height="16" /></span>
                   </div>
                 }
               </div>
+            </div>
+          }
+
+          <!-- ═══ CAMPAÑA ═══ -->
+          @if (detailPost()!.creation_type === 'campana') {
+            <div class="detail-section">
+              <div class="detail-row">
+                <div class="detail-field">
+                  <span class="detail-label">Jugadores</span>
+                  <span class="detail-value">{{ d('recommendedPlayers') ?? '—' }}</span>
+                </div>
+                <div class="detail-field">
+                  <span class="detail-label">Sesiones</span>
+                  <span class="detail-value">{{ d('estimatedSessions') ?? '—' }}</span>
+                </div>
+                @if (d('toneAndStyle')) {
+                  <div class="detail-field">
+                    <span class="detail-label">Tono</span>
+                    <span class="detail-value">{{ d('toneAndStyle') }}</span>
+                  </div>
+                }
+              </div>
+              @if (d('fullDescription')) {
+                <div class="detail-field">
+                  <span class="detail-label">Presentación</span>
+                  <span class="detail-value pre-line">{{ d('fullDescription') }}</span>
+                </div>
+              }
+              @if (d('setting')) {
+                <div class="detail-field">
+                  <span class="detail-label">Ambientación</span>
+                  <span class="detail-value pre-line">{{ d('setting') }}</span>
+                </div>
+              }
+              @if (d('sections')?.length) {
+                <div class="detail-field">
+                  <span class="detail-label">Historia ({{ d('sections').length }} secciones)</span>
+                  <ol class="detail-list">
+                    @for (sec of d('sections'); track $index) { <li>{{ sec.title }}</li> }
+                  </ol>
+                </div>
+              }
+              @if (d('encounters')?.length) {
+                <div class="detail-field">
+                  <span class="detail-label">Encuentros ({{ d('encounters').length }})</span>
+                  <ol class="detail-list">
+                    @for (enc of d('encounters'); track $index) {
+                      <li>{{ enc.name }}@if (enc.location) { <span class="detail-muted"> · {{ enc.location }}</span> }</li>
+                    }
+                  </ol>
+                </div>
+              }
+              @if (d('npcs')?.length) {
+                <div class="detail-field">
+                  <span class="detail-label">PNJs</span>
+                  <div class="detail-chips">
+                    @for (npc of d('npcs'); track $index) {
+                      <span class="detail-chip">{{ npc.name }}@if (npc.role) { ({{ npc.role }}) }</span>
+                    }
+                  </div>
+                </div>
+              }
+              @if (d('possibleEndings')?.length) {
+                <div class="detail-field">
+                  <span class="detail-label">Finales posibles</span>
+                  <span class="detail-value">{{ d('possibleEndings').length }}</span>
+                </div>
+              }
             </div>
           }
 
@@ -561,6 +629,9 @@
       }
 
       <div class="crea-detail-modal__actions">
+        @if (detailPost()!.creation_type === 'campana') {
+          <p class="crea-detail-modal__hint">Para jugarla, descárgala desde la Comunidad de la app: se guarda en tus campañas.</p>
+        }
         <button class="btn btn--primary" (click)="onDownload(detailPost()!); closeDetail()">
           ⬇️ Descargar JSON
         </button>
