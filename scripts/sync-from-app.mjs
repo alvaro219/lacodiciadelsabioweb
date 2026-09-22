@@ -5,6 +5,8 @@
 //     (flutter test tool/export_web_data_test.dart, en la app).
 //  2. Convierte los manuales de la app (scripts/sync-manuals.mjs).
 //  3. Copia las imágenes que usan esos datos (scripts/sync-images.mjs).
+//  4. Rehace la imagen para compartir la web (scripts/generate-og-image.mjs).
+//  5. Actualiza el sitemap con las clases y razas (scripts/generate-sitemap.mjs).
 //
 // La app se busca en ../gestorderol; se puede indicar otra carpeta:
 //   npm run sync-app -- C:/ruta/a/gestorderol
@@ -40,4 +42,6 @@ function run(title, command, args, cwd) {
 run('Exportar los datos de la app', 'flutter', ['test', 'tool/export_web_data_test.dart'], appRoot);
 run('Convertir los manuales', process.execPath, [join(webRoot, 'scripts/sync-manuals.mjs'), appRoot], webRoot);
 run('Copiar las imágenes', process.execPath, [join(webRoot, 'scripts/sync-images.mjs'), appRoot], webRoot);
+run('Imagen para compartir', process.execPath, [join(webRoot, 'scripts/generate-og-image.mjs'), appRoot], webRoot);
+run('Sitemap', process.execPath, [join(webRoot, 'scripts/generate-sitemap.mjs')], webRoot);
 console.log('\n✔ Web actualizada con los datos de la app. Revisa los cambios con git diff.');

@@ -4,7 +4,7 @@ import { GAME_STATS } from '../data/stats.data';
 
 const SITE_NAME = 'La Codicia del Sabio';
 const BASE_URL = 'https://alvaro219.github.io/lacodiciadelsabioweb';
-const DEFAULT_IMAGE = `${BASE_URL}/assets/icons/icon-512.png`;
+const DEFAULT_IMAGE = `${BASE_URL}/assets/og-image.jpg`;
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {

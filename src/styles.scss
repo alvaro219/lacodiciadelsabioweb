@@ -409,6 +409,12 @@ a {
   }
 }
 
+// --- Fondos de pixel art (los de assets/game/backgrounds): se escalan sin
+// suavizar para que no se vean borrosos.
+.pixel-art {
+  image-rendering: pixelated;
+}
+
 // --- Cabecera de página. La ilustración de fondo, si la hay, va en
 // .page-hero__art con la imagen en línea ([style.background-image]) para que
 // su ruta relativa respete el base href de la web.
@@ -436,14 +442,14 @@ a {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(13, 11, 26, 0.35) 0%, rgba(13, 11, 26, 0.85) 70%, var(--color-bg-dark) 100%);
+      background: linear-gradient(180deg, rgba(13, 11, 26, 0.55) 0%, rgba(13, 11, 26, 0.85) 70%, var(--color-bg-dark) 100%);
     }
   }
 
   &__back {
     display: inline-block;
     font-size: 0.85rem;
-    color: var(--color-text-muted);
+    color: var(--color-text-secondary);
     margin-bottom: var(--space-lg);
 
     &:hover {
@@ -455,6 +461,12 @@ a {
     display: flex;
     align-items: center;
     gap: var(--space-lg);
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
   }
 
   &__icon {
@@ -617,5 +629,22 @@ a {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+// --- Impresión: sin navegación ni fondos oscuros ---
+@media print {
+  body {
+    background: #fff;
+    color: #1f1b2e;
+  }
+
+  app-navbar,
+  app-footer {
+    display: none !important;
+  }
+
+  .card::before {
+    display: none;
   }
 }

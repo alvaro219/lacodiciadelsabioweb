@@ -1,12 +1,15 @@
 <!-- HERO -->
-<section class="guides-hero">
-  <div class="guides-hero__bg"></div>
-  <div class="guides-hero__content container">
-    <a routerLink="/" class="guides-hero__back">← Volver al inicio</a>
-    <h1 class="guides-hero__title">Manuales del <span class="gradient-text">Compendium</span></h1>
-    <p class="guides-hero__subtitle">
-      Manuales completos para jugadores y masters. Todo lo que necesitas para dominar La Codicia del Sabio.
-    </p>
+<section class="page-hero">
+  <div class="page-hero__art pixel-art" style="background-image: url('assets/game/backgrounds/background 7.webp')"></div>
+  <div class="container">
+    <a routerLink="/" class="page-hero__back">← Volver al inicio</a>
+    <div class="page-hero__header">
+      <span class="page-hero__icon">📚</span>
+      <div>
+        <h1 class="page-hero__title">Manuales del <span class="gradient-text">Compendium</span></h1>
+        <p class="page-hero__subtitle">Manuales completos para jugadores y masters. Todo lo que necesitas para dominar La Codicia del Sabio.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -21,7 +24,7 @@
     </div>
     <div class="guides-list__grid">
       @for (guide of guides; track guide.id) {
-        <a [routerLink]="'/guias/' + guide.id" class="guide-card card" [style.--guide-color]="guide.color">
+        <a [routerLink]="'/manuales/' + guide.id" class="guide-card card" [style.--guide-color]="guide.color">
           <span class="guide-card__icon">{{ guide.icon }}</span>
           <h2 class="guide-card__name">{{ guide.name }}</h2>
           <p class="guide-card__desc">{{ guide.description }}</p>

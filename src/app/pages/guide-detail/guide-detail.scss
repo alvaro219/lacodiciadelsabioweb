@@ -292,3 +292,96 @@
     margin-bottom: 0;
   }
 }
+
+// ===== IMPRESIÓN / PDF =====
+// Versión clara y sin navegación para imprimir el manual o guardarlo en PDF
+// (scripts/generate-manual-pdfs.mjs genera los PDF de la web con esto).
+@media print {
+  .guide-hero {
+    padding: 0 0 14pt;
+
+    &__bg,
+    &__back,
+    &__actions {
+      display: none !important;
+    }
+
+    &__title {
+      color: #3b2a6b;
+      font-size: 26pt;
+    }
+
+    &__subtitle {
+      color: #4a4458;
+    }
+  }
+
+  .guide-toc,
+  .other-guides,
+  .guide-download-cta,
+  .guide-coming-soon {
+    display: none !important;
+  }
+
+  .section {
+    padding: 0;
+  }
+
+  .guide-section {
+    background: #fff !important;
+    border: 1px solid #ddd5ec !important;
+    box-shadow: none !important;
+    transform: none !important;
+    margin-bottom: 12pt;
+
+    &__header {
+      border-bottom-color: #ddd5ec;
+      break-after: avoid;
+    }
+
+    &__title {
+      color: #3b2a6b;
+    }
+
+    &__subheading {
+      color: #6a4c93;
+      break-after: avoid;
+    }
+
+    &__text,
+    &__note,
+    &__list li,
+    &__table td {
+      color: #1f1b2e;
+
+      strong {
+        color: #000;
+      }
+    }
+
+    &__note {
+      background: #f4f0fb;
+      border-left-color: #6a4c93;
+    }
+
+    &__table-wrap {
+      overflow: visible;
+      border-color: #ddd5ec;
+    }
+
+    &__table {
+      th {
+        background: #efe9f8;
+        color: #3b2a6b;
+      }
+
+      td {
+        border-top-color: #e6e0f2;
+      }
+
+      tr {
+        break-inside: avoid;
+      }
+    }
+  }
+}

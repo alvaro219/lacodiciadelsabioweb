@@ -7,6 +7,7 @@ import { AppArma, AppClase, AppSubclase } from '../models/app-data.model';
 import { AbilityInfo, GameClass, Subclass, WeaponInfo } from '../models/class.model';
 import { gameImage, slugify, splitAbility } from '../utils/game.utils';
 import { CLASS_EXTRAS } from './class-extras';
+import { CLASS_ICONS, DEFAULT_CLASS_ICON } from './icons.data';
 
 /** Huecos de habilidad de una subclase, en el orden en que se muestran. */
 const SLOTS: { key: string; slot: string; kind: string }[] = [
@@ -90,7 +91,7 @@ export const CLASSES: GameClass[] = (appClasses as unknown as AppClase[]).map((c
     hb2Name: c.hb2Nombre ?? 'HB2',
     description: extras?.description ?? c.definicion,
     lore: extras?.lore ?? '',
-    icon: extras?.icon ?? '⚔️',
+    icon: CLASS_ICONS[id] ?? DEFAULT_CLASS_ICON,
     color: extras?.color ?? '#a78bfa',
     subclasses: c.subclases.map((s) => subclass(id, s)),
     preset: c.preparado

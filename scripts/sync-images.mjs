@@ -32,7 +32,12 @@ const WIDTHS = { avatars: 320, enemies: 480, accessories: 256, weapons: 256, bat
 const PLACEHOLDER_COPIES = 3;
 
 // Fondos de las páginas (no vienen en los datos).
-const EXTRA = ['assets/wallpaper.png', 'assets/battlegrounds/game_background_3.png', 'assets/backgrounds/background 13.png'];
+const EXTRA = [
+  'assets/wallpaper.png',
+  'assets/battlegrounds/game_background_3.png',
+  // Pixel art pequeño (576×324): se guarda sin pérdida y la web lo escala con image-rendering: pixelated.
+  ...[6, 7, 12, 13, 18, 76].map((n) => `assets/backgrounds/background ${n}.png`),
+];
 
 const images = new Set(EXTRA);
 for (const c of read('classes')) if (c.preparado?.avatar) images.add(c.preparado.avatar);
@@ -69,7 +74,7 @@ for (const path of [...hashes.keys()].sort()) {
   mkdirSync(dirname(dest), { recursive: true });
   const info = await sharp(join(appRoot, path))
     .resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: folder === 'backgrounds' || folder === 'battlegrounds' || path.endsWith('wallpaper.png') ? 72 : 80 })
+    .webp(folder === 'backgrounds' ? { lossless: true } : { quality: folder === 'battlegrounds' || path.endsWith('wallpaper.png') ? 72 : 80 })
     .toFile(dest);
   total += info.size;
   count++;

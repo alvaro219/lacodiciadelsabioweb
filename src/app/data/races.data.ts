@@ -7,6 +7,7 @@ import { AppRaza } from '../models/app-data.model';
 import { Race } from '../models/race.model';
 import { gameImage, parseTrait, slugify } from '../utils/game.utils';
 import { RACE_EXTRAS } from './race-extras';
+import { DEFAULT_RACE_ICON, RACE_ICONS } from './icons.data';
 
 /** Avatares que se muestran por raza (los que copia scripts/sync-images.mjs). */
 const MAX_RACE_AVATARS = 8;
@@ -32,7 +33,7 @@ export const RACES: Race[] = (appRaces as unknown as AppRaza[]).map((r) => {
     passive: r.pasiva,
     description: extras?.description ?? r.definicion,
     lore: extras?.lore ?? '',
-    icon: extras?.icon ?? '🧬',
+    icon: RACE_ICONS[id] ?? DEFAULT_RACE_ICON,
     color: extras?.color ?? '#a78bfa',
     avatars: avatars.map((a) => gameImage(a)!),
     subraces: r.subrazas.map((s) => ({

@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase.service';
 import { Novedad, NovComment } from '../models/novedad.model';
+import { compressImage } from '../utils/image.utils';
 
 @Injectable({ providedIn: 'root' })
 export class NovedadService {
@@ -66,15 +67,22 @@ export class NovedadService {
     return { error: null };
   }
 
-  async uploadImage(file: File): Promise<{ url: string | null; error: string | null }> {
-    const ext = file.name.split('.').pop();
-    const path = `novedades/${Date.now()}.${ext}`;
-    const { error } = await this.supabase.authClient.storage
-      .from('novedades-images')
-      .upload(path, file, { upsert: false });
+  async uploadImage(original: File): Promise<{ url: string | null; error: string | null }> {
+    // Se sube en WebP (pesa mucho menos en la lista de novedades); si el
+    // bucket la rechazara, se reintenta con el archivo tal cual.
+    const compressed = await compressImage(original);
+    let path = '';
+    let error: Error | null = null;
+    for (const file of compressed === original ? [original] : [compressed, original]) {
+      path = `novedades/${Date.now()}.${file.name.split('.').pop()}`;
+      ({ error } = await this.supabase.authClient.storage
+        .from('novedades-images')
+        .upload(path, file, { upsert: false }));
+      if (!error) break;
+    }
     if (error) {
       if (error.message.includes('403') || error.message.includes('Unauthorized') || error.message.includes('security'))
-        return { url: null, error: 'Sin permisos para subir imágenes. Ve a Supabase → Storage → novedades-images → Policies y añade política INSERT para authenticated.' };
+        return { url: null, error: 'Sin permisos para subir imágenes: solo el administrador puede subir a novedades-images (supabase/storage_security.sql).' };
       return { url: null, error: error.message };
     }
     const { data } = this.supabase.authClient.storage

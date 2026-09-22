@@ -8,7 +8,9 @@
     "build:prod": "ng build --configuration production --base-href /lacodiciadelsabioweb/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "sync-app": "node scripts/sync-from-app.mjs"
+    "sync-app": "node scripts/sync-from-app.mjs",
+    "pdfs": "node scripts/generate-manual-pdfs.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs"
   },
   "prettier": {
     "printWidth": 100,
@@ -40,6 +42,7 @@
     "@angular/cli": "^21.1.4",
     "@angular/compiler-cli": "^21.1.0",
     "jsdom": "^27.1.0",
+    "puppeteer-core": "^23.11.1",
     "sharp": "^0.33.5",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

@@ -44,7 +44,7 @@
       @for (post of posts(); track post.id) {
         <div class="mc-card card">
           @if (post.image_url) {
-            <img class="mc-card__img" [src]="post.image_url" [alt]="post.title" />
+            <img class="mc-card__img" [src]="post.image_url" [alt]="post.title" loading="lazy" decoding="async" />
           } @else {
             <div class="mc-card__img-placeholder">
               @switch (post.creation_type) {

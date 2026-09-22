@@ -3,7 +3,7 @@
   <section class="guide-hero" [style.--guide-color]="g.color">
     <div class="guide-hero__bg"></div>
     <div class="guide-hero__content container">
-      <a routerLink="/guias" class="guide-hero__back">← Volver a Guías</a>
+      <a routerLink="/manuales" class="guide-hero__back">← Volver a Manuales</a>
       <div class="guide-hero__header">
         <span class="guide-hero__icon">{{ g.icon }}</span>
         <div>
@@ -129,7 +129,7 @@
   <!-- OTHER GUIDES -->
   <section class="other-guides section">
     <div class="container">
-      <h2 class="text-center">Otras Guías</h2>
+      <h2 class="text-center">Otros Manuales</h2>
       <div class="ornament">
         <span class="ornament__line"></span>
         <span class="ornament__symbol">📚</span>
@@ -138,7 +138,7 @@
       <div class="other-guides__grid">
         @for (otherGuide of allGuides; track otherGuide.id) {
           @if (otherGuide.id !== g.id) {
-            <a [routerLink]="'/guias/' + otherGuide.id" class="other-guide-card card">
+            <a [routerLink]="'/manuales/' + otherGuide.id" class="other-guide-card card">
               <span class="other-guide-card__icon">{{ otherGuide.icon }}</span>
               <span class="other-guide-card__name">{{ otherGuide.name }}</span>
             </a>
@@ -168,7 +168,7 @@
     <div class="container" style="text-align: center; padding-top: calc(var(--navbar-height) + 4rem);">
       <h1>Guía no encontrada</h1>
       <p>La guía que buscas no existe.</p>
-      <a routerLink="/guias" class="btn btn--primary">Volver a Guías</a>
+      <a routerLink="/manuales" class="btn btn--primary">Volver a Manuales</a>
     </div>
   </section>
 }

@@ -1,8 +1,8 @@
-// Lo propio de la web para cada clase: icono, color, rol y textos de
-// presentación. El resto de datos de la clase viene de la app (classes.data.ts).
+// Lo propio de la web para cada clase: color, rol y textos de presentación
+// (el icono está en icons.data.ts). El resto de datos de la clase viene de la
+// app (classes.data.ts).
 
 export interface ClassExtras {
-  icon: string;
   color: string;
   role: string;
   passiveName: string;
@@ -13,7 +13,6 @@ export interface ClassExtras {
 
 export const CLASS_EXTRAS: Record<string, ClassExtras> = {
   escaramuzador: {
-    icon: '🏹',
     color: '#8f4adeff',
     role: 'DPS por Condición / Sigilo',
     passiveName: 'Oteador',
@@ -26,7 +25,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   luchador: {
-    icon: '⚔️',
     color: '#f87171',
     role: 'DPS a melee / Autosuficiente',
     passiveName: 'Eristicismo',
@@ -39,7 +37,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   protector: {
-    icon: '🛡️',
     color: '#f7fa60ff',
     role: 'Tanque / Soporte defensivo',
     passiveName: 'Entereza',
@@ -52,7 +49,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   artillero: {
-    icon: '🔧',
     color: '#fb923c',
     role: 'Control / Táctico',
     passiveName: 'Clank',
@@ -65,7 +61,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   controlador: {
-    icon: '🔥',
     color: '#71d2f8ff',
     role: 'DPS mágico / Control',
     passiveName: 'Canalización Arcana',
@@ -78,7 +73,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   invocador: {
-    icon: '🐉',
     color: '#63de4aff',
     role: 'Invocaciones / Versatilidad',
     passiveName: 'Vínculo Natural',
@@ -91,7 +85,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   velador: {
-    icon: '💚',
     color: '#4adeadff',
     role: 'Protección / Gestión de escudos',
     passiveName: 'Plegaria',
@@ -104,7 +97,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   exaltador: {
-    icon: '🎵',
     color: '#f04092ff',
     role: 'Buff / Soporte ofensivo',
     passiveName: 'Maquillar',
@@ -117,7 +109,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   mistico: {
-    icon: '🌑',
     color: '#bb8bfaff',
     role: 'Debuff / Control',
     passiveName: 'Comunión con la muerte',
@@ -130,7 +121,6 @@ export const CLASS_EXTRAS: Record<string, ClassExtras> = {
     },
   },
   apotecario: {
-    icon: '⚗️',
     color: '#d4a373',
     role: 'Soporte / Viales adaptativos',
     passiveName: 'Vial Preparado',

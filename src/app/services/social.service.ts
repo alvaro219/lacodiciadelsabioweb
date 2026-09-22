@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase.service';
 import { SocialPost, SocialComment, SocialReport, AppUser, CreationType } from '../models/social.model';
+import { compressImage } from '../utils/image.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -428,12 +429,19 @@ export class SocialService {
     await client.rpc('increment_downloads', { p_post_id: postId }).then(() => {});
   }
 
-  async uploadImage(file: File, bucket = 'social-images'): Promise<string> {
-    const ext = file.name.split('.').pop();
-    const path = `creaciones/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await this.supabase.authClient.storage
-      .from(bucket)
-      .upload(path, file, { upsert: false });
+  async uploadImage(original: File, bucket = 'social-images'): Promise<string> {
+    // Se sube en WebP y a 1600 px como mucho; si el bucket la rechazara, se
+    // reintenta con el archivo tal cual.
+    const compressed = await compressImage(original, 1600);
+    let path = '';
+    let error: Error | null = null;
+    for (const file of compressed === original ? [original] : [compressed, original]) {
+      path = `creaciones/${Date.now()}_${Math.random().toString(36).slice(2)}.${file.name.split('.').pop()}`;
+      ({ error } = await this.supabase.authClient.storage
+        .from(bucket)
+        .upload(path, file, { upsert: false }));
+      if (!error) break;
+    }
     if (error) throw error;
     const { data } = this.supabase.authClient.storage.from(bucket).getPublicUrl(path);
     return data.publicUrl;

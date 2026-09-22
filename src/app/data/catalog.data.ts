@@ -2,8 +2,7 @@
 // que se cargan en todas las páginas y no deben traer todos los datos.
 
 import appCatalog from './game/catalog.json';
-import { CLASS_EXTRAS } from './class-extras';
-import { RACE_EXTRAS } from './race-extras';
+import { CLASS_ICONS, DEFAULT_CLASS_ICON, DEFAULT_RACE_ICON, RACE_ICONS } from './icons.data';
 import { slugify } from '../utils/game.utils';
 
 export interface CatalogItem {
@@ -16,7 +15,7 @@ const catalog = appCatalog as { clases: { nombre: string; esMagica: boolean }[];
 
 const classItem = (name: string): CatalogItem => {
   const id = slugify(name);
-  return { id, name, icon: CLASS_EXTRAS[id]?.icon ?? '⚔️' };
+  return { id, name, icon: CLASS_ICONS[id] ?? DEFAULT_CLASS_ICON };
 };
 
 export const MARTIAL_CLASSES: CatalogItem[] = catalog.clases.filter((c) => !c.esMagica).map((c) => classItem(c.nombre));
@@ -24,5 +23,5 @@ export const MAGIC_CLASSES: CatalogItem[] = catalog.clases.filter((c) => c.esMag
 
 export const RACE_ITEMS: CatalogItem[] = catalog.razas.map((name) => {
   const id = slugify(name);
-  return { id, name, icon: RACE_EXTRAS[id]?.icon ?? '🧬' };
+  return { id, name, icon: RACE_ICONS[id] ?? DEFAULT_RACE_ICON };
 });
