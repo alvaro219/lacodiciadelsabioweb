@@ -9,53 +9,56 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Inicio</a>
 
       <div class="navbar__dropdown">
-        <button class="navbar__dropdown-trigger" (click)="toggleClasses()">
-          Clases <span class="arrow" [class.open]="isClassesOpen()">▾</span>
+        <button class="navbar__dropdown-trigger" [attr.aria-expanded]="openDropdown() === 'clases'" (click)="toggleDropdown('clases')">
+          Clases <span class="arrow" [class.open]="openDropdown() === 'clases'">▾</span>
         </button>
-        <div class="navbar__dropdown-menu" [class.open]="isClassesOpen()">
+        <div class="navbar__dropdown-menu" [class.open]="openDropdown() === 'clases'">
           <span class="navbar__dropdown-label">⚡ Marciales</span>
-          <a routerLink="/clases/escaramuzador" (click)="closeMenu()">🏹 Escaramuzador</a>
-          <a routerLink="/clases/luchador" (click)="closeMenu()">⚔️ Luchador</a>
-          <a routerLink="/clases/protector" (click)="closeMenu()">🛡️ Protector</a>
-          <a routerLink="/clases/artillero" (click)="closeMenu()">🔧 Artillero</a>
+          @for (c of martialClasses; track c.id) {
+            <a [routerLink]="'/clases/' + c.id" (click)="closeMenu()">{{ c.icon }} {{ c.name }}</a>
+          }
           <span class="navbar__dropdown-label">💧 Mágicas</span>
-          <a routerLink="/clases/controlador" (click)="closeMenu()">🔥 Controlador</a>
-          <a routerLink="/clases/invocador" (click)="closeMenu()">🐉 Invocador</a>
-          <a routerLink="/clases/velador" (click)="closeMenu()">💚 Velador</a>
-          <a routerLink="/clases/exaltador" (click)="closeMenu()">🎵 Exaltador</a>
-          <a routerLink="/clases/mistico" (click)="closeMenu()">🌑 Místico</a>
+          @for (c of magicClasses; track c.id) {
+            <a [routerLink]="'/clases/' + c.id" (click)="closeMenu()">{{ c.icon }} {{ c.name }}</a>
+          }
         </div>
       </div>
 
       <div class="navbar__dropdown">
-        <button class="navbar__dropdown-trigger" (click)="toggleRaces()">
-          Razas <span class="arrow" [class.open]="isRacesOpen()">▾</span>
+        <button class="navbar__dropdown-trigger" [attr.aria-expanded]="openDropdown() === 'razas'" (click)="toggleDropdown('razas')">
+          Razas <span class="arrow" [class.open]="openDropdown() === 'razas'">▾</span>
         </button>
-        <div class="navbar__dropdown-menu" [class.open]="isRacesOpen()">
-          <a routerLink="/razas/humano" (click)="closeMenu()">⚔️ Humano</a>
-          <a routerLink="/razas/elfo" (click)="closeMenu()">🌿 Elfo</a>
-          <a routerLink="/razas/enano" (click)="closeMenu()">⛏️ Enano</a>
-          <a routerLink="/razas/aasimar" (click)="closeMenu()">✨ Aasimar</a>
-          <a routerLink="/razas/orco" (click)="closeMenu()">💪 Orco</a>
-          <a routerLink="/razas/mediano" (click)="closeMenu()">🔮 Mediano</a>
-          <a routerLink="/razas/lagarliz" (click)="closeMenu()">🦎 Lagarliz</a>
-          <a routerLink="/razas/bestani" (click)="closeMenu()">🐾 Bestani</a>
-          <a routerLink="/razas/omnimek" (click)="closeMenu()">⚙️ Omnimek</a>
-          <a routerLink="/razas/lazuri" (click)="closeMenu()">🌊 Lazuri</a>
+        <div class="navbar__dropdown-menu" [class.open]="openDropdown() === 'razas'">
+          @for (r of races; track r.id) {
+            <a [routerLink]="'/razas/' + r.id" (click)="closeMenu()">{{ r.icon }} {{ r.name }}</a>
+          }
         </div>
       </div>
 
       <div class="navbar__dropdown">
-        <button class="navbar__dropdown-trigger" (click)="toggleMecanicas()">
-          Mecánicas <span class="arrow" [class.open]="isMecanicasOpen()">▾</span>
+        <button class="navbar__dropdown-trigger" [attr.aria-expanded]="openDropdown() === 'juego'" (click)="toggleDropdown('juego')">
+          Juego <span class="arrow" [class.open]="openDropdown() === 'juego'">▾</span>
         </button>
-        <div class="navbar__dropdown-menu" [class.open]="isMecanicasOpen()">
+        <div class="navbar__dropdown-menu" [class.open]="openDropdown() === 'juego'">
+          <a routerLink="/mecanicas" routerLinkActive="active" (click)="closeMenu()">⚙️ Mecánicas</a>
+          <a routerLink="/manuales" routerLinkActive="active" (click)="closeMenu()">📖 Manuales</a>
           <a routerLink="/condiciones" routerLinkActive="active" (click)="closeMenu()">⚗️ Condiciones</a>
           <a routerLink="/armas" routerLinkActive="active" (click)="closeMenu()">🗡️ Armas</a>
-          <a routerLink="/mecanicas" routerLinkActive="active" (click)="closeMenu()">⚙️ Mecánicas</a>
+          <a routerLink="/accesorios" routerLinkActive="active" (click)="closeMenu()">💎 Accesorios</a>
+          <a routerLink="/bestiario" routerLinkActive="active" (click)="closeMenu()">👹 Bestiario</a>
         </div>
       </div>
-      <a routerLink="/manuales" routerLinkActive="active" (click)="closeMenu()">Manuales</a>
+
+      <div class="navbar__dropdown">
+        <button class="navbar__dropdown-trigger" [attr.aria-expanded]="openDropdown() === 'mundo'" (click)="toggleDropdown('mundo')">
+          Mundo <span class="arrow" [class.open]="openDropdown() === 'mundo'">▾</span>
+        </button>
+        <div class="navbar__dropdown-menu" [class.open]="openDropdown() === 'mundo'">
+          <a routerLink="/mundo" routerLinkActive="active" (click)="closeMenu()">🌍 Mapamundi y lore</a>
+          <a routerLink="/campanas" routerLinkActive="active" (click)="closeMenu()">🗺️ Campañas</a>
+        </div>
+      </div>
+
       <a routerLink="/novedades" routerLinkActive="active" (click)="closeMenu()">
         Novedades
         @if (isAdmin() && pendingCommentsCount() > 0) {
@@ -64,10 +67,10 @@
       </a>
 
       <div class="navbar__dropdown">
-        <button class="navbar__dropdown-trigger" (click)="toggleComunidad()">
-          Comunidad <span class="arrow" [class.open]="isComunidadOpen()">▾</span>
+        <button class="navbar__dropdown-trigger" [attr.aria-expanded]="openDropdown() === 'comunidad'" (click)="toggleDropdown('comunidad')">
+          Comunidad <span class="arrow" [class.open]="openDropdown() === 'comunidad'">▾</span>
         </button>
-        <div class="navbar__dropdown-menu" [class.open]="isComunidadOpen()">
+        <div class="navbar__dropdown-menu" [class.open]="openDropdown() === 'comunidad'">
           <a routerLink="/eventos" routerLinkActive="active" (click)="closeMenu()">📅 Eventos</a>
           <a routerLink="/creaciones" routerLinkActive="active" (click)="closeMenu()">🎨 Creaciones</a>
         </div>

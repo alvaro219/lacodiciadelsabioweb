@@ -13,26 +13,21 @@
     z-index: 0;
   }
 
+  &__art {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 35%;
+    opacity: 0.55;
+    transform: scale(1.03);
+  }
+
   &__gradient {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(240, 192, 64, 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 80%, rgba(96, 165, 250, 0.08) 0%, transparent 50%);
-  }
-
-  &__particles {
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(2px 2px at 20% 30%, rgba(240, 192, 64, 0.3), transparent),
-      radial-gradient(2px 2px at 40% 70%, rgba(139, 92, 246, 0.2), transparent),
-      radial-gradient(1px 1px at 60% 20%, rgba(96, 165, 250, 0.3), transparent),
-      radial-gradient(1px 1px at 80% 60%, rgba(240, 192, 64, 0.2), transparent),
-      radial-gradient(2px 2px at 10% 80%, rgba(139, 92, 246, 0.15), transparent),
-      radial-gradient(1px 1px at 90% 40%, rgba(240, 192, 64, 0.25), transparent);
-    animation: float 8s ease-in-out infinite;
+      radial-gradient(ellipse at 50% 35%, rgba(13, 11, 26, 0.35) 0%, rgba(13, 11, 26, 0.75) 60%),
+      linear-gradient(180deg, rgba(13, 11, 26, 0.5) 0%, rgba(13, 11, 26, 0.2) 40%, var(--color-bg-dark) 100%);
   }
 
   &__content {
@@ -46,13 +41,23 @@
   &__badge {
     display: inline-block;
     padding: 0.5rem 1.25rem;
-    background: rgba(139, 92, 246, 0.15);
-    border: 1px solid rgba(139, 92, 246, 0.3);
+    background: rgba(13, 11, 26, 0.55);
+    border: 1px solid rgba(240, 192, 64, 0.45);
     border-radius: var(--radius-full);
     font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-purple-light);
+    font-weight: 700;
+    color: var(--color-gold-light);
     margin-bottom: var(--space-xl);
+    backdrop-filter: blur(4px);
+    transition:
+      border-color var(--transition-fast),
+      transform var(--transition-fast);
+
+    &:hover {
+      color: var(--color-gold-light);
+      border-color: var(--color-gold);
+      transform: translateY(-1px);
+    }
   }
 
   &__title {
@@ -71,16 +76,40 @@
     max-width: 640px;
     margin: 0 auto var(--space-2xl);
     font-size: 1.15rem;
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
     line-height: 1.7;
   }
 
   &__actions {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-3xl);
     flex-wrap: wrap;
+  }
+
+  &__party {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-2xl);
+  }
+
+  &__member {
+    width: 64px;
+    transition: transform var(--transition-fast);
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-6px) scale(1.06);
+    }
+
+    @media (max-width: 480px) {
+      width: 48px;
+    }
   }
 
   &__app-download {
@@ -94,6 +123,15 @@
     justify-content: center;
     gap: var(--space-2xl);
     flex-wrap: wrap;
+  }
+
+  // En móvil las cuatro cifras van en una rejilla de 2×2.
+  @media (max-width: 480px) {
+    &__stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
   }
 
   &__stat {
@@ -207,6 +245,11 @@
     flex-shrink: 0;
   }
 
+  &__avatar {
+    width: 60px;
+    flex-shrink: 0;
+  }
+
   &__info {
     flex: 1;
     min-width: 0;
@@ -254,12 +297,8 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     gap: var(--space-md);
-
-    @media (max-width: 1000px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
 
     @media (max-width: 600px) {
       grid-template-columns: repeat(2, 1fr);
@@ -277,6 +316,11 @@
     display: block;
     font-size: 2.5rem;
     margin-bottom: var(--space-sm);
+  }
+
+  &__avatar {
+    width: 80px;
+    margin: 0 auto var(--space-md);
   }
 
   &__name {
@@ -316,7 +360,7 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);
 
     @media (max-width: 900px) {
@@ -633,4 +677,191 @@
     font-weight: 700;
     color: var(--color-text-primary);
   }
+}
+
+// ===== NOVEDADES DE LA TEMPORADA =====
+.season-section {
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(45, 212, 191, 0.08), transparent 55%),
+    radial-gradient(ellipse at 85% 80%, rgba(240, 192, 64, 0.07), transparent 55%),
+    var(--color-bg-dark);
+
+  &__eyebrow {
+    display: inline-block;
+    margin-bottom: var(--space-sm);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+  }
+}
+
+.season-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.season-card {
+  --accent: var(--color-purple);
+  position: relative;
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  color: inherit;
+  text-decoration: none;
+  background: var(--color-bg-card);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast);
+
+  > div {
+    position: relative;
+  }
+
+  &:is(a):hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    color: inherit;
+  }
+
+  &--wide {
+    grid-column: span 2;
+    align-items: center;
+
+    @media (max-width: 600px) {
+      grid-column: auto;
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__avatar {
+    width: 110px;
+    flex-shrink: 0;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.22;
+  }
+
+  &__kicker {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--accent) 80%, white);
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+}
+
+// ===== EXPLORA MAGNA =====
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.explore-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 260px;
+  padding: var(--space-xl);
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid rgba(240, 192, 64, 0.25);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  isolation: isolate;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--transition-slow);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13, 11, 26, 0.15) 0%, rgba(13, 11, 26, 0.92) 75%);
+    }
+  }
+
+  &:hover &__bg {
+    transform: scale(1.05);
+  }
+
+  &:hover {
+    color: inherit;
+    border-color: var(--color-gold);
+  }
+
+  &__icon {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.35rem;
+    margin: var(--space-xs) 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+}
+
+// El dibujo y el nombre del arma van juntos a la izquierda; el dado, a la derecha.
+.weap-preview-card__header {
+  gap: var(--space-sm);
+}
+
+.weap-preview-card__name {
+  flex: 1;
+  text-align: left;
+}
+
+.weap-preview-card__img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
 }

@@ -1,50 +1,157 @@
 <!-- HERO SECTION -->
 <section class="hero">
   <div class="hero__bg">
-    <div class="hero__particles"></div>
+    <div class="hero__art" style="background-image: url(assets/game/wallpaper.webp)"></div>
     <div class="hero__gradient"></div>
   </div>
   <div class="hero__content container">
-    <span class="hero__badge">📜 Sistema de Rol de Mesa Original</span>
+    <a routerLink="/campanas" class="hero__badge">✨ Ya disponible la 3ª Temporada: Incursión en Aguas Turquesas</a>
     <h1 class="hero__title">
-      La Codicia<br>
+      La Codicia<br />
       <span class="gradient-text">del Sabio</span>
     </h1>
     <p class="hero__subtitle">
-      Un sistema de rol de mesa original con 9 clases, 27 subclases, 10 razas jugables y
+      Un sistema de rol de mesa original con {{ stats.clases }} clases, {{ stats.subclases }} subclases, {{ stats.razas }} razas jugables y
       una app compañera completa. Forja tu leyenda en el mundo de Magna.
     </p>
     <div class="hero__actions">
-      <a routerLink="/comunidad" class="btn btn--primary btn--lg">Únete a la Comunidad</a>
-      <a routerLink="/mecanicas" class="btn btn--secondary btn--lg">Descubre el Sistema</a>
-    </div>
-    <div class="hero__app-download">
-      <a href="https://play.google.com/store/apps/details?id=com.lacodiciadelabio.gestorderol" target="_blank" rel="noopener" class="btn-playstore">
-        <svg class="btn-playstore__icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+      <a
+        href="https://play.google.com/store/apps/details?id=com.lacodiciadelabio.gestorderol"
+        target="_blank"
+        rel="noopener"
+        class="btn-playstore"
+      >
+        <svg class="btn-playstore__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
+          />
         </svg>
         <div class="btn-playstore__content">
           <span class="btn-playstore__label">Disponible en</span>
           <span class="btn-playstore__store">Google Play</span>
         </div>
       </a>
+      <a routerLink="/mecanicas" class="btn btn--secondary btn--lg">Descubre el Sistema</a>
     </div>
+
     <div class="hero__stats">
       <div class="hero__stat">
-        <span class="hero__stat-number">9</span>
+        <span class="hero__stat-number">{{ stats.clases }}</span>
         <span class="hero__stat-label">Clases</span>
       </div>
       <div class="hero__stat">
-        <span class="hero__stat-number">27</span>
+        <span class="hero__stat-number">{{ stats.subclases }}</span>
         <span class="hero__stat-label">Subclases</span>
       </div>
       <div class="hero__stat">
-        <span class="hero__stat-number">10</span>
+        <span class="hero__stat-number">{{ stats.razas }}</span>
         <span class="hero__stat-label">Razas</span>
       </div>
       <div class="hero__stat">
-        <span class="hero__stat-number">12</span>
-        <span class="hero__stat-label">Niveles</span>
+        <span class="hero__stat-number">{{ stats.campanas }}</span>
+        <span class="hero__stat-label">Campañas</span>
+      </div>
+    </div>
+
+    <div class="hero__party" aria-label="Personajes preparados de cada clase">
+      @for (cls of classes; track cls.id) {
+        @if (cls.preset) {
+          <a [routerLink]="'/clases/' + cls.id" class="hero__member" [title]="cls.preset.name + ' · ' + cls.name">
+            <span class="avatar-frame" [style.--ring-color]="cls.color">
+              <img [src]="cls.preset.avatar" [alt]="cls.name" width="72" height="72" />
+            </span>
+          </a>
+        }
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SEASON SECTION -->
+<section class="season-section section">
+  <div class="container">
+    <div class="section-header">
+      <span class="season-section__eyebrow">3ª Temporada · Incursión en Aguas Turquesas</span>
+      <h2>Novedades de la <span class="gradient-text">temporada</span></h2>
+      <p>Lo que llega con esta temporada a la app y al sistema.</p>
+    </div>
+
+    <div class="season-grid">
+      @if (newClass; as cls) {
+        <a [routerLink]="'/clases/' + cls.id" class="season-card season-card--wide" [style.--accent]="cls.color">
+          @if (cls.preset) {
+            <span class="avatar-frame season-card__avatar" [style.--ring-color]="cls.color">
+              <img [src]="cls.preset.avatar" [alt]="cls.preset.name" loading="lazy" width="120" height="120" />
+            </span>
+          }
+          <div>
+            <span class="season-card__kicker">Nueva clase</span>
+            <h3>{{ cls.icon }} {{ cls.name }}</h3>
+            <p>
+              Viales que potencian a los aliados y debilitan a los enemigos. Subclases
+              @for (sub of cls.subclasses; track sub.id; let last = $last) {
+                <strong>{{ sub.name }}</strong>{{ last ? '.' : ', ' }}
+              }
+            </p>
+          </div>
+        </a>
+      }
+      @if (newRace; as race) {
+        <a [routerLink]="'/razas/' + race.id" class="season-card season-card--wide" [style.--accent]="race.color">
+          @if (race.avatars.length) {
+            <span class="avatar-frame season-card__avatar" [style.--ring-color]="race.color">
+              <img [src]="race.avatars[0]" [alt]="race.name" loading="lazy" width="120" height="120" />
+            </span>
+          }
+          <div>
+            <span class="season-card__kicker">Nueva raza</span>
+            <h3>{{ race.icon }} {{ race.name }}</h3>
+            <p>
+              {{ race.description }} Subrazas
+              @for (sub of race.subraces; track sub.name; let last = $last) {
+                <strong>{{ sub.name }}</strong>{{ last ? '.' : ' y ' }}
+              }
+            </p>
+          </div>
+        </a>
+      }
+      <div class="season-card season-card--art" style="--accent: #60a5fa">
+        <div class="season-card__bg" style="background-image: url(assets/game/battlegrounds/game_background_3.webp)"></div>
+        <div>
+          <span class="season-card__kicker">Nuevo modo de juego</span>
+          <h3>🌐 Tablero Entrelazado</h3>
+          <p>
+            Combate multijugador en tiempo real: el Máster dirige desde su móvil y cada jugador lleva su ficha en el suyo. Salas por
+            código, encuentros automáticos, comerciantes, notas y partidas guardadas.
+          </p>
+        </div>
+      </div>
+      <a routerLink="/campanas" class="season-card" style="--accent: #f0c040">
+        <div>
+          <span class="season-card__kicker">4 campañas nuevas</span>
+          <h3>🗺️ Capítulo III y tres oneshots</h3>
+          <p>
+            Incursión en Aguas Turquesas continúa la campaña larga. Además: Aliados Inesperados, Luz Apagada en Punta Escarpada e
+            Insignias de Valor en Claro Amapola.
+          </p>
+        </div>
+      </a>
+      <a routerLink="/mundo" class="season-card" style="--accent: #2dd4bf">
+        <div>
+          <span class="season-card__kicker">Mapamundi</span>
+          <h3>🌍 El mundo de Magna</h3>
+          <p>Los {{ stats.paises }} países de Magna en un mapa interactivo, con su historia y los relatos que ocurren en cada uno.</p>
+        </div>
+      </a>
+      <div class="season-card" style="--accent: #a78bfa">
+        <div>
+          <span class="season-card__kicker">Para empezar ya</span>
+          <h3>🧭 Test de Personalidad y Personajes Preparados</h3>
+          <p>
+            Responde unas preguntas y descubre qué clase encaja contigo, o elige un personaje listo para jugar de cada clase, con su
+            avatar.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -66,47 +173,57 @@
       <div class="card features__card">
         <span class="features__card-icon">⚡</span>
         <h3>Sistema de Recursos Dual</h3>
-        <p>Energía para guerreros y Maná para hechiceros. Dos caminos de poder completamente diferenciados con mecánicas propias.</p>
+        <p>
+          Energía para las clases marciales, que empieza cada combate al máximo, y Maná para las mágicas, que se acumula turno a turno.
+        </p>
       </div>
       <div class="card features__card">
         <span class="features__card-icon">🟢</span>
         <h3>3 Acciones por Turno</h3>
-        <p>Cada turno tienes 3 acciones para atacar, moverte o usar habilidades. Modificable por condiciones como Acelerado o Ralentizado.</p>
+        <p>Cada turno tienes 3 acciones para atacar, moverte o usar habilidades, y una reacción. Acelerado y Ralentizado las cambian.</p>
       </div>
       <div class="card features__card">
         <span class="features__card-icon">🛡️</span>
         <h3>Escudo + Vida</h3>
-        <p>Sistema de doble capa de protección. El escudo absorbe daño antes que la vida, añadiendo profundidad táctica al combate.</p>
+        <p>Doble capa de protección: el escudo absorbe el daño antes que la vida y se puede recuperar en pleno combate.</p>
       </div>
       <div class="card features__card">
         <span class="features__card-icon">🎯</span>
         <h3>Especialización o Multiclaseo</h3>
-        <p>Domina una clase hasta el nivel 12 con Pasiva de Maestría, o combina varias clases para crear builds únicos y versátiles.</p>
+        <p>
+          Domina una clase hasta el nivel 12 y su Pasiva de Maestría, o combina varias y usa las subclases de todas ellas.
+        </p>
       </div>
       <div class="card features__card">
         <span class="features__card-icon">📱</span>
         <h3>App Compañera Completa</h3>
-        <p>Gestiona personajes con ficha PDF, dirige combates en tiempo real, genera enemigos y PNJs, todo desde una sola app.</p>
+        <p>Fichas con tiradas automáticas, combates en tiempo real, generadores de enemigos y PNJs, y todo el compendio en tu móvil.</p>
       </div>
       <div class="card features__card">
         <span class="features__card-icon">🎲</span>
-        <h3>Mecánicas Intuitivas</h3>
-        <p>Sistema propio y original (no D&D): DA, margen de daño, 27 condiciones únicas, 10 propiedades de arma y tiers de enemigos.</p>
+        <h3>Mecánicas Propias</h3>
+        <p>
+          Un sistema original (no es D&amp;D): DA, margen de daño, {{ stats.condiciones }} condiciones y propiedades de arma que
+          cambian cada combate.
+        </p>
       </div>
       <div class="card features__card">
         <span class="features__card-icon">🎨</span>
         <h3>Creador de Contenido</h3>
-        <p>Crea tus propias razas, subrazas, clases y subclases con habilidades personalizadas. Comparte tu contenido con amigos.</p>
+        <p>Crea razas, clases, subclases, accesorios y campañas con tus propias reglas, y compártelos en la Comunidad.</p>
       </div>
       <div class="card features__card">
         <span class="features__card-icon">🗡️</span>
-        <h3>54 Accesorios y 49 Enemigos</h3>
-        <p>Equipamiento con 4 rarezas, enemigos en 4 tiers y 9 campañas pregeneradas listas para jugar desde el primer día.</p>
+        <h3>{{ stats.accesorios }} Accesorios y {{ stats.enemigos }} Enemigos</h3>
+        <p>
+          Equipamiento en 4 rarezas, enemigos en 4 tiers y {{ stats.campanas }} campañas pregeneradas listas para jugar desde el primer
+          día.
+        </p>
       </div>
       <div class="card features__card">
         <span class="features__card-icon">👥</span>
         <h3>Sistema Social Integrado</h3>
-        <p>Añade amigos, comparte personajes y creaciones directamente en la app. Lista de amigos con notificaciones en tiempo real.</p>
+        <p>Añade amigos, comparte personajes y creaciones en la app y descarga lo que publica la comunidad.</p>
       </div>
     </div>
   </div>
@@ -130,69 +247,87 @@
         <div class="app-feature__icon">⚔️</div>
         <div class="app-feature__content">
           <h4>Creación de Personajes</h4>
-          <p>Creación estándar paso a paso o creación rápida con 3 personajes aleatorios. Elige raza, clase y subclase con todos los datos al instante. Navegación automática tras guardar.</p>
+          <p>
+            Paso a paso, rápida, avanzada o con el Test de Personalidad, y un Personaje Preparado por clase para jugar ya. Con
+            {{ stats.avatares }} avatares para elegir.
+          </p>
         </div>
       </div>
       <div class="app-feature">
         <div class="app-feature__icon">📋</div>
         <div class="app-feature__content">
           <h4>Ficha de Personaje</h4>
-          <p>Ficha completa con tiradas de salvación tappables, cálculo correcto de atributos secundarios con chips visuales, inventario con 54 accesorios y exportación a PDF.</p>
+          <p>
+            Tiradas de ataque, daño y salvación con un toque, inventario con {{ stats.accesorios }} accesorios, progresión hasta el nivel
+            12 y exportación a PDF.
+          </p>
+        </div>
+      </div>
+      <div class="app-feature">
+        <div class="app-feature__icon">🌐</div>
+        <div class="app-feature__content">
+          <h4>Tablero Entrelazado</h4>
+          <p>
+            Combate multijugador en tiempo real con salas por código: encuentros automáticos, comerciantes, notas del Máster, fondos
+            personalizados y partidas guardadas.
+          </p>
         </div>
       </div>
       <div class="app-feature">
         <div class="app-feature__icon">🏰</div>
         <div class="app-feature__content">
-          <h4>Campañas y Combate en Tiempo Real</h4>
-          <p>Gestiona campañas completas. Controla vida, escudo y condiciones. Reordena turnos arrastrando. 9 campañas pregeneradas y generador de PNJs con trasfondo completo.</p>
+          <h4>Campañas</h4>
+          <p>
+            {{ stats.campanas }} campañas pregeneradas por temporadas y tus propias campañas, con secciones, encuentros, PNJs y finales.
+            Generador de PNJs incluido.
+          </p>
         </div>
       </div>
       <div class="app-feature">
         <div class="app-feature__icon">👹</div>
         <div class="app-feature__content">
           <h4>Generador de Enemigos</h4>
-          <p>5 modos de generación: automático, manual, avanzado, pregenerados y guardados. 49 enemigos en 4 tiers con estadísticas, habilidades y armas completamente definidas.</p>
+          <p>
+            Cinco modos de generación, facciones y {{ stats.enemigos }} enemigos pregenerados en 4 tiers, con estadísticas, habilidades y
+            armas.
+          </p>
         </div>
       </div>
       <div class="app-feature">
         <div class="app-feature__icon">📚</div>
         <div class="app-feature__content">
           <h4>Compendium Completo</h4>
-          <p>Manual del Jugador y del DM, Bestiario, 11 elementos con debilidades, Lore de Magna con 12 relatos, tutorial interactivo y guía rápida del sistema.</p>
-        </div>
-      </div>
-      <div class="app-feature">
-        <div class="app-feature__icon">🔐</div>
-        <div class="app-feature__content">
-          <h4>Secretos y Personalización</h4>
-          <p>8 secretos desbloqueables con el pad direccional, temas y paletas personalizables, versión Premium con contenido exclusivo y sistema de cuentas con Supabase.</p>
+          <p>
+            Manuales del Jugador y del Máster, bestiario, condiciones, elementos y el lore de Magna con su mapamundi de
+            {{ stats.paises }} países.
+          </p>
         </div>
       </div>
     </div>
 
     <div class="app-stats">
       <div class="app-stat">
-        <span class="app-stat__number">54</span>
+        <span class="app-stat__number">{{ stats.accesorios }}</span>
         <span class="app-stat__label">Accesorios</span>
       </div>
       <div class="app-stat">
-        <span class="app-stat__number">49</span>
+        <span class="app-stat__number">{{ stats.enemigos }}</span>
         <span class="app-stat__label">Enemigos</span>
       </div>
       <div class="app-stat">
-        <span class="app-stat__number">27</span>
+        <span class="app-stat__number">{{ stats.condiciones }}</span>
         <span class="app-stat__label">Condiciones</span>
       </div>
       <div class="app-stat">
-        <span class="app-stat__number">9</span>
+        <span class="app-stat__number">{{ stats.campanas }}</span>
         <span class="app-stat__label">Campañas</span>
       </div>
       <div class="app-stat">
-        <span class="app-stat__number">11</span>
-        <span class="app-stat__label">Elementos</span>
+        <span class="app-stat__number">{{ stats.paises }}</span>
+        <span class="app-stat__label">Países</span>
       </div>
       <div class="app-stat">
-        <span class="app-stat__number">8</span>
+        <span class="app-stat__number">{{ stats.secretos }}</span>
         <span class="app-stat__label">Secretos</span>
       </div>
     </div>
@@ -203,7 +338,7 @@
 <section class="classes-section section">
   <div class="container">
     <div class="section-header">
-      <h2>Las <span class="gradient-text">9 Clases</span></h2>
+      <h2>Las <span class="gradient-text">{{ stats.clases }} Clases</span></h2>
       <p>Elige tu camino: la fuerza marcial o el poder arcano</p>
       <div class="ornament">
         <span class="ornament__line"></span>
@@ -212,49 +347,35 @@
       </div>
     </div>
 
-    <div class="classes-section__group">
-      <h3 class="classes-section__group-title">
-        <span class="text-martial">⚡ Clases Marciales</span>
-      </h3>
-      <div class="classes-section__grid">
-        @for (cls of martialClasses; track cls.id) {
-          <a [routerLink]="'/clases/' + cls.id" class="class-card card" [style.--class-color]="cls.color">
-            <span class="class-card__icon">{{ cls.icon }}</span>
-            <div class="class-card__info">
-              <h4 class="class-card__name">{{ cls.name }}</h4>
-              <span class="class-card__role">{{ cls.role }}</span>
-              <div class="class-card__meta">
-                <span class="class-card__shield">🛡️ {{ cls.shieldBase }}</span>
-                <span class="class-card__resource">{{ cls.resourceIcon }} {{ cls.resource }}</span>
+    @for (group of [{ title: '⚡ Clases Marciales', css: 'text-martial', list: martialClasses }, { title: '💧 Clases Mágicas', css: 'text-magic', list: magicClasses }]; track group.title) {
+      <div class="classes-section__group">
+        <h3 class="classes-section__group-title">
+          <span [class]="group.css">{{ group.title }}</span>
+        </h3>
+        <div class="classes-section__grid">
+          @for (cls of group.list; track cls.id) {
+            <a [routerLink]="'/clases/' + cls.id" class="class-card card" [style.--class-color]="cls.color">
+              @if (cls.preset) {
+                <span class="avatar-frame class-card__avatar" [style.--ring-color]="cls.color">
+                  <img [src]="cls.preset.avatar" alt="" loading="lazy" width="64" height="64" />
+                </span>
+              } @else {
+                <span class="class-card__icon">{{ cls.icon }}</span>
+              }
+              <div class="class-card__info">
+                <h4 class="class-card__name">{{ cls.icon }} {{ cls.name }}</h4>
+                <span class="class-card__role">{{ cls.role }}</span>
+                <div class="class-card__meta">
+                  <span class="class-card__shield">🛡️ {{ cls.shieldBase }}</span>
+                  <span class="class-card__resource">{{ cls.resourceIcon }} {{ cls.resource }}</span>
+                </div>
               </div>
-            </div>
-            <span class="class-card__arrow">→</span>
-          </a>
-        }
+              <span class="class-card__arrow">→</span>
+            </a>
+          }
+        </div>
       </div>
-    </div>
-
-    <div class="classes-section__group">
-      <h3 class="classes-section__group-title">
-        <span class="text-magic">💧 Clases Mágicas</span>
-      </h3>
-      <div class="classes-section__grid">
-        @for (cls of magicClasses; track cls.id) {
-          <a [routerLink]="'/clases/' + cls.id" class="class-card card" [style.--class-color]="cls.color">
-            <span class="class-card__icon">{{ cls.icon }}</span>
-            <div class="class-card__info">
-              <h4 class="class-card__name">{{ cls.name }}</h4>
-              <span class="class-card__role">{{ cls.role }}</span>
-              <div class="class-card__meta">
-                <span class="class-card__shield">🛡️ {{ cls.shieldBase }}</span>
-                <span class="class-card__resource">{{ cls.resourceIcon }} {{ cls.resource }}</span>
-              </div>
-            </div>
-            <span class="class-card__arrow">→</span>
-          </a>
-        }
-      </div>
-    </div>
+    }
   </div>
 </section>
 
@@ -262,8 +383,8 @@
 <section class="races-section section">
   <div class="container">
     <div class="section-header">
-      <h2>Las <span class="gradient-text">10 Razas</span> Jugables</h2>
-      <p>Cada raza aporta habilidades únicas y una historia propia</p>
+      <h2>Las <span class="gradient-text">{{ stats.razas }} Razas</span> Jugables</h2>
+      <p>Cada raza aporta una pasiva única, dos subrazas y una historia propia</p>
       <div class="ornament">
         <span class="ornament__line"></span>
         <span class="ornament__symbol">🌍</span>
@@ -274,7 +395,13 @@
     <div class="races-section__grid">
       @for (race of races; track race.id) {
         <a [routerLink]="'/razas/' + race.id" class="race-card card" [style.--race-color]="race.color">
-          <span class="race-card__icon">{{ race.icon }}</span>
+          @if (race.avatars.length) {
+            <span class="avatar-frame race-card__avatar" [style.--ring-color]="race.color">
+              <img [src]="race.avatars[0]" alt="" loading="lazy" width="80" height="80" />
+            </span>
+          } @else {
+            <span class="race-card__icon">{{ race.icon }}</span>
+          }
           <h4 class="race-card__name">{{ race.name }}</h4>
           <div class="race-card__stats">
             <span>📏 {{ race.size }}</span>
@@ -287,12 +414,42 @@
   </div>
 </section>
 
+<!-- EXPLORE SECTION -->
+<section class="explore-section section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Explora <span class="gradient-text">Magna</span></h2>
+      <p>El mundo, sus aventuras y las criaturas que lo habitan</p>
+    </div>
+    <div class="explore-grid">
+      <a routerLink="/mundo" class="explore-card">
+        <div class="explore-card__bg" style="background-image: url('assets/game/backgrounds/background 13.webp')"></div>
+        <span class="explore-card__icon">🌍</span>
+        <h3>El mundo de Magna</h3>
+        <p>Mapamundi interactivo de los {{ stats.paises }} países y {{ stats.relatos }} relatos del lore.</p>
+      </a>
+      <a routerLink="/campanas" class="explore-card">
+        <div class="explore-card__bg" style="background-image: url(assets/game/wallpaper.webp)"></div>
+        <span class="explore-card__icon">🗺️</span>
+        <h3>Campañas</h3>
+        <p>{{ stats.campanas }} aventuras en {{ stats.temporadas }} temporadas, listas para jugar desde la app.</p>
+      </a>
+      <a routerLink="/bestiario" class="explore-card">
+        <div class="explore-card__bg" style="background-image: url(assets/game/battlegrounds/game_background_3.webp)"></div>
+        <span class="explore-card__icon">👹</span>
+        <h3>Bestiario</h3>
+        <p>{{ stats.enemigos }} enemigos, de minions a jefes, para cualquier encuentro.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- CONDITIONS SECTION -->
 <section class="conditions-section section">
   <div class="container">
     <div class="section-header">
       <h2>Las <span class="gradient-text">Condiciones</span> de Combate</h2>
-      <p>Estados que alteran el curso de la batalla: restricciones, debilitaciones y potenciaciones</p>
+      <p>Estados que alteran el curso de la batalla: restricciones, debilitaciones, potenciaciones y daños</p>
       <div class="ornament">
         <span class="ornament__line"></span>
         <span class="ornament__symbol">⚗️</span>
@@ -306,7 +463,7 @@
           <span class="cond-preview-card__icon">{{ group.icon }}</span>
           <h4 class="cond-preview-card__name">{{ group.name }}</h4>
           <p class="cond-preview-card__desc">{{ group.description }}</p>
-          <span class="cond-preview-card__count">{{ group.categories.length }} categorías</span>
+          <span class="cond-preview-card__count">{{ group.categories[0].conditions.length }} condiciones</span>
         </a>
       }
     </div>
@@ -322,7 +479,7 @@
   <div class="container">
     <div class="section-header">
       <h2>El <span class="gradient-text">Arsenal</span></h2>
-      <p>Armas principales y secundarias con habilidades únicas</p>
+      <p>El arma que llevas decide tu subclase</p>
       <div class="ornament">
         <span class="ornament__line"></span>
         <span class="ornament__symbol">🗡️</span>
@@ -334,11 +491,14 @@
       @for (weapon of featuredWeapons; track $index) {
         <a routerLink="/armas" class="weap-preview-card card">
           <div class="weap-preview-card__header">
+            @if (weapon.image) {
+              <img class="weap-preview-card__img" [src]="weapon.image" alt="" loading="lazy" width="40" height="40" />
+            }
             <h4 class="weap-preview-card__name">{{ weapon.name }}</h4>
             <span class="weap-preview-card__damage">{{ weapon.damage }}</span>
           </div>
           <div class="weap-preview-card__meta">
-            <span>Mod. {{ weapon.modifier }}</span>
+            <span>Suma {{ weapon.modifier }}</span>
             <span>{{ weapon.hands }}</span>
           </div>
           @if (weapon.abilities.length > 0) {
@@ -364,10 +524,21 @@
     <div class="cta__card">
       <div class="cta__content">
         <h2>¿Listo para forjar tu leyenda?</h2>
-        <p>Únete a nuestra comunidad en Discord, comparte tus creaciones en la galería social, participa en eventos y sé parte del desarrollo de La Codicia del Sabio.</p>
+        <p>
+          Únete a nuestra comunidad en Discord, comparte tus creaciones en la galería social, participa en eventos y sé parte del
+          desarrollo de La Codicia del Sabio.
+        </p>
         <div class="cta__actions">
-          <a href="https://play.google.com/store/apps/details?id=com.lacodiciadelabio.gestorderol" target="_blank" rel="noopener" class="btn btn--primary btn--lg">📱 Descargar en Google Play</a>
-          <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--outline btn--lg"><img src="assets/icons/discord-icon.svg" alt="" class="discord-icon"> Discord</a>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.lacodiciadelabio.gestorderol"
+            target="_blank"
+            rel="noopener"
+            class="btn btn--primary btn--lg"
+            >📱 Descargar en Google Play</a
+          >
+          <a href="https://discord.gg/Zdw2gBvXR2" target="_blank" rel="noopener" class="btn btn--outline btn--lg"
+            ><img src="assets/icons/discord-icon.svg" alt="" class="discord-icon" /> Discord</a
+          >
         </div>
       </div>
     </div>

@@ -3,6 +3,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SocialService } from '../../services/social.service';
 import { NovedadService } from '../../services/novedad.service';
+import { MAGIC_CLASSES, MARTIAL_CLASSES, RACE_ITEMS } from '../../data/catalog.data';
+
+/** Desplegables de la cabecera; solo puede haber uno abierto. */
+type Dropdown = 'clases' | 'razas' | 'juego' | 'mundo' | 'comunidad';
 
 @Component({
   selector: 'app-navbar',
@@ -13,10 +17,10 @@ import { NovedadService } from '../../services/novedad.service';
 export class Navbar implements OnDestroy {
   protected readonly isMenuOpen = signal(false);
   protected readonly isScrolled = signal(false);
-  protected readonly isClassesOpen = signal(false);
-  protected readonly isRacesOpen = signal(false);
-  protected readonly isMecanicasOpen = signal(false);
-  protected readonly isComunidadOpen = signal(false);
+  protected readonly openDropdown = signal<Dropdown | null>(null);
+  protected readonly martialClasses = MARTIAL_CLASSES;
+  protected readonly magicClasses = MAGIC_CLASSES;
+  protected readonly races = RACE_ITEMS;
   protected readonly isUserMenuOpen = signal(false);
   protected readonly showAuthModal = signal(false);
   protected readonly loginEmail = signal('');
@@ -77,10 +81,7 @@ export class Navbar implements OnDestroy {
       this.isUserMenuOpen.set(false);
     }
     if (!target.closest('.navbar__dropdown')) {
-      this.isClassesOpen.set(false);
-      this.isRacesOpen.set(false);
-      this.isMecanicasOpen.set(false);
-      this.isComunidadOpen.set(false);
+      this.openDropdown.set(null);
     }
   }
 
@@ -95,20 +96,13 @@ export class Navbar implements OnDestroy {
 
   closeMenu() {
     this.isMenuOpen.set(false);
-    this.isClassesOpen.set(false);
-    this.isRacesOpen.set(false);
-    this.isMecanicasOpen.set(false);
-    this.isComunidadOpen.set(false);
+    this.openDropdown.set(null);
     this.isUserMenuOpen.set(false);
     document.body.style.overflow = '';
   }
 
-  toggleComunidad() {
-    const wasOpen = this.isComunidadOpen();
-    this.isClassesOpen.set(false);
-    this.isRacesOpen.set(false);
-    this.isMecanicasOpen.set(false);
-    this.isComunidadOpen.set(!wasOpen);
+  toggleDropdown(name: Dropdown) {
+    this.openDropdown.set(this.openDropdown() === name ? null : name);
   }
 
   toggleUserMenu(e: Event) {
@@ -190,27 +184,6 @@ export class Navbar implements OnDestroy {
     return (u.display_name ?? u.username)[0].toUpperCase();
   }
 
-  toggleClasses() {
-    const wasOpen = this.isClassesOpen();
-    this.isClassesOpen.set(!wasOpen);
-    this.isRacesOpen.set(false);
-    this.isMecanicasOpen.set(false);
-    this.isComunidadOpen.set(false);
-  }
 
-  toggleRaces() {
-    const wasOpen = this.isRacesOpen();
-    this.isRacesOpen.set(!wasOpen);
-    this.isClassesOpen.set(false);
-    this.isMecanicasOpen.set(false);
-    this.isComunidadOpen.set(false);
-  }
 
-  toggleMecanicas() {
-    const wasOpen = this.isMecanicasOpen();
-    this.isMecanicasOpen.set(!wasOpen);
-    this.isClassesOpen.set(false);
-    this.isRacesOpen.set(false);
-    this.isComunidadOpen.set(false);
-  }
 }
