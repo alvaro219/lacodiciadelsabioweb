@@ -5,7 +5,10 @@
     <div class="hero__gradient"></div>
   </div>
   <div class="hero__content container">
-    <a routerLink="/campanas" class="hero__badge">✨ Ya disponible la 3ª Temporada: Incursión en Aguas Turquesas</a>
+    <a routerLink="/campanas" class="hero__badge">
+      @if (seasonOut) { ✨ Ya disponible la 3ª Temporada: Incursión en Aguas Turquesas }
+      @else { ✨ El 25 de septiembre llega la 3ª Temporada: Incursión en Aguas Turquesas }
+    </a>
     <h1 class="hero__title">
       La Codicia<br />
       <span class="gradient-text">del Sabio</span>

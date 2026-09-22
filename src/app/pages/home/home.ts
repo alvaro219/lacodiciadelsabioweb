@@ -4,6 +4,13 @@ import { GameDataService } from '../../services/game-data.service';
 import { SeoService } from '../../services/seo.service';
 import { GAME_STATS } from '../../data/stats.data';
 
+/**
+ * Día en que la temporada sale en Google Play. Hasta entonces la portada la
+ * anuncia («El 25 de septiembre llega…») y desde ese día dice «Ya disponible»,
+ * sin tener que volver a publicar la web.
+ */
+const SEASON_LAUNCH = new Date('2026-09-25T00:00:00+02:00');
+
 @Component({
   selector: 'app-home',
   imports: [RouterLink],
@@ -12,6 +19,7 @@ import { GAME_STATS } from '../../data/stats.data';
 })
 export class Home {
   protected readonly stats = GAME_STATS;
+  protected readonly seasonOut = Date.now() >= SEASON_LAUNCH.getTime();
   protected readonly classes;
   protected readonly races;
   protected readonly martialClasses;
